@@ -1,0 +1,75 @@
+---
+import { getDictionary } from '@lib/i18n/getDictionary';
+import type { Locale } from '@lib/i18n/languages';
+
+import Icon from '@atoms/Icon/Icon.astro';
+import Button from '@molecules/Button/Button.astro';
+import SettingsList from '@organisms/SettingsList/SettingsList.astro';
+
+interface Props {
+  locale: Locale;
+  class?: string;
+}
+
+const { locale, class: className } = Astro.props;
+
+const { settings } = getDictionary(locale);
+const panelId = 'settings-panel';
+---
+
+<div class:list={['settings', className]} data-settings>
+  <Button
+    variant='icon'
+    label={settings.label}
+    title={settings.open}
+    aria-expanded='false'
+    aria-controls={panelId}
+    data-settings-button
+    data-title-open={settings.open}
+    data-title-close={settings.close}
+    class='settings__button'
+  >
+    <Icon name='settings' size={20} />
+  </Button>
+
+  <SettingsList id={panelId} locale={locale} class='settings__panel' data-settings-panel hidden />
+</div>
+
+<script>
+  import '@organisms/SettingsMenu/settingsMenu';
+</script>
+
+<style>
+  .settings {
+    position: relative;
+  }
+
+  .settings:not([data-ready]) {
+    display: none;
+  }
+
+  .settings :global(.settings__button .icon) {
+    transition: rotate var(--duration-medium) var(--ease-standard);
+  }
+
+  .settings[data-open='true'] :global(.settings__button .icon) {
+    rotate: 60deg;
+  }
+
+  .settings :global(.settings__panel) {
+    position: absolute;
+    inset-block-start: calc(100% + var(--space-2xs));
+    inset-inline-end: 0;
+    z-index: 20;
+    min-width: 18rem;
+    padding: var(--space-sm);
+    border: var(--border-width) solid var(--color-border-subtle);
+    border-radius: var(--radius-sm);
+    background: var(--color-bg);
+    box-shadow: var(--shadow-popover);
+  }
+
+  .settings[data-open='true'] :global(.settings__panel) {
+    animation: reveal var(--duration-fast) var(--ease-standard);
+  }
+</style>
