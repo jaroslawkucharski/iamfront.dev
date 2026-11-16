@@ -1,0 +1,266 @@
+---
+import { getRelativeLocaleUrl } from 'astro:i18n';
+
+import { getCvLink } from '@helpers/getCvLink';
+import { getDictionary } from '@lib/i18n/getDictionary';
+import type { Locale } from '@lib/i18n/languages';
+import { stripLocale } from '@lib/i18n/stripLocale';
+
+import Icon from '@atoms/Icon/Icon.astro';
+import Link from '@atoms/Link/Link.astro';
+import Logo from '@atoms/Logo/Logo.astro';
+import VisuallyHidden from '@atoms/VisuallyHidden/VisuallyHidden.astro';
+import Button from '@molecules/Button/Button.astro';
+import SettingsList from '@organisms/SettingsList/SettingsList.astro';
+import SettingsMenu from '@organisms/SettingsMenu/SettingsMenu.astro';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+
+const { nav } = getDictionary(locale);
+const homeHref = getRelativeLocaleUrl(locale);
+const cv = getCvLink(locale);
+
+const normalize = (path: string) => stripLocale(path).replace(/\/$/, '') || '/';
+const currentPath = normalize(Astro.url.pathname);
+
+const isActive = (href: string) => {
+  if (href.includes('#')) return false;
+
+  const target = normalize(href);
+
+  return currentPath === target || currentPath.startsWith(`${target}/`);
+};
+---
+
+<header class='header' data-header>
+  <Logo href={homeHref} label={nav.homeLabel} class='header__logo' />
+
+  <nav class='header__nav' id='site-nav' aria-label={nav.label}>
+    <ul class='header__list'>
+      {nav.items.map((item, index) => (
+        <li style={`--i: ${index}`}>
+          <Link href={item.href} title={item.title} active={isActive(item.href)} class='header__link'>
+            {item.label}
+
+            <Icon name='arrow-right' size={20} class='header__arrow' />
+          </Link>
+        </li>
+      ))}
+
+      <li style={`--i: ${nav.items.length}`}>
+        <Link href={cv.href} download={cv.fileName} title={cv.title} class='header__link'>
+          <Icon name='download' size={16} class='header__cv-icon' />
+
+          {cv.label}
+
+          <VisuallyHidden>{cv.hint}</VisuallyHidden>
+        </Link>
+      </li>
+    </ul>
+
+    <SettingsList id='menu-settings' locale={locale} class='header__settings' style={`--i: ${nav.items.length + 1}`} />
+  </nav>
+
+  <div class='header__toggles'>
+    <SettingsMenu locale={locale} />
+
+    <Button
+      variant='icon'
+      label={nav.menu.label}
+      title={nav.menu.open}
+      class='header__menu-button'
+      aria-expanded='false'
+      aria-controls='site-nav'
+      data-menu-button
+      data-title-open={nav.menu.open}
+      data-title-close={nav.menu.close}
+    >
+      <Icon name='menu' size={22} class='header__menu-icon header__menu-icon--open' />
+
+      <Icon name='close' size={22} class='header__menu-icon header__menu-icon--close' />
+    </Button>
+  </div>
+</header>
+
+<script>
+  import '@organisms/Header/header';
+</script>
+
+<style>
+  .header {
+    position: relative;
+    display: grid;
+    grid-template-columns: auto 1fr auto auto;
+    grid-template-areas: 'logo . nav toggles';
+    align-items: center;
+    column-gap: var(--space-sm);
+    padding-block: var(--space-xs);
+  }
+
+  .header :global(.header__logo) {
+    grid-area: logo;
+    align-self: start;
+  }
+
+  .header__nav {
+    grid-area: nav;
+  }
+
+  .header__list {
+    display: flex;
+    align-items: center;
+    gap: var(--space-lg);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    white-space: nowrap;
+  }
+
+  .header__toggles {
+    grid-area: toggles;
+    display: flex;
+    align-items: center;
+    margin-block: calc((var(--fs-body) * var(--lh-body) - var(--tap-target)) / 2);
+    margin-inline-start: calc(var(--space-lg) - var(--space-sm) - (var(--tap-target) - var(--icon-md)) / 2);
+  }
+
+  @media (max-width: 768px) {
+    .header {
+      grid-template-columns: 1fr auto;
+      grid-template-areas:
+        'logo toggles'
+        'nav nav';
+      row-gap: var(--space-xs);
+    }
+
+    .header :global(.header__logo) {
+      align-self: center;
+    }
+
+    .header__toggles {
+      margin-block: 0;
+      margin-inline-start: 0;
+    }
+
+    .header__list {
+      flex-wrap: wrap;
+      gap: 0 var(--space-sm);
+    }
+
+    .header__link {
+      min-height: var(--tap-target);
+    }
+
+    .header[data-menu] .header__nav {
+      position: fixed;
+      inset: var(--header-bottom, 0) 0 0;
+      z-index: 10;
+      overflow-y: auto;
+      padding: var(--space-sm) var(--page-gutter) var(--space-lg);
+      background: var(--color-bg);
+    }
+
+    .header[data-menu='closed'] .header__nav {
+      display: none;
+    }
+
+    .header[data-menu] .header__list {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0;
+      counter-reset: nav;
+    }
+
+    .header[data-menu] .header__list > li {
+      border-bottom: var(--border-width) solid var(--color-border-subtle);
+      counter-increment: nav;
+    }
+
+    .header[data-menu='open'] .header__list > li,
+    .header[data-menu='open'] :global(.header__settings) {
+      animation: reveal var(--duration-medium) var(--ease-standard) both;
+      animation-delay: calc(var(--i, 0) * 50ms);
+    }
+
+    .header[data-menu] :global(.header__link) {
+      display: flex;
+      width: 100%;
+      padding-block: var(--space-sm);
+      font-size: var(--fs-xl);
+      font-weight: var(--fw-medium);
+      letter-spacing: var(--ls-heading);
+      line-height: var(--lh-heading);
+      background-image: none;
+    }
+
+    .header[data-menu] :global(.header__link)::before {
+      content: counter(nav, decimal-leading-zero) / '';
+      min-width: 2em;
+      color: var(--color-text-muted);
+      font-size: var(--fs-sm);
+      font-weight: var(--fw-regular);
+      letter-spacing: var(--ls-wide);
+    }
+
+    .header[data-menu] :global(.header__arrow),
+    .header[data-menu] :global(.header__cv-icon) {
+      display: block;
+      order: 2;
+      margin-inline-start: auto;
+      color: var(--color-text-muted);
+      transition: color var(--duration-fast) var(--ease-standard);
+    }
+
+    .header[data-menu] :global(.header__link:hover :is(.header__arrow, .header__cv-icon)),
+    .header[data-menu] :global(.header__link.link--active .header__arrow) {
+      color: var(--color-text);
+    }
+  }
+
+  .header :global(.header__settings) {
+    display: none;
+  }
+
+  @media (max-width: 768px) {
+    .header[data-menu] :global(.header__settings) {
+      display: grid;
+      margin-block-start: var(--space-md);
+    }
+
+    .header[data-menu] :global(.settings) {
+      display: none;
+    }
+  }
+
+  .header :global(.header__arrow) {
+    display: none;
+  }
+
+  :global(html:has(.header[data-menu='open'])) {
+    overflow: hidden;
+  }
+
+  .header :global(.header__menu-button) {
+    display: none;
+  }
+
+  @media (max-width: 768px) {
+    .header[data-menu] :global(.header__menu-button) {
+      display: inline-grid;
+      color: var(--color-text);
+    }
+  }
+
+  .header :global(.header__menu-icon--close),
+  .header[data-menu='open'] :global(.header__menu-icon--open) {
+    visibility: hidden;
+  }
+
+  .header[data-menu='open'] :global(.header__menu-icon--close) {
+    visibility: visible;
+  }
+</style>
