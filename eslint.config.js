@@ -2,15 +2,16 @@
 import js from '@eslint/js';
 import prettier from 'eslint-config-prettier';
 import eslintPluginAstro from 'eslint-plugin-astro';
+import { defineConfig, globalIgnores } from 'eslint/config';
 import globals from 'globals';
 import tseslint from 'typescript-eslint';
 
-export default tseslint.config(
-  { ignores: ['dist/', '.astro/', 'node_modules/', 'public/'] },
+export default defineConfig(
+  globalIgnores(['dist/', '.astro/', 'node_modules/', 'public/']),
   js.configs.recommended,
-  ...tseslint.configs.recommended,
-  ...eslintPluginAstro.configs['flat/recommended'],
-  ...eslintPluginAstro.configs['flat/jsx-a11y-recommended'],
+  tseslint.configs.recommended,
+  eslintPluginAstro.configs['flat/recommended'],
+  eslintPluginAstro.configs['flat/jsx-a11y-recommended'],
   {
     languageOptions: { globals: { ...globals.browser, ...globals.node } },
     rules: {
