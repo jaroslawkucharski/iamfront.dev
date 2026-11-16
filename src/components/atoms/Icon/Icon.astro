@@ -1,0 +1,99 @@
+---
+import {
+  ArrowLeft,
+  ArrowRight,
+  ArrowUp,
+  BriefcaseBusiness,
+  ChevronDown,
+  Dices,
+  Disc3,
+  Download,
+  Droplet,
+  GitBranch,
+  Guitar,
+  Mail,
+  Menu,
+  Moon,
+  Pause,
+  Play,
+  Plus,
+  Search,
+  Settings,
+  Sparkles,
+  Sun,
+  X,
+} from '@lucide/astro';
+
+const lucide = {
+  'arrow-left': ArrowLeft,
+  'arrow-right': ArrowRight,
+  'arrow-up': ArrowUp,
+  'chevron-down': ChevronDown,
+  briefcase: BriefcaseBusiness,
+  download: Download,
+  'git-branch': GitBranch,
+  mail: Mail,
+  menu: Menu,
+  close: X,
+  sun: Sun,
+  moon: Moon,
+  play: Play,
+  pause: Pause,
+  plus: Plus,
+  search: Search,
+  settings: Settings,
+  dice: Dices,
+  disc: Disc3,
+  guitar: Guitar,
+  droplet: Droplet,
+  sparkles: Sparkles,
+} as const;
+
+const custom = {
+  external: `<path d="M12.5 2.5H17.5V7.5" /><path d="M8.33331 11.6667L17.5 2.5" /><path d="M15 10.8333V15.8333C15 16.2754 14.8244 16.6993 14.5118 17.0118C14.1993 17.3244 13.7754 17.5 13.3333 17.5H4.16667C3.72464 17.5 3.30072 17.3244 2.98816 17.0118C2.67559 16.6993 2.5 16.2754 2.5 15.8333V6.66667C2.5 6.22464 2.67559 5.80072 2.98816 5.48816C3.30072 5.17559 3.72464 5 4.16667 5H9.16667" />`,
+} as const;
+
+export type IconName = keyof typeof lucide | keyof typeof custom;
+
+interface Props {
+  name: IconName;
+  size?: number;
+  label?: string;
+  class?: string;
+  [key: string]: unknown;
+}
+
+const { name, size = 20, label, class: className, ...rest } = Astro.props;
+
+const a11y = label ? ({ role: 'img', 'aria-label': label } as const) : ({ 'aria-hidden': 'true' } as const);
+
+const LucideIcon = name in lucide ? lucide[name as keyof typeof lucide] : undefined;
+const customPaths = name in custom ? custom[name as keyof typeof custom] : undefined;
+---
+
+{LucideIcon ? (
+  <LucideIcon size={size} class:list={['icon', className]} data-icon={name} focusable='false' {...a11y} {...rest} />
+) : (
+  <svg
+    class:list={['icon', className]}
+    data-icon={name}
+    width={size}
+    height={size}
+    viewBox='0 0 20 20'
+    fill='none'
+    stroke='currentColor'
+    stroke-width='2'
+    stroke-linecap='round'
+    stroke-linejoin='round'
+    focusable='false'
+    {...a11y}
+    {...rest}
+    set:html={customPaths}
+  />
+)}
+
+<style>
+  .icon {
+    flex-shrink: 0;
+  }
+</style>

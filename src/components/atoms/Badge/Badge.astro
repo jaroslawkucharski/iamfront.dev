@@ -1,0 +1,87 @@
+---
+import type { HTMLTag } from 'astro/types';
+
+type Variants = 'pill' | 'text';
+type Tones = 'default' | 'muted';
+type Sizes = 'md' | 'sm';
+
+interface Props {
+  as?: HTMLTag;
+  variant?: Variants;
+  tone?: Tones;
+  size?: Sizes;
+  class?: string;
+  [key: string]: unknown;
+}
+
+const { as: Tag = 'li', variant = 'pill', tone = 'default', size = 'md', class: className, ...rest } = Astro.props;
+---
+
+<Tag
+  class:list={['badge', `badge--${variant}`, `badge--tone-${tone}`, { 'badge--sm': size === 'sm' }, className]}
+  {...rest}
+>
+  <slot />
+</Tag>
+
+<style>
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    color: var(--color-text);
+    white-space: nowrap;
+  }
+
+  .badge--pill {
+    padding: var(--space-3xs) var(--space-xs);
+    border-radius: var(--radius-full);
+    background: var(--color-surface);
+    font-size: var(--fs-sm);
+    font-weight: var(--fw-regular);
+    line-height: var(--lh-normal);
+    letter-spacing: var(--ls-label);
+  }
+
+  .badge--text {
+    font-size: var(--fs-body);
+    line-height: var(--lh-body);
+    letter-spacing: var(--ls-body);
+  }
+
+  .badge--text.badge--sm {
+    font-size: var(--fs-sm);
+  }
+
+  button.badge {
+    min-height: var(--control-sm);
+    border: 0;
+    font-family: inherit;
+    cursor: var(--cursor-pointer);
+    transition:
+      background-color var(--duration-fast) var(--ease-standard),
+      color var(--duration-fast) var(--ease-standard);
+  }
+
+  button.badge--pill {
+    padding-inline: var(--space-xs);
+  }
+
+  button.badge:hover {
+    background: var(--color-border-subtle);
+  }
+
+  button.badge[aria-pressed='true'] {
+    background: var(--color-text);
+    color: var(--color-bg);
+  }
+
+  .badge--tone-muted {
+    color: var(--color-text-muted);
+  }
+
+  li.badge--text:not(:last-child)::after {
+    content: '·' / '';
+    margin-inline: var(--space-xs);
+    color: var(--color-text-muted);
+  }
+</style>

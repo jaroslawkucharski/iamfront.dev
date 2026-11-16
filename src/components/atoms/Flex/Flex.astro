@@ -1,0 +1,97 @@
+---
+import type { HTMLTag } from 'astro/types';
+
+type Gaps = 'none' | '2xs' | 'xs' | 'sm' | 'md' | 'lg';
+type Directions = 'column' | 'row';
+type Alignments = 'stretch' | 'start' | 'center' | 'end' | 'baseline';
+
+interface Props {
+  as?: HTMLTag;
+  gap?: Gaps;
+  direction?: Directions;
+  align?: Alignments;
+  list?: boolean;
+  class?: string;
+  [key: string]: unknown;
+}
+
+const {
+  as: Tag = 'div',
+  gap = 'sm',
+  direction = 'column',
+  align = 'stretch',
+  list = false,
+  class: className,
+  ...rest
+} = Astro.props;
+---
+
+<Tag
+  class:list={[
+    'flex',
+    `flex--gap-${gap}`,
+    `flex--${direction}`,
+    `flex--align-${align}`,
+    { 'flex--list': list },
+    className,
+  ]}
+  {...rest}
+>
+  <slot />
+</Tag>
+
+<style>
+  .flex {
+    display: flex;
+    margin: 0;
+  }
+
+  .flex--column {
+    flex-direction: column;
+  }
+  .flex--row {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .flex--align-stretch {
+    align-items: stretch;
+  }
+  .flex--align-start {
+    align-items: flex-start;
+  }
+  .flex--align-center {
+    align-items: center;
+  }
+  .flex--align-end {
+    align-items: flex-end;
+  }
+  .flex--align-baseline {
+    align-items: baseline;
+  }
+
+  .flex--gap-none {
+    gap: 0;
+  }
+
+  .flex--gap-2xs {
+    gap: var(--space-2xs);
+  }
+  .flex--gap-xs {
+    gap: var(--space-xs);
+  }
+  .flex--gap-sm {
+    gap: var(--space-sm);
+  }
+  .flex--gap-md {
+    gap: var(--space-md);
+  }
+  .flex--gap-lg {
+    gap: var(--space-lg);
+  }
+
+  .flex--list {
+    padding: 0;
+    list-style: none;
+  }
+</style>

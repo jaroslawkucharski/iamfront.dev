@@ -1,0 +1,14 @@
+---
+import type { HTMLTag } from 'astro/types';
+
+interface Props {
+  as?: HTMLTag;
+  [key: string]: unknown;
+}
+
+const { as: Tag = 'span', ...rest } = Astro.props;
+---
+
+<Tag class='visually-hidden' {...rest}>
+  <slot />
+</Tag>

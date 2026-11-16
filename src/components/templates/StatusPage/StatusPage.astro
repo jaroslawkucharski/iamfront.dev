@@ -14,6 +14,7 @@ const { locale, title, heading, text } = Astro.props;
 
 <BaseLayout locale={locale} title={title}>
   <h1>{heading}</h1>
+
   {text.map((line) => (
     <p>{line}</p>
   ))}

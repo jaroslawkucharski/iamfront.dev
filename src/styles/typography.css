@@ -1,0 +1,61 @@
+/* Base */
+.text {
+  margin: 0;
+  font-style: normal;
+  line-height: var(--lh-normal);
+  text-wrap: pretty;
+  overflow-wrap: break-word;
+}
+
+/* Sizes */
+.text--size-xs {
+  font-size: var(--fs-xs);
+}
+.text--size-sm {
+  font-size: var(--fs-sm);
+}
+.text--size-md {
+  font-size: var(--fs-md);
+  line-height: var(--lh-body);
+}
+.text--size-lg {
+  font-size: var(--fs-lg);
+}
+
+/* Weights */
+.text--weight-regular {
+  font-weight: var(--fw-regular);
+}
+.text--weight-medium {
+  font-weight: var(--fw-medium);
+}
+.text--weight-semibold {
+  font-weight: var(--fw-semibold);
+}
+
+/* Colors */
+.text--color-default {
+  color: var(--color-text);
+}
+.text--color-strong {
+  color: var(--color-text-strong);
+}
+.text--color-muted {
+  color: var(--color-text-muted);
+}
+
+/* Trackings */
+.text--tracking-normal {
+  letter-spacing: var(--ls-body);
+}
+.text--tracking-label {
+  letter-spacing: var(--ls-label);
+}
+.text--tracking-wide {
+  letter-spacing: var(--ls-wide);
+}
+
+/* Uppercase */
+.text--uppercase {
+  text-transform: uppercase;
+}

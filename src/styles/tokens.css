@@ -89,6 +89,13 @@
   --opacity-pressed: 0.7;
 }
 
+/* Cursors */
+:root {
+  --cursor-pointer: pointer;
+  --cursor-progress: progress;
+  --cursor-zoom-in: zoom-in;
+}
+
 /* Colors: both themes */
 :root {
   --color-overlay: rgb(0 0 0 / 0.92);

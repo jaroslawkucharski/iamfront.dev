@@ -1,0 +1,111 @@
+---
+import type { ImageMetadata } from 'astro';
+import { Image } from 'astro:assets';
+import type { HTMLAttributes } from 'astro/types';
+
+type Shapes = 'default' | 'circle';
+type Themes = 'light' | 'dark';
+
+interface Props extends Omit<HTMLAttributes<'img'>, 'src' | 'alt' | 'width' | 'height' | 'style'> {
+  src: ImageMetadata;
+  dark?: ImageMetadata;
+  alt: string;
+  shape?: Shapes;
+  size?: number;
+  sizeMobile?: number;
+  widths?: number[];
+  sizes?: string;
+  style?: string;
+}
+
+const {
+  src,
+  dark,
+  alt,
+  shape = 'default',
+  size,
+  sizeMobile = size,
+  widths,
+  sizes,
+  loading = 'lazy',
+  class: className,
+  style,
+  ...rest
+} = Astro.props;
+
+const dimensions = size
+  ? {
+      width: size,
+      height: shape === 'circle' ? size : Math.round((size * src.height) / src.width),
+      densities: [1, 2],
+    }
+  : { widths, sizes };
+
+const sizeStyle = size ? `--picture-size: ${size}px; --picture-size-mobile: ${sizeMobile}px` : undefined;
+const styles = [sizeStyle, style].filter(Boolean).join('; ') || undefined;
+
+const images: { image: ImageMetadata; theme?: Themes }[] = dark
+  ? [
+      { image: src, theme: 'light' },
+      { image: dark, theme: 'dark' },
+    ]
+  : [{ image: src }];
+---
+
+{images.map(({ image, theme }) => (
+  <Image
+    src={image}
+    alt={alt}
+    loading={loading}
+    decoding='async'
+    style={styles}
+    class:list={['picture', `picture--${shape}`, { 'picture--sized': size, [`picture--${theme}`]: theme }, className]}
+    {...dimensions}
+    {...rest}
+  />
+))}
+
+<style>
+  /* Sizes */
+  .picture--sized {
+    flex-shrink: 0;
+    width: var(--picture-size);
+    height: auto;
+    object-fit: cover;
+    background: var(--color-surface);
+  }
+
+  .picture--sized.picture--default {
+    width: 100%;
+    max-width: var(--picture-size);
+  }
+
+  .picture--circle {
+    aspect-ratio: 1;
+    border-radius: var(--radius-full);
+  }
+
+  @media (max-width: 768px) {
+    .picture--sized {
+      width: var(--picture-size-mobile);
+    }
+  }
+
+  /* Themes */
+  :global(:root[data-theme='light']) .picture--dark,
+  :global(:root[data-theme='dark']) .picture--light {
+    display: none;
+  }
+
+  @media (prefers-color-scheme: light) {
+    :global(:root:not([data-theme='dark'])) .picture--dark {
+      display: none;
+    }
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :global(:root:not([data-theme='light'])) .picture--light {
+      display: none;
+    }
+  }
+</style>

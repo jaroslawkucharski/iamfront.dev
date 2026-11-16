@@ -1,0 +1,46 @@
+---
+interface Props {
+  multiline?: boolean;
+  rows?: number;
+  class?: string;
+  [key: string]: unknown;
+}
+
+const { multiline = false, rows = 6, class: className, ...rest } = Astro.props;
+---
+
+{multiline ? (
+  <textarea class:list={['input', 'input--multiline', className]} rows={rows} {...rest} />
+) : (
+  <input class:list={['input', className]} {...rest} />
+)}
+
+<style>
+  .input {
+    width: 100%;
+    min-height: var(--tap-target);
+    padding: var(--space-xs) var(--space-sm);
+    border: var(--border-width) solid var(--color-border);
+    border-radius: var(--radius-sm);
+    background: transparent;
+    color: var(--color-text);
+    font: inherit;
+    font-size: var(--fs-body);
+    line-height: var(--lh-body);
+    letter-spacing: var(--ls-body);
+    transition: border-color var(--duration-fast) var(--ease-standard);
+  }
+
+  .input--multiline {
+    resize: vertical;
+  }
+
+  .input:hover {
+    border-color: var(--color-text);
+  }
+
+  .input[aria-invalid='true'] {
+    border-color: var(--color-error);
+    border-width: var(--border-width-strong);
+  }
+</style>
