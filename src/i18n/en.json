@@ -123,7 +123,6 @@
     },
     "submit": "Send message",
     "sending": "Sending…",
-    "success": "Thanks! Your message has been sent – I will get back to you soon.",
     "failure": "The message could not be sent. Please try again in a moment.",
     "errorsSummary": "Please fix the errors in the form: {count}.",
     "counter": "{count}/{max} characters",
