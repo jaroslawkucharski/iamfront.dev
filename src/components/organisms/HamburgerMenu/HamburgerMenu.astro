@@ -37,12 +37,12 @@ const { menu } = getDictionary(locale).nav;
 </script>
 
 <style>
-  :global(.hamburger-menu.button) {
+  :global(.button.button--icon.hamburger-menu) {
     display: none;
   }
 
   @media (max-width: 768px) {
-    :global(.hamburger-menu.button[data-ready]) {
+    :global(.button.button--icon.hamburger-menu[data-ready]) {
       display: inline-grid;
       color: var(--color-text);
     }
