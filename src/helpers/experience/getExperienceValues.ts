@@ -1,4 +1,4 @@
-import { getExperience } from '@helpers/getExperience';
+import { getExperience } from '@helpers/experience/getExperience';
 
 export const getExperienceValues = () => {
   const experience = getExperience();

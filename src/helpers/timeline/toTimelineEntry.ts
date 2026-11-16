@@ -5,7 +5,6 @@ import { getSkillBadges } from '@helpers/skills/getSkillBadges';
 import type { Locale } from '@lib/i18n/languages';
 import { localize } from '@lib/i18n/localize';
 
-import type { IconName } from '@atoms/Icon/Icon.astro';
 import type { EntryData } from '@organisms/Entry/Entry.astro';
 
 export const toTimelineEntry = async (
@@ -15,7 +14,7 @@ export const toTimelineEntry = async (
   id,
   name: localize(data.name, locale),
   logo: data.logo,
-  icon: data.icon as IconName | undefined,
+  icon: data.icon,
   url: data.url,
   start: data.start,
   end: data.end,

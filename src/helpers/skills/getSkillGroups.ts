@@ -1,7 +1,7 @@
 import { getCollection } from 'astro:content';
 
+import { sortByOrder } from '@helpers/collections/sortByOrder';
 import { getSkillBadges } from '@helpers/skills/getSkillBadges';
-import { sortByOrder } from '@helpers/sortByOrder';
 import type { Locale } from '@lib/i18n/languages';
 import { localize } from '@lib/i18n/localize';
 

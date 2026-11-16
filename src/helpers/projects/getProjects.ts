@@ -41,10 +41,20 @@ const toProject = ({ id, data }: CollectionEntry<'projects'>, locale: Locale): P
   },
 });
 
+const compareDates = (first?: string, second?: string) => {
+  if (first === second) return 0;
+
+  if (!first) return -1;
+
+  if (!second) return 1;
+
+  return second.localeCompare(first);
+};
+
 const byStatus = (first: Project, second: Project) =>
   Number(Boolean(first.archived)) - Number(Boolean(second.archived)) ||
-  (second.end ?? '9999-12').localeCompare(first.end ?? '9999-12') ||
-  (second.start ?? '9999-12').localeCompare(first.start ?? '9999-12');
+  compareDates(first.end, second.end) ||
+  compareDates(first.start, second.start);
 
 export const getProjects = async (locale: Locale): Promise<Project[]> =>
   (await getCollection('projects')).map((entry) => toProject(entry, locale)).sort(byStatus);

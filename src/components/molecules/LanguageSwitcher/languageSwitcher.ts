@@ -1,6 +1,6 @@
 import { navigate } from 'astro:transitions/client';
 
-import { isNewTabClick } from '@helpers/isNewTabClick';
+import { isNewTabClick } from '@helpers/dom/isNewTabClick';
 
 document.addEventListener('astro:page-load', () => {
   document.querySelectorAll<HTMLAnchorElement>('[data-language-switch]:not([data-ready])').forEach((link) => {

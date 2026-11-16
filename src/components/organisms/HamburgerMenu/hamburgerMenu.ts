@@ -1,4 +1,4 @@
-import { initDisclosure } from '@helpers/initDisclosure';
+import { initDisclosure } from '@helpers/dom/initDisclosure';
 
 const getCommonAncestor = (first: Element, second: Element) => {
   let ancestor = first.parentElement;
