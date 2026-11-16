@@ -9,6 +9,7 @@
   },
   "notFound": {
     "code": "404",
+    "hint": "page not found",
     "title": "Page not found | iamfront.dev",
     "text": ["Oops, you're lost.", "This page doesn't exist, but everything else is here :)"]
   },
@@ -59,7 +60,7 @@
     "cv": {
       "label": "CV",
       "title": "Download CV",
-      "file": "/cv/Jaroslaw_Kucharski_CV_EN.pdf"
+      "file": ""
     },
     "menu": {
       "label": "Menu",
@@ -84,7 +85,8 @@
         "href": "/#contact",
         "title": "Go to the contact form"
       }
-    ]
+    ],
+    "companyTitle": "{name} – experience"
   },
   "theme": {
     "toDark": "Switch to dark mode",
@@ -96,6 +98,9 @@
   },
   "skipLink": "Skip to content",
   "contact": {
+    "heading": "Contact",
+    "intro": "Have a project, a job offer or a question? Write to me – I will reply as soon as I can.",
+    "points": ["**B2B** contract or **full-time** employment", "**Remote** or **hybrid** – Silesian metropolitan area"],
     "fields": {
       "name": {
         "label": "Full name",
@@ -132,7 +137,13 @@
     "failure": "The message could not be sent. Please try again in a moment.",
     "errorsSummary": "Please fix the errors in the form: {count}.",
     "counter": "{count}/{max} characters",
-    "privacyNote": "I only use the data from this form to reply to your message. See the [privacy notice](/privacy/) for details."
+    "privacyNote": "I only use the data from this form to reply to your message. See the [privacy notice](/privacy/) for details.",
+    "thanks": {
+      "title": "Message sent | iamfront.dev",
+      "heading": "Thanks!",
+      "hint": "Message sent",
+      "text": ["Message sent.", "I'll get back to you as soon as I can."]
+    }
   },
   "footer": {
     "label": "Footer",
@@ -157,5 +168,174 @@
     "prev": "Previous image",
     "next": "Next image",
     "counter": "{current} of {total}"
+  },
+  "projectCount": {
+    "one": "{count} project",
+    "other": "{count} projects"
+  },
+  "about": {
+    "meta": {
+      "title": "About me – Jarosław Kucharski | iamfront.dev"
+    },
+    "intro": {
+      "heading": "About me",
+      "paragraphs": [
+        "Senior Frontend Developer with {experience} {years} of commercial experience. I build web applications with **React, TypeScript and Next.js**. In recent years I helped develop and scale **Landingi** – a global SaaS platform used by thousands of customers in more than 80 countries (including Biedronka, PayU and Bonduelle) and handling millions of visits a month.",
+        "I deliver features end to end – from implementation and testing to deployment and maintenance. I work on frontend architecture, performance and code reviews, closely with product and backend teams. I currently develop the AleRabat platform in React and TAURON websites built on Sitecore, and use AI tools such as Claude Code, Codex and GitHub Copilot day to day."
+      ]
+    },
+    "photoAlt": "Jarosław Kucharski – portrait",
+    "skills": {
+      "heading": "Skills"
+    },
+    "experience": {
+      "heading": "Experience",
+      "stackLabel": "Tech stack",
+      "projectLinkLabel": "View project"
+    },
+    "education": {
+      "heading": "Education",
+      "detailsLabel": "Areas"
+    },
+    "hobbies": {
+      "heading": "Beyond work"
+    }
+  },
+  "projects": {
+    "meta": {
+      "title": "Projects | iamfront.dev"
+    },
+    "heading": "Projects",
+    "listLabel": "Projects",
+    "types": {
+      "commercial": "commercial",
+      "private": "personal"
+    },
+    "archived": "archived",
+    "planned": "planned",
+    "labelsLabel": "Project type",
+    "live": "See it live",
+    "repo": "Source code",
+    "star": {
+      "situation": "Where it started",
+      "task": "The challenge",
+      "action": "How I built it",
+      "result": "The outcome"
+    },
+    "links": "Links",
+    "back": "Back to projects",
+    "shown": "Showing: {count}",
+    "featuredHeading": "Selected projects",
+    "all": "See all projects",
+    "skillFilterLabel": "Technologies",
+    "empty": "No projects match these filters.",
+    "showAllSkills": "Show all",
+    "showFewerSkills": "Show less",
+    "clear": "Clear filters",
+    "skillSearchLabel": "Search technologies",
+    "skillSearchPlaceholder": "Search…",
+    "skillSearchEmpty": "No technology with that name.",
+    "details": "Project details",
+    "period": "Period",
+    "company": "Company",
+    "type": "Type",
+    "stack": "Technologies"
+  },
+  "privacy": {
+    "meta": {
+      "title": "Privacy | iamfront.dev"
+    },
+    "title": "Privacy",
+    "intro": "This site uses no cookies and no tracking tools. I only process personal data when you send a message through the contact form.",
+    "updated": {
+      "label": "Last updated:",
+      "date": "2026-11-16"
+    },
+    "sections": [
+      {
+        "heading": "Data controller",
+        "paragraphs": ["The data controller is Jarosław Kucharski. Contact for data matters: {email}."]
+      },
+      {
+        "heading": "What data and why",
+        "paragraphs": [
+          "Your name, email address, topic and message – only to reply to your message and continue the conversation.",
+          "The legal basis is my legitimate interest in replying to your message (Art. 6(1)(f) GDPR) and, when you write about a collaboration or a job, steps taken before entering into a contract (Art. 6(1)(b) GDPR). Providing the data is voluntary, but without it I can't reply."
+        ]
+      },
+      {
+        "heading": "Who receives the data",
+        "paragraphs": [
+          "The form and the hosting are provided by Netlify, Inc. (USA). Form messages and emails sent to my iamfront.dev address are delivered to my Gmail inbox, provided by Google LLC (USA).",
+          "Data is transferred to the USA under Netlify’s data processing agreement, based on the European Commission’s standard contractual clauses, and – for Google – under the EU-U.S. Data Privacy Framework, in which Google LLC participates. I don’t sell or share the data with anyone else."
+        ]
+      },
+      {
+        "heading": "How long I keep it",
+        "paragraphs": [
+          "For as long as we’re in touch, and then no longer than 12 months – unless we start working together."
+        ]
+      },
+      {
+        "heading": "Your rights",
+        "paragraphs": [
+          "You have the right to access, correct and delete your data, to restrict or object to its processing and to data portability. Just write to the address above. You can also lodge a complaint with the Polish data protection authority (President of the Personal Data Protection Office, UODO)."
+        ]
+      },
+      {
+        "heading": "Cookies and settings",
+        "paragraphs": [
+          "This site uses no cookies. Your chosen theme and animation setting are saved only in your browser (localStorage) and never sent anywhere.",
+          "Like any host, Netlify’s servers keep technical logs (e.g. IP addresses) needed to run and secure the site."
+        ]
+      }
+    ]
+  },
+  "accessibility": {
+    "meta": {
+      "title": "Accessibility | iamfront.dev"
+    },
+    "title": "Accessibility",
+    "intro": "I want everyone to be able to use this site comfortably – with a keyboard, a screen reader or zoomed in. The site is designed and tested for conformance with WCAG 2.1 level AA.",
+    "updated": {
+      "label": "Last updated:",
+      "date": "2026-11-16"
+    },
+    "sections": [
+      {
+        "heading": "What works",
+        "items": [
+          "The whole site works with a keyboard: focus is always visible, and a “Skip to content” link lets you bypass the menu.",
+          "Text and interface contrast meets level AA in both the light and the dark theme.",
+          "You can turn animations off in the settings; the site also respects your system’s reduced motion setting.",
+          "Images have text alternatives, and links that open in a new tab say so to screen readers.",
+          "You can zoom text to 200% without losing content, and the layout adapts to screens from 320 px wide.",
+          "The contact form has visible labels, and errors are described in text and linked to their fields."
+        ]
+      },
+      {
+        "heading": "How I test it",
+        "paragraphs": [
+          "Before every deployment, I check the changed pages with **axe DevTools** and **Lighthouse** – in both languages, in the light and dark theme, on desktop and mobile.",
+          "I also check the site by hand: keyboard-only use, zoom up to 400% and how it works without JavaScript."
+        ]
+      },
+      {
+        "heading": "Known limitations",
+        "paragraphs": [
+          "The downloadable CV files (PDF) may not be fully accessible to screen readers. If you need the CV in another format, write to me and I’ll send it."
+        ]
+      },
+      {
+        "heading": "Report a problem",
+        "paragraphs": [
+          "If something doesn’t work as it should, write to {email} or use the [contact form](/#contact). I take every report seriously and will reply as soon as I can."
+        ]
+      }
+    ]
+  },
+  "statusPage": {
+    "home": "Home page",
+    "projects": "Projects"
   }
 }

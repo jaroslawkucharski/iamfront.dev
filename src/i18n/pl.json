@@ -11,6 +11,7 @@
   },
   "notFound": {
     "code": "404",
+    "hint": "nie ma takiej strony",
     "title": "Nie znaleziono strony | iamfront.dev",
     "text": ["Ups, zabłądziłeś.", "Tej strony nie ma, ale reszta jest na miejscu :)"]
   },
@@ -61,7 +62,7 @@
     "cv": {
       "label": "CV",
       "title": "Pobierz CV",
-      "file": "/cv/Jaroslaw_Kucharski_CV_PL.pdf"
+      "file": ""
     },
     "menu": {
       "label": "Menu",
@@ -86,7 +87,8 @@
         "href": "/pl/#contact",
         "title": "Przejdź do formularza kontaktowego"
       }
-    ]
+    ],
+    "companyTitle": "{name} – doświadczenie"
   },
   "theme": {
     "toDark": "Włącz tryb ciemny",
@@ -98,6 +100,9 @@
   },
   "skipLink": "Przejdź do treści",
   "contact": {
+    "heading": "Kontakt",
+    "intro": "Masz projekt, ofertę pracy albo pytanie? Napisz – odpowiem najszybciej, jak to możliwe.",
+    "points": ["Współpraca **B2B** lub **etat**", "Zdalnie lub **hybrydowo** – aglomeracja śląska"],
     "fields": {
       "name": {
         "label": "Imię i nazwisko",
@@ -134,7 +139,13 @@
     "failure": "Nie udało się wysłać wiadomości. Spróbuj ponownie za chwilę.",
     "errorsSummary": "Popraw błędy w formularzu: {count}.",
     "counter": "{count}/{max} znaków",
-    "privacyNote": "Dane z formularza wykorzystuję tylko do odpowiedzi na wiadomość. Szczegóły znajdziesz w [informacji o prywatności](/pl/privacy/)."
+    "privacyNote": "Dane z formularza wykorzystuję tylko do odpowiedzi na wiadomość. Szczegóły znajdziesz w [informacji o prywatności](/pl/privacy/).",
+    "thanks": {
+      "title": "Wiadomość wysłana | iamfront.dev",
+      "heading": "Dzięki!",
+      "hint": "Wiadomość wysłana",
+      "text": ["Wiadomość wysłana.", "Odezwę się najszybciej, jak to możliwe."]
+    }
   },
   "footer": {
     "label": "Stopka",
@@ -159,5 +170,174 @@
     "prev": "Poprzednie zdjęcie",
     "next": "Następne zdjęcie",
     "counter": "{current} z {total}"
+  },
+  "projectCount": {
+    "one": "{count} projekt",
+    "few": "{count} projekty",
+    "many": "{count} projektów",
+    "other": "{count} projektu"
+  },
+  "about": {
+    "meta": {
+      "title": "O mnie – Jarosław Kucharski | iamfront.dev"
+    },
+    "intro": {
+      "heading": "O mnie",
+      "paragraphs": [
+        "Senior Frontend Developer z {experience} {years} doświadczenia komercyjnego. Tworzę aplikacje webowe w **React, TypeScript i Next.js**. Przez ostatnie lata rozwijałem i skalowałem **Landingi** – globalną platformę SaaS używaną przez tysiące klientów w ponad 80 krajach (m.in. Biedronka, PayU, Bonduelle) i obsługującą miliony wizyt miesięcznie.",
+        "Dowożę funkcjonalności od implementacji, przez testy, po wdrożenie i utrzymanie. Zajmuję się architekturą frontendu, wydajnością i code review, blisko współpracując z zespołami produktowymi i backendowymi. Obecnie rozwijam platformę AleRabat w React oraz serwisy TAURON na Sitecore, a na co dzień korzystam z narzędzi AI, takich jak Claude Code, Codex i GitHub Copilot."
+      ]
+    },
+    "photoAlt": "Jarosław Kucharski – portret",
+    "skills": {
+      "heading": "Umiejętności"
+    },
+    "experience": {
+      "heading": "Doświadczenie",
+      "stackLabel": "Stack technologiczny",
+      "projectLinkLabel": "Zobacz projekt"
+    },
+    "education": {
+      "heading": "Edukacja",
+      "detailsLabel": "Zakres"
+    },
+    "hobbies": {
+      "heading": "Poza pracą"
+    }
+  },
+  "projects": {
+    "meta": {
+      "title": "Projekty | iamfront.dev"
+    },
+    "heading": "Projekty",
+    "listLabel": "Projekty",
+    "types": {
+      "commercial": "komercyjny",
+      "private": "prywatny"
+    },
+    "archived": "archiwalny",
+    "planned": "planowany",
+    "labelsLabel": "Rodzaj projektu",
+    "live": "Zobacz na żywo",
+    "repo": "Kod źródłowy",
+    "star": {
+      "situation": "Punkt wyjścia",
+      "task": "Wyzwanie",
+      "action": "Jak to zrobiłem",
+      "result": "Efekt"
+    },
+    "links": "Linki",
+    "back": "Wróć do projektów",
+    "shown": "Widoczne: {count}",
+    "featuredHeading": "Wybrane projekty",
+    "all": "Zobacz wszystkie projekty",
+    "skillFilterLabel": "Technologie",
+    "empty": "Brak projektów dla wybranych filtrów.",
+    "showAllSkills": "Pokaż wszystkie",
+    "showFewerSkills": "Pokaż mniej",
+    "clear": "Wyczyść filtry",
+    "skillSearchLabel": "Szukaj technologii",
+    "skillSearchPlaceholder": "Szukaj…",
+    "skillSearchEmpty": "Brak technologii o tej nazwie.",
+    "details": "Szczegóły projektu",
+    "period": "Okres",
+    "company": "Firma",
+    "type": "Rodzaj",
+    "stack": "Technologie"
+  },
+  "privacy": {
+    "meta": {
+      "title": "Prywatność | iamfront.dev"
+    },
+    "title": "Prywatność",
+    "intro": "Ta strona nie używa ciasteczek ani narzędzi śledzących. Dane osobowe przetwarzam tylko wtedy, gdy wyślesz wiadomość przez formularz kontaktowy.",
+    "updated": {
+      "label": "Ostatnia aktualizacja:",
+      "date": "2026-11-16"
+    },
+    "sections": [
+      {
+        "heading": "Administrator danych",
+        "paragraphs": ["Administratorem danych jest Jarosław Kucharski. Kontakt w sprawie danych: {email}."]
+      },
+      {
+        "heading": "Jakie dane i po co",
+        "paragraphs": [
+          "Imię i nazwisko, adres e-mail, temat i treść wiadomości – wyłącznie po to, żeby odpowiedzieć na Twoją wiadomość i prowadzić dalszą korespondencję.",
+          "Podstawą jest mój prawnie uzasadniony interes, czyli odpowiedź na wiadomość (art. 6 ust. 1 lit. f RODO), a gdy piszesz w sprawie współpracy lub pracy – także działania przed zawarciem umowy (art. 6 ust. 1 lit. b RODO). Podanie danych jest dobrowolne, ale bez nich nie mogę odpowiedzieć."
+        ]
+      },
+      {
+        "heading": "Komu przekazuję dane",
+        "paragraphs": [
+          "Formularz i hosting strony obsługuje Netlify, Inc. (USA). Wiadomości z formularza oraz e-maile wysłane na adres w domenie iamfront.dev trafiają do mojej skrzynki Gmail, którą obsługuje Google LLC (USA).",
+          "Przekazanie danych do USA odbywa się na podstawie umowy powierzenia z Netlify, opartej na standardowych klauzulach umownych Komisji Europejskiej, a w przypadku Google – na podstawie EU-U.S. Data Privacy Framework, w którym Google LLC uczestniczy. Nie sprzedaję ani nie udostępniam danych nikomu innemu."
+        ]
+      },
+      {
+        "heading": "Jak długo je przechowuję",
+        "paragraphs": ["Przez czas korespondencji, a potem nie dłużej niż 12 miesięcy – chyba że nawiążemy współpracę."]
+      },
+      {
+        "heading": "Twoje prawa",
+        "paragraphs": [
+          "Masz prawo dostępu do swoich danych, ich sprostowania, usunięcia, ograniczenia przetwarzania, przenoszenia oraz sprzeciwu wobec przetwarzania. Wystarczy napisać na adres podany wyżej. Możesz też złożyć skargę do Prezesa Urzędu Ochrony Danych Osobowych (UODO)."
+        ]
+      },
+      {
+        "heading": "Ciasteczka i ustawienia",
+        "paragraphs": [
+          "Strona nie używa ciasteczek. Wybrany motyw i ustawienie animacji zapisują się tylko w Twojej przeglądarce (localStorage) i nigdzie nie są wysyłane.",
+          "Serwery Netlify, jak każdy hosting, zapisują techniczne logi (np. adres IP), potrzebne do działania i bezpieczeństwa strony."
+        ]
+      }
+    ]
+  },
+  "accessibility": {
+    "meta": {
+      "title": "Dostępność | iamfront.dev"
+    },
+    "title": "Dostępność",
+    "intro": "Zależy mi, żeby z tej strony mógł wygodnie korzystać każdy – także z klawiaturą, czytnikiem ekranu albo w powiększeniu. Strona jest projektowana i testowana pod kątem zgodności z WCAG 2.1 na poziomie AA.",
+    "updated": {
+      "label": "Ostatnia aktualizacja:",
+      "date": "2026-11-16"
+    },
+    "sections": [
+      {
+        "heading": "Co działa",
+        "items": [
+          "Całą stronę obsłużysz z klawiatury: fokus jest zawsze widoczny, a link „Przejdź do treści” pozwala pominąć menu.",
+          "Kontrast tekstu i elementów interfejsu spełnia wymagania poziomu AA w jasnym i ciemnym motywie.",
+          "Animacje wyłączysz w ustawieniach; strona respektuje też systemowe ustawienie ograniczenia ruchu.",
+          "Obrazy mają teksty alternatywne, a linki otwierane w nowej karcie zapowiadają to czytnikom ekranu.",
+          "Treść możesz powiększyć do 200% bez utraty informacji, a układ dopasowuje się do ekranów od 320 px szerokości.",
+          "Formularz kontaktowy ma widoczne etykiety, a błędy są opisane tekstem i powiązane z polami."
+        ]
+      },
+      {
+        "heading": "Jak to sprawdzam",
+        "paragraphs": [
+          "Przed każdym wdrożeniem sprawdzam zmienione strony narzędziami **axe DevTools** i **Lighthouse** – w obu wersjach językowych, w jasnym i ciemnym motywie, na komputerze i telefonie.",
+          "Dodatkowo sprawdzam stronę ręcznie: obsługę samą klawiaturą, powiększenie do 400% i działanie bez JavaScriptu."
+        ]
+      },
+      {
+        "heading": "Znane ograniczenia",
+        "paragraphs": [
+          "Pliki CV do pobrania (PDF) mogą nie być w pełni dostępne dla czytników ekranu. Jeśli potrzebujesz CV w innej formie, napisz – prześlę je."
+        ]
+      },
+      {
+        "heading": "Zgłoś problem",
+        "paragraphs": [
+          "Jeśli coś nie działa tak, jak powinno, napisz: {email} albo skorzystaj z [formularza kontaktowego](/pl/#contact). Każde zgłoszenie traktuję poważnie i odpowiem najszybciej, jak to możliwe."
+        ]
+      }
+    ]
+  },
+  "statusPage": {
+    "home": "Strona główna",
+    "projects": "Projekty"
   }
 }
