@@ -1,3 +1,5 @@
+import { navigate } from 'astro:transitions/client';
+
 import { interpolate } from '@lib/i18n/interpolate';
 
 type Field = HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement;
@@ -85,6 +87,7 @@ document.addEventListener('astro:page-load', () => {
 
       submit?.setAttribute('aria-busy', 'true');
       setStatus(form.dataset.sending ?? '', 'sending');
+
       try {
         const entries = [...new FormData(form)].map(([name, value]) => [name, String(value)]);
         const body = new URLSearchParams(entries).toString();
@@ -96,9 +99,7 @@ document.addEventListener('astro:page-load', () => {
 
         if (!response.ok) throw new Error(String(response.status));
 
-        form.reset();
-        fields.forEach(updateCounter);
-        setStatus(form.dataset.success ?? '', 'success');
+        await navigate(form.action);
       } catch {
         setStatus(form.dataset.failure ?? '', 'error');
       } finally {

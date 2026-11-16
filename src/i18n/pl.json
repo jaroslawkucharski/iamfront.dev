@@ -125,7 +125,6 @@
     },
     "submit": "Wyślij wiadomość",
     "sending": "Wysyłanie…",
-    "success": "Dzięki! Wiadomość wysłana – odezwę się wkrótce.",
     "failure": "Nie udało się wysłać wiadomości. Spróbuj ponownie za chwilę.",
     "errorsSummary": "Popraw błędy w formularzu: {count}.",
     "counter": "{count}/{max} znaków",
