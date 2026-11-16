@@ -1,8 +1,8 @@
-import en from '@/i18n/en.json';
-import pl from '@/i18n/pl.json';
-import { interpolate } from '@/lib/i18n/interpolate';
-import type { Locale } from '@/lib/i18n/languages';
-import { plural, type PluralForms } from '@/lib/i18n/plural';
+import en from '@i18n/en.json';
+import pl from '@i18n/pl.json';
+import { interpolate } from '@lib/i18n/interpolate';
+import type { Locale } from '@lib/i18n/languages';
+import { plural, type PluralForms } from '@lib/i18n/plural';
 
 type Shape<T> = Omit<T, 'experienceYears'> & { experienceYears: PluralForms };
 export type Dictionary = Shape<typeof en>;
