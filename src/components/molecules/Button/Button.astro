@@ -1,0 +1,119 @@
+---
+import Icon, { type IconName } from '@atoms/Icon/Icon.astro';
+
+type Variants = 'default' | 'icon';
+type Types = 'button' | 'submit' | 'reset';
+type Sizes = 'md' | 'lg';
+
+interface BaseProps {
+  type?: Types;
+  size?: Sizes;
+  block?: boolean;
+  icon?: IconName;
+  busy?: boolean;
+  title?: string;
+  class?: string;
+  [key: string]: unknown;
+}
+
+type Props = BaseProps & ({ variant?: Exclude<Variants, 'icon'>; label?: string } | { variant: 'icon'; label: string });
+
+const {
+  variant = 'default',
+  type = 'button',
+  size = 'md',
+  block = false,
+  icon,
+  busy = false,
+  label,
+  title = label,
+  class: className,
+  ...rest
+} = Astro.props;
+---
+
+<button
+  type={type}
+  class:list={['button', `button--${variant}`, `button--${size}`, { 'button--block': block }, className]}
+  aria-label={label}
+  title={title}
+  aria-busy={busy ? 'true' : undefined}
+  {...rest}
+>
+  <slot />
+
+  {icon && <Icon name={icon} size={size === 'lg' ? 20 : 16} class='button__icon' />}
+</button>
+
+<style>
+  .button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-xs);
+    min-height: var(--tap-target);
+    padding: 0 var(--space-md);
+    border: 0;
+    border-radius: var(--radius-full);
+    background: var(--color-text);
+    color: var(--color-bg);
+    font: inherit;
+    font-size: var(--fs-control);
+    font-weight: var(--fw-semibold);
+    letter-spacing: var(--ls-wide);
+    cursor: var(--cursor-pointer);
+    transition: opacity var(--duration-fast) var(--ease-standard);
+  }
+
+  .button--lg {
+    min-height: calc(var(--tap-target) + var(--space-xs));
+    padding-inline: var(--space-lg);
+    font-size: var(--fs-body);
+  }
+
+  .button--block {
+    display: flex;
+    width: 100%;
+  }
+
+  .button :global(.button__icon) {
+    transition: translate var(--duration-fast) var(--ease-standard);
+  }
+
+  .button:is(:hover, :focus-visible) :global(.button__icon) {
+    translate: var(--space-3xs) 0;
+  }
+
+  .button:hover {
+    opacity: 0.85;
+  }
+
+  .button:active,
+  .button[aria-busy='true'] {
+    opacity: var(--opacity-pressed);
+  }
+
+  .button[aria-busy='true'] {
+    cursor: var(--cursor-progress);
+  }
+
+  .button--icon {
+    display: inline-grid;
+    place-items: center;
+    min-width: var(--tap-target);
+    padding: 0;
+    background: transparent;
+    color: var(--color-text-muted);
+    line-height: 1;
+    transition: color var(--duration-fast) var(--ease-standard);
+  }
+
+  .button--icon:hover {
+    color: var(--color-text);
+    opacity: 1;
+  }
+
+  .button--icon > :global(*) {
+    grid-area: 1 / 1;
+  }
+</style>

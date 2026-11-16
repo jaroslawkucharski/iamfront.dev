@@ -1,0 +1,37 @@
+---
+import { getDictionary } from '@lib/i18n/getDictionary';
+import type { Locale } from '@lib/i18n/languages';
+import type { TypographyProps } from '@typings/typography';
+
+import Text from '@atoms/Text/Text.astro';
+
+interface Props extends TypographyProps {
+  start: string;
+  end?: string;
+  locale: Locale;
+  class?: string;
+  [key: string]: unknown;
+}
+
+const { start, end, locale, size = 'xs', weight = 'medium', ...rest } = Astro.props;
+
+const present = getDictionary(locale).dateRange.present;
+
+const format = (iso: string) => {
+  const [year, month] = iso.split('-').map(Number);
+
+  if (!month) return String(year);
+
+  return new Intl.DateTimeFormat(locale, { month: 'long', year: 'numeric', timeZone: 'UTC' }).format(
+    new Date(Date.UTC(year, month - 1, 1)),
+  );
+};
+---
+
+<Text as='p' size={size} weight={weight} tracking='label' uppercase {...rest}>
+  <time datetime={start}>{format(start)}</time>
+
+  {' – '}
+
+  {end ? <time datetime={end}>{format(end)}</time> : present}
+</Text>

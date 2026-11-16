@@ -1,0 +1,61 @@
+---
+import type { ComponentProps } from 'astro/types';
+
+import Flex from '@atoms/Flex/Flex.astro';
+import Heading from '@atoms/Heading/Heading.astro';
+
+type Levels = 1 | 2;
+type Layouts = 'stack' | 'split';
+
+interface Props {
+  id: string;
+  title: string;
+  level?: Levels;
+  gap?: ComponentProps<typeof Flex>['gap'];
+  layout?: Layouts;
+  class?: string;
+}
+
+const { id, title, level = 2, gap = 'md', layout = 'stack', class: className } = Astro.props;
+
+const headingId = `${id}-title`;
+---
+
+{layout === 'split' ? (
+  <section id={id} aria-labelledby={headingId} class:list={['section--split', className]}>
+    <Flex gap='md' class='section__aside'>
+      <Heading level={level} variant='display' id={headingId}>
+        {title}
+      </Heading>
+
+      <slot name='aside' />
+    </Flex>
+
+    <div class='section__main'>
+      <slot />
+    </div>
+  </section>
+) : (
+  <Flex as='section' id={id} gap={gap} aria-labelledby={headingId} class={className}>
+    <Heading level={level} variant='display' id={headingId}>
+      {title}
+    </Heading>
+
+    <slot />
+  </Flex>
+)}
+
+<style>
+  .section--split {
+    display: grid;
+    grid-template-columns: minmax(0, 2fr) minmax(0, 3fr);
+    gap: var(--space-md) var(--space-lg);
+    align-items: start;
+  }
+
+  @media (max-width: 768px) {
+    .section--split {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

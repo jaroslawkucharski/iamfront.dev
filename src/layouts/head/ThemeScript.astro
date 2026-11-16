@@ -9,6 +9,8 @@
     };
 
     const applyPreferences = (root) => {
+      root.dataset.js = 'true';
+
       const theme = read('theme');
       let motion = read('motion');
 

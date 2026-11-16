@@ -1,10 +1,11 @@
 ---
 import type { InferGetStaticPropsType } from 'astro';
 
-import { getExperience } from '@/helpers/getExperience';
-import BaseLayout from '@/layouts/BaseLayout.astro';
-import { getDictionary } from '@/lib/i18n/getDictionary';
-import { getLocalePaths } from '@/lib/i18n/getLocalePaths';
+import { getExperience } from '@helpers/getExperience';
+import { getDictionary } from '@lib/i18n/getDictionary';
+import { getLocalePaths } from '@lib/i18n/getLocalePaths';
+
+import BaseLayout from '@layouts/BaseLayout.astro';
 
 export const getStaticPaths = getLocalePaths;
 

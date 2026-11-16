@@ -1,0 +1,57 @@
+---
+import type { HTMLTag } from 'astro/types';
+
+import { parseRichText } from '@lib/i18n/parseRichText';
+import type { TypographyProps } from '@typings/typography';
+
+import Link from '@atoms/Link/Link.astro';
+import Text from '@atoms/Text/Text.astro';
+
+interface Props extends TypographyProps {
+  as?: HTMLTag;
+  class?: string;
+  text: string;
+  newTabLabel?: string;
+}
+
+const { text, newTabLabel, ...textProps } = Astro.props;
+
+const segments = parseRichText(text);
+---
+
+<Text {...textProps}>
+  {segments.map((segment) =>
+    segment.href ? (
+      <Link
+        href={segment.href}
+        external={segment.external}
+        newTabLabel={segment.external ? newTabLabel : undefined}
+        title={segment.external && newTabLabel ? `${segment.text}${newTabLabel}` : segment.text}
+        size={textProps.size ?? 'md'}
+        weight='medium'
+        tracking='normal'
+        color='default'
+        wrap
+        inline
+      >
+        {segment.text}
+      </Link>
+    ) : segment.weight === 'semibold' ? (
+      <strong class='rich-text__semibold'>{segment.text}</strong>
+    ) : segment.weight === 'medium' ? (
+      <strong class='rich-text__medium'>{segment.text}</strong>
+    ) : (
+      segment.text
+    ),
+  )}
+</Text>
+
+<style>
+  .rich-text__medium {
+    font-weight: var(--fw-medium);
+  }
+
+  .rich-text__semibold {
+    font-weight: var(--fw-semibold);
+  }
+</style>

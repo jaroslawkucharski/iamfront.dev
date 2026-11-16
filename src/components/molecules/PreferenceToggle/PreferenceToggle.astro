@@ -1,0 +1,69 @@
+---
+import Icon from '@atoms/Icon/Icon.astro';
+import Switch from '@atoms/Switch/Switch.astro';
+
+type Variants = 'theme' | 'motion';
+
+interface Props {
+  variant: Variants;
+  label: string;
+  titleOn: string;
+  titleOff: string;
+  class?: string;
+  [key: string]: unknown;
+}
+
+const { variant, label, titleOn, titleOff, class: className, ...rest } = Astro.props;
+
+const preferences = {
+  theme: {
+    onValue: 'dark',
+    offValue: 'light',
+    media: '(prefers-color-scheme: dark)',
+    iconOn: 'moon',
+    iconOff: 'sun',
+    iconSize: 14,
+  },
+  motion: {
+    onValue: 'on',
+    offValue: 'off',
+    media: '(prefers-reduced-motion: no-preference)',
+    iconOn: 'play',
+    iconOff: 'pause',
+    iconSize: 12,
+  },
+} as const;
+
+const preference = preferences[variant];
+---
+
+<Switch
+  label={label}
+  title={titleOn}
+  class={className}
+  data-preference={variant}
+  data-on-value={preference.onValue}
+  data-off-value={preference.offValue}
+  data-media={preference.media}
+  data-title-on={titleOn}
+  data-title-off={titleOff}
+  {...rest}
+>
+  <Icon slot='on' name={preference.iconOn} size={preference.iconSize} fill='currentColor' />
+
+  <Icon slot='off' name={preference.iconOff} size={preference.iconSize} fill='currentColor' />
+</Switch>
+
+<script is:inline data-astro-rerun>
+  document.querySelectorAll('[data-preference]').forEach((toggle) => {
+    const value = document.documentElement.dataset[toggle.dataset.preference];
+    const on = value ? value === toggle.dataset.onValue : window.matchMedia(toggle.dataset.media).matches;
+
+    toggle.setAttribute('aria-checked', String(on));
+    toggle.title = on ? toggle.dataset.titleOff : toggle.dataset.titleOn;
+  });
+</script>
+
+<script>
+  import '@molecules/PreferenceToggle/preferenceToggle';
+</script>

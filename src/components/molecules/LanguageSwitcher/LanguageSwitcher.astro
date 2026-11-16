@@ -1,0 +1,43 @@
+---
+import { getRelativeLocaleUrl } from 'astro:i18n';
+
+import { languages, locales, type Locale } from '@lib/i18n/languages';
+import { stripLocale } from '@lib/i18n/stripLocale';
+
+import Switch from '@atoms/Switch/Switch.astro';
+
+interface Props {
+  locale: Locale;
+  class?: string;
+  [key: string]: unknown;
+}
+
+const { locale, class: className, ...rest } = Astro.props;
+
+const [first, second] = locales;
+const target = locale === first ? second : first;
+const path = stripLocale(Astro.url.pathname).replace(/^\//, '');
+---
+
+<Switch
+  href={getRelativeLocaleUrl(target, path)}
+  checked={locale !== first}
+  label={`${languages[target].short} – ${languages[target].switchLabel}`}
+  lang={target}
+  hreflang={target}
+  class={className}
+  data-language-switch
+  {...rest}
+>
+  <span slot='on'>{languages[first].short}</span>
+
+  <span slot='off'>{languages[second].short}</span>
+
+  <span slot='knob-on'>{languages[second].short}</span>
+
+  <span slot='knob-off'>{languages[first].short}</span>
+</Switch>
+
+<script>
+  import '@molecules/LanguageSwitcher/languageSwitcher';
+</script>

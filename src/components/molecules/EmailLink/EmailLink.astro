@@ -1,0 +1,86 @@
+---
+import { getRelativeLocaleUrl } from 'astro:i18n';
+
+import { getDictionary } from '@lib/i18n/getDictionary';
+import type { Locale } from '@lib/i18n/languages';
+import type { Colors, Sizes, Trackings, Weights } from '@typings/typography';
+
+import Link from '@atoms/Link/Link.astro';
+
+interface Props {
+  email: string;
+  locale: Locale;
+  title?: string;
+  size?: Sizes;
+  weight?: Weights;
+  color?: Colors;
+  tracking?: Trackings;
+  inline?: boolean;
+  class?: string;
+}
+
+const {
+  email,
+  locale,
+  title,
+  size,
+  weight = 'regular',
+  color = 'default',
+  tracking = 'normal',
+  inline = false,
+  class: className,
+} = Astro.props;
+
+const contactLinks = getDictionary(locale).contactLinks;
+
+const reverse = (text: string) => [...text].reverse().join('');
+const [user = '', domain = ''] = email.split('@');
+const look = { size, weight, color, tracking, inline };
+---
+
+<span
+  class:list={['email-link', className]}
+  data-email-link
+  data-user={reverse(user)}
+  data-domain={reverse(domain)}
+  data-title={title}
+>
+  <Link
+    href={`${getRelativeLocaleUrl(locale)}#contact`}
+    title={contactLinks.emailFallback}
+    class='email-link__link'
+    {...look}
+  >
+    <slot name='icon' />
+
+    <span data-email-text>{contactLinks.emailFallback}</span>
+  </Link>
+
+  <Link as='button' title={contactLinks.emailReveal} class='email-link__reveal' data-email-reveal {...look}>
+    <slot name='icon' />
+
+    {contactLinks.emailReveal}
+  </Link>
+</span>
+
+<script>
+  import '@molecules/EmailLink/emailLink';
+</script>
+
+<style>
+  .email-link :global(.email-link__reveal) {
+    display: none;
+  }
+
+  :global(:root[data-js]) .email-link:not([data-revealed]) :global(.email-link__reveal) {
+    display: inline-flex;
+  }
+
+  :global(:root[data-js]) .email-link:not([data-revealed]) :global(.email-link__reveal.link--inline) {
+    display: inline;
+  }
+
+  :global(:root[data-js]) .email-link:not([data-revealed]) :global(.email-link__link) {
+    display: none;
+  }
+</style>

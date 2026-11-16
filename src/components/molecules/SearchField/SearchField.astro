@@ -1,0 +1,54 @@
+---
+import Icon from '@atoms/Icon/Icon.astro';
+import Input from '@atoms/Input/Input.astro';
+import VisuallyHidden from '@atoms/VisuallyHidden/VisuallyHidden.astro';
+
+interface Props {
+  label: string;
+  placeholder?: string;
+  id?: string;
+  class?: string;
+  [key: string]: unknown;
+}
+
+const {
+  label,
+  placeholder,
+  id = `search-${Math.random().toString(36).slice(2, 8)}`,
+  class: className,
+  ...rest
+} = Astro.props;
+---
+
+<span class:list={['search-field', className]}>
+  <label for={id}>
+    <VisuallyHidden>{label}</VisuallyHidden>
+  </label>
+
+  <Icon name='search' size={16} class='search-field__icon' />
+
+  <Input
+    id={id}
+    variant='search'
+    type='search'
+    placeholder={placeholder}
+    autocomplete='off'
+    spellcheck='false'
+    {...rest}
+  />
+</span>
+
+<style>
+  .search-field {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .search-field :global(.search-field__icon) {
+    position: absolute;
+    left: var(--space-xs);
+    pointer-events: none;
+    color: var(--color-text-muted);
+  }
+</style>

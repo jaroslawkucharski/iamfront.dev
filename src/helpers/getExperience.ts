@@ -1,4 +1,4 @@
-import { person } from '@/data/site';
+import { person } from '@data/site';
 
 export const getExperience = (now = new Date()): string => {
   const start = new Date(person.careerStart);

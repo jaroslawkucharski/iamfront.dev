@@ -1,0 +1,33 @@
+---
+import { getRelativeLocaleUrl } from 'astro:i18n';
+
+import { getDictionary } from '@lib/i18n/getDictionary';
+import type { Locale } from '@lib/i18n/languages';
+
+import Flex from '@atoms/Flex/Flex.astro';
+import Heading from '@atoms/Heading/Heading.astro';
+import Icon from '@atoms/Icon/Icon.astro';
+import Link from '@atoms/Link/Link.astro';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+
+const contactCta = getDictionary(locale).contactCta;
+---
+
+<section class='contact-cta' aria-labelledby='contact-cta-title'>
+  <Flex gap='sm' align='start'>
+    <Heading level={2} variant='hero' id='contact-cta-title'>
+      {contactCta.heading}
+    </Heading>
+
+    <Link href={`${getRelativeLocaleUrl(locale)}#contact`} title={contactCta.title}>
+      {contactCta.link}
+
+      <Icon name='arrow-right' size={16} />
+    </Link>
+  </Flex>
+</section>
