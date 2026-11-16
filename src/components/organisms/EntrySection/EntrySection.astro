@@ -1,0 +1,42 @@
+---
+import Flex from '@atoms/Flex/Flex.astro';
+import Icon from '@atoms/Icon/Icon.astro';
+import Link from '@atoms/Link/Link.astro';
+import VisuallyHidden from '@atoms/VisuallyHidden/VisuallyHidden.astro';
+import BadgeList, { type BadgeItem } from '@molecules/BadgeList/BadgeList.astro';
+import Disclosure from '@molecules/Disclosure/Disclosure.astro';
+import BulletList from '@organisms/BulletList/BulletList.astro';
+
+export interface EntrySectionData {
+  title: string;
+  stack?: readonly BadgeItem[];
+  items: readonly string[];
+  projectHref?: string;
+}
+
+interface Props {
+  section: EntrySectionData;
+  stackLabel?: string;
+  projectLinkLabel?: string;
+}
+
+const { section, stackLabel = '', projectLinkLabel = '' } = Astro.props;
+---
+
+<Disclosure title={section.title} level={4} variant='plain'>
+  <Flex gap='sm' align='start'>
+    {section.stack && <BadgeList label={stackLabel} items={section.stack} />}
+
+    <BulletList items={section.items} />
+
+    {section.projectHref && (
+      <Link href={section.projectHref} title={`${projectLinkLabel}: ${section.title}`}>
+        {projectLinkLabel}
+
+        <VisuallyHidden>{`: ${section.title}`}</VisuallyHidden>
+
+        <Icon name='arrow-right' size={16} />
+      </Link>
+    )}
+  </Flex>
+</Disclosure>
