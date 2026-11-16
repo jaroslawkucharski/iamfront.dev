@@ -1,0 +1,101 @@
+---
+import heroPhoto from '@assets/me/hero.webp';
+import { getExperience } from '@helpers/getExperience';
+import { getDictionary } from '@lib/i18n/getDictionary';
+import type { Locale } from '@lib/i18n/languages';
+
+import Flex from '@atoms/Flex/Flex.astro';
+import Heading from '@atoms/Heading/Heading.astro';
+import Icon from '@atoms/Icon/Icon.astro';
+import Link from '@atoms/Link/Link.astro';
+import MediaBlock from '@atoms/MediaBlock/MediaBlock.astro';
+import Picture from '@atoms/Picture/Picture.astro';
+import Text from '@atoms/Text/Text.astro';
+import BadgeList, { type BadgeItem } from '@molecules/BadgeList/BadgeList.astro';
+
+interface Props {
+  locale: Locale;
+  companies: readonly BadgeItem[];
+}
+
+const { locale, companies } = Astro.props;
+
+const experience = getExperience();
+const { hero } = getDictionary(locale, {
+  experience,
+  years: { plural: 'experienceYears', count: Number.parseInt(experience) },
+});
+---
+
+<section class='hero' aria-labelledby='hero-title'>
+  <MediaBlock mediaPosition='end' equal fill>
+    <Flex gap='md' align='start'>
+      <Heading level={1} variant='hero' id='hero-title'>
+        {hero.headline.map((line, index) => (index > 0 ? [<br />, line] : line))}
+      </Heading>
+
+      <Flex gap='2xs' align='start'>
+        <BadgeList label={hero.highlightsLabel} items={hero.highlights} variant='text' />
+
+        <Flex direction='row' gap='xs' class='hero__companies'>
+          <Text as='span' size='md' color='muted'>
+            {hero.companiesLabel}
+          </Text>
+
+          <BadgeList label={hero.companiesLabel} items={companies} variant='text' underline />
+        </Flex>
+      </Flex>
+
+      <Flex as='ul' list direction='row' gap='md' class='hero__links'>
+        {hero.links.map((link) => (
+          <li>
+            <Link href={link.href} title={link.title}>
+              {link.label}
+
+              <Icon name='arrow-right' size={16} />
+            </Link>
+          </li>
+        ))}
+      </Flex>
+    </Flex>
+
+    <Picture src={heroPhoto} alt={hero.photoAlt} size={600} loading='eager' slot='media' />
+  </MediaBlock>
+</section>
+
+<style>
+  .hero :global(#hero-title) {
+    font-size: min(var(--fs-hero), calc(100cqi / 14.2));
+  }
+
+  .hero :global(.hero__companies) {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: baseline;
+  }
+
+  @media (min-width: 769px) {
+    .hero :global(.media-block.media-block--equal) {
+      grid-template-columns: minmax(0, 9fr) minmax(0, 10fr);
+    }
+  }
+
+  .hero :global(.media-block__content) {
+    container-type: inline-size;
+    padding-block: var(--space-lg);
+  }
+
+  @media (max-width: 768px) {
+    .hero :global(.media-block__content) {
+      padding-block: 0;
+    }
+
+    .hero :global(.media-block__media) {
+      margin-inline: calc(var(--page-gutter) * -1);
+    }
+  }
+
+  .hero :global(.hero__links) {
+    flex-wrap: wrap;
+  }
+</style>
