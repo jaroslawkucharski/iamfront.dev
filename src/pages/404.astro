@@ -6,4 +6,4 @@ import StatusPage from '@templates/StatusPage/StatusPage.astro';
 const notFound = getDictionary('en').notFound;
 ---
 
-<StatusPage locale='en' title={notFound.title} heading={notFound.code} text={notFound.text} />
+<StatusPage locale='en' title={notFound.title} heading={notFound.code} hint={notFound.hint} text={notFound.text} />
