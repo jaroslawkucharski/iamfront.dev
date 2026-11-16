@@ -14,6 +14,7 @@ const ordered = { parser: withOrder };
 const isoDate = z.string().regex(/^\d{4}(-\d{2})?$/, 'date must be "YYYY" or "YYYY-MM"');
 
 const timelineEntry = z.object({
+  featured: z.boolean().optional(),
   name: localized,
   shortName: localized.optional(),
   logo: z.string().optional(),
