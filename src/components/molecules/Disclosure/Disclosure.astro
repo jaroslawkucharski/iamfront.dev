@@ -1,0 +1,185 @@
+---
+import { getDictionary } from '@lib/i18n/getDictionary';
+import { defaultLocale, type Locale } from '@lib/i18n/languages';
+
+import Icon from '@atoms/Icon/Icon.astro';
+import Text from '@atoms/Text/Text.astro';
+
+type Levels = 2 | 3 | 4 | 5 | 6;
+type Variants = 'default' | 'plain';
+
+interface Props {
+  title: string;
+  level?: Levels;
+  open?: boolean;
+  variant?: Variants;
+  class?: string;
+}
+
+const { title, level = 4, open = false, variant = 'default', class: className } = Astro.props;
+
+const panelId = `disclosure-${Math.random().toString(36).slice(2, 10)}`;
+const disclosure = getDictionary((Astro.currentLocale as Locale | undefined) ?? defaultLocale).disclosure;
+const expandTitle = `${disclosure.expand}: ${title}`;
+const collapseTitle = `${disclosure.collapse}: ${title}`;
+---
+
+<div class:list={['disclosure', `disclosure--${variant}`, className]} data-disclosure>
+  <Text as={`h${level}`} size='md' weight='medium' color='default' tracking='label' class='disclosure__heading'>
+    <button
+      type='button'
+      class='disclosure__button'
+      aria-expanded={open ? 'true' : 'false'}
+      aria-controls={panelId}
+      title={open ? collapseTitle : expandTitle}
+      data-title-expand={expandTitle}
+      data-title-collapse={collapseTitle}
+    >
+      <span class='disclosure__title'>{title}</span>
+
+      <span
+        class='disclosure__icon'
+        aria-hidden='true'
+        title={open ? disclosure.collapse : disclosure.expand}
+        data-title-expand={disclosure.expand}
+        data-title-collapse={disclosure.collapse}
+      >
+        <Icon name='plus' size={16} />
+      </span>
+    </button>
+  </Text>
+
+  <div id={panelId} class='disclosure__panel' hidden={open ? undefined : 'until-found'}>
+    <div class='disclosure__content'>
+      <slot />
+    </div>
+  </div>
+</div>
+
+<noscript>
+  <style>
+    .disclosure__panel[hidden] {
+      display: block;
+      content-visibility: visible;
+    }
+    .disclosure .disclosure__button .disclosure__icon {
+      display: none;
+    }
+  </style>
+</noscript>
+
+<script>
+  import '@molecules/Disclosure/disclosure';
+</script>
+
+<style>
+  .disclosure--default {
+    border-top: var(--border-width) solid var(--color-border-subtle);
+  }
+
+  .disclosure--default:last-of-type {
+    border-bottom: var(--border-width) solid var(--color-border-subtle);
+  }
+
+  .disclosure :global(.disclosure__heading) {
+    margin: 0;
+  }
+
+  .disclosure__button {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-sm);
+    width: 100%;
+    min-height: var(--tap-target);
+    margin: 0;
+    padding: var(--space-sm) var(--space-xs);
+    border: 0;
+    border-radius: var(--radius-sm);
+    background: transparent;
+    color: inherit;
+    font: inherit;
+    letter-spacing: inherit;
+    text-align: start;
+    cursor: var(--cursor-pointer);
+    transition: background-color var(--duration-fast) var(--ease-standard);
+  }
+
+  .disclosure__button:hover {
+    background: var(--color-surface);
+  }
+
+  .disclosure__button:focus-visible {
+    outline-offset: var(--focus-offset-inset);
+  }
+
+  .disclosure__icon {
+    display: inline-grid;
+    place-items: center;
+    flex-shrink: 0;
+    width: var(--control-sm);
+    height: var(--control-sm);
+    border: var(--border-width) solid var(--color-border);
+    border-radius: var(--radius-full);
+    color: var(--color-text);
+    transition:
+      rotate var(--duration-fast) var(--ease-standard),
+      background-color var(--duration-fast) var(--ease-standard),
+      color var(--duration-fast) var(--ease-standard);
+  }
+
+  .disclosure__button:hover .disclosure__icon,
+  .disclosure__button[aria-expanded='true'] .disclosure__icon {
+    background: var(--color-text);
+    color: var(--color-bg);
+  }
+
+  .disclosure__button[aria-expanded='true'] .disclosure__icon {
+    rotate: 45deg;
+  }
+
+  .disclosure--plain .disclosure__button {
+    justify-content: flex-start;
+    gap: var(--space-xs);
+    padding: var(--space-2xs) 0;
+  }
+
+  .disclosure--plain .disclosure__button:hover {
+    background: transparent;
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+  }
+
+  .disclosure--plain .disclosure__icon {
+    order: -1;
+    width: auto;
+    height: auto;
+    border: 0;
+    color: var(--color-text-muted);
+  }
+
+  .disclosure--plain .disclosure__button:hover .disclosure__icon,
+  .disclosure--plain .disclosure__button[aria-expanded='true'] .disclosure__icon {
+    background: transparent;
+    color: var(--color-text);
+  }
+
+  .disclosure--plain .disclosure__content {
+    padding: var(--space-xs) 0 var(--space-sm) calc(var(--icon-sm) + var(--space-xs));
+  }
+
+  .disclosure__content {
+    padding: var(--space-sm) var(--space-xs) var(--space-md);
+    animation: reveal var(--duration-medium) var(--ease-standard);
+  }
+
+  @media print {
+    .disclosure__panel[hidden] {
+      display: block;
+      content-visibility: visible;
+    }
+    .disclosure__icon {
+      display: none;
+    }
+  }
+</style>
