@@ -8,7 +8,19 @@
   "company": "Landingi",
   "start": "2025-10",
   "end": "2026-08",
-  "stack": ["typescript", "vite", "page-visibility-api", "beacon-api", "localstorage", "vitest"],
+  "stack": [
+    "typescript",
+    "vite",
+    "page-visibility-api",
+    "beacon-api",
+    "localstorage",
+    "vitest",
+    "rest-api",
+    "code-review",
+    "ci-cd",
+    "agile",
+    "git"
+  ],
   "links": {
     "live": {
       "pl": "https://landingi.com/pl/produkt/eventtracker/",

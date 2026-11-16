@@ -15,7 +15,13 @@
     "sass",
     "mixpanel",
     "vitest",
-    "react-testing-library"
+    "react-testing-library",
+    "rest-api",
+    "nodejs",
+    "code-review",
+    "ci-cd",
+    "agile",
+    "git"
   ],
   "links": {
     "live": {

@@ -7,7 +7,21 @@
   "company": "Landingi",
   "start": "2025-04",
   "end": "2026-06",
-  "stack": ["react", "typescript", "swr", "formik", "yup", "sass", "vitest", "react-testing-library"],
+  "stack": [
+    "react",
+    "typescript",
+    "swr",
+    "formik",
+    "yup",
+    "sass",
+    "vitest",
+    "react-testing-library",
+    "rest-api",
+    "code-review",
+    "ci-cd",
+    "agile",
+    "git"
+  ],
   "links": {},
   "summary": {
     "pl": "Rozwój procesu rejestracji, wyboru planu i płatności w aplikacji Landingi. Jednym z kluczowych elementów była przebudowa Checkoutu, którą sam zaproponowałem i zrealizowałem, aby uprościć logikę cennika i ułatwić dalszy rozwój.",

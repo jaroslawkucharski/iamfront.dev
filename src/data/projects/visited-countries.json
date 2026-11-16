@@ -19,7 +19,9 @@
     "vitest",
     "react-testing-library",
     "cypress",
-    "sentry"
+    "sentry",
+    "rest-api",
+    "git"
   ],
   "links": {
     "live": "https://visited-countries.vercel.app/",
