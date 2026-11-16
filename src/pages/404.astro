@@ -1,0 +1,8 @@
+---
+import StatusPage from '@/components/templates/StatusPage/StatusPage.astro';
+import { getDictionary } from '@/lib/i18n';
+
+const notFound = getDictionary('en').notFound;
+---
+
+<StatusPage locale='en' title={notFound.title} heading={notFound.code} text={notFound.text} />
