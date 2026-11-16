@@ -1,8 +1,4 @@
-export const languages = {
-  en: { short: 'EN', switchLabel: 'Switch to English', ogLocale: 'en_US' },
-  pl: { short: 'PL', switchLabel: 'Przełącz na polski', ogLocale: 'pl_PL' },
-} as const;
+export const locales = ['en', 'pl'] as const;
 
-export type Locale = keyof typeof languages;
-export const locales = Object.keys(languages) as Locale[];
+export type Locale = (typeof locales)[number];
 export const defaultLocale: Locale = 'en';
