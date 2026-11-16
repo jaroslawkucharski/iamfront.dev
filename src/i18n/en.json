@@ -1,17 +1,15 @@
 {
   "meta": {
     "title": "Jarosław Kucharski – Senior Frontend Developer | iamfront.dev",
-    "description": "Senior Frontend Developer with {experience} of commercial experience building web applications with React, TypeScript and Next.js."
+    "description": "Senior Frontend Developer with {experience} {years} of commercial experience building web applications with React, TypeScript and Next.js."
   },
   "experienceYears": {
-    "one": "{count} year",
-    "other": "{count} years"
+    "one": "year",
+    "other": "years"
   },
   "notFound": {
     "code": "404",
     "title": "Page not found | iamfront.dev",
-    "description": "This page doesn't exist.",
-    "heading": "page not found",
     "text": ["Oops, you're lost.", "This page doesn't exist, but everything else is here :)"]
   }
 }
