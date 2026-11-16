@@ -13,5 +13,10 @@
   },
   "dependencies": {
     "astro": "^7.4.12"
+  },
+  "devDependencies": {
+    "@ianvs/prettier-plugin-sort-imports": "^4.7.1",
+    "prettier": "^3.10.1",
+    "prettier-plugin-astro": "^1.1.2"
   }
 }

@@ -1,0 +1,18 @@
+{
+  "singleQuote": true,
+  "jsxSingleQuote": true,
+  "semi": true,
+  "trailingComma": "all",
+  "printWidth": 120,
+  "plugins": ["prettier-plugin-astro", "@ianvs/prettier-plugin-sort-imports"],
+  "importOrder": ["<BUILTIN_MODULES>", "^astro(:.*)?$", "<THIRD_PARTY_MODULES>", "", "^@/(.*)$", "", "^[./]"],
+  "importOrderTypeScriptVersion": "5.0.0",
+  "overrides": [
+    {
+      "files": "*.astro",
+      "options": {
+        "parser": "astro"
+      }
+    }
+  ]
+}
