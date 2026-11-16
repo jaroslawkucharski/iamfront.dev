@@ -1,0 +1,148 @@
+---
+import { getDictionary } from '@lib/i18n/getDictionary';
+import type { Locale } from '@lib/i18n/languages';
+
+import Icon from '@atoms/Icon/Icon.astro';
+import Button from '@molecules/Button/Button.astro';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+
+const { lightbox } = getDictionary(locale);
+---
+
+<dialog class='lightbox' aria-label={lightbox.label} data-lightbox-dialog data-counter={lightbox.counter}>
+  <div class='lightbox__bar'>
+    <span class='lightbox__counter' aria-live='polite' data-lightbox-counter></span>
+
+    <Button variant='icon' label={lightbox.close} class='lightbox__button' data-lightbox-close>
+      <Icon name='close' size={22} />
+    </Button>
+  </div>
+
+  <figure class='lightbox__figure'>
+    <img class='lightbox__image' src='data:,' alt='' data-lightbox-image />
+
+    <figcaption class='lightbox__caption' aria-hidden='true' data-lightbox-caption></figcaption>
+  </figure>
+
+  <Button
+    variant='icon'
+    label={lightbox.prev}
+    class='lightbox__button lightbox__nav lightbox__nav--prev'
+    data-lightbox-prev
+  >
+    <Icon name='arrow-left' size={22} />
+  </Button>
+
+  <Button
+    variant='icon'
+    label={lightbox.next}
+    class='lightbox__button lightbox__nav lightbox__nav--next'
+    data-lightbox-next
+  >
+    <Icon name='arrow-right' size={22} />
+  </Button>
+</dialog>
+
+<script>
+  import '@organisms/Lightbox/lightbox';
+</script>
+
+<style>
+  .lightbox {
+    width: 100vw;
+    max-width: none;
+    height: 100vh;
+    height: 100dvh;
+    max-height: none;
+    margin: 0;
+    padding: var(--space-md) var(--space-lg);
+    border: 0;
+    background: var(--color-overlay);
+    color: var(--color-on-overlay);
+  }
+
+  .lightbox[open] {
+    display: grid;
+    grid-template-rows: auto minmax(0, 1fr);
+    gap: var(--space-xs);
+    animation: reveal var(--duration-fast) var(--ease-standard);
+  }
+
+  .lightbox::backdrop {
+    background: transparent;
+  }
+
+  .lightbox__bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: var(--fs-sm);
+    letter-spacing: var(--ls-wide);
+  }
+
+  .lightbox :global(.lightbox__button) {
+    color: var(--color-on-overlay-muted);
+  }
+
+  .lightbox :global(.lightbox__button:hover) {
+    color: var(--color-on-overlay);
+  }
+
+  .lightbox__figure {
+    display: grid;
+    grid-template-rows: minmax(0, 1fr) auto;
+    justify-items: center;
+    gap: var(--space-xs);
+    min-height: 0;
+    margin: 0;
+  }
+
+  .lightbox__image {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    border-radius: var(--radius-sm);
+  }
+
+  .lightbox__caption {
+    max-width: 60ch;
+    font-size: var(--fs-sm);
+    text-align: center;
+    color: var(--color-on-overlay-muted);
+  }
+
+  .lightbox :global(.lightbox__nav) {
+    position: fixed;
+    top: 50%;
+    translate: 0 -50%;
+  }
+
+  .lightbox :global(.lightbox__nav--prev) {
+    left: var(--space-xs);
+  }
+
+  .lightbox :global(.lightbox__nav--next) {
+    right: var(--space-xs);
+  }
+
+  .lightbox :global(.lightbox__nav[hidden]) {
+    display: none;
+  }
+
+  @media (max-width: 768px) {
+    .lightbox {
+      padding: var(--space-sm);
+    }
+
+    .lightbox :global(.lightbox__nav) {
+      top: auto;
+      bottom: var(--space-xs);
+      translate: none;
+    }
+  }
+</style>
