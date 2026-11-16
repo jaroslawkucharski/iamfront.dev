@@ -1,0 +1,35 @@
+{
+  "name": "AleRabat",
+  "logo": "alerabat",
+  "url": "https://alerabat.com",
+  "start": "2020-01",
+  "end": "2021-01",
+  "title": "Junior Frontend Developer",
+  "titleNote": {
+    "pl": "część etatu, kontrakt",
+    "en": "part-time, contract"
+  },
+  "sections": [
+    {
+      "title": {
+        "pl": "Rozwój aplikacji internetowej AleRabat",
+        "en": "AleRabat web application development"
+      },
+      "stack": ["html", "css", "javascript", "rwd", "wcag", "git"],
+      "items": [
+        {
+          "pl": "Rozwijałem i utrzymywałem **funkcjonalności frontendowe** z wykorzystaniem HTML, CSS i JavaScript, zdobywając praktyczne doświadczenie w pracy z **produkcyjnymi aplikacjami webowymi**.",
+          "en": "Developed and maintained **frontend features** with HTML, CSS and JavaScript, gaining hands-on experience with **production web applications**."
+        },
+        {
+          "pl": "Wdrażałem **zmiany w interfejsie oraz nowe funkcjonalności** w istniejącej aplikacji internetowej zgodnie z wymaganiami produktowymi i biznesowymi.",
+          "en": "Delivered **UI changes and new features** in an existing web application, following product and business requirements."
+        },
+        {
+          "pl": "Diagnozowałem i rozwiązywałem **problemy frontendowe**, poprawiając stabilność aplikacji i doświadczenie użytkownika.",
+          "en": "Diagnosed and fixed **frontend issues**, improving application stability and the user experience."
+        }
+      ]
+    }
+  ]
+}

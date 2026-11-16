@@ -1,0 +1,317 @@
+[
+  {
+    "id": "react",
+    "name": "React",
+    "category": "frontend",
+    "featured": true
+  },
+  {
+    "id": "typescript",
+    "name": "TypeScript",
+    "category": "frontend",
+    "featured": true
+  },
+  {
+    "id": "javascript",
+    "name": "JavaScript",
+    "category": "frontend",
+    "featured": true
+  },
+  {
+    "id": "nextjs",
+    "name": "Next.js",
+    "category": "frontend",
+    "featured": true
+  },
+  {
+    "id": "astro",
+    "name": "Astro",
+    "category": "frontend"
+  },
+  {
+    "id": "redux",
+    "name": "Redux",
+    "category": "frontend",
+    "featured": true
+  },
+  {
+    "id": "react-router",
+    "name": "React Router",
+    "category": "frontend",
+    "featured": true
+  },
+  {
+    "id": "html",
+    "name": "HTML",
+    "category": "frontend",
+    "featured": true
+  },
+  {
+    "id": "css",
+    "name": "CSS",
+    "category": "frontend",
+    "featured": true
+  },
+  {
+    "id": "tailwind",
+    "name": "Tailwind CSS",
+    "category": "frontend",
+    "featured": true
+  },
+  {
+    "id": "sass",
+    "name": "Sass",
+    "category": "frontend"
+  },
+  {
+    "id": "swr",
+    "name": "SWR",
+    "category": "frontend"
+  },
+  {
+    "id": "pwa",
+    "name": "PWA",
+    "category": "frontend"
+  },
+  {
+    "id": "recharts",
+    "name": "Recharts",
+    "category": "frontend"
+  },
+  {
+    "id": "redux-toolkit",
+    "name": "Redux Toolkit",
+    "category": "frontend"
+  },
+  {
+    "id": "zod",
+    "name": "Zod",
+    "category": "frontend"
+  },
+  {
+    "id": "i18next",
+    "name": "i18next",
+    "category": "frontend"
+  },
+  {
+    "id": "react-markdown",
+    "name": "react-markdown",
+    "category": "frontend"
+  },
+  {
+    "id": "styled-components",
+    "name": "styled-components",
+    "category": "frontend"
+  },
+  {
+    "id": "rwd",
+    "name": "RWD",
+    "category": "frontend"
+  },
+  {
+    "id": "rest-api",
+    "name": "REST API",
+    "category": "api",
+    "featured": true
+  },
+  {
+    "id": "graphql",
+    "name": "GraphQL",
+    "category": "api",
+    "featured": true
+  },
+  {
+    "id": "axios",
+    "name": "Axios",
+    "category": "api"
+  },
+  {
+    "id": "strapi",
+    "name": "Strapi",
+    "category": "api"
+  },
+  {
+    "id": "mixpanel",
+    "name": "Mixpanel",
+    "category": "api"
+  },
+  {
+    "id": "php",
+    "name": "PHP",
+    "category": "backend"
+  },
+  {
+    "id": "core-web-vitals",
+    "name": "Core Web Vitals",
+    "category": "quality",
+    "featured": true
+  },
+  {
+    "id": "lighthouse",
+    "name": "Lighthouse",
+    "category": "quality",
+    "featured": true
+  },
+  {
+    "id": "react-testing-library",
+    "name": "React Testing Library",
+    "category": "quality",
+    "featured": true
+  },
+  {
+    "id": "vitest",
+    "name": "Vitest",
+    "category": "quality",
+    "featured": true
+  },
+  {
+    "id": "jest",
+    "name": "Jest",
+    "category": "quality",
+    "featured": true
+  },
+  {
+    "id": "nodejs",
+    "name": "Node.js",
+    "category": "tools",
+    "featured": true
+  },
+  {
+    "id": "git",
+    "name": "Git",
+    "category": "tools",
+    "featured": true
+  },
+  {
+    "id": "docker",
+    "name": "Docker",
+    "category": "tools",
+    "featured": true
+  },
+  {
+    "id": "vite",
+    "name": "Vite",
+    "category": "tools",
+    "featured": true
+  },
+  {
+    "id": "storybook",
+    "name": "Storybook",
+    "category": "tools",
+    "featured": true
+  },
+  {
+    "id": "sentry",
+    "name": "Sentry",
+    "category": "tools",
+    "featured": true
+  },
+  {
+    "id": "figma",
+    "name": "Figma",
+    "category": "tools",
+    "featured": true
+  },
+  {
+    "id": "claude-code",
+    "name": "Claude Code",
+    "category": "ai",
+    "featured": true
+  },
+  {
+    "id": "codex",
+    "name": "Codex",
+    "category": "ai",
+    "featured": true
+  },
+  {
+    "id": "github-copilot",
+    "name": "GitHub Copilot",
+    "category": "ai",
+    "featured": true
+  },
+  {
+    "id": "vercel-ai-sdk",
+    "name": "Vercel AI SDK",
+    "category": "ai"
+  },
+  {
+    "id": "mastra",
+    "name": "Mastra",
+    "category": "ai"
+  },
+  {
+    "id": "frontend-architecture",
+    "name": {
+      "pl": "Architektura frontendu",
+      "en": "Frontend architecture"
+    },
+    "category": "practices",
+    "featured": true
+  },
+  {
+    "id": "code-review",
+    "name": "Code review",
+    "category": "practices",
+    "featured": true
+  },
+  {
+    "id": "ci-cd",
+    "name": "CI/CD",
+    "category": "practices",
+    "featured": true
+  },
+  {
+    "id": "agile",
+    "name": "Agile/Scrum",
+    "category": "practices",
+    "featured": true
+  },
+  {
+    "id": "wcag",
+    "name": "WCAG",
+    "category": "practices"
+  },
+  {
+    "id": "graphics",
+    "name": {
+      "pl": "Grafika rastrowa i wektorowa",
+      "en": "Raster & vector graphics"
+    },
+    "category": "design"
+  },
+  {
+    "id": "dtp",
+    "name": "DTP",
+    "category": "design"
+  },
+  {
+    "id": "typography",
+    "name": {
+      "pl": "Typografia",
+      "en": "Typography"
+    },
+    "category": "design"
+  },
+  {
+    "id": "photography",
+    "name": {
+      "pl": "Fotografia",
+      "en": "Photography"
+    },
+    "category": "design"
+  },
+  {
+    "id": "multimedia",
+    "name": "Multimedia",
+    "category": "design"
+  },
+  {
+    "id": "animation",
+    "name": {
+      "pl": "Animacja",
+      "en": "Animation"
+    },
+    "category": "design"
+  }
+]

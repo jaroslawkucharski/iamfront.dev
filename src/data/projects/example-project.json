@@ -1,0 +1,33 @@
+{
+  "name": {
+    "en": "Example project",
+    "pl": "Przykładowy projekt"
+  },
+  "types": ["private"],
+  "featured": true,
+  "start": "2026-01",
+  "stack": ["astro", "typescript", "css"],
+  "links": {},
+  "summary": {
+    "en": "Placeholder project used until the real ones are added.",
+    "pl": "Projekt zastępczy, dopóki nie dodam prawdziwych."
+  },
+  "star": {
+    "situation": {
+      "en": "Placeholder text for the situation.",
+      "pl": "Tekst zastępczy – sytuacja."
+    },
+    "task": {
+      "en": "Placeholder text for the task.",
+      "pl": "Tekst zastępczy – zadanie."
+    },
+    "action": {
+      "en": "Placeholder text for the action.",
+      "pl": "Tekst zastępczy – działanie."
+    },
+    "result": {
+      "en": "Placeholder text for the result.",
+      "pl": "Tekst zastępczy – rezultat."
+    }
+  }
+}
