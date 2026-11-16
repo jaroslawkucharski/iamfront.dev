@@ -37,5 +37,127 @@
   "logoAlt": "Logo {name}",
   "dateRange": {
     "present": "obecnie"
+  },
+  "nav": {
+    "label": "Nawigacja główna",
+    "items": [
+      {
+        "label": "O mnie",
+        "href": "/pl/about/",
+        "title": "O mnie"
+      },
+      {
+        "label": "Projekty",
+        "href": "/pl/projects/",
+        "title": "Projekty"
+      },
+      {
+        "label": "Kontakt",
+        "href": "/pl/#contact",
+        "title": "Przejdź do kontaktu"
+      }
+    ],
+    "homeLabel": "iamfront.dev – strona główna",
+    "cv": {
+      "label": "CV",
+      "title": "Pobierz CV",
+      "file": "/cv/Jaroslaw_Kucharski_CV_PL.pdf"
+    },
+    "menu": {
+      "label": "Menu",
+      "open": "Otwórz menu",
+      "close": "Zamknij menu"
+    }
+  },
+  "hero": {
+    "headline": ["Jarosław Kucharski", "Senior Frontend Developer"],
+    "photoAlt": "Jarosław Kucharski – Senior Frontend Developer",
+    "companiesLabel": "Pracowałem dla:",
+    "highlightsLabel": "W skrócie",
+    "highlights": ["React", "TypeScript", "Next.js", "{experience} {years} doświadczenia"],
+    "links": [
+      {
+        "label": "Zobacz projekty",
+        "href": "/pl/projects/",
+        "title": "Zobacz projekty"
+      },
+      {
+        "label": "Napisz do mnie",
+        "href": "/pl/#contact",
+        "title": "Przejdź do formularza kontaktowego"
+      }
+    ]
+  },
+  "theme": {
+    "toDark": "Włącz tryb ciemny",
+    "toLight": "Włącz tryb jasny"
+  },
+  "motion": {
+    "stop": "Zatrzymaj animacje",
+    "resume": "Wznów animacje"
+  },
+  "skipLink": "Przejdź do treści",
+  "contact": {
+    "fields": {
+      "name": {
+        "label": "Imię i nazwisko",
+        "required": "Podaj imię i nazwisko.",
+        "tooShort": "Imię i nazwisko musi mieć co najmniej {min} znaki.",
+        "tooLong": "Imię i nazwisko może mieć najwyżej {max} znaków."
+      },
+      "email": {
+        "label": "E-mail",
+        "required": "Podaj adres e-mail.",
+        "invalid": "Podaj poprawny adres e-mail, np. jan@firma.pl.",
+        "tooLong": "Adres e-mail może mieć najwyżej {max} znaków."
+      },
+      "topic": {
+        "label": "Temat",
+        "placeholder": "Wybierz temat",
+        "required": "Wybierz temat wiadomości.",
+        "options": {
+          "client": "Współpraca – stwórzmy coś razem",
+          "employer": "Oferta pracy",
+          "other": "Inne"
+        }
+      },
+      "message": {
+        "label": "Wiadomość",
+        "required": "Napisz wiadomość.",
+        "tooShort": "Wiadomość musi mieć co najmniej {min} znaków.",
+        "tooLong": "Wiadomość może mieć najwyżej {max} znaków."
+      }
+    },
+    "submit": "Wyślij wiadomość",
+    "sending": "Wysyłanie…",
+    "success": "Dzięki! Wiadomość wysłana – odezwę się wkrótce.",
+    "failure": "Nie udało się wysłać wiadomości. Spróbuj ponownie za chwilę.",
+    "errorsSummary": "Popraw błędy w formularzu: {count}.",
+    "counter": "{count}/{max} znaków",
+    "privacyNote": "Dane z formularza wykorzystuję tylko do odpowiedzi na wiadomość. Szczegóły znajdziesz w [informacji o prywatności](/pl/privacy/)."
+  },
+  "footer": {
+    "label": "Stopka",
+    "backToTop": "Wróć na górę",
+    "rights": "Wszelkie prawa zastrzeżone.",
+    "privacy": "Prywatność",
+    "accessibility": "Dostępność"
+  },
+  "settings": {
+    "label": "Ustawienia",
+    "open": "Otwórz ustawienia",
+    "close": "Zamknij ustawienia",
+    "language": "Język",
+    "theme": "Ciemny motyw",
+    "themeVisible": "Motyw",
+    "motion": "Animacje"
+  },
+  "lightbox": {
+    "label": "Podgląd zdjęcia",
+    "open": "powiększ",
+    "close": "Zamknij podgląd",
+    "prev": "Poprzednie zdjęcie",
+    "next": "Następne zdjęcie",
+    "counter": "{current} z {total}"
   }
 }

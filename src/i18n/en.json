@@ -35,5 +35,127 @@
   "logoAlt": "{name} logo",
   "dateRange": {
     "present": "present"
+  },
+  "nav": {
+    "label": "Main navigation",
+    "items": [
+      {
+        "label": "About me",
+        "href": "/about/",
+        "title": "About me"
+      },
+      {
+        "label": "Projects",
+        "href": "/projects/",
+        "title": "Projects"
+      },
+      {
+        "label": "Contact",
+        "href": "/#contact",
+        "title": "Go to contact"
+      }
+    ],
+    "homeLabel": "iamfront.dev – home page",
+    "cv": {
+      "label": "CV",
+      "title": "Download CV",
+      "file": "/cv/Jaroslaw_Kucharski_CV_EN.pdf"
+    },
+    "menu": {
+      "label": "Menu",
+      "open": "Open menu",
+      "close": "Close menu"
+    }
+  },
+  "hero": {
+    "headline": ["Jarosław Kucharski", "Senior Frontend Developer"],
+    "photoAlt": "Jarosław Kucharski – Senior Frontend Developer",
+    "companiesLabel": "Worked for:",
+    "highlightsLabel": "In short",
+    "highlights": ["React", "TypeScript", "Next.js", "{experience} {years} of experience"],
+    "links": [
+      {
+        "label": "See projects",
+        "href": "/projects/",
+        "title": "See projects"
+      },
+      {
+        "label": "Get in touch",
+        "href": "/#contact",
+        "title": "Go to the contact form"
+      }
+    ]
+  },
+  "theme": {
+    "toDark": "Switch to dark mode",
+    "toLight": "Switch to light mode"
+  },
+  "motion": {
+    "stop": "Stop animations",
+    "resume": "Resume animations"
+  },
+  "skipLink": "Skip to content",
+  "contact": {
+    "fields": {
+      "name": {
+        "label": "Full name",
+        "required": "Enter your name.",
+        "tooShort": "Your name must be at least {min} characters long.",
+        "tooLong": "Your name can be at most {max} characters long."
+      },
+      "email": {
+        "label": "Email",
+        "required": "Enter your email address.",
+        "invalid": "Enter a valid email address, e.g. john@company.com.",
+        "tooLong": "Your email can be at most {max} characters long."
+      },
+      "topic": {
+        "label": "Topic",
+        "placeholder": "Choose a topic",
+        "required": "Choose a topic.",
+        "options": {
+          "client": "Collaboration – let's build something together",
+          "employer": "Job offer",
+          "other": "Other"
+        }
+      },
+      "message": {
+        "label": "Message",
+        "required": "Write a message.",
+        "tooShort": "Your message must be at least {min} characters long.",
+        "tooLong": "Your message can be at most {max} characters long."
+      }
+    },
+    "submit": "Send message",
+    "sending": "Sending…",
+    "success": "Thanks! Your message has been sent – I will get back to you soon.",
+    "failure": "The message could not be sent. Please try again in a moment.",
+    "errorsSummary": "Please fix the errors in the form: {count}.",
+    "counter": "{count}/{max} characters",
+    "privacyNote": "I only use the data from this form to reply to your message. See the [privacy notice](/privacy/) for details."
+  },
+  "footer": {
+    "label": "Footer",
+    "backToTop": "Back to top",
+    "rights": "All rights reserved.",
+    "privacy": "Privacy",
+    "accessibility": "Accessibility"
+  },
+  "settings": {
+    "label": "Settings",
+    "open": "Open settings",
+    "close": "Close settings",
+    "language": "Language",
+    "theme": "Dark theme",
+    "themeVisible": "Theme",
+    "motion": "Animations"
+  },
+  "lightbox": {
+    "label": "Image preview",
+    "open": "enlarge",
+    "close": "Close preview",
+    "prev": "Previous image",
+    "next": "Next image",
+    "counter": "{current} of {total}"
   }
 }
