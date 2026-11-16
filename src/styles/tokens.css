@@ -1,0 +1,161 @@
+/* Typography */
+:root {
+  --font-family: 'Poppins', system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+  --fw-regular: 400;
+  --fw-medium: 500;
+  --fw-semibold: 600;
+
+  --fs-xs: calc(7rem / 9);
+  --fs-sm: calc(8rem / 9);
+  --fs-md: 1rem;
+  --fs-lg: calc(11rem / 9);
+  --fs-xl: calc(14rem / 9);
+  --fs-display: clamp(1.5rem, 1.25rem + 1.25vw, 2rem);
+  --fs-hero: clamp(2rem, 1.25rem + 3.5vw, 3.5rem);
+  --fs-lead: clamp(1.5rem, 1.125rem + 1.5vw, 2.25rem);
+  --fs-jumbo: clamp(4rem, 2.5rem + 5vw, 6rem);
+  --fs-body: var(--fs-md);
+  --fs-control: 0.8125rem;
+
+  --lh-body: 1.5625;
+  --lh-heading: 1.2;
+  --lh-normal: 1.5;
+
+  --ls-body: 0.02em;
+  --ls-wide: 0.1em;
+  --ls-heading: 0.02em;
+  --ls-label: 0.01em;
+}
+
+/* Spacing */
+:root {
+  --space-3xs: 2px;
+  --space-2xs: 5px;
+  --space-xs: 10px;
+  --space-sm: 20px;
+  --space-md: 40px;
+  --space-lg: 60px;
+  --space-xl: 100px;
+}
+
+/* Layout */
+:root {
+  --container: 1200px;
+  --page-gutter: var(--space-sm);
+  --thumb-width: 240px;
+  --aside-width: 17.5rem;
+  --text-width: 52rem;
+  --label-column: 13rem;
+  --list-indent: 1.5rem;
+}
+
+/* Sizes */
+:root {
+  --logo-size: 64px;
+  --brand-logo-height: 25px;
+  --icon-sm: 16px;
+  --icon-md: 20px;
+  --tap-target: 44px;
+  --control-sm: 32px;
+  --switch-width: 52px;
+  --switch-height: 26px;
+  --switch-padding: 3px;
+  --cursor-size: 24px;
+}
+
+/* Borders and shadows */
+:root {
+  --border-width: 1px;
+  --border-width-strong: 2px;
+  --radius-sm: 6px;
+  --radius-full: 9999px;
+  --shadow-popover: 0 var(--space-xs) var(--space-md) rgb(0 0 0 / 0.12);
+}
+
+/* Focus */
+:root {
+  --focus-width: 2px;
+  --focus-offset: 4px;
+  --focus-offset-inset: -2px;
+}
+
+/* Motion */
+:root {
+  --duration-fast: 0.2s;
+  --duration-medium: 0.3s;
+  --ease-standard: ease;
+  --motion-distance: 6px;
+  --opacity-pressed: 0.7;
+}
+
+/* Colors: both themes */
+:root {
+  --color-overlay: rgb(0 0 0 / 0.92);
+  --color-on-overlay: #fff;
+  --color-on-overlay-muted: rgb(255 255 255 / 0.8);
+  --color-cursor: #fff;
+}
+
+/* Colors: light theme */
+:root,
+:root[data-theme='light'] {
+  color-scheme: light;
+
+  --color-bg: #f5f5f5;
+  --color-text: #0e0e0e;
+  --color-accent-purple: #9333ea;
+  --color-accent-blue: #2563eb;
+  --color-text-strong: rgb(14 14 14 / 0.9);
+  --color-text-muted: rgb(14 14 14 / 0.8);
+  --color-border: rgb(14 14 14 / 0.8);
+  --color-border-subtle: rgb(14 14 14 / 0.12);
+  --color-surface: #e8e8e8;
+  --color-error: #c81e1e;
+  --color-logo: var(--color-text);
+  --color-focus: var(--color-text);
+  --color-inverse-bg: var(--color-text);
+  --color-inverse-text: var(--color-bg);
+}
+
+/* Colors: dark theme (system setting) */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    color-scheme: dark;
+
+    --color-bg: #0e0e0e;
+    --color-text: #f5f5f5;
+    --color-accent-purple: #a855f7;
+    --color-accent-blue: #3b82f6;
+    --color-text-strong: rgb(245 245 245 / 0.9);
+    --color-text-muted: rgb(245 245 245 / 0.8);
+    --color-border: rgb(245 245 245 / 0.8);
+    --color-border-subtle: rgb(245 245 245 / 0.14);
+    --color-surface: #1f1f1f;
+    --color-error: #f87171;
+    --color-logo: var(--color-text);
+    --color-focus: var(--color-text);
+    --color-inverse-bg: var(--color-text);
+    --color-inverse-text: var(--color-bg);
+  }
+}
+
+/* Colors: dark theme (switch) */
+:root[data-theme='dark'] {
+  color-scheme: dark;
+
+  --color-bg: #0e0e0e;
+  --color-text: #f5f5f5;
+  --color-accent-purple: #a855f7;
+  --color-accent-blue: #3b82f6;
+  --color-text-strong: rgb(245 245 245 / 0.9);
+  --color-text-muted: rgb(245 245 245 / 0.8);
+  --color-border: rgb(245 245 245 / 0.8);
+  --color-border-subtle: rgb(245 245 245 / 0.14);
+  --color-surface: #1f1f1f;
+  --color-error: #f87171;
+  --color-logo: var(--color-text);
+  --color-focus: var(--color-text);
+  --color-inverse-bg: var(--color-text);
+  --color-inverse-text: var(--color-bg);
+}
