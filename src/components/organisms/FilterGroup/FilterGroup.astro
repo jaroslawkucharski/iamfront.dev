@@ -2,6 +2,7 @@
 import Badge from '@atoms/Badge/Badge.astro';
 import Text from '@atoms/Text/Text.astro';
 import VisuallyHidden from '@atoms/VisuallyHidden/VisuallyHidden.astro';
+import FilterChip from '@molecules/FilterChip/FilterChip.astro';
 import SearchField from '@molecules/SearchField/SearchField.astro';
 
 interface Option {
@@ -69,20 +70,13 @@ const moreChips = chips.options.slice(chips.visible);
         />
 
         {firstChips.map((option) => (
-          <Badge as='button' type='button' aria-pressed='false' data-chip={option.value} aria-controls={controls}>
-            {option.label}
-
-            <VisuallyHidden>{` (${option.count})`}</VisuallyHidden>
-          </Badge>
+          <FilterChip value={option.value} label={option.label} count={option.count} controls={controls} />
         ))}
+
         {moreChips.length > 0 && (
           <span id={extraId} class='filter-group__more' hidden>
             {moreChips.map((option) => (
-              <Badge as='button' type='button' aria-pressed='false' data-chip={option.value} aria-controls={controls}>
-                {option.label}
-
-                <VisuallyHidden>{` (${option.count})`}</VisuallyHidden>
-              </Badge>
+              <FilterChip value={option.value} label={option.label} count={option.count} controls={controls} />
             ))}
           </span>
         )}

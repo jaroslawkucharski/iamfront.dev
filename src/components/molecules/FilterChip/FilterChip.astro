@@ -1,0 +1,19 @@
+---
+import Badge from '@atoms/Badge/Badge.astro';
+import VisuallyHidden from '@atoms/VisuallyHidden/VisuallyHidden.astro';
+
+interface Props {
+  value: string;
+  label: string;
+  count: number;
+  controls: string;
+}
+
+const { value, label, count, controls } = Astro.props;
+---
+
+<Badge as='button' type='button' aria-pressed='false' data-chip={value} aria-controls={controls}>
+  {label}
+
+  <VisuallyHidden>{` (${count})`}</VisuallyHidden>
+</Badge>
