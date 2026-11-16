@@ -21,7 +21,9 @@ const segments = parseRichText(text);
 
 <Text {...textProps}>
   {segments.map((segment) =>
-    segment.href ? (
+    segment.slot && Astro.slots.has(segment.slot) ? (
+      <slot name={segment.slot} />
+    ) : segment.href ? (
       <Link
         href={segment.href}
         external={segment.external}
