@@ -1,0 +1,131 @@
+---
+import Input from '@atoms/Input/Input.astro';
+import Select from '@atoms/Select/Select.astro';
+import Text from '@atoms/Text/Text.astro';
+
+type Option = { value: string; label: string };
+type Types = 'text' | 'email';
+
+interface Props {
+  id: string;
+  name: string;
+  label: string;
+  type?: Types;
+  multiline?: boolean;
+  options?: readonly Option[];
+  minlength?: number;
+  counter?: string;
+  required?: boolean;
+  autocomplete?: string;
+  maxlength?: number;
+  errors: Record<string, string>;
+  class?: string;
+}
+
+const {
+  id,
+  name,
+  label,
+  type = 'text',
+  multiline = false,
+  options,
+  minlength,
+  counter,
+  required = false,
+  autocomplete,
+  maxlength,
+  errors,
+  class: className,
+} = Astro.props;
+
+const errorId = `${id}-error`;
+const counterId = `${id}-counter`;
+const describedBy = [errorId, counter && maxlength ? counterId : ''].filter(Boolean).join(' ');
+
+const messages = Object.fromEntries(
+  Object.entries(errors).map(([key, text]) => [
+    key,
+    text.replace('{min}', String(minlength ?? '')).replace('{max}', String(maxlength ?? '')),
+  ]),
+);
+---
+
+<div class:list={['form-field', className]} data-form-field>
+  <Text as='label' for={id} size='sm' weight='medium' color='default' tracking='label'>
+    {label}
+  </Text>
+
+  {options ? (
+    <Select
+      id={id}
+      name={name}
+      options={options}
+      required={required}
+      aria-describedby={describedBy}
+      data-errors={JSON.stringify(messages)}
+    />
+  ) : (
+    <Input
+      id={id}
+      name={name}
+      type={multiline ? undefined : type}
+      multiline={multiline}
+      required={required}
+      autocomplete={autocomplete}
+      minlength={minlength}
+      maxlength={maxlength}
+      aria-describedby={describedBy}
+      data-errors={JSON.stringify(messages)}
+      data-min={minlength}
+    />
+  )}
+
+  <div class='form-field__meta'>
+    <Text id={errorId} size='sm' weight='medium' class='form-field__error' data-field-error />
+
+    {counter && maxlength && (
+      <Text
+        id={counterId}
+        size='sm'
+        color='muted'
+        class='form-field__counter'
+        data-counter={counter}
+        data-max={maxlength}
+      >
+        {counter.replace('{count}', '0').replace('{max}', String(maxlength))}
+      </Text>
+    )}
+  </div>
+</div>
+
+<style>
+  .form-field {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2xs);
+  }
+
+  .form-field {
+    text-align: start;
+  }
+
+  .form-field__meta {
+    display: flex;
+    justify-content: space-between;
+    gap: var(--space-sm);
+  }
+
+  .form-field__meta:not(:has(> :not(:empty))) {
+    display: none;
+  }
+
+  .form-field :global(.form-field__error) {
+    color: var(--color-error);
+  }
+
+  .form-field :global(.form-field__counter) {
+    margin-inline-start: auto;
+    white-space: nowrap;
+    font-variant-numeric: tabular-nums;
+  }
+</style>
