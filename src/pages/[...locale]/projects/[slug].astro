@@ -1,0 +1,41 @@
+---
+import type { InferGetStaticPropsType } from 'astro';
+import { getRelativeLocaleUrl } from 'astro:i18n';
+
+import { getProjectPaths } from '@helpers/projects/getProjectPaths';
+import { getDictionary } from '@lib/i18n/getDictionary';
+
+import Text from '@atoms/Text/Text.astro';
+import ArrowLink from '@molecules/ArrowLink/ArrowLink.astro';
+import Section from '@molecules/Section/Section.astro';
+import ArticleLayout from '@organisms/ArticleLayout/ArticleLayout.astro';
+import ProjectAside from '@organisms/ProjectAside/ProjectAside.astro';
+import ProjectStory from '@organisms/ProjectStory/ProjectStory.astro';
+import MainTemplate from '@templates/MainTemplate/MainTemplate.astro';
+
+export const getStaticPaths = getProjectPaths;
+
+type Props = InferGetStaticPropsType<typeof getStaticPaths>;
+
+const { locale, project } = Astro.props;
+
+const { projects } = getDictionary(locale);
+---
+
+<MainTemplate locale={locale} title={`${project.name} | iamfront.dev`}>
+  <ArrowLink href={getRelativeLocaleUrl(locale, 'projects/')} title={projects.back} direction='back'>
+    {projects.back}
+  </ArrowLink>
+
+  <Section id='project' title={project.name} level={1} gap='lg'>
+    <Text size='lg' color='strong'>
+      {project.summary}
+    </Text>
+
+    <ArticleLayout asideLabel={projects.details}>
+      <ProjectStory project={project} locale={locale} />
+
+      <ProjectAside project={project} locale={locale} slot='aside' />
+    </ArticleLayout>
+  </Section>
+</MainTemplate>

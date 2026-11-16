@@ -1,0 +1,59 @@
+---
+import type { InferGetStaticPropsType } from 'astro';
+
+import { getProjectListItem } from '@helpers/projects/getProjectListItem';
+import { getProjects } from '@helpers/projects/getProjects';
+import { getSkillFilterOptions } from '@helpers/skills/getSkillFilterOptions';
+import { getDictionary } from '@lib/i18n/getDictionary';
+import { getLocalePaths } from '@lib/i18n/getLocalePaths';
+
+import Section from '@molecules/Section/Section.astro';
+import FilterGroup from '@organisms/FilterGroup/FilterGroup.astro';
+import MediaList from '@organisms/MediaList/MediaList.astro';
+import MainTemplate from '@templates/MainTemplate/MainTemplate.astro';
+
+export const getStaticPaths = getLocalePaths;
+
+type Props = InferGetStaticPropsType<typeof getStaticPaths>;
+
+const { locale } = Astro.props;
+
+const { projects: dictionary, projectCount } = getDictionary(locale);
+const projects = await getProjects(locale);
+const items = await Promise.all(projects.map((project) => getProjectListItem(project, locale)));
+
+const chips = {
+  label: dictionary.skillFilterLabel,
+  param: 'skills',
+  visible: 8,
+  moreLabel: dictionary.showAllSkills,
+  lessLabel: dictionary.showFewerSkills,
+  searchLabel: dictionary.skillSearchLabel,
+  searchPlaceholder: dictionary.skillSearchPlaceholder,
+  noMatchText: dictionary.skillSearchEmpty,
+  options: await getSkillFilterOptions(projects, locale),
+};
+---
+
+<MainTemplate locale={locale} title={dictionary.meta.title}>
+  <Section id='projects' title={dictionary.heading} level={1}>
+    <FilterGroup
+      controls='project-list'
+      chips={chips}
+      clearLabel={dictionary.clear}
+      countForms={projectCount}
+      shownTemplate={dictionary.shown}
+      emptyText={dictionary.empty}
+    />
+
+    <MediaList
+      id='project-list'
+      items={items}
+      locale={locale}
+      label={dictionary.listLabel}
+      labelsLabel={dictionary.labelsLabel}
+      techLabel={dictionary.stack}
+      level={2}
+    />
+  </Section>
+</MainTemplate>
