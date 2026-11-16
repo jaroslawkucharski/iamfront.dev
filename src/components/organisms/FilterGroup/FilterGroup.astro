@@ -1,0 +1,203 @@
+---
+import Badge from '@atoms/Badge/Badge.astro';
+import Text from '@atoms/Text/Text.astro';
+import VisuallyHidden from '@atoms/VisuallyHidden/VisuallyHidden.astro';
+import SearchField from '@molecules/SearchField/SearchField.astro';
+
+interface Option {
+  value: string;
+  label: string;
+}
+
+interface Props {
+  controls: string;
+  chips: {
+    label: string;
+    param: string;
+    options: readonly (Option & { count: number })[];
+    visible: number;
+    moreLabel: string;
+    lessLabel: string;
+    searchLabel: string;
+    searchPlaceholder: string;
+    noMatchText: string;
+  };
+  clearLabel: string;
+  countForms: Record<string, string>;
+  shownTemplate: string;
+  emptyText: string;
+  class?: string;
+}
+
+const { controls, chips, clearLabel, countForms, shownTemplate, emptyText, class: className } = Astro.props;
+
+const chipsLabelId = `${controls}-chips-label`;
+const extraId = `${controls}-chips-more`;
+
+const firstChips = chips.options.slice(0, chips.visible);
+const moreChips = chips.options.slice(chips.visible);
+---
+
+<div
+  class:list={['filter-group', className]}
+  data-filter-group
+  data-controls={controls}
+  data-chips-param={chips.param}
+  data-count-forms={JSON.stringify(countForms)}
+  data-shown={shownTemplate}
+  hidden
+>
+  <div class='filter-group__bar'>
+    <div class='filter-group__tech'>
+      <div class='filter-group__head'>
+        <Text id={chipsLabelId} size='sm' weight='medium' color='default' tracking='label'>
+          {chips.label}
+        </Text>
+
+        <Badge as='button' type='button' variant='text' data-filter-clear class='filter-group__link-button' hidden>
+          {clearLabel}
+        </Badge>
+      </div>
+
+      <div id={`${controls}-chips`} role='group' aria-labelledby={chipsLabelId} class='filter-group__chips'>
+        <SearchField
+          label={chips.searchLabel}
+          placeholder={chips.searchPlaceholder}
+          aria-controls={`${controls}-chips`}
+          data-chips-search
+          class='filter-group__search'
+        />
+
+        {firstChips.map((option) => (
+          <Badge as='button' type='button' aria-pressed='false' data-chip={option.value} aria-controls={controls}>
+            {option.label}
+
+            <VisuallyHidden>{` (${option.count})`}</VisuallyHidden>
+          </Badge>
+        ))}
+        {moreChips.length > 0 && (
+          <span id={extraId} class='filter-group__more' hidden>
+            {moreChips.map((option) => (
+              <Badge as='button' type='button' aria-pressed='false' data-chip={option.value} aria-controls={controls}>
+                {option.label}
+
+                <VisuallyHidden>{` (${option.count})`}</VisuallyHidden>
+              </Badge>
+            ))}
+          </span>
+        )}
+
+        {moreChips.length > 0 && (
+          <Badge
+            as='button'
+            type='button'
+            variant='text'
+            aria-expanded='false'
+            aria-controls={extraId}
+            data-chips-toggle
+            data-more={`${chips.moreLabel} (${moreChips.length})`}
+            data-less={chips.lessLabel}
+            class='filter-group__link-button'
+          >
+            {`${chips.moreLabel} (${moreChips.length})`}
+          </Badge>
+        )}
+      </div>
+    </div>
+  </div>
+
+  <Text size='sm' data-chips-empty class='filter-group__note' hidden>
+    {chips.noMatchText}
+  </Text>
+
+  <VisuallyHidden>
+    <span aria-live='polite' data-filter-status></span>
+  </VisuallyHidden>
+
+  <Text class='filter-group__empty' data-filter-empty hidden>
+    {emptyText}
+  </Text>
+</div>
+
+<script>
+  import '@organisms/FilterGroup/filterGroup';
+</script>
+
+<style>
+  .filter-group__bar {
+    display: flex;
+  }
+
+  .filter-group__tech {
+    display: flex;
+    flex: 1 1 0;
+    flex-direction: column;
+    gap: var(--space-xs);
+    min-width: 0;
+  }
+
+  .filter-group__head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: calc(var(--fs-sm) * var(--lh-body));
+  }
+
+  .filter-group__head :global(.filter-group__link-button) {
+    min-height: 0;
+    padding: 0;
+  }
+
+  .filter-group :global(.filter-group__note) {
+    margin-top: var(--space-xs);
+  }
+
+  .filter-group__chips,
+  .filter-group__more {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-2xs);
+  }
+
+  .filter-group__more {
+    display: contents;
+  }
+
+  .filter-group :global(.filter-group__search) {
+    flex: 0 0 16rem;
+    margin-inline-end: var(--space-sm);
+  }
+
+  @media (max-width: 768px) {
+    .filter-group :global(.filter-group__search) {
+      flex-basis: 100%;
+      margin: 0 0 var(--space-xs);
+    }
+  }
+
+  :global(:root[data-js]) .filter-group[hidden] {
+    display: block;
+  }
+
+  .filter-group :global([data-chip][hidden]),
+  .filter-group :global([data-chips-toggle][hidden]),
+  .filter-group :global([data-chips-empty][hidden]),
+  .filter-group__more[hidden],
+  .filter-group :global([data-filter-clear][hidden]),
+  .filter-group :global(.filter-group__empty[hidden]) {
+    display: none;
+  }
+
+  .filter-group :global(.filter-group__link-button) {
+    padding-inline: var(--space-xs);
+    background: transparent;
+    color: var(--color-text-muted);
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+  }
+
+  .filter-group :global(.filter-group__empty) {
+    margin-top: var(--space-md);
+  }
+</style>
