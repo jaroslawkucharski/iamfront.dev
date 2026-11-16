@@ -1,0 +1,24 @@
+---
+import type { InferGetStaticPropsType } from 'astro';
+
+import { getExperience } from '@/helpers/getExperience';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { getDictionary } from '@/lib/i18n/getDictionary';
+import { getLocalePaths } from '@/lib/i18n/getLocalePaths';
+
+export const getStaticPaths = getLocalePaths;
+
+type Props = InferGetStaticPropsType<typeof getStaticPaths>;
+
+const { locale } = Astro.props;
+const experience = getExperience();
+const dictionary = getDictionary(locale, {
+  experience,
+  years: { plural: 'experienceYears', count: Number.parseInt(experience) },
+});
+---
+
+<BaseLayout locale={locale} title={dictionary.meta.title}>
+  <h1>{dictionary.meta.title}</h1>
+  <p>{dictionary.meta.description}</p>
+</BaseLayout>
