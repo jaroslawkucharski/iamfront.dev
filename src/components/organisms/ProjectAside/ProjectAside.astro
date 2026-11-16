@@ -1,0 +1,61 @@
+---
+import type { Project } from '@helpers/projects/getProjects';
+import { getSkillBadges } from '@helpers/skills/getSkillBadges';
+import { getDictionary } from '@lib/i18n/getDictionary';
+import type { Locale } from '@lib/i18n/languages';
+
+import Text from '@atoms/Text/Text.astro';
+import AsideBlock from '@molecules/AsideBlock/AsideBlock.astro';
+import BadgeList from '@molecules/BadgeList/BadgeList.astro';
+import DateRange from '@molecules/DateRange/DateRange.astro';
+import ExternalLinkList from '@molecules/ExternalLinkList/ExternalLinkList.astro';
+import DescriptionList from '@organisms/DescriptionList/DescriptionList.astro';
+
+interface Props {
+  project: Project;
+  locale: Locale;
+}
+
+const { project, locale } = Astro.props;
+
+const { projects, externalLink } = getDictionary(locale);
+const newTab = ` ${externalLink.newTab}`;
+const stack = await getSkillBadges(project.stack, locale);
+
+const typeText = [
+  ...project.types.map((type) => projects.types[type]),
+  ...(project.archived ? [projects.archived] : []),
+  ...(project.planned ? [projects.planned] : []),
+].join(', ');
+
+const details = [
+  ...(project.start ? [{ term: projects.period, kind: 'period' }] : []),
+  ...(project.company ? [{ term: projects.company, kind: 'text', text: project.company }] : []),
+  { term: projects.type, kind: 'text', text: typeText },
+];
+
+const links = [
+  ...(project.links.live ? [{ href: project.links.live, label: projects.live }] : []),
+  ...(project.links.repo ? [{ href: project.links.repo, label: projects.repo }] : []),
+];
+---
+
+<AsideBlock title={projects.details}>
+  <DescriptionList items={details} stacked>
+    {(item: (typeof details)[number]) =>
+      item.kind === 'period' && project.start ? (
+        <DateRange start={project.start} end={project.end} locale={locale} />
+      ) : (
+        <Text size='sm' color='default'>
+          {item.text}
+        </Text>
+      )
+    }
+  </DescriptionList>
+</AsideBlock>
+
+<AsideBlock title={projects.stack}>
+  <BadgeList label={projects.stack} items={stack} />
+</AsideBlock>
+
+{links.length > 0 && <ExternalLinkList label={projects.links} links={links} newTabLabel={newTab} />}
