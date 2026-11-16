@@ -3,18 +3,16 @@ import { getRelativeLocaleUrl } from 'astro:i18n';
 
 import { languages, locales, type Locale } from '@lib/i18n/languages';
 import { stripLocale } from '@lib/i18n/stripLocale';
-import type { ReopenTarget } from '@typings/reopen';
 
 import Switch from '@atoms/Switch/Switch.astro';
 
 interface Props {
   locale: Locale;
-  reopen?: ReopenTarget;
   class?: string;
   [key: string]: unknown;
 }
 
-const { locale, reopen, class: className, ...rest } = Astro.props;
+const { locale, class: className, ...rest } = Astro.props;
 
 const [first, second] = locales;
 const target = locale === first ? second : first;
@@ -29,7 +27,6 @@ const path = stripLocale(Astro.url.pathname).replace(/^\//, '');
   hreflang={target}
   class={className}
   data-language-switch
-  data-reopen={reopen}
   {...rest}
 >
   <span slot='on'>{languages[first].short}</span>

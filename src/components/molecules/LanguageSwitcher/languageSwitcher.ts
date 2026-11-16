@@ -1,8 +1,5 @@
 import { navigate } from 'astro:transitions/client';
 
-import { markReopen } from '@helpers/markReopen';
-import type { ReopenTarget } from '@typings/reopen';
-
 const isNewTabClick = (event: MouseEvent) =>
   event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey;
 
@@ -14,8 +11,6 @@ document.addEventListener('astro:page-load', () => {
       if (isNewTabClick(event)) return;
 
       event.preventDefault();
-
-      if (link.dataset.reopen) markReopen(link.dataset.reopen as ReopenTarget);
 
       link.dataset.checked = String(link.dataset.checked !== 'true');
 
