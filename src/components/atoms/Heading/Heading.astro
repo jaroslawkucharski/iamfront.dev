@@ -1,0 +1,51 @@
+---
+type Levels = 1 | 2 | 3 | 4 | 5 | 6;
+type Variants = 'hero' | 'display' | 'title' | 'label';
+
+interface Props {
+  level?: Levels;
+  variant?: Variants;
+  id?: string;
+  class?: string;
+  [key: string]: unknown;
+}
+
+const { level = 2, variant = 'display', id, class: className, ...rest } = Astro.props;
+
+const Tag = `h${level}` as const;
+---
+
+<Tag id={id} class:list={['heading', `heading--${variant}`, className]} {...rest}>
+  <slot />
+</Tag>
+
+<style>
+  .heading {
+    margin: 0;
+    color: var(--color-text);
+    font-weight: var(--fw-medium);
+    line-height: var(--lh-heading);
+    letter-spacing: var(--ls-heading);
+    text-wrap: balance;
+    overflow-wrap: break-word;
+  }
+
+  .heading--hero {
+    font-size: var(--fs-hero);
+    line-height: 1.1;
+  }
+
+  .heading--display {
+    font-size: var(--fs-display);
+  }
+
+  .heading--title {
+    font-size: var(--fs-xl);
+  }
+
+  .heading--label {
+    font-size: var(--fs-sm);
+    letter-spacing: var(--ls-label);
+    line-height: var(--lh-body);
+  }
+</style>
