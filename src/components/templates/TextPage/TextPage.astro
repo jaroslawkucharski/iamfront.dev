@@ -1,0 +1,55 @@
+---
+import type { Locale } from '@lib/i18n/languages';
+
+import Text from '@atoms/Text/Text.astro';
+import Section from '@molecules/Section/Section.astro';
+import TextSection, { type TextSectionData } from '@organisms/TextSection/TextSection.astro';
+import MainTemplate from '@templates/MainTemplate/MainTemplate.astro';
+
+export interface TextPageContent {
+  meta: { title: string };
+  title: string;
+  intro: string;
+  updated: { label: string; date: string };
+  sections: readonly TextSectionData[];
+}
+
+interface Props {
+  id: string;
+  locale: Locale;
+  content: TextPageContent;
+}
+
+const { id, locale, content } = Astro.props;
+
+const updated = new Intl.DateTimeFormat(locale, {
+  day: 'numeric',
+  month: 'long',
+  year: 'numeric',
+  timeZone: 'UTC',
+}).format(new Date(`${content.updated.date}T00:00:00Z`));
+---
+
+<MainTemplate locale={locale} title={content.meta.title} contactCta={false}>
+  <Section id={id} title={content.title} level={1} gap='lg'>
+    <Text size='lg' color='default' class='text-page__text'>
+      {content.intro}
+    </Text>
+
+    {content.sections.map((section) => (
+      <TextSection section={section} locale={locale} />
+    ))}
+
+    <Text size='sm' color='muted'>
+      {`${content.updated.label} `}
+
+      <time datetime={content.updated.date}>{updated}</time>
+    </Text>
+  </Section>
+</MainTemplate>
+
+<style>
+  .text-page__text {
+    max-width: var(--text-width);
+  }
+</style>

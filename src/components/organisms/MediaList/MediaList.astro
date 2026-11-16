@@ -1,0 +1,34 @@
+---
+import type { Locale } from '@lib/i18n/languages';
+
+import MediaListItem, { type MediaListItemData } from '@organisms/MediaListItem/MediaListItem.astro';
+
+type Levels = 2 | 3 | 4;
+
+interface Props {
+  items: readonly MediaListItemData[];
+  locale: Locale;
+  label: string;
+  labelsLabel?: string;
+  techLabel?: string;
+  level?: Levels;
+  id?: string;
+  class?: string;
+}
+
+const { items, locale, label, labelsLabel = '', techLabel = '', level = 3, id, class: className } = Astro.props;
+---
+
+<ul id={id} class:list={['media-list', className]} aria-label={label}>
+  {items.map((item) => (
+    <MediaListItem item={item} locale={locale} labelsLabel={labelsLabel} techLabel={techLabel} level={level} />
+  ))}
+</ul>
+
+<style>
+  .media-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+</style>

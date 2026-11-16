@@ -1,0 +1,59 @@
+---
+import { getDictionary } from '@lib/i18n/getDictionary';
+import type { Locale } from '@lib/i18n/languages';
+
+import Icon from '@atoms/Icon/Icon.astro';
+import Button from '@molecules/Button/Button.astro';
+
+interface Props {
+  locale: Locale;
+  controls: string;
+  class?: string;
+}
+
+const { locale, controls, class: className } = Astro.props;
+
+const { menu } = getDictionary(locale).nav;
+---
+
+<Button
+  variant='icon'
+  label={menu.label}
+  title={menu.open}
+  class:list={['hamburger-menu', className]}
+  aria-expanded='false'
+  aria-controls={controls}
+  data-hamburger-menu
+  data-title-open={menu.open}
+  data-title-close={menu.close}
+>
+  <Icon name='menu' size={22} class='hamburger-menu__icon hamburger-menu__icon--open' />
+
+  <Icon name='close' size={22} class='hamburger-menu__icon hamburger-menu__icon--close' />
+</Button>
+
+<script>
+  import '@organisms/HamburgerMenu/hamburgerMenu';
+</script>
+
+<style>
+  :global(.button.button--icon.hamburger-menu) {
+    display: none;
+  }
+
+  @media (max-width: 768px) {
+    :global(.button.button--icon.hamburger-menu[data-ready]) {
+      display: inline-grid;
+      color: var(--color-text);
+    }
+  }
+
+  :global(.hamburger-menu__icon--close),
+  :global(.hamburger-menu[aria-expanded='true'] .hamburger-menu__icon--open) {
+    visibility: hidden;
+  }
+
+  :global(.hamburger-menu[aria-expanded='true'] .hamburger-menu__icon--close) {
+    visibility: visible;
+  }
+</style>

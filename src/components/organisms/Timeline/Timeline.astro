@@ -1,0 +1,43 @@
+---
+import type { Locale } from '@lib/i18n/languages';
+
+import Flex from '@atoms/Flex/Flex.astro';
+import Entry, { type EntryData } from '@organisms/Entry/Entry.astro';
+
+interface Props {
+  entries: readonly EntryData[];
+  locale: Locale;
+  ordered?: boolean;
+  stackLabel?: string;
+  detailsLabel?: string;
+  projectLinkLabel?: string;
+}
+
+const { entries, locale, ordered = true, stackLabel, detailsLabel, projectLinkLabel } = Astro.props;
+---
+
+<Flex as={ordered ? 'ol' : 'ul'} list gap='none' class='timeline'>
+  {entries.map((entry) => (
+    <li class='timeline__item'>
+      <Entry
+        entry={entry}
+        locale={locale}
+        stackLabel={stackLabel}
+        detailsLabel={detailsLabel}
+        projectLinkLabel={projectLinkLabel}
+      />
+    </li>
+  ))}
+</Flex>
+
+<style>
+  .timeline :global(.timeline__item) {
+    padding-block: var(--space-md);
+    border-top: var(--border-width) solid var(--color-border-subtle);
+  }
+
+  .timeline :global(.timeline__item:first-child) {
+    padding-top: 0;
+    border-top: 0;
+  }
+</style>

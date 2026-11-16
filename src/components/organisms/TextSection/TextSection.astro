@@ -1,0 +1,54 @@
+---
+import { person } from '@data/site';
+import type { Locale } from '@lib/i18n/languages';
+
+import Flex from '@atoms/Flex/Flex.astro';
+import Heading from '@atoms/Heading/Heading.astro';
+import Text from '@atoms/Text/Text.astro';
+import EmailLink from '@molecules/EmailLink/EmailLink.astro';
+import RichText from '@molecules/RichText/RichText.astro';
+import BulletList from '@organisms/BulletList/BulletList.astro';
+
+export interface TextSectionData {
+  heading: string;
+  paragraphs?: readonly string[];
+  items?: readonly string[];
+}
+
+interface Props {
+  section: TextSectionData;
+  locale: Locale;
+}
+
+const { section, locale } = Astro.props;
+---
+
+<Flex gap='xs' class='text-section'>
+  <Heading level={2} variant='title'>
+    {section.heading}
+  </Heading>
+
+  {section.paragraphs?.map((paragraph) => {
+    const [before, after] = paragraph.split('{email}');
+
+    return after === undefined ? (
+      <RichText text={paragraph} />
+    ) : (
+      <Text>
+        <RichText as='span' text={before} />
+
+        <EmailLink email={person.email} locale={locale} size='md' weight='medium' inline />
+
+        <RichText as='span' text={after} />
+      </Text>
+    );
+  })}
+
+  {section.items && <BulletList items={section.items} />}
+</Flex>
+
+<style>
+  :global(.flex.text-section) {
+    max-width: var(--text-width);
+  }
+</style>

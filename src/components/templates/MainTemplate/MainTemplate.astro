@@ -1,0 +1,67 @@
+---
+import { getDictionary } from '@lib/i18n/getDictionary';
+import type { Locale } from '@lib/i18n/languages';
+
+import Cursor from '@atoms/Cursor/Cursor.astro';
+import SkipLink from '@atoms/SkipLink/SkipLink.astro';
+import BaseLayout from '@layouts/BaseLayout.astro';
+import ContactCta from '@molecules/ContactCta/ContactCta.astro';
+import Footer from '@organisms/Footer/Footer.astro';
+import Header from '@organisms/Header/Header.astro';
+
+interface Props {
+  locale: Locale;
+  title: string;
+  contactCta?: boolean;
+}
+
+const { locale, title, contactCta = true } = Astro.props;
+
+const { skipLink } = getDictionary(locale);
+---
+
+<BaseLayout locale={locale} title={title}>
+  <SkipLink title={skipLink}>{skipLink}</SkipLink>
+
+  <div class='page container' id='top'>
+    <Header locale={locale} />
+
+    <main id='main' class='page__main'>
+      <slot />
+
+      {contactCta && <ContactCta locale={locale} />}
+    </main>
+
+    <Footer locale={locale} />
+  </div>
+
+  <Cursor />
+</BaseLayout>
+
+<style>
+  .page {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    min-height: 100svh;
+    padding-top: var(--space-lg);
+  }
+
+  .page__main {
+    flex: 1 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xl);
+    margin-top: var(--space-md);
+  }
+
+  @media (max-width: 768px) {
+    .page {
+      padding-top: var(--space-sm);
+    }
+
+    .page__main {
+      gap: var(--space-lg);
+    }
+  }
+</style>

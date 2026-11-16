@@ -1,0 +1,80 @@
+---
+import type { ImageMetadata } from 'astro';
+
+import type { Locale } from '@lib/i18n/languages';
+
+import Flex from '@atoms/Flex/Flex.astro';
+import type { IconName } from '@atoms/Icon/Icon.astro';
+import BadgeList from '@molecules/BadgeList/BadgeList.astro';
+import EntryHeader from '@organisms/EntryHeader/EntryHeader.astro';
+import EntrySection, { type EntrySectionData } from '@organisms/EntrySection/EntrySection.astro';
+
+export interface EntryData {
+  id?: string;
+  name: string;
+  logo?: string;
+  image?: { src: ImageMetadata; alt: string };
+  icon?: IconName;
+  url?: string;
+  urlText?: string;
+  start?: string;
+  end?: string;
+  title: string;
+  titleNote?: string;
+  details?: string;
+  sections?: readonly EntrySectionData[];
+}
+
+interface Props {
+  entry: EntryData;
+  locale: Locale;
+  stackLabel?: string;
+  detailsLabel?: string;
+  projectLinkLabel?: string;
+}
+
+const { entry, locale, stackLabel = '', detailsLabel = '', projectLinkLabel = '' } = Astro.props;
+---
+
+<Flex as='article' id={entry.id} gap='xs' class='entry'>
+  <EntryHeader
+    name={entry.name}
+    logo={entry.logo}
+    image={entry.image}
+    icon={entry.icon}
+    url={entry.url}
+    urlText={entry.urlText}
+    role={entry.title}
+    roleNote={entry.titleNote}
+    start={entry.start}
+    end={entry.end}
+    locale={locale}
+  />
+
+  {entry.details && <BadgeList label={detailsLabel} items={entry.details} />}
+
+  {entry.sections && (
+    <div class='entry__sections'>
+      {entry.sections.map((section) => (
+        <EntrySection section={section} stackLabel={stackLabel} projectLinkLabel={projectLinkLabel} />
+      ))}
+    </div>
+  )}
+</Flex>
+
+<style>
+  .entry {
+    scroll-margin-top: var(--space-md);
+  }
+
+  .entry__sections {
+    margin-top: var(--space-xs);
+    padding-inline-start: calc(var(--logo-size) + var(--space-md));
+  }
+
+  @media (max-width: 768px) {
+    .entry__sections {
+      padding-inline-start: 0;
+    }
+  }
+</style>

@@ -1,0 +1,61 @@
+---
+import RichText from '@molecules/RichText/RichText.astro';
+
+type Variants = 'disc' | 'check';
+
+interface Props {
+  items: readonly string[];
+  variant?: Variants;
+  class?: string;
+}
+
+const { items, variant = 'disc', class: className } = Astro.props;
+---
+
+<ul class:list={['bullet-list', `bullet-list--${variant}`, className]}>
+  {items.map((item) => (
+    <RichText as='li' text={item} class='bullet-list__item' />
+  ))}
+</ul>
+
+<style>
+  .bullet-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2xs);
+    margin: 0;
+    padding-inline-start: var(--list-indent);
+    list-style: disc;
+  }
+
+  .bullet-list :global(.bullet-list__item) {
+    line-height: var(--lh-normal);
+  }
+
+  .bullet-list :global(.bullet-list__item::marker) {
+    color: var(--color-text-muted);
+  }
+
+  .bullet-list--check {
+    gap: var(--space-xs);
+    padding-inline-start: 0;
+    list-style: none;
+  }
+
+  .bullet-list--check :global(.bullet-list__item) {
+    position: relative;
+    padding-inline-start: calc(1em + var(--space-xs));
+  }
+
+  .bullet-list--check :global(.bullet-list__item)::before {
+    content: '' / '';
+    position: absolute;
+    inset-inline-start: 0;
+    top: calc((1lh - 1em) / 2);
+    width: 1em;
+    height: 1em;
+    background: currentColor;
+    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6 9 17l-5-5'/%3E%3C/svg%3E")
+      center / contain no-repeat;
+  }
+</style>

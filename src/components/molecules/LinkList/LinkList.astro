@@ -1,0 +1,30 @@
+---
+import Flex from '@atoms/Flex/Flex.astro';
+import Icon from '@atoms/Icon/Icon.astro';
+import Link from '@atoms/Link/Link.astro';
+
+interface LinkItem {
+  href: string;
+  title: string;
+  label: string;
+}
+
+interface Props {
+  links: readonly LinkItem[];
+  class?: string;
+}
+
+const { links, class: className } = Astro.props;
+---
+
+<Flex as='ul' list direction='row' gap='md' class={className}>
+  {links.map((link) => (
+    <li>
+      <Link href={link.href} title={link.title}>
+        {link.label}
+
+        <Icon name='arrow-right' size={16} />
+      </Link>
+    </li>
+  ))}
+</Flex>

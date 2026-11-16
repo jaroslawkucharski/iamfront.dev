@@ -1,0 +1,62 @@
+---
+import { person } from '@data/site';
+import { getDictionary } from '@lib/i18n/getDictionary';
+import type { Locale } from '@lib/i18n/languages';
+
+import Flex from '@atoms/Flex/Flex.astro';
+import Icon from '@atoms/Icon/Icon.astro';
+import Link from '@atoms/Link/Link.astro';
+import EmailLink from '@molecules/EmailLink/EmailLink.astro';
+
+interface Props {
+  locale: Locale;
+  labelledBy?: string;
+  class?: string;
+}
+
+const { locale, labelledBy, class: className } = Astro.props;
+
+const dictionary = getDictionary(locale);
+const contactLinks = dictionary.contactLinks;
+const newTab = ` ${dictionary.externalLink.newTab}`;
+
+const profiles = [
+  { href: person.github, label: 'GitHub', title: contactLinks.github, icon: 'git-branch' as const },
+  { href: person.linkedin, label: 'LinkedIn', title: contactLinks.linkedin, icon: 'briefcase' as const },
+];
+---
+
+<address class:list={['contact-links', className]} aria-labelledby={labelledBy}>
+  <Flex as='ul' list gap='2xs'>
+    <li>
+      <EmailLink email={person.email} locale={locale} title={contactLinks.email}>
+        <Icon name='mail' size={16} slot='icon' />
+      </EmailLink>
+    </li>
+
+    {profiles.map((item) => (
+      <li>
+        <Link
+          href={item.href}
+          external
+          newTabLabel={newTab}
+          title={`${item.title}${newTab}`}
+          rel='me noopener noreferrer'
+          weight='regular'
+          tracking='normal'
+          color='default'
+        >
+          <Icon name={item.icon} size={16} />
+
+          {item.label}
+        </Link>
+      </li>
+    ))}
+  </Flex>
+</address>
+
+<style>
+  .contact-links {
+    font-style: normal;
+  }
+</style>

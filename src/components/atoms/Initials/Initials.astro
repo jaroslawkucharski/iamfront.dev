@@ -1,0 +1,30 @@
+---
+interface Props {
+  text: string;
+  class?: string;
+}
+
+const { text, class: className } = Astro.props;
+
+const initials = text
+  .split(/[\s:]+/)
+  .filter((word) => word.length > 1)
+  .slice(0, 2)
+  .map((word) => word[0].toUpperCase())
+  .join('');
+---
+
+<span class:list={['initials', className]} aria-hidden='true'>
+  {initials}
+</span>
+
+<style>
+  .initials {
+    display: grid;
+    place-items: center;
+    color: var(--color-text-muted);
+    font-size: var(--fs-lg);
+    font-weight: var(--fw-medium);
+    letter-spacing: var(--ls-wide);
+  }
+</style>

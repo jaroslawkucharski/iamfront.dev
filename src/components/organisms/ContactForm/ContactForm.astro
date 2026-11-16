@@ -1,0 +1,154 @@
+---
+import { getRelativeLocaleUrl } from 'astro:i18n';
+
+import { getDictionary } from '@lib/i18n/getDictionary';
+import type { Locale } from '@lib/i18n/languages';
+
+import Flex from '@atoms/Flex/Flex.astro';
+import Text from '@atoms/Text/Text.astro';
+import Button from '@molecules/Button/Button.astro';
+import RichText from '@molecules/RichText/RichText.astro';
+import FormField from '@organisms/FormField/FormField.astro';
+
+interface Props {
+  locale: Locale;
+  class?: string;
+}
+
+const { locale, class: className } = Astro.props;
+
+const { contact } = getDictionary(locale);
+const { fields } = contact;
+const action = getRelativeLocaleUrl(locale, 'contact/thanks/');
+
+const limits = { name: { min: 2, max: 100 }, email: { max: 200 }, message: { min: 10, max: 2000 } };
+
+const topics = [
+  { value: '', label: fields.topic.placeholder },
+  { value: 'client', label: fields.topic.options.client },
+  { value: 'employer', label: fields.topic.options.employer },
+  { value: 'other', label: fields.topic.options.other },
+];
+---
+
+<form
+  name='contact'
+  method='POST'
+  action={action}
+  data-netlify='true'
+  netlify-honeypot='bot-field'
+  novalidate
+  class:list={['contact-form', className]}
+  data-contact-form
+  data-sending={contact.sending}
+  data-success={contact.success}
+  data-failure={contact.failure}
+  data-errors-summary={contact.errorsSummary}
+>
+  <input type='hidden' name='form-name' value='contact' />
+
+  <p hidden>
+    <label>
+      Do not fill this in: <input name='bot-field' tabindex='-1' autocomplete='off' />
+    </label>
+  </p>
+
+  <Flex gap='sm'>
+    <div class='contact-form__row'>
+      <FormField
+        id='contact-name'
+        name='name'
+        label={fields.name.label}
+        required
+        autocomplete='name'
+        minlength={limits.name.min}
+        maxlength={limits.name.max}
+        errors={{ valueMissing: fields.name.required, tooShort: fields.name.tooShort, tooLong: fields.name.tooLong }}
+      />
+
+      <FormField
+        id='contact-email'
+        name='email'
+        type='email'
+        label={fields.email.label}
+        required
+        autocomplete='email'
+        maxlength={limits.email.max}
+        errors={{
+          valueMissing: fields.email.required,
+          typeMismatch: fields.email.invalid,
+          tooLong: fields.email.tooLong,
+        }}
+      />
+    </div>
+
+    <FormField
+      id='contact-topic'
+      name='topic'
+      label={fields.topic.label}
+      options={topics}
+      required
+      errors={{ valueMissing: fields.topic.required }}
+    />
+
+    <FormField
+      id='contact-message'
+      name='message'
+      label={fields.message.label}
+      multiline
+      required
+      minlength={limits.message.min}
+      maxlength={limits.message.max}
+      counter={contact.counter}
+      errors={{
+        valueMissing: fields.message.required,
+        tooShort: fields.message.tooShort,
+        tooLong: fields.message.tooLong,
+      }}
+    />
+
+    <RichText text={contact.privacyNote} size='sm' color='muted' />
+
+    <div class='contact-form__actions'>
+      <Button type='submit' size='lg' block icon='arrow-right' data-submit>
+        {contact.submit}
+      </Button>
+
+      <Text role='status' aria-live='polite' size='sm' weight='medium' color='default' data-form-status />
+    </div>
+  </Flex>
+</form>
+
+<script>
+  import '@organisms/ContactForm/contactForm';
+</script>
+
+<style>
+  .contact-form {
+    width: 100%;
+  }
+
+  .contact-form__row {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-sm);
+  }
+
+  .contact-form__actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-xs) var(--space-sm);
+    margin-top: var(--space-xs);
+  }
+
+  .contact-form :global([data-form-status][data-state='error']) {
+    color: var(--color-error);
+  }
+
+  @media (max-width: 768px) {
+    .contact-form__row {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

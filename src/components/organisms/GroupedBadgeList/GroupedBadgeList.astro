@@ -1,0 +1,24 @@
+---
+import type { ComponentProps } from 'astro/types';
+
+import BadgeList, { type BadgeItem } from '@molecules/BadgeList/BadgeList.astro';
+import DescriptionList from '@organisms/DescriptionList/DescriptionList.astro';
+
+export interface BadgeGroup {
+  label: string;
+  items: string | readonly (string | BadgeItem)[];
+}
+
+interface Props {
+  groups: readonly BadgeGroup[];
+  variant?: ComponentProps<typeof BadgeList>['variant'];
+  class?: string;
+}
+
+const { groups, variant = 'text', class: className } = Astro.props;
+const rows = groups.map((group) => ({ term: group.label, group }));
+---
+
+<DescriptionList items={rows} class={className}>
+  {(row: (typeof rows)[number]) => <BadgeList label={row.group.label} items={row.group.items} variant={variant} />}
+</DescriptionList>

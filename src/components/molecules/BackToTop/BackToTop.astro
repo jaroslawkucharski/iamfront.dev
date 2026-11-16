@@ -1,0 +1,35 @@
+---
+import Icon from '@atoms/Icon/Icon.astro';
+import Link from '@atoms/Link/Link.astro';
+
+interface Props {
+  label: string;
+  class?: string;
+}
+
+const { label, class: className } = Astro.props;
+---
+
+<Link
+  href='#top'
+  title={label}
+  weight='regular'
+  tracking='normal'
+  size='sm'
+  class:list={['back-to-top', className]}
+  data-back-to-top
+>
+  {label}
+
+  <Icon name='arrow-up' size={16} />
+</Link>
+
+<script>
+  import '@molecules/BackToTop/backToTop';
+</script>
+
+<style>
+  :global(.link.back-to-top[hidden]) {
+    display: none;
+  }
+</style>

@@ -1,0 +1,74 @@
+---
+import heroPhoto from '@assets/me/hero.webp';
+import { getExperience } from '@helpers/getExperience';
+import { getDictionary } from '@lib/i18n/getDictionary';
+import type { Locale } from '@lib/i18n/languages';
+
+import Flex from '@atoms/Flex/Flex.astro';
+import Heading from '@atoms/Heading/Heading.astro';
+import MediaBlock from '@atoms/MediaBlock/MediaBlock.astro';
+import Picture from '@atoms/Picture/Picture.astro';
+import BadgeList, { type BadgeItem } from '@molecules/BadgeList/BadgeList.astro';
+import LinkList from '@molecules/LinkList/LinkList.astro';
+import LabeledBadgeList from '@organisms/LabeledBadgeList/LabeledBadgeList.astro';
+
+interface Props {
+  locale: Locale;
+  companies: readonly BadgeItem[];
+}
+
+const { locale, companies } = Astro.props;
+
+const experience = getExperience();
+const { hero } = getDictionary(locale, {
+  experience,
+  years: { plural: 'experienceYears', count: Number.parseInt(experience) },
+});
+---
+
+<section class='hero' aria-labelledby='hero-title'>
+  <MediaBlock mediaPosition='end' equal fill>
+    <Flex gap='md' align='start'>
+      <Heading level={1} variant='hero' id='hero-title'>
+        {hero.headline.map((line, index) => (index > 0 ? [<br />, line] : line))}
+      </Heading>
+
+      <Flex gap='2xs' align='start'>
+        <BadgeList label={hero.highlightsLabel} items={hero.highlights} variant='text' />
+
+        <LabeledBadgeList label={hero.companiesLabel} items={companies} underline />
+      </Flex>
+
+      <LinkList links={hero.links} />
+    </Flex>
+
+    <Picture src={heroPhoto} alt={hero.photoAlt} size={600} loading='eager' slot='media' />
+  </MediaBlock>
+</section>
+
+<style>
+  .hero :global(#hero-title) {
+    font-size: min(var(--fs-hero), calc(100cqi / 14.2));
+  }
+
+  @media (min-width: 769px) {
+    .hero :global(.media-block.media-block--equal) {
+      grid-template-columns: minmax(0, 9fr) minmax(0, 10fr);
+    }
+  }
+
+  .hero :global(.media-block__content) {
+    container-type: inline-size;
+    padding-block: var(--space-lg);
+  }
+
+  @media (max-width: 768px) {
+    .hero :global(.media-block__content) {
+      padding-block: 0;
+    }
+
+    .hero :global(.media-block__media) {
+      margin-inline: calc(var(--page-gutter) * -1);
+    }
+  }
+</style>

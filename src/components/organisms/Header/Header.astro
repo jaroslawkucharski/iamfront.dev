@@ -1,0 +1,85 @@
+---
+import { getRelativeLocaleUrl } from 'astro:i18n';
+
+import { getDictionary } from '@lib/i18n/getDictionary';
+import type { Locale } from '@lib/i18n/languages';
+
+import Logo from '@atoms/Logo/Logo.astro';
+import HamburgerMenu from '@organisms/HamburgerMenu/HamburgerMenu.astro';
+import Navigation from '@organisms/Navigation/Navigation.astro';
+import SettingsMenu from '@organisms/SettingsMenu/SettingsMenu.astro';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+
+const { nav } = getDictionary(locale);
+const homeHref = getRelativeLocaleUrl(locale);
+const navigationId = 'site-nav';
+---
+
+<header class='header'>
+  <Logo href={homeHref} label={nav.homeLabel} class='header__logo' />
+
+  <Navigation id={navigationId} locale={locale} class='header__navigation' />
+
+  <div class='header__toggles'>
+    <SettingsMenu locale={locale} class='header__settings-menu' />
+
+    <HamburgerMenu locale={locale} controls={navigationId} />
+  </div>
+</header>
+
+<style>
+  .header {
+    position: relative;
+    display: grid;
+    grid-template-columns: auto 1fr auto auto;
+    grid-template-areas: 'logo . nav toggles';
+    align-items: center;
+    column-gap: var(--space-sm);
+    padding-block: var(--space-xs);
+  }
+
+  .header :global(.header__logo) {
+    grid-area: logo;
+    align-self: start;
+  }
+
+  .header :global(.header__navigation) {
+    grid-area: nav;
+  }
+
+  .header__toggles {
+    grid-area: toggles;
+    display: flex;
+    align-items: center;
+    margin-block: calc((var(--fs-body) * var(--lh-body) - var(--tap-target)) / 2);
+    margin-inline-start: calc(var(--space-lg) - var(--space-sm) - (var(--tap-target) - var(--icon-md)) / 2);
+  }
+
+  @media (max-width: 768px) {
+    .header {
+      grid-template-columns: 1fr auto;
+      grid-template-areas:
+        'logo toggles'
+        'nav nav';
+      row-gap: var(--space-xs);
+    }
+
+    .header :global(.header__logo) {
+      align-self: center;
+    }
+
+    .header__toggles {
+      margin-block: 0;
+      margin-inline-start: 0;
+    }
+
+    :global(.header:has(.navigation[data-menu]) .header__settings-menu) {
+      display: none;
+    }
+  }
+</style>

@@ -1,4 +1,5 @@
 export const person = {
+  name: 'Jarosław Kucharski',
   careerStart: '2020-01',
   email: 'jaroslaw.kucharski@iamfront.dev',
   github: 'https://github.com/jaroslawkucharski',
