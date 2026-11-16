@@ -1,0 +1,90 @@
+---
+import { getRelativeLocaleUrl } from 'astro:i18n';
+
+import { person } from '@data/site';
+import { getDictionary } from '@lib/i18n/getDictionary';
+import type { Locale } from '@lib/i18n/languages';
+
+import Flex from '@atoms/Flex/Flex.astro';
+import Icon from '@atoms/Icon/Icon.astro';
+import Link from '@atoms/Link/Link.astro';
+import Text from '@atoms/Text/Text.astro';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+
+const { footer } = getDictionary(locale);
+const year = new Date().getFullYear();
+
+const pages = [
+  { href: getRelativeLocaleUrl(locale, 'privacy/'), label: footer.privacy },
+  { href: getRelativeLocaleUrl(locale, 'accessibility/'), label: footer.accessibility },
+];
+---
+
+<footer class='footer' aria-label={footer.label}>
+  <div class='footer__start'>
+    <Text size='sm'>{`© ${year} ${person.name}. ${footer.rights}`}</Text>
+
+    <Flex as='ul' list direction='row' gap='sm' class='footer__pages'>
+      {pages.map((page) => (
+        <li>
+          <Link href={page.href} title={page.label} weight='regular' tracking='normal' size='sm'>
+            {page.label}
+          </Link>
+        </li>
+      ))}
+    </Flex>
+  </div>
+
+  <Link
+    href='#top'
+    title={footer.backToTop}
+    weight='regular'
+    tracking='normal'
+    size='sm'
+    class='footer__top'
+    data-back-to-top
+  >
+    {footer.backToTop}
+
+    <Icon name='arrow-up' size={16} />
+  </Link>
+</footer>
+
+<script>
+  import '@organisms/Footer/footer';
+</script>
+
+<style>
+  .footer {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-xs) var(--space-sm);
+    margin-top: var(--space-lg);
+    padding-block: var(--space-sm);
+    border-top: var(--border-width) solid var(--color-border-subtle);
+  }
+
+  .footer__start {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-xs) var(--space-md);
+  }
+
+  .footer :global(.footer__top[hidden]) {
+    display: none;
+  }
+
+  @media (max-width: 768px) {
+    .footer :global(:is(.footer__top, .footer__pages)) {
+      display: none;
+    }
+  }
+</style>
