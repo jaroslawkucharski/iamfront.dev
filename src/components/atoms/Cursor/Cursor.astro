@@ -1,0 +1,66 @@
+---
+---
+
+<div class='cursor' aria-hidden='true' data-cursor transition:persist='cursor'></div>
+
+<script>
+  import '@/components/atoms/Cursor/cursor';
+</script>
+
+<style>
+  .cursor {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 9999;
+    width: var(--cursor-size);
+    height: var(--cursor-size);
+    margin: calc(var(--cursor-size) / -2) 0 0 calc(var(--cursor-size) / -2);
+    border-radius: var(--radius-full);
+    background: var(--color-cursor);
+    mix-blend-mode: difference;
+    pointer-events: none;
+    opacity: 0;
+    scale: 1;
+    transition:
+      opacity var(--duration-fast) var(--ease-standard),
+      scale var(--duration-fast) var(--ease-standard);
+  }
+
+  .cursor--visible {
+    opacity: 1;
+  }
+
+  .cursor--active {
+    scale: 2;
+  }
+
+  .cursor--pressed {
+    scale: 0.8;
+  }
+
+  .cursor--active.cursor--pressed {
+    scale: 1.6;
+  }
+
+  :global(:root.has-custom-cursor) {
+    --cursor-pointer: none;
+    --cursor-progress: none;
+    --cursor-zoom-in: none;
+  }
+
+  :global(:root.has-custom-cursor),
+  :global(:root.has-custom-cursor *) {
+    cursor: none;
+  }
+
+  :global(html:not(.has-custom-cursor)) .cursor {
+    display: none;
+  }
+
+  @media (forced-colors: active) {
+    .cursor {
+      display: none;
+    }
+  }
+</style>
