@@ -5,10 +5,9 @@ import { person } from '@data/site';
 import { getDictionary } from '@lib/i18n/getDictionary';
 import type { Locale } from '@lib/i18n/languages';
 
-import Flex from '@atoms/Flex/Flex.astro';
-import Icon from '@atoms/Icon/Icon.astro';
-import Link from '@atoms/Link/Link.astro';
 import Text from '@atoms/Text/Text.astro';
+import BackToTop from '@molecules/BackToTop/BackToTop.astro';
+import FooterLinks from '@molecules/FooterLinks/FooterLinks.astro';
 
 interface Props {
   locale: Locale;
@@ -29,35 +28,11 @@ const pages = [
   <div class='footer__start'>
     <Text size='sm'>{`© ${year} ${person.name}. ${footer.rights}`}</Text>
 
-    <Flex as='ul' list direction='row' gap='sm' class='footer__pages'>
-      {pages.map((page) => (
-        <li>
-          <Link href={page.href} title={page.label} weight='regular' tracking='normal' size='sm'>
-            {page.label}
-          </Link>
-        </li>
-      ))}
-    </Flex>
+    <FooterLinks links={pages} class='footer__pages' />
   </div>
 
-  <Link
-    href='#top'
-    title={footer.backToTop}
-    weight='regular'
-    tracking='normal'
-    size='sm'
-    class='footer__top'
-    data-back-to-top
-  >
-    {footer.backToTop}
-
-    <Icon name='arrow-up' size={16} />
-  </Link>
+  <BackToTop label={footer.backToTop} class='footer__top' />
 </footer>
-
-<script>
-  import '@organisms/Footer/footer';
-</script>
 
 <style>
   .footer {
@@ -76,10 +51,6 @@ const pages = [
     flex-wrap: wrap;
     align-items: center;
     gap: var(--space-xs) var(--space-md);
-  }
-
-  .footer :global(.footer__top[hidden]) {
-    display: none;
   }
 
   @media (max-width: 768px) {

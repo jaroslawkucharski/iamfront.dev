@@ -1,0 +1,26 @@
+---
+import Flex from '@atoms/Flex/Flex.astro';
+import Link from '@atoms/Link/Link.astro';
+
+interface FooterLink {
+  href: string;
+  label: string;
+}
+
+interface Props {
+  links: readonly FooterLink[];
+  class?: string;
+}
+
+const { links, class: className } = Astro.props;
+---
+
+<Flex as='ul' list direction='row' gap='sm' class={className}>
+  {links.map((link) => (
+    <li>
+      <Link href={link.href} title={link.label} weight='regular' tracking='normal' size='sm'>
+        {link.label}
+      </Link>
+    </li>
+  ))}
+</Flex>
