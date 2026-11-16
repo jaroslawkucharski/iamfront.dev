@@ -1,0 +1,29 @@
+<script is:inline>
+  (function () {
+    function applyPreferences(root) {
+      root.dataset.js = 'true';
+
+      let theme = null;
+      let motion = null;
+
+      try {
+        theme = localStorage.getItem('theme');
+        motion = localStorage.getItem('motion');
+      } catch {}
+
+      if (theme === 'light' || theme === 'dark') root.dataset.theme = theme;
+
+      if (motion !== 'on' && motion !== 'off') {
+        motion = window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'off' : 'on';
+      }
+
+      root.dataset.motion = motion;
+    }
+
+    applyPreferences(document.documentElement);
+
+    document.addEventListener('astro:before-swap', function (event) {
+      applyPreferences(event.newDocument.documentElement);
+    });
+  })();
+</script>
