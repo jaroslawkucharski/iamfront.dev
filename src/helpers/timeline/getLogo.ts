@@ -8,22 +8,19 @@ const files = import.meta.glob<{ default: ImageMetadata }>(
 const logos = new Map<string, ImageMetadata>();
 
 for (const [path, file] of Object.entries(files)) {
-  const name = path
-    .split('/')
-    .pop()!
-    .replace(/\.\w+$/, '');
+  const name = path.replace(/^.*\//, '').replace(/\.\w+$/, '');
 
   if (logos.has(name)) throw new Error(`Two logos named "${name}" in src/assets/companies|education/`);
 
   logos.set(name, file.default);
 }
 
-export const getLogo = (name?: string): ImageMetadata | undefined => {
+export const getLogo = (name?: string) => {
   if (!name) return undefined;
 
-  const logo = logos.get(name);
+  const src = logos.get(name);
 
-  if (!logo) throw new Error(`Missing logo "${name}" in src/assets/companies/ or src/assets/education/`);
+  if (!src) throw new Error(`Missing logo "${name}" in src/assets/companies/ or src/assets/education/`);
 
-  return logo;
+  return { src, dark: logos.get(`${name}-dark`) };
 };

@@ -9,6 +9,8 @@
     "react",
     "typescript",
     "javascript",
+    "html",
+    "css",
     "redux-toolkit",
     "swr",
     "axios",
@@ -17,7 +19,14 @@
     "zod",
     "vitest",
     "react-testing-library",
-    "php"
+    "php",
+    "rest-api",
+    "storybook",
+    "docker",
+    "code-review",
+    "ci-cd",
+    "agile",
+    "git"
   ],
   "links": {
     "live": {

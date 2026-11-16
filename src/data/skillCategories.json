@@ -4,38 +4,24 @@
     "label": "Frontend"
   },
   {
-    "id": "api",
-    "label": {
-      "pl": "API i integracje",
-      "en": "APIs & integrations"
-    }
-  },
-  {
     "id": "backend",
     "label": {
-      "pl": "Backend i dane",
-      "en": "Backend & data"
+      "pl": "Backend, API i CMS",
+      "en": "Backend, APIs & CMS"
     }
   },
   {
     "id": "quality",
     "label": {
-      "pl": "Wydajność i testy",
-      "en": "Performance & testing"
+      "pl": "Jakość i testy",
+      "en": "Quality & testing"
     }
   },
   {
     "id": "tools",
     "label": {
-      "pl": "Narzędzia i środowisko",
-      "en": "Tools & environment"
-    }
-  },
-  {
-    "id": "ai",
-    "label": {
-      "pl": "Narzędzia AI",
-      "en": "AI development tools"
+      "pl": "Narzędzia",
+      "en": "Tools"
     }
   },
   {

@@ -17,7 +17,8 @@
     "next-intl",
     "mdx",
     "zod",
-    "vercel"
+    "vercel",
+    "git"
   ],
   "links": {
     "live": "https://nextjs14masters-course.vercel.app/",

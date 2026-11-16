@@ -24,7 +24,8 @@ const logoAlt = interpolate(getDictionary(locale).logoAlt, { name });
 
 {signet && (
   <Picture
-    src={signet}
+    src={signet.src}
+    dark={signet.dark}
     alt={logoAlt}
     size={64}
     sizeMobile={48}

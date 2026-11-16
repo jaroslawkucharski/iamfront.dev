@@ -14,7 +14,12 @@
     "i18next",
     "sass",
     "vitest",
-    "react-testing-library"
+    "react-testing-library",
+    "rest-api",
+    "code-review",
+    "ci-cd",
+    "agile",
+    "git"
   ],
   "links": {
     "live": {

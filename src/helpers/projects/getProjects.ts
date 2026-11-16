@@ -1,6 +1,7 @@
 import type { ImageMetadata } from 'astro';
 import { getCollection, type CollectionEntry } from 'astro:content';
 
+import { sortSkills } from '@helpers/skills/sortSkills';
 import type { Locale } from '@lib/i18n/languages';
 import { localize } from '@lib/i18n/localize';
 
@@ -39,12 +40,12 @@ const localizeImage = (
   alt: localize(image.alt, locale),
 });
 
-const toProject = ({ id, data }: CollectionEntry<'projects'>, locale: Locale): Project => ({
+const toProject = async ({ id, data }: CollectionEntry<'projects'>, locale: Locale): Promise<Project> => ({
   ...data,
   id,
   name: localize(data.name, locale),
   company: data.company && localize(data.company, locale),
-  stack: data.stack.map((skill) => skill.id),
+  stack: await sortSkills(data.stack.map((skill) => skill.id)),
   links: {
     live: data.links.live && localize(data.links.live, locale),
     repo: data.links.repo && localize(data.links.repo, locale),
@@ -76,4 +77,4 @@ const byStatus = (first: Project, second: Project) =>
   compareDates(first.start, second.start);
 
 export const getProjects = async (locale: Locale): Promise<Project[]> =>
-  (await getCollection('projects')).map((entry) => toProject(entry, locale)).sort(byStatus);
+  (await Promise.all((await getCollection('projects')).map((entry) => toProject(entry, locale)))).sort(byStatus);

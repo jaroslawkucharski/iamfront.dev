@@ -1,8 +1,6 @@
 {
   "name": "iamfront.dev",
-  "types": [
-    "private"
-  ],
+  "types": ["private"],
   "start": "2026-11",
   "stack": [
     "astro",
@@ -15,7 +13,10 @@
     "figma",
     "wcag",
     "seo",
-    "lighthouse"
+    "core-web-vitals",
+    "lighthouse",
+    "rest-api",
+    "git"
   ],
   "links": {
     "live": {

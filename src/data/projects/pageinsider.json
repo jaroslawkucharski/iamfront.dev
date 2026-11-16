@@ -17,7 +17,12 @@
     "sass",
     "jest",
     "enzyme",
-    "react-testing-library"
+    "react-testing-library",
+    "rest-api",
+    "code-review",
+    "ci-cd",
+    "agile",
+    "git"
   ],
   "links": {},
   "summary": {

@@ -12,7 +12,9 @@ import type { BadgeItem } from '@molecules/BadgeList/BadgeList.astro';
 export const getCompanyBadges = async (locale: Locale): Promise<BadgeItem[]> => {
   const { hero } = getDictionary(locale);
 
-  const companies = sortTimelineEntries(await getCollection('experience')).map(({ id, data }) => {
+  const companies = sortTimelineEntries(await getCollection('experience')).filter(({ data }) => data.featured);
+
+  return companies.map(({ id, data }) => {
     const name = localize(data.shortName ?? data.name, locale);
 
     return {
@@ -22,6 +24,4 @@ export const getCompanyBadges = async (locale: Locale): Promise<BadgeItem[]> => 
       muted: true,
     };
   });
-
-  return companies.filter((company, index) => companies.findIndex(({ label }) => label === company.label) === index);
 };
