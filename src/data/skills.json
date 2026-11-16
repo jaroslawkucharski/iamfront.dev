@@ -1,11 +1,5 @@
 [
   {
-    "id": "react",
-    "name": "React",
-    "category": "frontend",
-    "featured": true
-  },
-  {
     "id": "typescript",
     "name": "TypeScript",
     "category": "frontend",
@@ -18,6 +12,24 @@
     "featured": true
   },
   {
+    "id": "html",
+    "name": "HTML",
+    "category": "frontend",
+    "featured": true
+  },
+  {
+    "id": "css",
+    "name": "CSS",
+    "category": "frontend",
+    "featured": true
+  },
+  {
+    "id": "react",
+    "name": "React",
+    "category": "frontend",
+    "featured": true
+  },
+  {
     "id": "nextjs",
     "name": "Next.js",
     "category": "frontend",
@@ -26,7 +38,8 @@
   {
     "id": "astro",
     "name": "Astro",
-    "category": "frontend"
+    "category": "frontend",
+    "featured": true
   },
   {
     "id": "redux",
@@ -37,18 +50,6 @@
   {
     "id": "react-router",
     "name": "React Router",
-    "category": "frontend",
-    "featured": true
-  },
-  {
-    "id": "html",
-    "name": "HTML",
-    "category": "frontend",
-    "featured": true
-  },
-  {
-    "id": "css",
-    "name": "CSS",
     "category": "frontend",
     "featured": true
   },
@@ -189,103 +190,84 @@
     "category": "frontend"
   },
   {
+    "id": "nodejs",
+    "name": "Node.js",
+    "category": "backend",
+    "featured": true
+  },
+  {
     "id": "rest-api",
     "name": "REST API",
-    "category": "api",
+    "category": "backend",
     "featured": true
   },
   {
     "id": "graphql",
     "name": "GraphQL",
-    "category": "api",
+    "category": "backend",
     "featured": true
   },
   {
     "id": "axios",
     "name": "Axios",
-    "category": "api"
+    "category": "backend"
   },
   {
     "id": "oauth",
     "name": "OAuth 2.0",
-    "category": "api"
+    "category": "backend"
   },
   {
     "id": "openid-connect",
     "name": "OpenID Connect",
-    "category": "api"
+    "category": "backend"
   },
   {
     "id": "pkce",
     "name": "PKCE",
-    "category": "api"
-  },
-  {
-    "id": "sitecore",
-    "name": "Sitecore",
-    "category": "api"
+    "category": "backend"
   },
   {
     "id": "algolia",
     "name": "Algolia",
-    "category": "api"
+    "category": "backend"
   },
   {
     "id": "clerk",
     "name": "Clerk",
-    "category": "api"
-  },
-  {
-    "id": "contentful",
-    "name": "Contentful",
-    "category": "api"
-  },
-  {
-    "id": "strapi",
-    "name": "Strapi",
-    "category": "api"
+    "category": "backend"
   },
   {
     "id": "graphql-codegen",
     "name": "GraphQL Codegen",
-    "category": "api"
+    "category": "backend"
   },
   {
     "id": "mixpanel",
     "name": "Mixpanel",
-    "category": "api"
+    "category": "backend"
   },
   {
     "id": "stripe",
     "name": "Stripe",
-    "category": "api"
-  },
-  {
-    "id": "php",
-    "name": "PHP",
     "category": "backend"
   },
   {
-    "id": "firebase",
-    "name": "Firebase",
-    "category": "backend"
-  },
-  {
-    "id": "core-web-vitals",
-    "name": "Core Web Vitals",
-    "category": "quality",
+    "id": "sitecore",
+    "name": "Sitecore",
+    "category": "backend",
     "featured": true
   },
   {
-    "id": "lighthouse",
-    "name": "Lighthouse",
-    "category": "quality",
+    "id": "contentful",
+    "name": "Contentful",
+    "category": "backend",
     "featured": true
   },
   {
-    "id": "react-testing-library",
-    "name": "React Testing Library",
-    "category": "quality",
+    "id": "strapi",
+    "name": "Strapi",
+    "category": "backend",
     "featured": true
   },
   {
@@ -301,6 +283,12 @@
     "featured": true
   },
   {
+    "id": "react-testing-library",
+    "name": "React Testing Library",
+    "category": "quality",
+    "featured": true
+  },
+  {
     "id": "cypress",
     "name": "Cypress",
     "category": "quality"
@@ -311,9 +299,27 @@
     "category": "quality"
   },
   {
-    "id": "nodejs",
-    "name": "Node.js",
-    "category": "tools",
+    "id": "core-web-vitals",
+    "name": "Core Web Vitals",
+    "category": "quality",
+    "featured": true
+  },
+  {
+    "id": "lighthouse",
+    "name": "Lighthouse",
+    "category": "quality",
+    "featured": true
+  },
+  {
+    "id": "wcag",
+    "name": "WCAG",
+    "category": "quality",
+    "featured": true
+  },
+  {
+    "id": "seo",
+    "name": "SEO",
+    "category": "quality",
     "featured": true
   },
   {
@@ -380,66 +386,44 @@
   {
     "id": "claude-code",
     "name": "Claude Code",
-    "category": "ai",
+    "category": "tools",
     "featured": true
   },
   {
     "id": "codex",
     "name": "Codex",
-    "category": "ai",
+    "category": "tools",
     "featured": true
   },
   {
     "id": "github-copilot",
     "name": "GitHub Copilot",
-    "category": "ai",
+    "category": "tools",
     "featured": true
   },
   {
     "id": "vercel-ai-sdk",
     "name": "Vercel AI SDK",
-    "category": "ai"
+    "category": "tools"
   },
   {
     "id": "mastra",
     "name": "Mastra",
-    "category": "ai"
-  },
-  {
-    "id": "frontend-architecture",
-    "name": {
-      "pl": "Architektura frontendu",
-      "en": "Frontend architecture"
-    },
-    "category": "practices",
-    "featured": true
+    "category": "tools"
   },
   {
     "id": "code-review",
     "name": "Code review",
-    "category": "practices",
-    "featured": true
+    "category": "practices"
   },
   {
     "id": "ci-cd",
     "name": "CI/CD",
-    "category": "practices",
-    "featured": true
+    "category": "practices"
   },
   {
     "id": "agile",
     "name": "Agile/Scrum",
-    "category": "practices",
-    "featured": true
-  },
-  {
-    "id": "seo",
-    "name": "SEO",
-    "category": "practices"
-  },
-  {
-    "id": "wcag",
-    "name": "WCAG",
     "category": "practices"
   },
   {
@@ -449,6 +433,16 @@
       "en": "Web analytics"
     },
     "category": "practices"
+  },
+  {
+    "id": "php",
+    "name": "PHP",
+    "category": "backend"
+  },
+  {
+    "id": "firebase",
+    "name": "Firebase",
+    "category": "backend"
   },
   {
     "id": "indesign",
