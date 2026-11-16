@@ -126,6 +126,26 @@
     "category": "api"
   },
   {
+    "id": "oauth",
+    "name": "OAuth 2.0",
+    "category": "api"
+  },
+  {
+    "id": "openid-connect",
+    "name": "OpenID Connect",
+    "category": "api"
+  },
+  {
+    "id": "pkce",
+    "name": "PKCE",
+    "category": "api"
+  },
+  {
+    "id": "sitecore",
+    "name": "Sitecore",
+    "category": "api"
+  },
+  {
     "id": "strapi",
     "name": "Strapi",
     "category": "api"
@@ -213,6 +233,11 @@
     "featured": true
   },
   {
+    "id": "webpack",
+    "name": "Webpack",
+    "category": "tools"
+  },
+  {
     "id": "claude-code",
     "name": "Claude Code",
     "category": "ai",
@@ -268,9 +293,27 @@
     "featured": true
   },
   {
+    "id": "seo",
+    "name": "SEO",
+    "category": "practices"
+  },
+  {
     "id": "wcag",
     "name": "WCAG",
     "category": "practices"
+  },
+  {
+    "id": "web-analytics",
+    "name": {
+      "pl": "Analityka internetowa",
+      "en": "Web analytics"
+    },
+    "category": "practices"
+  },
+  {
+    "id": "indesign",
+    "name": "Adobe InDesign",
+    "category": "design"
   },
   {
     "id": "graphics",

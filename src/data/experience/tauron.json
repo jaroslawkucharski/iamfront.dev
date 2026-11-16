@@ -1,0 +1,98 @@
+{
+  "name": "TAURON Obsługa Klienta",
+  "shortName": "TAURON",
+  "logo": "tauron",
+  "start": "2026-10",
+  "title": {
+    "pl": "Starszy specjalista ds. tworzenia i edycji stron www",
+    "en": "Senior Website Development Specialist"
+  },
+  "sections": [
+    {
+      "title": {
+        "pl": "Rozwój i bieżąca obsługa serwisów internetowych",
+        "en": "Website development and maintenance"
+      },
+      "stack": [
+        "sitecore",
+        "html",
+        "css",
+        "javascript",
+        "seo",
+        "wcag",
+        "web-analytics"
+      ],
+      "items": [
+        {
+          "pl": "Odpowiadam za rozwój i utrzymanie **serwisów internetowych TAURON opartych na Sitecore**, realizując zmiany od analizy wymagań i zgłoszeń po implementację, testy i publikację.",
+          "en": "Responsible for developing and maintaining **TAURON websites built on Sitecore**, delivering changes from requirements and tickets through implementation, testing and publishing."
+        },
+        {
+          "pl": "**Tworzę i rozwijam skrypty JavaScript**, implementując nowe funkcjonalności oraz dostosowując istniejące rozwiązania do wymagań biznesowych i potrzeb użytkowników.",
+          "en": "**Build and extend JavaScript scripts**, implementing new features and adapting existing solutions to business requirements and user needs."
+        },
+        {
+          "pl": "Przygotowuję i wdrażam **nowe podstrony, formularze oraz elementy interaktywne**, dbając o spójność z architekturą i standardami serwisów.",
+          "en": "Prepare and deploy **new pages, forms and interactive elements**, keeping them consistent with the sites' architecture and standards."
+        },
+        {
+          "pl": "Prowadzę analizę problemów zgłaszanych przez użytkowników i zespoły biznesowe, **identyfikując przyczyny oraz koordynując ich rozwiązanie** z zespołami IT i dostawcami.",
+          "en": "Analyse issues reported by users and business teams, **identifying root causes and coordinating fixes** with IT teams and vendors."
+        },
+        {
+          "pl": "Współpracuję z zespołami biznesowymi, marketingowymi, IT i komunikacji przy **planowaniu oraz realizacji zmian i nowych inicjatyw internetowych**.",
+          "en": "Work with business, marketing, IT and communication teams on **planning and delivering website changes and new initiatives**."
+        },
+        {
+          "pl": "Odpowiadam za **weryfikację jakości wdrażanych zmian**, w tym poprawności działania formularzy, linków, komponentów i przepływów użytkownika.",
+          "en": "Responsible for **quality assurance of deployed changes**, including forms, links, components and user flows."
+        },
+        {
+          "pl": "Rozwijam serwisy z uwzględnieniem **użyteczności, dostępności, SEO i standardów WCAG**.",
+          "en": "Develop the websites with **usability, accessibility, SEO and WCAG standards** in mind."
+        }
+      ]
+    },
+    {
+      "title": {
+        "pl": "Dokumenty cyfrowe",
+        "en": "Digital documents"
+      },
+      "stack": [
+        "indesign",
+        "wcag"
+      ],
+      "items": [
+        {
+          "pl": "Odpowiadam za **przygotowywanie i rozwój dokumentów cyfrowych** oraz interaktywnych formularzy PDF wykorzystywanych w procesach obsługi klienta.",
+          "en": "Responsible for **preparing and developing digital documents** and interactive PDF forms used in customer service processes."
+        },
+        {
+          "pl": "Projektuję dokumenty i formularze w Adobe InDesign, **przekładając wymagania biznesowe oraz procesowe na gotowe materiały cyfrowe**.",
+          "en": "Design documents and forms in Adobe InDesign, **turning business and process requirements into finished digital materials**."
+        },
+        {
+          "pl": "Tworzę **interaktywne pola, układy formularzy i mechanizmy** umożliwiające klientom elektroniczne uzupełnianie dokumentów.",
+          "en": "Create **interactive fields, form layouts and mechanisms** that let customers fill in documents electronically."
+        },
+        {
+          "pl": "Analizuję i poprawiam strukturę dokumentów pod kątem **użyteczności, dostępności i zgodności ze standardami WCAG**.",
+          "en": "Analyse and improve document structure for **usability, accessibility and WCAG compliance**."
+        },
+        {
+          "pl": "Testuję formularze i dokumenty przed publikacją, weryfikując **poprawność pól, walidacji, układu oraz działania** na różnych urządzeniach i w różnych czytnikach PDF.",
+          "en": "Test forms and documents before publishing, checking **fields, validation, layout and behaviour** across devices and PDF readers."
+        },
+        {
+          "pl": "Wprowadzam poprawki wynikające z **testów, zgłoszeń użytkowników i wymagań interesariuszy**.",
+          "en": "Apply fixes based on **testing, user reports and stakeholder requirements**."
+        },
+        {
+          "pl": "Przygotowuję **finalne materiały do publikacji i dystrybucji cyfrowej**.",
+          "en": "Prepare **final materials for publishing and digital distribution**."
+        }
+      ]
+    }
+  ],
+  "url": "https://www.tauron.pl"
+}
