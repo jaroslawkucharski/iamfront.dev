@@ -165,7 +165,8 @@
   },
   "about": {
     "meta": {
-      "title": "About me – {name}"
+      "title": "About me – {name}",
+      "description": "Jarosław Kucharski – Senior Frontend Developer based in Katowice, Poland. React, TypeScript, Next.js, frontend architecture and web performance."
     },
     "intro": {
       "heading": "About me"
@@ -189,7 +190,8 @@
   },
   "projects": {
     "meta": {
-      "title": "Projects"
+      "title": "Projects",
+      "description": "Commercial and personal projects by Jarosław Kucharski – React, TypeScript, Next.js."
     },
     "heading": "Projects",
     "listLabel": "Projects",

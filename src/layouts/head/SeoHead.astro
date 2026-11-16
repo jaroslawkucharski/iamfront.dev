@@ -1,0 +1,44 @@
+---
+import { person, site } from '@data/site';
+import { getAlternates } from '@helpers/seo/getAlternates';
+import { getPersonSchema } from '@helpers/seo/getPersonSchema';
+import { languages, type Locale } from '@lib/i18n/languages';
+
+interface Props {
+  locale: Locale;
+  title: string;
+  description: string;
+  noindex?: boolean;
+}
+
+const { locale, title, description, noindex = false } = Astro.props;
+
+const siteUrl = Astro.site ?? new URL(`https://${site.name}`);
+const canonical = new URL(Astro.url.pathname, siteUrl).href;
+const alternates = getAlternates(Astro.url.pathname);
+const schema = JSON.stringify(getPersonSchema(siteUrl));
+---
+
+<meta name='description' content={description} />
+<meta name='author' content={person.name} />
+{noindex ? (
+  <meta name='robots' content='noindex' />
+) : (
+  <>
+    <link rel='canonical' href={canonical} />
+
+    {alternates.map((alternate) => (
+      <link rel='alternate' hreflang={alternate.lang} href={alternate.href} />
+    ))}
+  </>
+)}
+
+<meta property='og:type' content='website' />
+<meta property='og:site_name' content={site.name} />
+<meta property='og:title' content={title} />
+<meta property='og:description' content={description} />
+<meta property='og:url' content={canonical} />
+<meta property='og:locale' content={languages[locale].ogLocale} />
+<meta name='twitter:card' content='summary' />
+
+<script type='application/ld+json' set:html={schema} />

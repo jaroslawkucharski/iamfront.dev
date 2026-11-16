@@ -22,7 +22,7 @@ const { locale, project } = Astro.props;
 const { projects } = getDictionary(locale);
 ---
 
-<MainTemplate locale={locale} title={project.name}>
+<MainTemplate locale={locale} title={project.name} description={project.summary}>
   <ArrowLink href={getRelativeLocaleUrl(locale, 'projects/')} title={projects.back} direction='back'>
     {projects.back}
   </ArrowLink>

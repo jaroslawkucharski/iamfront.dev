@@ -2,6 +2,7 @@
 import type { InferGetStaticPropsType } from 'astro';
 
 import { person } from '@data/site';
+import { getExperienceValues } from '@helpers/experience/getExperienceValues';
 import { getProjectListItem } from '@helpers/projects/getProjectListItem';
 import { getProjects } from '@helpers/projects/getProjects';
 import { getCompanyBadges } from '@helpers/timeline/getCompanyBadges';
@@ -19,14 +20,14 @@ type Props = InferGetStaticPropsType<typeof getStaticPaths>;
 
 const { locale } = Astro.props;
 
-const { meta } = getDictionary(locale, { name: person.name, role: person.jobTitle });
+const { meta } = getDictionary(locale, { name: person.name, role: person.jobTitle, ...getExperienceValues() });
 const projects = await getProjects(locale);
 const featured = await Promise.all(
   projects.filter((project) => project.featured).map((project) => getProjectListItem(project, locale)),
 );
 ---
 
-<MainTemplate locale={locale} title={meta.title} contactCta={false}>
+<MainTemplate locale={locale} title={meta.title} description={meta.description} contactCta={false}>
   <Hero locale={locale} companies={await getCompanyBadges(locale)} />
 
   <FeaturedProjects locale={locale} items={featured} total={projects.length} />

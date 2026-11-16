@@ -2,6 +2,7 @@
   "updated": "2026-11-16",
   "en": {
     "title": "Accessibility",
+    "description": "Accessibility statement for iamfront.dev: WCAG 2.1 AA conformance, how it is tested, known limitations and contact.",
     "intro": "I want everyone to be able to use this site comfortably – with a keyboard, a screen reader or zoomed in. The site is designed and tested for conformance with WCAG 2.1 level AA.",
     "sections": [
       {
@@ -38,6 +39,7 @@
   },
   "pl": {
     "title": "Dostępność",
+    "description": "Deklaracja dostępności iamfront.dev: zgodność z WCAG 2.1 AA, sposób testowania, znane ograniczenia i kontakt.",
     "intro": "Zależy mi, żeby z tej strony mógł wygodnie korzystać każdy – także z klawiaturą, czytnikiem ekranu albo w powiększeniu. Strona jest projektowana i testowana pod kątem zgodności z WCAG 2.1 na poziomie AA.",
     "sections": [
       {
