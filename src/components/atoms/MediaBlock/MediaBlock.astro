@@ -1,0 +1,90 @@
+---
+type MediaPositions = 'start' | 'end';
+
+interface Props {
+  mediaPosition?: MediaPositions;
+  equal?: boolean;
+  fill?: boolean;
+  class?: string;
+}
+
+const { mediaPosition = 'start', equal = false, fill = false, class: className } = Astro.props;
+---
+
+<div
+  class:list={[
+    'media-block',
+    `media-block--${mediaPosition}`,
+    { 'media-block--equal': equal, 'media-block--fill': fill },
+    className,
+  ]}
+>
+  <div class='media-block__content'>
+    <slot />
+  </div>
+
+  <div class='media-block__media'>
+    <slot name='media' />
+  </div>
+</div>
+
+<style>
+  .media-block {
+    display: grid;
+    gap: var(--space-md) var(--space-lg);
+    align-items: center;
+  }
+
+  .media-block--start {
+    grid-template-columns: auto minmax(0, 1fr);
+  }
+
+  .media-block--end {
+    grid-template-columns: minmax(0, 1fr) auto;
+  }
+
+  .media-block.media-block--equal {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .media-block--fill {
+    align-items: stretch;
+  }
+
+  .media-block--fill .media-block__content {
+    align-self: center;
+  }
+
+  .media-block--fill .media-block__media :global(img) {
+    width: 100%;
+    max-width: none;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .media-block--start .media-block__media {
+    order: -1;
+  }
+
+  @media (max-width: 768px) {
+    .media-block--start,
+    .media-block--end,
+    .media-block.media-block--equal {
+      grid-template-columns: 1fr;
+    }
+
+    .media-block--fill .media-block__media :global(img) {
+      height: auto;
+      aspect-ratio: 16 / 9;
+    }
+
+    .media-block.media-block--fill .media-block__media {
+      justify-self: stretch;
+    }
+
+    .media-block__media {
+      order: -1;
+      justify-self: center;
+    }
+  }
+</style>
