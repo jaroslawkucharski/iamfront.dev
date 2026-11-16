@@ -1,7 +1,6 @@
 import { navigate } from 'astro:transitions/client';
 
-const isNewTabClick = (event: MouseEvent) =>
-  event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey;
+import { isNewTabClick } from '@helpers/isNewTabClick';
 
 document.addEventListener('astro:page-load', () => {
   document.querySelectorAll<HTMLAnchorElement>('[data-language-switch]:not([data-ready])').forEach((link) => {
