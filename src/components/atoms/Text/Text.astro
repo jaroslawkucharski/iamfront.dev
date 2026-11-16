@@ -1,0 +1,37 @@
+---
+import type { HTMLTag } from 'astro/types';
+
+import type { TypographyProps } from '@/types/typography';
+
+interface Props extends TypographyProps {
+  as?: HTMLTag;
+  class?: string;
+  [key: string]: unknown;
+}
+
+const {
+  as: Tag = 'p',
+  size = 'md',
+  weight = 'regular',
+  color = 'muted',
+  tracking = 'normal',
+  uppercase = false,
+  class: className,
+  ...rest
+} = Astro.props;
+---
+
+<Tag
+  class:list={[
+    'text',
+    `text--size-${size}`,
+    `text--weight-${weight}`,
+    `text--color-${color}`,
+    `text--tracking-${tracking}`,
+    { 'text--uppercase': uppercase },
+    className,
+  ]}
+  {...rest}
+>
+  <slot />
+</Tag>
