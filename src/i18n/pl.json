@@ -13,5 +13,29 @@
     "code": "404",
     "title": "Nie znaleziono strony | iamfront.dev",
     "text": ["Ups, zabłądziłeś.", "Tej strony nie ma, ale reszta jest na miejscu :)"]
+  },
+  "contactCta": {
+    "heading": "Masz pytania?",
+    "link": "Napisz do mnie",
+    "title": "Przejdź do formularza kontaktowego"
+  },
+  "contactLinks": {
+    "email": "Napisz e-mail",
+    "github": "Profil na GitHubie",
+    "linkedin": "Profil na LinkedIn",
+    "emailFallback": "formularz kontaktowy",
+    "emailReveal": "Pokaż e-mail"
+  },
+  "externalLink": {
+    "title": "Strona {name}",
+    "newTab": "(otwiera się w nowej karcie)"
+  },
+  "disclosure": {
+    "expand": "Rozwiń",
+    "collapse": "Zwiń"
+  },
+  "logoAlt": "Logo {name}",
+  "dateRange": {
+    "present": "obecnie"
   }
 }

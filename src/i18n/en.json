@@ -11,5 +11,29 @@
     "code": "404",
     "title": "Page not found | iamfront.dev",
     "text": ["Oops, you're lost.", "This page doesn't exist, but everything else is here :)"]
+  },
+  "contactCta": {
+    "heading": "Any questions?",
+    "link": "Get in touch",
+    "title": "Go to the contact form"
+  },
+  "contactLinks": {
+    "email": "Send an email",
+    "github": "GitHub profile",
+    "linkedin": "LinkedIn profile",
+    "emailFallback": "contact form",
+    "emailReveal": "Show email"
+  },
+  "externalLink": {
+    "title": "{name} website",
+    "newTab": "(opens in a new tab)"
+  },
+  "disclosure": {
+    "expand": "Expand",
+    "collapse": "Collapse"
+  },
+  "logoAlt": "{name} logo",
+  "dateRange": {
+    "present": "present"
   }
 }
