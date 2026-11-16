@@ -1,0 +1,102 @@
+---
+import Icon, { type IconName } from '@/components/atoms/Icon/Icon.astro';
+import Link from '@/components/atoms/Link/Link.astro';
+
+type Variants = 'default' | 'link';
+type Types = 'button' | 'submit' | 'reset';
+type Sizes = 'md' | 'lg';
+
+interface Props {
+  variant?: Variants;
+  type?: Types;
+  size?: Sizes;
+  block?: boolean;
+  icon?: IconName;
+  busy?: boolean;
+  class?: string;
+  [key: string]: unknown;
+}
+
+const {
+  variant = 'default',
+  type = 'button',
+  size = 'md',
+  block = false,
+  icon,
+  busy = false,
+  class: className,
+  ...rest
+} = Astro.props;
+---
+
+{variant === 'link' ? (
+  <Link as='button' class={className} aria-busy={busy ? 'true' : undefined} {...rest}>
+    <slot />
+
+    {icon && <Icon name={icon} size={16} />}
+  </Link>
+) : (
+  <button
+    type={type}
+    class:list={['button', `button--${size}`, { 'button--block': block }, className]}
+    aria-busy={busy ? 'true' : undefined}
+    {...rest}
+  >
+    <slot />
+
+    {icon && <Icon name={icon} size={size === 'lg' ? 20 : 16} class='button__icon' />}
+  </button>
+)}
+
+<style>
+  .button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-xs);
+    min-height: var(--tap-target);
+    padding: 0 var(--space-md);
+    border: 0;
+    border-radius: var(--radius-full);
+    background: var(--color-text);
+    color: var(--color-bg);
+    font: inherit;
+    font-size: var(--fs-control);
+    font-weight: var(--fw-semibold);
+    letter-spacing: var(--ls-wide);
+    cursor: pointer;
+    transition: opacity var(--duration-fast) var(--ease-standard);
+  }
+
+  .button--lg {
+    min-height: calc(var(--tap-target) + var(--space-xs));
+    padding-inline: var(--space-lg);
+    font-size: var(--fs-body);
+  }
+
+  .button--block {
+    display: flex;
+    width: 100%;
+  }
+
+  .button :global(.button__icon) {
+    transition: translate var(--duration-fast) var(--ease-standard);
+  }
+
+  .button:is(:hover, :focus-visible) :global(.button__icon) {
+    translate: var(--space-3xs) 0;
+  }
+
+  .button:hover {
+    opacity: 0.85;
+  }
+
+  .button:active,
+  .button[aria-busy='true'] {
+    opacity: var(--opacity-pressed);
+  }
+
+  .button[aria-busy='true'] {
+    cursor: progress;
+  }
+</style>
