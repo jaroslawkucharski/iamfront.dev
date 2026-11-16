@@ -1,8 +1,9 @@
 ---
 import type { ComponentProps } from 'astro/types';
 
+import DescriptionList from '@atoms/DescriptionList/DescriptionList.astro';
 import BadgeList, { type BadgeItem } from '@molecules/BadgeList/BadgeList.astro';
-import DescriptionList from '@organisms/DescriptionList/DescriptionList.astro';
+import DescriptionItem from '@molecules/DescriptionItem/DescriptionItem.astro';
 
 export interface BadgeGroup {
   label: string;
@@ -16,9 +17,12 @@ interface Props {
 }
 
 const { groups, variant = 'text', class: className } = Astro.props;
-const rows = groups.map((group) => ({ term: group.label, group }));
 ---
 
-<DescriptionList items={rows} class={className}>
-  {(row: (typeof rows)[number]) => <BadgeList label={row.group.label} items={row.group.items} variant={variant} />}
+<DescriptionList class={className}>
+  {groups.map((group) => (
+    <DescriptionItem term={group.label}>
+      <BadgeList label={group.label} items={group.items} variant={variant} />
+    </DescriptionItem>
+  ))}
 </DescriptionList>

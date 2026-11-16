@@ -4,12 +4,13 @@ import { getSkillBadges } from '@helpers/skills/getSkillBadges';
 import { getDictionary } from '@lib/i18n/getDictionary';
 import type { Locale } from '@lib/i18n/languages';
 
+import DescriptionList from '@atoms/DescriptionList/DescriptionList.astro';
 import Text from '@atoms/Text/Text.astro';
 import AsideBlock from '@molecules/AsideBlock/AsideBlock.astro';
 import BadgeList from '@molecules/BadgeList/BadgeList.astro';
 import DateRange from '@molecules/DateRange/DateRange.astro';
+import DescriptionItem from '@molecules/DescriptionItem/DescriptionItem.astro';
 import ExternalLinkList from '@molecules/ExternalLinkList/ExternalLinkList.astro';
-import DescriptionList from '@organisms/DescriptionList/DescriptionList.astro';
 
 interface Props {
   project: Project;
@@ -28,12 +29,6 @@ const typeText = [
   ...(project.planned ? [projects.planned] : []),
 ].join(', ');
 
-const details = [
-  ...(project.start ? [{ term: projects.period, kind: 'period' }] : []),
-  ...(project.company ? [{ term: projects.company, kind: 'text', text: project.company }] : []),
-  { term: projects.type, kind: 'text', text: typeText },
-];
-
 const links = [
   ...(project.links.live ? [{ href: project.links.live, label: projects.live }] : []),
   ...(project.links.repo ? [{ href: project.links.repo, label: projects.repo }] : []),
@@ -41,16 +36,26 @@ const links = [
 ---
 
 <AsideBlock title={projects.details}>
-  <DescriptionList items={details} stacked>
-    {(item: (typeof details)[number]) =>
-      item.kind === 'period' && project.start ? (
+  <DescriptionList stacked>
+    {project.start && (
+      <DescriptionItem term={projects.period}>
         <DateRange start={project.start} end={project.end} locale={locale} />
-      ) : (
+      </DescriptionItem>
+    )}
+
+    {project.company && (
+      <DescriptionItem term={projects.company}>
         <Text size='sm' color='default'>
-          {item.text}
+          {project.company}
         </Text>
-      )
-    }
+      </DescriptionItem>
+    )}
+
+    <DescriptionItem term={projects.type}>
+      <Text size='sm' color='default'>
+        {typeText}
+      </Text>
+    </DescriptionItem>
   </DescriptionList>
 </AsideBlock>
 
