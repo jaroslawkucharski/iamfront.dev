@@ -1,0 +1,166 @@
+---
+import { getCvLink } from '@helpers/getCvLink';
+import { getDictionary } from '@lib/i18n/getDictionary';
+import type { Locale } from '@lib/i18n/languages';
+import { stripLocale } from '@lib/i18n/stripLocale';
+
+import Icon from '@atoms/Icon/Icon.astro';
+import Link from '@atoms/Link/Link.astro';
+import VisuallyHidden from '@atoms/VisuallyHidden/VisuallyHidden.astro';
+import SettingsList from '@organisms/SettingsList/SettingsList.astro';
+
+interface Props {
+  locale: Locale;
+  id: string;
+  class?: string;
+}
+
+const { locale, id, class: className } = Astro.props;
+
+const { nav } = getDictionary(locale);
+const cv = getCvLink(locale);
+
+const normalize = (path: string) => stripLocale(path).replace(/\/$/, '') || '/';
+const currentPath = normalize(Astro.url.pathname);
+
+const isActive = (href: string) => {
+  if (href.includes('#')) return false;
+
+  const target = normalize(href);
+
+  return currentPath === target || currentPath.startsWith(`${target}/`);
+};
+---
+
+<nav id={id} aria-label={nav.label} class:list={['navigation', className]}>
+  <ul class='navigation__list'>
+    {nav.items.map((item, index) => (
+      <li style={`--i: ${index}`}>
+        <Link href={item.href} title={item.title} active={isActive(item.href)} class='navigation__link'>
+          {item.label}
+
+          <Icon name='arrow-right' size={20} class='navigation__arrow' />
+        </Link>
+      </li>
+    ))}
+
+    <li style={`--i: ${nav.items.length}`}>
+      <Link href={cv.href} download={cv.fileName} title={cv.title} class='navigation__link'>
+        <Icon name='download' size={16} class='navigation__cv-icon' />
+
+        {cv.label}
+
+        <VisuallyHidden>{cv.hint}</VisuallyHidden>
+      </Link>
+    </li>
+  </ul>
+
+  <SettingsList
+    id={`${id}-settings`}
+    locale={locale}
+    class='navigation__settings'
+    style={`--i: ${nav.items.length + 1}`}
+  />
+</nav>
+
+<style>
+  .navigation__list {
+    display: flex;
+    align-items: center;
+    gap: var(--space-lg);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    white-space: nowrap;
+  }
+
+  .navigation :global(.navigation__settings),
+  .navigation :global(.navigation__arrow) {
+    display: none;
+  }
+
+  :global(html:has(.navigation[data-menu='open'])) {
+    overflow: hidden;
+  }
+
+  @media (max-width: 768px) {
+    .navigation__list {
+      flex-wrap: wrap;
+      gap: 0 var(--space-sm);
+    }
+
+    .navigation :global(.navigation__link) {
+      min-height: var(--tap-target);
+    }
+
+    .navigation[data-menu] {
+      position: fixed;
+      inset: var(--menu-top, 0) 0 0;
+      z-index: 10;
+      overflow-y: auto;
+      padding: var(--space-sm) var(--page-gutter) var(--space-lg);
+      background: var(--color-bg);
+    }
+
+    .navigation[data-menu='closed'] {
+      display: none;
+    }
+
+    .navigation[data-menu] .navigation__list {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0;
+      counter-reset: nav;
+    }
+
+    .navigation[data-menu] .navigation__list > li {
+      border-bottom: var(--border-width) solid var(--color-border-subtle);
+      counter-increment: nav;
+    }
+
+    .navigation[data-menu='open'] .navigation__list > li,
+    .navigation[data-menu='open'] :global(.navigation__settings) {
+      animation: reveal var(--duration-medium) var(--ease-standard) both;
+      animation-delay: calc(var(--i, 0) * 50ms);
+    }
+
+    .navigation[data-menu] :global(.navigation__link) {
+      display: flex;
+      width: 100%;
+      padding-block: var(--space-sm);
+      font-size: var(--fs-xl);
+      font-weight: var(--fw-medium);
+      letter-spacing: var(--ls-heading);
+      line-height: var(--lh-heading);
+      background-image: none;
+    }
+
+    .navigation[data-menu] :global(.navigation__link)::before {
+      content: counter(nav, decimal-leading-zero) / '';
+      min-width: 2em;
+      color: var(--color-text-muted);
+      font-size: var(--fs-sm);
+      font-weight: var(--fw-regular);
+      letter-spacing: var(--ls-wide);
+    }
+
+    .navigation[data-menu] :global(.navigation__arrow),
+    .navigation[data-menu] :global(.navigation__cv-icon) {
+      display: block;
+      order: 2;
+      margin-inline-start: auto;
+      color: var(--color-text-muted);
+      transition: color var(--duration-fast) var(--ease-standard);
+    }
+
+    .navigation[data-menu] :global(.navigation__link:hover :is(.navigation__arrow, .navigation__cv-icon)),
+    .navigation[data-menu] :global(.navigation__link.link--active .navigation__arrow) {
+      color: var(--color-text);
+    }
+
+    .navigation[data-menu] :global(.navigation__settings) {
+      display: grid;
+      margin-block-start: var(--space-md);
+    }
+  }
+</style>
