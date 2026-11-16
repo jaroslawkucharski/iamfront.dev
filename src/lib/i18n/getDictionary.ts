@@ -4,7 +4,8 @@ import { interpolate } from '@lib/i18n/interpolate';
 import type { Locale } from '@lib/i18n/languages';
 import { plural, type PluralForms } from '@lib/i18n/plural';
 
-type Shape<T> = Omit<T, 'experienceYears'> & { experienceYears: PluralForms };
+type PluralKeys = 'experienceYears' | 'projectCount';
+type Shape<T> = Omit<T, PluralKeys> & Record<PluralKeys, PluralForms>;
 export type Dictionary = Shape<typeof en>;
 
 type PluralKey = { [Key in keyof Dictionary]: Dictionary[Key] extends PluralForms ? Key : never }[keyof Dictionary];
