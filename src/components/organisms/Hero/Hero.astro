@@ -6,12 +6,11 @@ import type { Locale } from '@lib/i18n/languages';
 
 import Flex from '@atoms/Flex/Flex.astro';
 import Heading from '@atoms/Heading/Heading.astro';
-import Icon from '@atoms/Icon/Icon.astro';
-import Link from '@atoms/Link/Link.astro';
 import MediaBlock from '@atoms/MediaBlock/MediaBlock.astro';
 import Picture from '@atoms/Picture/Picture.astro';
-import Text from '@atoms/Text/Text.astro';
 import BadgeList, { type BadgeItem } from '@molecules/BadgeList/BadgeList.astro';
+import LinkList from '@molecules/LinkList/LinkList.astro';
+import LabeledBadgeList from '@organisms/LabeledBadgeList/LabeledBadgeList.astro';
 
 interface Props {
   locale: Locale;
@@ -37,26 +36,10 @@ const { hero } = getDictionary(locale, {
       <Flex gap='2xs' align='start'>
         <BadgeList label={hero.highlightsLabel} items={hero.highlights} variant='text' />
 
-        <Flex direction='row' gap='xs' class='hero__companies'>
-          <Text as='span' size='md' color='muted'>
-            {hero.companiesLabel}
-          </Text>
-
-          <BadgeList label={hero.companiesLabel} items={companies} variant='text' underline />
-        </Flex>
+        <LabeledBadgeList label={hero.companiesLabel} items={companies} underline />
       </Flex>
 
-      <Flex as='ul' list direction='row' gap='md' class='hero__links'>
-        {hero.links.map((link) => (
-          <li>
-            <Link href={link.href} title={link.title}>
-              {link.label}
-
-              <Icon name='arrow-right' size={16} />
-            </Link>
-          </li>
-        ))}
-      </Flex>
+      <LinkList links={hero.links} />
     </Flex>
 
     <Picture src={heroPhoto} alt={hero.photoAlt} size={600} loading='eager' slot='media' />
@@ -66,12 +49,6 @@ const { hero } = getDictionary(locale, {
 <style>
   .hero :global(#hero-title) {
     font-size: min(var(--fs-hero), calc(100cqi / 14.2));
-  }
-
-  .hero :global(.hero__companies) {
-    flex-direction: row;
-    flex-wrap: wrap;
-    align-items: baseline;
   }
 
   @media (min-width: 769px) {
@@ -93,9 +70,5 @@ const { hero } = getDictionary(locale, {
     .hero :global(.media-block__media) {
       margin-inline: calc(var(--page-gutter) * -1);
     }
-  }
-
-  .hero :global(.hero__links) {
-    flex-wrap: wrap;
   }
 </style>

@@ -1,0 +1,22 @@
+---
+import Flex from '@atoms/Flex/Flex.astro';
+import Text from '@atoms/Text/Text.astro';
+import BadgeList, { type BadgeItem } from '@molecules/BadgeList/BadgeList.astro';
+
+interface Props {
+  label: string;
+  items: readonly (string | BadgeItem)[];
+  underline?: boolean;
+  class?: string;
+}
+
+const { label, items, underline = false, class: className } = Astro.props;
+---
+
+<Flex direction='row' gap='xs' align='baseline' class={className}>
+  <Text as='span' size='md' color='muted'>
+    {label}
+  </Text>
+
+  <BadgeList label={label} items={items} variant='text' underline={underline} />
+</Flex>
