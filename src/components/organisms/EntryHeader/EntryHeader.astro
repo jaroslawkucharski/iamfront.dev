@@ -1,15 +1,14 @@
 ---
 import type { ImageMetadata } from 'astro';
 
-import { getLogo } from '@helpers/getLogo';
 import { getDictionary } from '@lib/i18n/getDictionary';
 import type { Locale } from '@lib/i18n/languages';
 
-import Icon, { type IconName } from '@atoms/Icon/Icon.astro';
+import type { IconName } from '@atoms/Icon/Icon.astro';
 import Link from '@atoms/Link/Link.astro';
-import Picture from '@atoms/Picture/Picture.astro';
 import Text from '@atoms/Text/Text.astro';
 import DateRange from '@molecules/DateRange/DateRange.astro';
+import EntryLogo from '@molecules/EntryLogo/EntryLogo.astro';
 import RichText from '@molecules/RichText/RichText.astro';
 
 type Levels = 2 | 3 | 4;
@@ -31,9 +30,8 @@ interface Props {
 
 const { name, logo, image, icon, url, urlText, role, roleNote, level = 3, start, end, locale } = Astro.props;
 
-const signet = getLogo(logo);
+const hasLogo = Boolean(logo || image || icon);
 const dictionary = getDictionary(locale);
-const logoAlt = dictionary.logoAlt.replace('{name}', name);
 
 const linked = url && urlText && name.includes(urlText) ? urlText : name;
 const [before, after] =
@@ -41,35 +39,8 @@ const [before, after] =
 const linkTitle = `${dictionary.externalLink.title.replace('{name}', linked)} ${dictionary.externalLink.newTab}`;
 ---
 
-<div class:list={['entry-header', { 'entry-header--logo': signet || image || icon }]}>
-  {signet && (
-    <Picture
-      src={signet}
-      alt={logoAlt}
-      size={64}
-      sizeMobile={48}
-      shape='square'
-      fit='contain'
-      class='entry-header__logo'
-    />
-  )}
-
-  {!signet && image && (
-    <Picture
-      src={image.src}
-      alt={image.alt}
-      size={64}
-      sizeMobile={48}
-      shape='square'
-      class='entry-header__logo entry-header__logo--photo'
-    />
-  )}
-
-  {!signet && !image && icon && (
-    <span class='entry-header__logo entry-header__logo--icon' aria-hidden='true'>
-      <Icon name={icon} size={28} />
-    </span>
-  )}
+<div class:list={['entry-header', { 'entry-header--logo': hasLogo }]}>
+  <EntryLogo name={name} logo={logo} image={image} icon={icon} locale={locale} class='entry-header__logo' />
 
   <Text as={`h${level}`} size='lg' weight='medium' color='default' tracking='label' class='entry-header__name'>
     {url ? (
@@ -125,20 +96,6 @@ const linkTitle = `${dictionary.externalLink.title.replace('{name}', linked)} ${
     align-self: center;
   }
 
-  .entry-header :global(.entry-header__logo--photo) {
-    border-radius: var(--radius-sm);
-  }
-
-  .entry-header__logo--icon {
-    width: var(--logo-size);
-    height: var(--logo-size);
-    display: grid;
-    place-items: center;
-    border-radius: var(--radius-sm);
-    background: var(--color-surface);
-    color: var(--color-text-muted);
-  }
-
   .entry-header :global(.entry-header__name) {
     margin: 0;
   }
@@ -188,11 +145,6 @@ const linkTitle = `${dictionary.externalLink.title.replace('{name}', linked)} ${
 
     .entry-header :global(.entry-header__logo) {
       grid-row: span 3;
-    }
-
-    .entry-header__logo--icon {
-      width: calc(var(--logo-size) * 0.75);
-      height: calc(var(--logo-size) * 0.75);
     }
   }
 </style>
