@@ -1,0 +1,24 @@
+---
+import Flex from '@atoms/Flex/Flex.astro';
+import Heading from '@atoms/Heading/Heading.astro';
+
+interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<Flex gap='sm'>
+  <Heading level={2} variant='label' class='aside-block__title'>
+    {title}
+  </Heading>
+
+  <slot />
+</Flex>
+
+<style>
+  :global(.aside-block__title) {
+    color: var(--color-text-muted);
+  }
+</style>

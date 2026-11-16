@@ -9,23 +9,16 @@ interface Props {
   locale: Locale;
   ordered?: boolean;
   stackLabel?: string;
-  detailsLabel?: string;
   projectLinkLabel?: string;
 }
 
-const { entries, locale, ordered = true, stackLabel, detailsLabel, projectLinkLabel } = Astro.props;
+const { entries, locale, ordered = true, stackLabel, projectLinkLabel } = Astro.props;
 ---
 
 <Flex as={ordered ? 'ol' : 'ul'} list gap='none' class='timeline'>
   {entries.map((entry) => (
     <li class='timeline__item'>
-      <Entry
-        entry={entry}
-        locale={locale}
-        stackLabel={stackLabel}
-        detailsLabel={detailsLabel}
-        projectLinkLabel={projectLinkLabel}
-      />
+      <Entry entry={entry} locale={locale} stackLabel={stackLabel} projectLinkLabel={projectLinkLabel} />
     </li>
   ))}
 </Flex>

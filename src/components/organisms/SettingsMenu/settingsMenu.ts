@@ -1,4 +1,4 @@
-import { initDisclosure } from '@helpers/initDisclosure';
+import { initDisclosure } from '@helpers/dom/initDisclosure';
 
 document.addEventListener('astro:page-load', () => {
   const root = document.querySelector<HTMLElement>('[data-settings]');

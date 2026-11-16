@@ -1,3 +1,5 @@
+import { interpolate } from '@lib/i18n/interpolate';
+
 type Field = HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement;
 
 document.addEventListener('astro:page-load', () => {
@@ -31,7 +33,7 @@ document.addEventListener('astro:page-load', () => {
     };
 
     const check = (field: Field) => {
-      const messages = JSON.parse(field.dataset.errors ?? '{}') as Record<string, string>;
+      const messages: Record<string, string> = JSON.parse(field.dataset.errors ?? '{}');
       const problem = problemOf(field);
       const error = document.getElementById(`${field.id}-error`);
 
@@ -48,9 +50,10 @@ document.addEventListener('astro:page-load', () => {
 
       if (!counter) return;
 
-      counter.textContent = (counter.dataset.counter ?? '')
-        .replace('{count}', String(field.value.length))
-        .replace('{max}', counter.dataset.max ?? '');
+      counter.textContent = interpolate(counter.dataset.counter ?? '', {
+        count: String(field.value.length),
+        max: counter.dataset.max ?? '',
+      });
     };
 
     fields.forEach((field) => {
@@ -74,7 +77,7 @@ document.addEventListener('astro:page-load', () => {
       const invalid = fields.filter((field) => !check(field));
 
       if (invalid.length) {
-        setStatus((form.dataset.errorsSummary ?? '').replace('{count}', String(invalid.length)), 'error');
+        setStatus(interpolate(form.dataset.errorsSummary ?? '', { count: String(invalid.length) }), 'error');
         invalid[0].focus();
 
         return;
@@ -83,7 +86,8 @@ document.addEventListener('astro:page-load', () => {
       submit?.setAttribute('aria-busy', 'true');
       setStatus(form.dataset.sending ?? '', 'sending');
       try {
-        const body = new URLSearchParams(new FormData(form) as unknown as Record<string, string>).toString();
+        const entries = [...new FormData(form)].map(([name, value]) => [name, String(value)]);
+        const body = new URLSearchParams(entries).toString();
         const response = await fetch('/', {
           method: 'POST',
           headers: { 'Content-Type': 'application/x-www-form-urlencoded' },

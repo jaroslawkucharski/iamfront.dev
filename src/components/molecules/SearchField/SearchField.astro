@@ -6,18 +6,12 @@ import VisuallyHidden from '@atoms/VisuallyHidden/VisuallyHidden.astro';
 interface Props {
   label: string;
   placeholder?: string;
-  id?: string;
+  id: string;
   class?: string;
   [key: string]: unknown;
 }
 
-const {
-  label,
-  placeholder,
-  id = `search-${Math.random().toString(36).slice(2, 8)}`,
-  class: className,
-  ...rest
-} = Astro.props;
+const { label, placeholder, id, class: className, ...rest } = Astro.props;
 ---
 
 <span class:list={['search-field', className]}>

@@ -1,0 +1,36 @@
+---
+import { getRelativeLocaleUrl } from 'astro:i18n';
+
+import { getDictionary } from '@lib/i18n/getDictionary';
+import type { Locale } from '@lib/i18n/languages';
+
+import ArrowLink from '@molecules/ArrowLink/ArrowLink.astro';
+import Section from '@molecules/Section/Section.astro';
+import MediaList from '@organisms/MediaList/MediaList.astro';
+import type { MediaListItemData } from '@organisms/MediaListItem/MediaListItem.astro';
+
+interface Props {
+  locale: Locale;
+  items: readonly MediaListItemData[];
+  total: number;
+}
+
+const { locale, items, total } = Astro.props;
+
+const { projects } = getDictionary(locale);
+const allLabel = `${projects.all} (${total})`;
+---
+
+<Section id='projects' title={projects.featuredHeading}>
+  <MediaList
+    items={items}
+    locale={locale}
+    label={projects.featuredHeading}
+    labelsLabel={projects.labelsLabel}
+    techLabel={projects.stack}
+  />
+
+  <ArrowLink href={getRelativeLocaleUrl(locale, 'projects/')} title={allLabel}>
+    {allLabel}
+  </ArrowLink>
+</Section>

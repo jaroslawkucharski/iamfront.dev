@@ -1,0 +1,18 @@
+---
+import type { InferGetStaticPropsType } from 'astro';
+
+import { getDictionary } from '@lib/i18n/getDictionary';
+import { getLocalePaths } from '@lib/i18n/getLocalePaths';
+
+import StatusPage from '@templates/StatusPage/StatusPage.astro';
+
+export const getStaticPaths = getLocalePaths;
+
+type Props = InferGetStaticPropsType<typeof getStaticPaths>;
+
+const { locale } = Astro.props;
+
+const { thanks } = getDictionary(locale).contact;
+---
+
+<StatusPage locale={locale} title={thanks.title} heading={thanks.heading} hint={thanks.hint} text={thanks.text} />

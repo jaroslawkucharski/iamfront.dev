@@ -1,0 +1,87 @@
+{
+  "updated": "2026-11-16",
+  "en": {
+    "title": "Privacy",
+    "intro": "This site uses no cookies and no tracking tools. I only process personal data when you send a message through the contact form.",
+    "sections": [
+      {
+        "heading": "Data controller",
+        "paragraphs": ["The data controller is Jarosław Kucharski. Contact for data matters: {email}."]
+      },
+      {
+        "heading": "What data and why",
+        "paragraphs": [
+          "Your name, email address, topic and message – only to reply to your message and continue the conversation.",
+          "The legal basis is my legitimate interest in replying to your message (Art. 6(1)(f) GDPR) and, when you write about a collaboration or a job, steps taken before entering into a contract (Art. 6(1)(b) GDPR). Providing the data is voluntary, but without it I can't reply."
+        ]
+      },
+      {
+        "heading": "Who receives the data",
+        "paragraphs": [
+          "The form and the hosting are provided by Netlify, Inc. (USA). Form messages and emails sent to my iamfront.dev address are delivered to my Gmail inbox, provided by Google LLC (USA).",
+          "Data is transferred to the USA under Netlify’s data processing agreement, based on the European Commission’s standard contractual clauses, and – for Google – under the EU-U.S. Data Privacy Framework, in which Google LLC participates. I don’t sell or share the data with anyone else."
+        ]
+      },
+      {
+        "heading": "How long I keep it",
+        "paragraphs": [
+          "For as long as we’re in touch, and then no longer than 12 months – unless we start working together."
+        ]
+      },
+      {
+        "heading": "Your rights",
+        "paragraphs": [
+          "You have the right to access, correct and delete your data, to restrict or object to its processing and to data portability. Just write to the address above. You can also lodge a complaint with the Polish data protection authority (President of the Personal Data Protection Office, UODO)."
+        ]
+      },
+      {
+        "heading": "Cookies and settings",
+        "paragraphs": [
+          "This site uses no cookies. Your chosen theme and animation setting are saved only in your browser (localStorage) and never sent anywhere.",
+          "Like any host, Netlify’s servers keep technical logs (e.g. IP addresses) needed to run and secure the site."
+        ]
+      }
+    ]
+  },
+  "pl": {
+    "title": "Prywatność",
+    "intro": "Ta strona nie używa ciasteczek ani narzędzi śledzących. Dane osobowe przetwarzam tylko wtedy, gdy wyślesz wiadomość przez formularz kontaktowy.",
+    "sections": [
+      {
+        "heading": "Administrator danych",
+        "paragraphs": ["Administratorem danych jest Jarosław Kucharski. Kontakt w sprawie danych: {email}."]
+      },
+      {
+        "heading": "Jakie dane i po co",
+        "paragraphs": [
+          "Imię i nazwisko, adres e-mail, temat i treść wiadomości – wyłącznie po to, żeby odpowiedzieć na Twoją wiadomość i prowadzić dalszą korespondencję.",
+          "Podstawą jest mój prawnie uzasadniony interes, czyli odpowiedź na wiadomość (art. 6 ust. 1 lit. f RODO), a gdy piszesz w sprawie współpracy lub pracy – także działania przed zawarciem umowy (art. 6 ust. 1 lit. b RODO). Podanie danych jest dobrowolne, ale bez nich nie mogę odpowiedzieć."
+        ]
+      },
+      {
+        "heading": "Komu przekazuję dane",
+        "paragraphs": [
+          "Formularz i hosting strony obsługuje Netlify, Inc. (USA). Wiadomości z formularza oraz e-maile wysłane na adres w domenie iamfront.dev trafiają do mojej skrzynki Gmail, którą obsługuje Google LLC (USA).",
+          "Przekazanie danych do USA odbywa się na podstawie umowy powierzenia z Netlify, opartej na standardowych klauzulach umownych Komisji Europejskiej, a w przypadku Google – na podstawie EU-U.S. Data Privacy Framework, w którym Google LLC uczestniczy. Nie sprzedaję ani nie udostępniam danych nikomu innemu."
+        ]
+      },
+      {
+        "heading": "Jak długo je przechowuję",
+        "paragraphs": ["Przez czas korespondencji, a potem nie dłużej niż 12 miesięcy – chyba że nawiążemy współpracę."]
+      },
+      {
+        "heading": "Twoje prawa",
+        "paragraphs": [
+          "Masz prawo dostępu do swoich danych, ich sprostowania, usunięcia, ograniczenia przetwarzania, przenoszenia oraz sprzeciwu wobec przetwarzania. Wystarczy napisać na adres podany wyżej. Możesz też złożyć skargę do Prezesa Urzędu Ochrony Danych Osobowych (UODO)."
+        ]
+      },
+      {
+        "heading": "Ciasteczka i ustawienia",
+        "paragraphs": [
+          "Strona nie używa ciasteczek. Wybrany motyw i ustawienie animacji zapisują się tylko w Twojej przeglądarce (localStorage) i nigdzie nie są wysyłane.",
+          "Serwery Netlify, jak każdy hosting, zapisują techniczne logi (np. adres IP), potrzebne do działania i bezpieczeństwa strony."
+        ]
+      }
+    ]
+  }
+}

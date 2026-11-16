@@ -1,22 +1,87 @@
 ---
+import { getRelativeLocaleUrl } from 'astro:i18n';
+
+import { getDictionary } from '@lib/i18n/getDictionary';
 import type { Locale } from '@lib/i18n/languages';
 
-import BaseLayout from '@layouts/BaseLayout.astro';
+import Flex from '@atoms/Flex/Flex.astro';
+import Heading from '@atoms/Heading/Heading.astro';
+import Text from '@atoms/Text/Text.astro';
+import VisuallyHidden from '@atoms/VisuallyHidden/VisuallyHidden.astro';
+import LinkList from '@molecules/LinkList/LinkList.astro';
+import MainTemplate from '@templates/MainTemplate/MainTemplate.astro';
 
 interface Props {
   locale: Locale;
   title: string;
   heading: string;
+  hint?: string;
   text: readonly string[];
 }
 
-const { locale, title, heading, text } = Astro.props;
+const { locale, title, heading, hint, text } = Astro.props;
+
+const { statusPage } = getDictionary(locale);
+
+const links = [
+  { href: getRelativeLocaleUrl(locale), title: statusPage.home, label: statusPage.home },
+  { href: getRelativeLocaleUrl(locale, 'projects/'), title: statusPage.projects, label: statusPage.projects },
+];
 ---
 
-<BaseLayout locale={locale} title={title}>
-  <h1>{heading}</h1>
+<MainTemplate locale={locale} title={title} contactCta={false}>
+  <section class='status-page' aria-labelledby='status-page-title'>
+    <Flex gap='md' align='center'>
+      <Heading level={1} variant='hero' id='status-page-title' class='status-page__heading'>
+        {heading}
 
-  {text.map((line) => (
-    <p>{line}</p>
-  ))}
-</BaseLayout>
+        {hint && <VisuallyHidden>{` – ${hint}`}</VisuallyHidden>}
+      </Heading>
+
+      <div>
+        {text.map((line) => (
+          <Text color='default' class='status-page__text'>
+            {line}
+          </Text>
+        ))}
+      </div>
+
+      <LinkList links={links} class='status-page__links' />
+    </Flex>
+  </section>
+</MainTemplate>
+
+<style>
+  .status-page {
+    flex: 1 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-bottom: var(--space-md);
+    text-align: center;
+  }
+
+  @media (max-width: 768px) {
+    .status-page {
+      padding-bottom: var(--space-sm);
+    }
+  }
+
+  .status-page :global(.status-page__heading) {
+    font-size: var(--fs-jumbo);
+    font-weight: var(--fw-semibold);
+    line-height: 1;
+  }
+
+  .status-page :global(.status-page__text) {
+    font-size: var(--fs-lead);
+    font-weight: var(--fw-medium);
+    line-height: 1.1;
+    letter-spacing: var(--ls-heading);
+    text-wrap: balance;
+  }
+
+  .status-page :global(.status-page__links) {
+    justify-content: center;
+  }
+</style>

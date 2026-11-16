@@ -1,0 +1,52 @@
+{
+  "name": "BugBug",
+  "logo": "bugbug",
+  "url": "https://bugbug.io",
+  "start": "2021-12",
+  "end": "2023-06",
+  "title": "Frontend Developer",
+  "titleNote": {
+    "pl": "część etatu, kontrakt",
+    "en": "part-time, contract"
+  },
+  "sections": [
+    {
+      "title": {
+        "pl": "Strona produktowa, aplikacja i rozszerzenie przeglądarkowe",
+        "en": "Product website, app and browser extension"
+      },
+      "stack": [
+        "nextjs",
+        "react",
+        "styled-components",
+        "jest",
+        "react-testing-library",
+        "redux",
+        "pwa",
+        "strapi",
+        "rest-api",
+        "sentry",
+        "docker",
+        "git"
+      ],
+      "items": [
+        {
+          "pl": "Rozwijałem i utrzymywałem **stronę produktową opartą na Next.js**, zintegrowaną ze **Strapi CMS**, pracując z dynamicznymi treściami i REST API.",
+          "en": "Developed and maintained the **Next.js product website** integrated with **Strapi CMS**, working with dynamic content and REST APIs."
+        },
+        {
+          "pl": "Wdrażałem **nowe funkcjonalności w aplikacji opartej na React**, wspierając dalszy rozwój produktu.",
+          "en": "Delivered **new features in the React-based application**, supporting further product development."
+        },
+        {
+          "pl": "Uczestniczyłem w rozwoju **rozszerzenia przeglądarkowego BugBug** służącego do automatyzacji testów.",
+          "en": "Contributed to the **BugBug browser extension** for test automation."
+        },
+        {
+          "pl": "Tworzyłem **testy jednostkowe i integracyjne** z wykorzystaniem Jest i React Testing Library.",
+          "en": "Wrote **unit and integration tests** with Jest and React Testing Library."
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,55 @@
+[
+  {
+    "id": "frontend",
+    "label": "Frontend"
+  },
+  {
+    "id": "api",
+    "label": {
+      "pl": "API i integracje",
+      "en": "APIs & integrations"
+    }
+  },
+  {
+    "id": "backend",
+    "label": {
+      "pl": "Backend i dane",
+      "en": "Backend & data"
+    }
+  },
+  {
+    "id": "quality",
+    "label": {
+      "pl": "Wydajność i testy",
+      "en": "Performance & testing"
+    }
+  },
+  {
+    "id": "tools",
+    "label": {
+      "pl": "Narzędzia i środowisko",
+      "en": "Tools & environment"
+    }
+  },
+  {
+    "id": "ai",
+    "label": {
+      "pl": "Narzędzia AI",
+      "en": "AI development tools"
+    }
+  },
+  {
+    "id": "practices",
+    "label": {
+      "pl": "Praktyki",
+      "en": "Practices"
+    }
+  },
+  {
+    "id": "design",
+    "label": {
+      "pl": "Grafika i projektowanie",
+      "en": "Design"
+    }
+  }
+]

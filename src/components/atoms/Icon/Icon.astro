@@ -24,6 +24,8 @@ import {
   X,
 } from '@lucide/astro';
 
+import type { CustomIconName, IconName, LucideIconName } from '@atoms/Icon/iconNames';
+
 const lucide = {
   'arrow-left': ArrowLeft,
   'arrow-right': ArrowRight,
@@ -47,13 +49,15 @@ const lucide = {
   guitar: Guitar,
   droplet: Droplet,
   sparkles: Sparkles,
-} as const;
+} satisfies Record<LucideIconName, typeof ArrowLeft>;
 
 const custom = {
-  external: `<path d="M12.5 2.5H17.5V7.5" /><path d="M8.33331 11.6667L17.5 2.5" /><path d="M15 10.8333V15.8333C15 16.2754 14.8244 16.6993 14.5118 17.0118C14.1993 17.3244 13.7754 17.5 13.3333 17.5H4.16667C3.72464 17.5 3.30072 17.3244 2.98816 17.0118C2.67559 16.6993 2.5 16.2754 2.5 15.8333V6.66667C2.5 6.22464 2.67559 5.80072 2.98816 5.48816C3.30072 5.17559 3.72464 5 4.16667 5H9.16667" />`,
-} as const;
-
-export type IconName = keyof typeof lucide | keyof typeof custom;
+  external: [
+    'M12.5 2.5H17.5V7.5',
+    'M8.33331 11.6667L17.5 2.5',
+    'M15 10.8333V15.8333C15 16.2754 14.8244 16.6993 14.5118 17.0118C14.1993 17.3244 13.7754 17.5 13.3333 17.5H4.16667C3.72464 17.5 3.30072 17.3244 2.98816 17.0118C2.67559 16.6993 2.5 16.2754 2.5 15.8333V6.66667C2.5 6.22464 2.67559 5.80072 2.98816 5.48816C3.30072 5.17559 3.72464 5 4.16667 5H9.16667',
+  ],
+} satisfies Record<CustomIconName, string[]>;
 
 interface Props {
   name: IconName;
@@ -67,8 +71,10 @@ const { name, size = 20, label, class: className, ...rest } = Astro.props;
 
 const a11y = label ? ({ role: 'img', 'aria-label': label } as const) : ({ 'aria-hidden': 'true' } as const);
 
-const LucideIcon = name in lucide ? lucide[name as keyof typeof lucide] : undefined;
-const customPaths = name in custom ? custom[name as keyof typeof custom] : undefined;
+const isLucide = (iconName: IconName): iconName is LucideIconName => iconName in lucide;
+
+const LucideIcon = isLucide(name) ? lucide[name] : undefined;
+const customPaths = isLucide(name) ? [] : custom[name];
 ---
 
 {LucideIcon ? (
@@ -88,8 +94,11 @@ const customPaths = name in custom ? custom[name as keyof typeof custom] : undef
     focusable='false'
     {...a11y}
     {...rest}
-    set:html={customPaths}
-  />
+  >
+    {customPaths.map((path) => (
+      <path d={path} />
+    ))}
+  </svg>
 )}
 
 <style>

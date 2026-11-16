@@ -1,6 +1,9 @@
 ---
-import heroPhoto from '@assets/me/hero.webp';
-import { getExperience } from '@helpers/getExperience';
+import { getRelativeLocaleUrl } from 'astro:i18n';
+
+import heroPhoto from '@assets/me/hero.png';
+import { person } from '@data/site';
+import { getProfile } from '@helpers/profile/getProfile';
 import { getDictionary } from '@lib/i18n/getDictionary';
 import type { Locale } from '@lib/i18n/languages';
 
@@ -19,34 +22,42 @@ interface Props {
 
 const { locale, companies } = Astro.props;
 
-const experience = getExperience();
-const { hero } = getDictionary(locale, {
-  experience,
-  years: { plural: 'experienceYears', count: Number.parseInt(experience) },
-});
+const { hero } = getDictionary(locale);
+const { highlights } = await getProfile(locale);
+
+const links = [
+  { href: getRelativeLocaleUrl(locale, 'projects/'), ...hero.links.projects },
+  { href: `${getRelativeLocaleUrl(locale)}#contact`, ...hero.links.contact },
+];
 ---
 
 <section class='hero' aria-labelledby='hero-title'>
   <MediaBlock mediaPosition='end' equal fill>
     <Flex gap='md' align='start'>
       <Heading level={1} variant='hero' id='hero-title'>
-        {hero.headline.map((line, index) => (index > 0 ? [<br />, line] : line))}
+        <span class='hero__line'>{person.name}</span>
+
+        <span class='hero__line'>{person.jobTitle}</span>
       </Heading>
 
       <Flex gap='2xs' align='start'>
-        <BadgeList label={hero.highlightsLabel} items={hero.highlights} variant='text' />
+        <BadgeList label={hero.highlightsLabel} items={highlights} variant='text' />
 
         <LabeledBadgeList label={hero.companiesLabel} items={companies} underline />
       </Flex>
 
-      <LinkList links={hero.links} />
+      <LinkList links={links} />
     </Flex>
 
-    <Picture src={heroPhoto} alt={hero.photoAlt} size={600} loading='eager' slot='media' />
+    <Picture src={heroPhoto} alt={`${person.name} – ${person.jobTitle}`} size={600} loading='eager' slot='media' />
   </MediaBlock>
 </section>
 
 <style>
+  .hero__line {
+    display: block;
+  }
+
   .hero :global(#hero-title) {
     font-size: min(var(--fs-hero), calc(100cqi / 14.2));
   }

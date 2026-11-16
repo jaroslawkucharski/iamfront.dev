@@ -1,0 +1,23 @@
+---
+import Icon from '@atoms/Icon/Icon.astro';
+import Link from '@atoms/Link/Link.astro';
+
+type Directions = 'forward' | 'back';
+
+interface Props {
+  href: string;
+  title: string;
+  direction?: Directions;
+  class?: string;
+}
+
+const { href, title, direction = 'forward', class: className } = Astro.props;
+---
+
+<Link href={href} title={title} class={className}>
+  {direction === 'back' && <Icon name='arrow-left' size={16} />}
+
+  <slot />
+
+  {direction === 'forward' && <Icon name='arrow-right' size={16} />}
+</Link>

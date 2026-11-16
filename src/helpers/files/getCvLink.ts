@@ -1,4 +1,4 @@
-import { getFileSize } from '@helpers/getFileSize';
+import { getFileSize } from '@helpers/files/getFileSize';
 import { getDictionary } from '@lib/i18n/getDictionary';
 import type { Locale } from '@lib/i18n/languages';
 

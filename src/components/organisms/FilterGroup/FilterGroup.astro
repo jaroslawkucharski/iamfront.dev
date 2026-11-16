@@ -62,6 +62,7 @@ const moreChips = chips.options.slice(chips.visible);
 
       <div id={`${controls}-chips`} role='group' aria-labelledby={chipsLabelId} class='filter-group__chips'>
         <SearchField
+          id={`${controls}-search`}
           label={chips.searchLabel}
           placeholder={chips.searchPlaceholder}
           aria-controls={`${controls}-chips`}

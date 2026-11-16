@@ -1,6 +1,6 @@
 {
   "meta": {
-    "title": "Jarosław Kucharski – Senior Frontend Developer | iamfront.dev",
+    "title": "{name} – {role}",
     "description": "Senior Frontend Developer with {experience} {years} of commercial experience building web applications with React, TypeScript and Next.js."
   },
   "experienceYears": {
@@ -9,7 +9,8 @@
   },
   "notFound": {
     "code": "404",
-    "title": "Page not found | iamfront.dev",
+    "hint": "page not found",
+    "title": "Page not found",
     "text": ["Oops, you're lost.", "This page doesn't exist, but everything else is here :)"]
   },
   "contactCta": {
@@ -38,28 +39,25 @@
   },
   "nav": {
     "label": "Main navigation",
-    "items": [
-      {
+    "items": {
+      "about": {
         "label": "About me",
-        "href": "/about/",
         "title": "About me"
       },
-      {
+      "projects": {
         "label": "Projects",
-        "href": "/projects/",
         "title": "Projects"
       },
-      {
+      "contact": {
         "label": "Contact",
-        "href": "/#contact",
         "title": "Go to contact"
       }
-    ],
+    },
     "homeLabel": "iamfront.dev – home page",
     "cv": {
       "label": "CV",
       "title": "Download CV",
-      "file": "/cv/Jaroslaw_Kucharski_CV_EN.pdf"
+      "file": ""
     },
     "menu": {
       "label": "Menu",
@@ -68,23 +66,19 @@
     }
   },
   "hero": {
-    "headline": ["Jarosław Kucharski", "Senior Frontend Developer"],
-    "photoAlt": "Jarosław Kucharski – Senior Frontend Developer",
     "companiesLabel": "Worked for:",
     "highlightsLabel": "In short",
-    "highlights": ["React", "TypeScript", "Next.js", "{experience} {years} of experience"],
-    "links": [
-      {
+    "links": {
+      "projects": {
         "label": "See projects",
-        "href": "/projects/",
         "title": "See projects"
       },
-      {
+      "contact": {
         "label": "Get in touch",
-        "href": "/#contact",
         "title": "Go to the contact form"
       }
-    ]
+    },
+    "companyTitle": "{name} – experience"
   },
   "theme": {
     "toDark": "Switch to dark mode",
@@ -96,6 +90,7 @@
   },
   "skipLink": "Skip to content",
   "contact": {
+    "heading": "Contact",
     "fields": {
       "name": {
         "label": "Full name",
@@ -132,7 +127,13 @@
     "failure": "The message could not be sent. Please try again in a moment.",
     "errorsSummary": "Please fix the errors in the form: {count}.",
     "counter": "{count}/{max} characters",
-    "privacyNote": "I only use the data from this form to reply to your message. See the [privacy notice](/privacy/) for details."
+    "privacyNote": "I only use the data from this form to reply to your message. See the [privacy notice](/privacy/) for details.",
+    "thanks": {
+      "title": "Message sent",
+      "heading": "Thanks!",
+      "hint": "Message sent",
+      "text": ["Message sent.", "I'll get back to you as soon as I can."]
+    }
   },
   "footer": {
     "label": "Footer",
@@ -157,5 +158,80 @@
     "prev": "Previous image",
     "next": "Next image",
     "counter": "{current} of {total}"
+  },
+  "projectCount": {
+    "one": "{count} project",
+    "other": "{count} projects"
+  },
+  "about": {
+    "meta": {
+      "title": "About me – {name}"
+    },
+    "intro": {
+      "heading": "About me"
+    },
+    "photoAlt": "{name} – portrait",
+    "skills": {
+      "heading": "Skills"
+    },
+    "experience": {
+      "heading": "Experience",
+      "stackLabel": "Tech stack",
+      "projectLinkLabel": "View project"
+    },
+    "education": {
+      "heading": "Education",
+      "detailsLabel": "Areas"
+    },
+    "hobbies": {
+      "heading": "Beyond work"
+    }
+  },
+  "projects": {
+    "meta": {
+      "title": "Projects"
+    },
+    "heading": "Projects",
+    "listLabel": "Projects",
+    "types": {
+      "commercial": "commercial",
+      "private": "personal"
+    },
+    "archived": "archived",
+    "planned": "planned",
+    "labelsLabel": "Project type",
+    "live": "See it live",
+    "repo": "Source code",
+    "star": {
+      "situation": "Where it started",
+      "task": "The challenge",
+      "action": "How I built it",
+      "result": "The outcome"
+    },
+    "links": "Links",
+    "back": "Back to projects",
+    "shown": "Showing: {count}",
+    "featuredHeading": "Selected projects",
+    "all": "See all projects",
+    "skillFilterLabel": "Technologies",
+    "empty": "No projects match these filters.",
+    "showAllSkills": "Show all",
+    "showFewerSkills": "Show less",
+    "clear": "Clear filters",
+    "skillSearchLabel": "Search technologies",
+    "skillSearchPlaceholder": "Search…",
+    "skillSearchEmpty": "No technology with that name.",
+    "details": "Project details",
+    "period": "Period",
+    "company": "Company",
+    "type": "Type",
+    "stack": "Technologies"
+  },
+  "statusPage": {
+    "home": "Home page",
+    "projects": "Projects"
+  },
+  "textPage": {
+    "updated": "Last updated:"
   }
 }

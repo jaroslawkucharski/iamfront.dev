@@ -1,0 +1,50 @@
+---
+import type { InferGetStaticPropsType } from 'astro';
+
+import { person } from '@data/site';
+import { getSkillGroups } from '@helpers/skills/getSkillGroups';
+import { getEducationEntries } from '@helpers/timeline/getEducationEntries';
+import { getExperienceEntries } from '@helpers/timeline/getExperienceEntries';
+import { getHobbyEntries } from '@helpers/timeline/getHobbyEntries';
+import { getDictionary } from '@lib/i18n/getDictionary';
+import { getLocalePaths } from '@lib/i18n/getLocalePaths';
+
+import Section from '@molecules/Section/Section.astro';
+import AboutIntro from '@organisms/AboutIntro/AboutIntro.astro';
+import GroupedBadgeList from '@organisms/GroupedBadgeList/GroupedBadgeList.astro';
+import Timeline from '@organisms/Timeline/Timeline.astro';
+import MainTemplate from '@templates/MainTemplate/MainTemplate.astro';
+
+export const getStaticPaths = getLocalePaths;
+
+type Props = InferGetStaticPropsType<typeof getStaticPaths>;
+
+const { locale } = Astro.props;
+
+const { about } = getDictionary(locale, { name: person.name });
+---
+
+<MainTemplate locale={locale} title={about.meta.title}>
+  <AboutIntro locale={locale} />
+
+  <Section id='skills' title={about.skills.heading}>
+    <GroupedBadgeList groups={await getSkillGroups(locale)} />
+  </Section>
+
+  <Section id='experience' title={about.experience.heading}>
+    <Timeline
+      entries={await getExperienceEntries(locale)}
+      locale={locale}
+      stackLabel={about.experience.stackLabel}
+      projectLinkLabel={about.experience.projectLinkLabel}
+    />
+  </Section>
+
+  <Section id='education' title={about.education.heading}>
+    <Timeline entries={await getEducationEntries(locale)} locale={locale} stackLabel={about.education.detailsLabel} />
+  </Section>
+
+  <Section id='hobbies' title={about.hobbies.heading}>
+    <Timeline entries={await getHobbyEntries(locale)} locale={locale} ordered={false} />
+  </Section>
+</MainTemplate>

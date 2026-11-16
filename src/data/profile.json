@@ -1,0 +1,37 @@
+{
+  "highlights": [
+    "React",
+    "TypeScript",
+    "Next.js",
+    {
+      "en": "{experience} {years} of experience",
+      "pl": "{experience} {years} doświadczenia"
+    }
+  ],
+  "bio": [
+    {
+      "en": "Senior Frontend Developer with {experience} {years} of commercial experience. I build web applications with **React, TypeScript and Next.js**. In recent years I helped develop and scale **Landingi** – a global SaaS platform used by thousands of customers in more than 80 countries (including Biedronka, PayU and Bonduelle) and handling millions of visits a month.",
+      "pl": "Senior Frontend Developer z {experience} {years} doświadczenia komercyjnego. Tworzę aplikacje webowe w **React, TypeScript i Next.js**. Przez ostatnie lata rozwijałem i skalowałem **Landingi** – globalną platformę SaaS używaną przez tysiące klientów w ponad 80 krajach (m.in. Biedronka, PayU, Bonduelle) i obsługującą miliony wizyt miesięcznie."
+    },
+    {
+      "en": "I deliver features end to end – from implementation and testing to deployment and maintenance. I work on frontend architecture, performance and code reviews, closely with product and backend teams. I currently develop the AleRabat platform in React and TAURON websites built on Sitecore, and use AI tools such as Claude Code, Codex and GitHub Copilot day to day.",
+      "pl": "Dowożę funkcjonalności od implementacji, przez testy, po wdrożenie i utrzymanie. Zajmuję się architekturą frontendu, wydajnością i code review, blisko współpracując z zespołami produktowymi i backendowymi. Obecnie rozwijam platformę AleRabat w React oraz serwisy TAURON na Sitecore, a na co dzień korzystam z narzędzi AI, takich jak Claude Code, Codex i GitHub Copilot."
+    }
+  ],
+  "contact": {
+    "intro": {
+      "en": "Have a project, a job offer or a question? Write to me – I will reply as soon as I can.",
+      "pl": "Masz projekt, ofertę pracy albo pytanie? Napisz – odpowiem najszybciej, jak to możliwe."
+    },
+    "points": [
+      {
+        "en": "**B2B** contract or **full-time** employment",
+        "pl": "Współpraca **B2B** lub **etat**"
+      },
+      {
+        "en": "**Remote** or **hybrid** – Silesian metropolitan area",
+        "pl": "Zdalnie lub **hybrydowo** – aglomeracja śląska"
+      }
+    ]
+  }
+}

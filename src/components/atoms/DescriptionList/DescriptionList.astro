@@ -1,0 +1,24 @@
+---
+interface Props {
+  stacked?: boolean;
+  class?: string;
+}
+
+const { stacked = false, class: className } = Astro.props;
+---
+
+<dl class:list={['description-list', { 'description-list--stacked': stacked }, className]}>
+  <slot />
+</dl>
+
+<style>
+  .description-list {
+    display: grid;
+    gap: var(--space-sm);
+    margin: 0;
+  }
+
+  .description-list--stacked {
+    --description-columns: 1fr;
+  }
+</style>

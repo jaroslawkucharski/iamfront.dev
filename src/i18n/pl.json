@@ -1,6 +1,6 @@
 {
   "meta": {
-    "title": "Jarosław Kucharski – Senior Frontend Developer | iamfront.dev",
+    "title": "{name} – {role}",
     "description": "Senior Frontend Developer z {experience} {years} doświadczenia komercyjnego w tworzeniu aplikacji internetowych z wykorzystaniem React, TypeScript i Next.js."
   },
   "experienceYears": {
@@ -11,7 +11,8 @@
   },
   "notFound": {
     "code": "404",
-    "title": "Nie znaleziono strony | iamfront.dev",
+    "hint": "nie ma takiej strony",
+    "title": "Nie znaleziono strony",
     "text": ["Ups, zabłądziłeś.", "Tej strony nie ma, ale reszta jest na miejscu :)"]
   },
   "contactCta": {
@@ -40,28 +41,25 @@
   },
   "nav": {
     "label": "Nawigacja główna",
-    "items": [
-      {
+    "items": {
+      "about": {
         "label": "O mnie",
-        "href": "/pl/about/",
         "title": "O mnie"
       },
-      {
+      "projects": {
         "label": "Projekty",
-        "href": "/pl/projects/",
         "title": "Projekty"
       },
-      {
+      "contact": {
         "label": "Kontakt",
-        "href": "/pl/#contact",
         "title": "Przejdź do kontaktu"
       }
-    ],
+    },
     "homeLabel": "iamfront.dev – strona główna",
     "cv": {
       "label": "CV",
       "title": "Pobierz CV",
-      "file": "/cv/Jaroslaw_Kucharski_CV_PL.pdf"
+      "file": ""
     },
     "menu": {
       "label": "Menu",
@@ -70,23 +68,19 @@
     }
   },
   "hero": {
-    "headline": ["Jarosław Kucharski", "Senior Frontend Developer"],
-    "photoAlt": "Jarosław Kucharski – Senior Frontend Developer",
     "companiesLabel": "Pracowałem dla:",
     "highlightsLabel": "W skrócie",
-    "highlights": ["React", "TypeScript", "Next.js", "{experience} {years} doświadczenia"],
-    "links": [
-      {
+    "links": {
+      "projects": {
         "label": "Zobacz projekty",
-        "href": "/pl/projects/",
         "title": "Zobacz projekty"
       },
-      {
+      "contact": {
         "label": "Napisz do mnie",
-        "href": "/pl/#contact",
         "title": "Przejdź do formularza kontaktowego"
       }
-    ]
+    },
+    "companyTitle": "{name} – doświadczenie"
   },
   "theme": {
     "toDark": "Włącz tryb ciemny",
@@ -98,6 +92,7 @@
   },
   "skipLink": "Przejdź do treści",
   "contact": {
+    "heading": "Kontakt",
     "fields": {
       "name": {
         "label": "Imię i nazwisko",
@@ -134,7 +129,13 @@
     "failure": "Nie udało się wysłać wiadomości. Spróbuj ponownie za chwilę.",
     "errorsSummary": "Popraw błędy w formularzu: {count}.",
     "counter": "{count}/{max} znaków",
-    "privacyNote": "Dane z formularza wykorzystuję tylko do odpowiedzi na wiadomość. Szczegóły znajdziesz w [informacji o prywatności](/pl/privacy/)."
+    "privacyNote": "Dane z formularza wykorzystuję tylko do odpowiedzi na wiadomość. Szczegóły znajdziesz w [informacji o prywatności](/pl/privacy/).",
+    "thanks": {
+      "title": "Wiadomość wysłana",
+      "heading": "Dzięki!",
+      "hint": "Wiadomość wysłana",
+      "text": ["Wiadomość wysłana.", "Odezwę się najszybciej, jak to możliwe."]
+    }
   },
   "footer": {
     "label": "Stopka",
@@ -159,5 +160,82 @@
     "prev": "Poprzednie zdjęcie",
     "next": "Następne zdjęcie",
     "counter": "{current} z {total}"
+  },
+  "projectCount": {
+    "one": "{count} projekt",
+    "few": "{count} projekty",
+    "many": "{count} projektów",
+    "other": "{count} projektu"
+  },
+  "about": {
+    "meta": {
+      "title": "O mnie – {name}"
+    },
+    "intro": {
+      "heading": "O mnie"
+    },
+    "photoAlt": "{name} – portret",
+    "skills": {
+      "heading": "Umiejętności"
+    },
+    "experience": {
+      "heading": "Doświadczenie",
+      "stackLabel": "Stack technologiczny",
+      "projectLinkLabel": "Zobacz projekt"
+    },
+    "education": {
+      "heading": "Edukacja",
+      "detailsLabel": "Zakres"
+    },
+    "hobbies": {
+      "heading": "Poza pracą"
+    }
+  },
+  "projects": {
+    "meta": {
+      "title": "Projekty"
+    },
+    "heading": "Projekty",
+    "listLabel": "Projekty",
+    "types": {
+      "commercial": "komercyjny",
+      "private": "prywatny"
+    },
+    "archived": "archiwalny",
+    "planned": "planowany",
+    "labelsLabel": "Rodzaj projektu",
+    "live": "Zobacz na żywo",
+    "repo": "Kod źródłowy",
+    "star": {
+      "situation": "Punkt wyjścia",
+      "task": "Wyzwanie",
+      "action": "Jak to zrobiłem",
+      "result": "Efekt"
+    },
+    "links": "Linki",
+    "back": "Wróć do projektów",
+    "shown": "Widoczne: {count}",
+    "featuredHeading": "Wybrane projekty",
+    "all": "Zobacz wszystkie projekty",
+    "skillFilterLabel": "Technologie",
+    "empty": "Brak projektów dla wybranych filtrów.",
+    "showAllSkills": "Pokaż wszystkie",
+    "showFewerSkills": "Pokaż mniej",
+    "clear": "Wyczyść filtry",
+    "skillSearchLabel": "Szukaj technologii",
+    "skillSearchPlaceholder": "Szukaj…",
+    "skillSearchEmpty": "Brak technologii o tej nazwie.",
+    "details": "Szczegóły projektu",
+    "period": "Okres",
+    "company": "Firma",
+    "type": "Rodzaj",
+    "stack": "Technologie"
+  },
+  "statusPage": {
+    "home": "Strona główna",
+    "projects": "Projekty"
+  },
+  "textPage": {
+    "updated": "Ostatnia aktualizacja:"
   }
 }

@@ -1,3 +1,6 @@
+import { interpolate } from '@lib/i18n/interpolate';
+import { plural, type PluralForms } from '@lib/i18n/plural';
+
 document.addEventListener('astro:page-load', () => {
   document.querySelectorAll<HTMLElement>('[data-filter-group]:not([data-ready])').forEach((group) => {
     group.dataset.ready = '';
@@ -18,8 +21,8 @@ document.addEventListener('astro:page-load', () => {
     const status = group.querySelector<HTMLElement>('[data-filter-status]');
     const empty = group.querySelector<HTMLElement>('[data-filter-empty]');
     const chipsParam = group.dataset.chipsParam ?? 'skills';
-    const forms = JSON.parse(group.dataset.countForms ?? '{}') as Record<string, string>;
-    const plural = new Intl.PluralRules(document.documentElement.lang || 'en');
+    const forms: PluralForms = JSON.parse(group.dataset.countForms ?? '{"other":"{count}"}');
+    const locale = document.documentElement.lang;
 
     const home = new Map(chips.map((chip) => [chip, chip.parentElement as HTMLElement]));
 
@@ -117,16 +120,19 @@ document.addEventListener('astro:page-load', () => {
 
       const url = new URL(location.href);
 
-      if (skills.length) url.searchParams.set(chipsParam, skills.join(','));
-      else url.searchParams.delete(chipsParam);
+      url.searchParams.delete(chipsParam);
 
-      history.replaceState(history.state, '', url.toString().replace(/%2C/g, ','));
+      const skillsQuery = skills.length ? `${chipsParam}=${skills.join(',')}` : '';
+
+      url.search = [url.searchParams.toString(), skillsQuery].filter(Boolean).join('&');
+
+      history.replaceState(history.state, '', url);
 
       if (!announce || !status) return;
 
-      const count = (forms[plural.select(shown)] ?? forms.other ?? '{count}').replace('{count}', String(shown));
+      const count = interpolate(plural(forms, shown, locale), { count: String(shown) });
 
-      status.textContent = (group.dataset.shown ?? '{count}').replace('{count}', count);
+      status.textContent = interpolate(group.dataset.shown ?? '{count}', { count });
     };
 
     const params = new URLSearchParams(location.search);

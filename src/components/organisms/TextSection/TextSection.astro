@@ -4,7 +4,6 @@ import type { Locale } from '@lib/i18n/languages';
 
 import Flex from '@atoms/Flex/Flex.astro';
 import Heading from '@atoms/Heading/Heading.astro';
-import Text from '@atoms/Text/Text.astro';
 import EmailLink from '@molecules/EmailLink/EmailLink.astro';
 import RichText from '@molecules/RichText/RichText.astro';
 import BulletList from '@organisms/BulletList/BulletList.astro';
@@ -28,21 +27,11 @@ const { section, locale } = Astro.props;
     {section.heading}
   </Heading>
 
-  {section.paragraphs?.map((paragraph) => {
-    const [before, after] = paragraph.split('{email}');
-
-    return after === undefined ? (
-      <RichText text={paragraph} />
-    ) : (
-      <Text>
-        <RichText as='span' text={before} />
-
-        <EmailLink email={person.email} locale={locale} size='md' weight='medium' inline />
-
-        <RichText as='span' text={after} />
-      </Text>
-    );
-  })}
+  {section.paragraphs?.map((paragraph) => (
+    <RichText text={paragraph}>
+      <EmailLink email={person.email} locale={locale} size='md' weight='medium' inline slot='email' />
+    </RichText>
+  ))}
 
   {section.items && <BulletList items={section.items} />}
 </Flex>

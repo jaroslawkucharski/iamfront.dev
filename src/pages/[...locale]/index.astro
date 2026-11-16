@@ -1,11 +1,17 @@
 ---
 import type { InferGetStaticPropsType } from 'astro';
 
-import { getExperience } from '@helpers/getExperience';
+import { person } from '@data/site';
+import { getProjectListItem } from '@helpers/projects/getProjectListItem';
+import { getProjects } from '@helpers/projects/getProjects';
+import { getCompanyBadges } from '@helpers/timeline/getCompanyBadges';
 import { getDictionary } from '@lib/i18n/getDictionary';
 import { getLocalePaths } from '@lib/i18n/getLocalePaths';
 
-import BaseLayout from '@layouts/BaseLayout.astro';
+import ContactSection from '@organisms/ContactSection/ContactSection.astro';
+import FeaturedProjects from '@organisms/FeaturedProjects/FeaturedProjects.astro';
+import Hero from '@organisms/Hero/Hero.astro';
+import MainTemplate from '@templates/MainTemplate/MainTemplate.astro';
 
 export const getStaticPaths = getLocalePaths;
 
@@ -13,15 +19,17 @@ type Props = InferGetStaticPropsType<typeof getStaticPaths>;
 
 const { locale } = Astro.props;
 
-const experience = getExperience();
-const dictionary = getDictionary(locale, {
-  experience,
-  years: { plural: 'experienceYears', count: Number.parseInt(experience) },
-});
+const { meta } = getDictionary(locale, { name: person.name, role: person.jobTitle });
+const projects = await getProjects(locale);
+const featured = await Promise.all(
+  projects.filter((project) => project.featured).map((project) => getProjectListItem(project, locale)),
+);
 ---
 
-<BaseLayout locale={locale} title={dictionary.meta.title}>
-  <h1>{dictionary.meta.title}</h1>
+<MainTemplate locale={locale} title={meta.title} contactCta={false}>
+  <Hero locale={locale} companies={await getCompanyBadges(locale)} />
 
-  <p>{dictionary.meta.description}</p>
-</BaseLayout>
+  <FeaturedProjects locale={locale} items={featured} total={projects.length} />
+
+  <ContactSection locale={locale} />
+</MainTemplate>
