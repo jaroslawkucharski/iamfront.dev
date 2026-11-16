@@ -1,0 +1,2 @@
+# Unknown Polish URLs get the Polish 404 page (status stays 404)
+/pl/*  /pl/404/  404
