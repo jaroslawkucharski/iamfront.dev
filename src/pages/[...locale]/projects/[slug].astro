@@ -7,8 +7,12 @@ import { getDictionary } from '@lib/i18n/getDictionary';
 
 import Text from '@atoms/Text/Text.astro';
 import ArrowLink from '@molecules/ArrowLink/ArrowLink.astro';
+import ArticleSection from '@molecules/ArticleSection/ArticleSection.astro';
+import Screenshot from '@molecules/Screenshot/Screenshot.astro';
 import Section from '@molecules/Section/Section.astro';
 import ArticleLayout from '@organisms/ArticleLayout/ArticleLayout.astro';
+import Gallery from '@organisms/Gallery/Gallery.astro';
+import Lightbox from '@organisms/Lightbox/Lightbox.astro';
 import ProjectAside from '@organisms/ProjectAside/ProjectAside.astro';
 import ProjectStory from '@organisms/ProjectStory/ProjectStory.astro';
 import MainTemplate from '@templates/MainTemplate/MainTemplate.astro';
@@ -19,7 +23,10 @@ type Props = InferGetStaticPropsType<typeof getStaticPaths>;
 
 const { locale, project } = Astro.props;
 
-const { projects } = getDictionary(locale);
+const { projects, lightbox } = getDictionary(locale);
+
+const [lead, ...gallery] = project.gallery;
+const zoom = { group: 'project', label: lightbox.open };
 ---
 
 <MainTemplate locale={locale} title={project.name} description={project.summary}>
@@ -33,9 +40,25 @@ const { projects } = getDictionary(locale);
     </Text>
 
     <ArticleLayout asideLabel={projects.details}>
+      {lead && <Screenshot {...lead} sizes='(max-width: 1024px) 100vw, 860px' loading='eager' zoom={zoom} />}
+
       <ProjectStory project={project} locale={locale} />
+
+      {gallery.length > 0 && (
+        <ArticleSection id='gallery' title={projects.gallery}>
+          <Gallery images={gallery} zoom={zoom} />
+        </ArticleSection>
+      )}
+
+      {project.lighthouse.length > 0 && (
+        <ArticleSection id='lighthouse' title={projects.lighthouse}>
+          <Gallery images={project.lighthouse} zoom={zoom} />
+        </ArticleSection>
+      )}
 
       <ProjectAside project={project} locale={locale} slot='aside' />
     </ArticleLayout>
   </Section>
+
+  {lead && <Lightbox locale={locale} />}
 </MainTemplate>

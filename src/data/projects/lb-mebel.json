@@ -1,0 +1,90 @@
+{
+  "name": "LB MEBEL",
+  "types": ["commercial", "private"],
+  "start": "2024-04",
+  "stack": ["nextjs", "typescript", "graphql", "contentful", "tailwind", "next-intl", "sentry"],
+  "links": {
+    "live": "https://lbmebel.pl",
+    "repo": "https://github.com/iamfront-dev/lb-mebel-public"
+  },
+  "summary": {
+    "pl": "Stworzenie dwujęzycznej strony internetowej dla firmy meblarskiej LB MEBEL, prezentującej ofertę, informacje o firmie oraz galerie zrealizowanych projektów. Aplikację zbudowałem w Next.js i TypeScript, integrując ją z Contentful CMS.",
+    "en": "Building a bilingual website for the furniture company LB MEBEL, presenting the offer, company information and galleries of completed projects. I built the app in Next.js and TypeScript, integrating it with Contentful CMS."
+  },
+  "star": {
+    "situation": {
+      "pl": "Firma LB MEBEL potrzebowała nowoczesnej strony internetowej, która pozwoliłaby zaprezentować ofertę i dotychczasowe realizacje potencjalnym klientom. Ważnym wymaganiem była możliwość samodzielnego aktualizowania treści i dodawania nowych galerii bez konieczności angażowania programisty.\n\nStrona miała również działać w dwóch językach, szybko ładować galerie zdjęć i być odpowiednio przygotowana pod wyszukiwarki internetowe.",
+      "en": "LB MEBEL needed a modern website to present its offer and completed projects to potential customers. A key requirement was the ability to update content and add new galleries independently, without involving a developer.\n\nThe site also had to work in two languages, load photo galleries quickly and be properly prepared for search engines."
+    },
+    "task": {
+      "pl": "Odpowiadałem za samodzielną implementację aplikacji na podstawie dostarczonego projektu graficznego, wybór technologii, konfigurację CMS-a oraz integrację z frontendem. Wybrałem Next.js ze względu na możliwości renderowania i statycznego generowania stron, optymalizację obrazów oraz wsparcie dla SEO. W połączeniu z Incremental Static Regeneration (ISR) pozwoliło to również aktualizować treści z CMS-a bez konieczności ponownego wdrażania aplikacji.",
+      "en": "I was solely responsible for implementing the application from a supplied design, choosing the technology stack, configuring the CMS and integrating it with the frontend. I chose Next.js for its server rendering and static generation capabilities, built-in image optimisation and SEO support. Combined with Incremental Static Regeneration (ISR), this also allowed CMS content to be updated without redeploying the application."
+    },
+    "action": {
+      "pl": "Zbudowałem responsywny frontend w Next.js (App Router) i TypeScript, odwzorowując dostarczony projekt graficzny przy użyciu Tailwind CSS. Skonfigurowałem Contentful CMS, przygotowując modele treści dla poszczególnych sekcji strony, w tym oferty, informacji o firmie, slidera, realizacji z galeriami i kategoriami oraz kontaktu. Zintegrowałem CMS z aplikacją za pomocą GraphQL, wykorzystując GraphQL Codegen do generowania typów TypeScript.\n\nZaimplementowałem ISR z odświeżaniem danych co 10–20 minut, dzięki czemu aktualizacje w CMS-ie mogą pojawiać się na stronie bez ponownego wdrażania aplikacji. W galerii realizacji dodałem filtrowanie po kategoriach, paginację oraz optymalizację zdjęć przez next/image, w tym rozmyty podgląd podczas ładowania.\n\nWdrożyłem obsługę dwóch wersji językowych (PL i EN) za pomocą next-intl, uwzględniając tłumaczenia treści i lokalizowane adresy URL. Zadbałem również o SEO, konfigurując metadane, obrazy Open Graph i mapę strony z wersjami językowymi. Dodałem Google Analytics uruchamiane po uzyskaniu zgody użytkownika w banerze cookies oraz monitoring błędów za pomocą Sentry.",
+      "en": "I built a responsive frontend in Next.js (App Router) and TypeScript, implementing the supplied design using Tailwind CSS. I configured Contentful CMS, creating content models for each section of the site, including the offer, company information, slider, projects with galleries and categories, and contact. I integrated the CMS with the application via GraphQL, using GraphQL Codegen to generate TypeScript types.\n\nI implemented ISR with a 10–20 minute refresh interval so that CMS updates appear on the site without redeploying. In the project gallery I added category filtering, pagination and image optimisation via next/image, including a blurred placeholder on load.\n\nI implemented bilingual support (PL and EN) using next-intl, covering content translations and localised URLs. I also handled SEO, configuring metadata, Open Graph images and a sitemap with language variants. I added Google Analytics that activates only after the user gives consent in the cookie banner, and error monitoring with Sentry."
+    },
+    "result": {
+      "pl": "Powstała responsywna, dwujęzyczna strona internetowa prezentująca ofertę i realizacje firmy LB MEBEL. Dzięki integracji z Contentful CMS firma może samodzielnie aktualizować treści, zarządzać ofertą i dodawać nowe galerie bez ingerencji w kod aplikacji.\n\nISR umożliwia publikowanie zmian bez ponownego wdrażania strony, a optymalizacja obrazów i konfiguracja SEO wspierają jej wydajność oraz widoczność w wyszukiwarkach.",
+      "en": "The result is a responsive, bilingual website presenting LB MEBEL's offer and completed projects. Thanks to the Contentful CMS integration, the company can update content, manage the offer and add new galleries without touching the application code.\n\nISR allows publishing changes without redeploying, and image optimisation combined with SEO configuration support the site's performance and search engine visibility."
+    }
+  },
+  "gallery": [
+    {
+      "src": "@assets/projects/lb-mebel-home.webp",
+      "alt": {
+        "pl": "Strona główna LB MEBEL z sekcją mebli kuchennych na wymiar",
+        "en": "LB MEBEL home page with the custom kitchen furniture section"
+      }
+    },
+    {
+      "src": "@assets/projects/lb-mebel-projects.webp",
+      "alt": {
+        "pl": "Lista realizacji z filtrowaniem po kategoriach",
+        "en": "Projects list with category filters"
+      }
+    },
+    {
+      "src": "@assets/projects/lb-mebel-project.webp",
+      "alt": {
+        "pl": "Galeria pojedynczej realizacji",
+        "en": "Single project gallery"
+      }
+    },
+    {
+      "src": "@assets/projects/lb-mebel-offer.webp",
+      "alt": {
+        "pl": "Strona oferty",
+        "en": "Offer page"
+      }
+    },
+    {
+      "src": "@assets/projects/lb-mebel-mobile-home.webp",
+      "alt": {
+        "pl": "Strona główna na telefonie",
+        "en": "Home page on a phone"
+      }
+    },
+    {
+      "src": "@assets/projects/lb-mebel-mobile-projects.webp",
+      "alt": {
+        "pl": "Filtry realizacji na telefonie",
+        "en": "Project filters on a phone"
+      }
+    },
+    {
+      "src": "@assets/projects/lb-mebel-mobile-project.webp",
+      "alt": {
+        "pl": "Realizacja na telefonie",
+        "en": "Project on a phone"
+      }
+    },
+    {
+      "src": "@assets/projects/lb-mebel-mobile-offer.webp",
+      "alt": {
+        "pl": "Oferta na telefonie",
+        "en": "Offer on a phone"
+      }
+    }
+  ]
+}

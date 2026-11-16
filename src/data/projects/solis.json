@@ -1,0 +1,78 @@
+{
+  "name": "Solis",
+  "types": ["commercial"],
+  "featured": true,
+  "company": "Landingi",
+  "start": "2026-05",
+  "end": "2026-09",
+  "stack": [
+    "react",
+    "typescript",
+    "vercel-ai-sdk",
+    "mastra",
+    "react-markdown",
+    "swr",
+    "sass",
+    "mixpanel",
+    "vitest",
+    "react-testing-library"
+  ],
+  "links": {
+    "live": {
+      "pl": "https://landingi.com/pl/produkt/solis/",
+      "en": "https://landingi.com/product/solis/"
+    }
+  },
+  "summary": {
+    "pl": "Rozwój interfejsu Solisa, agenta AI w Landingi, który analizuje dane z EventTrackera i kontekst landing page’y, automatycznie generując insighty, alerty i rekomendacje optymalizacji. Użytkownicy mogą również zadawać pytania o wyniki swoich stron za pomocą czatu AI.",
+    "en": "Development of the Solis interface, an AI agent in Landingi that analyzes EventTracker data and landing page context, automatically generating insights, alerts and optimization recommendations. Users can also ask questions about their page results through an AI chat."
+  },
+  "star": {
+    "situation": {
+      "pl": "EventTracker dostarczał użytkownikom szczegółowych danych o zachowaniu odwiedzających, ale ich interpretacja wymagała samodzielnego analizowania wykresów i zdarzeń. Solis miał ułatwić ten proces, dostarczając automatyczne insighty i rekomendacje oraz umożliwiając zadawanie pytań o wyniki landing page’y.\n\nGotowe insighty były już dostępne w aplikacji, natomiast brakowało interfejsu do prowadzenia rozmowy z agentem AI.",
+      "en": "EventTracker gave users detailed data about visitor behaviour, but interpreting it required manually analysing charts and events. Solis was meant to simplify that process by delivering automatic insights and recommendations and letting users ask questions about their landing page results.\n\nReady-made insights were already available in the app, but there was no interface for having a conversation with the AI agent."
+    },
+    "task": {
+      "pl": "Wspólnie z drugim frontend developerem odpowiadałem za stworzenie czatu Solisa w aplikacji SPA. Moim głównym zadaniem była integracja z API, obsługa strumieniowanych odpowiedzi, zarządzanie stanem i historią konwersacji oraz zapewnienie płynnego działania interfejsu. Odpowiadałem również za przeniesienie i rozwój istniejących widoków insightów.",
+      "en": "Together with another frontend developer I was responsible for building the Solis chat in the SPA. My main focus was API integration, handling streamed responses, managing conversation state and history, and keeping the interface smooth. I was also responsible for migrating and developing the existing insights views."
+    },
+    "action": {
+      "pl": "Zbudowałem interfejs czatu w oparciu o useChat z Vercel AI SDK, integrując strumieniowanie odpowiedzi z API Mastry oraz uwierzytelnianie za pomocą JWT. Zaimplementowałem obsługę stanów generowania, stopniowe wyświetlanie odpowiedzi, zatrzymywanie i ponawianie żądań oraz formatowanie treści w Markdown, w tym tabel.\n\nZadbałem o zachowanie przewijania podczas streamingu, tak aby użytkownik mógł śledzić generowaną odpowiedź, ale również swobodnie wracać do wcześniejszych wiadomości bez wymuszonego przewijania na dół. Dodałem przywracanie ostatniej konwersacji po ponownym otwarciu panelu lub odświeżeniu strony — frontend pobierał z API identyfikator rozmowy i jej historię, odtwarzał wiadomości oraz umożliwiał kontynuowanie tego samego wątku.\n\nRozwinąłem również obsługę nowych konwersacji, podpowiedzi do wiadomości, oceniania i kopiowania odpowiedzi, błędów, kontroli dostępu oraz zdarzeń analitycznych w Mixpanelu.\n\nPrzeniosłem istniejące insighty do panelu Solisa, dodając filtrowanie według typu, licznik nieprzeczytanych i możliwość oceniania. Następnie stworzyłem osobną stronę Insights z widokiem szczegółów, usuwaniem insightów z podaniem powodu oraz nawigacją do powiązanego landing page’a. Kluczowe funkcjonalności objąłem testami automatycznymi w Vitest i Testing Library.",
+      "en": "I built the chat interface using useChat from the Vercel AI SDK, integrating response streaming from the Mastra API and JWT authentication. I implemented generation state handling, progressive response rendering, request cancellation and retry, and Markdown formatting including tables.\n\nI managed scroll behaviour during streaming so users could follow the response being generated while still being able to scroll back to earlier messages without being forced to the bottom. I added conversation restoration when the panel is reopened or the page is refreshed — the frontend fetched the conversation ID and its history from the API, replayed the messages and allowed continuing the same thread.\n\nI also developed new conversation handling, message suggestions, response rating and copying, error handling, access control and Mixpanel analytics events.\n\nI moved the existing insights to the Solis panel, adding type filtering, an unread counter and rating. I then built a separate Insights page with a detail view, insight deletion with a reason, and navigation to the related landing page. I covered key functionality with automated tests in Vitest and Testing Library."
+    },
+    "result": {
+      "pl": "Powstał zintegrowany interfejs Solisa, w którym użytkownicy mogą przeglądać automatycznie generowane insighty i rekomendacje oraz analizować wyniki landing page’y poprzez rozmowę z agentem AI. Strumieniowanie umożliwia śledzenie odpowiedzi w trakcie generowania, a przywracanie historii pozwala kontynuować wcześniejszą rozmowę bez rozpoczynania analizy od nowa.\n\nRozbudowane widoki insightów zapewniają dostęp do rekomendacji, ich szczegółów i powiązanych landing page’y w jednym miejscu.",
+      "en": "The result is an integrated Solis interface where users can browse automatically generated insights and recommendations and analyse their landing page results through a conversation with the AI agent. Streaming lets users follow responses as they are generated, and conversation history restoration means they can continue a previous analysis without starting over.\n\nThe expanded insights views bring recommendations, their details and related landing pages together in one place."
+    }
+  },
+  "gallery": [
+    {
+      "src": "@assets/projects/solis-chat-stats.webp",
+      "alt": {
+        "pl": "Czat Solis z podsumowaniem statystyk landing page’a w tabeli",
+        "en": "Solis chat with a landing page stats summary in a table"
+      }
+    },
+    {
+      "src": "@assets/projects/solis-chat-sources.webp",
+      "alt": {
+        "pl": "Odpowiedź Solisa o źródłach ruchu i urządzeniach",
+        "en": "Solis answer about traffic sources and devices"
+      }
+    },
+    {
+      "src": "@assets/projects/solis-insights-list.webp",
+      "alt": {
+        "pl": "Lista insightów w panelu Solis",
+        "en": "Insights list in the Solis panel"
+      }
+    },
+    {
+      "src": "@assets/projects/solis-chat-empty.webp",
+      "alt": {
+        "pl": "Pusty czat Solis z podpowiedziami pytań",
+        "en": "Empty Solis chat with suggested questions"
+      }
+    }
+  ]
+}

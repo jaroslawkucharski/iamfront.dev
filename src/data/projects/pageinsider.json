@@ -1,0 +1,82 @@
+{
+  "name": "PageInsider™",
+  "types": ["commercial"],
+  "archived": true,
+  "company": "Landingi",
+  "start": "2021-04",
+  "end": "2024-01",
+  "stack": [
+    "react",
+    "typescript",
+    "redux",
+    "context-api",
+    "react-intl",
+    "react-router",
+    "react-image-annotation",
+    "react-joyride",
+    "sass",
+    "jest",
+    "enzyme",
+    "react-testing-library"
+  ],
+  "links": {},
+  "summary": {
+    "pl": "Rozwój i przebudowa interfejsu PageInsider™ — narzędzia AI w Landingi, które wykorzystywało model uczenia maszynowego do przewidywania, na których elementach landing page’a użytkownicy skupią uwagę. Projekt obejmował modernizację interfejsu, rozwój funkcjonalności analitycznych oraz integrację z modułem testów A/B.",
+    "en": "Development and rebuild of the PageInsider™ interface — an AI tool in Landingi that used a machine learning model to predict which elements of a landing page visitors would pay attention to. The project covered modernising the interface, developing analytics features and integrating with the A/B testing module."
+  },
+  "star": {
+    "situation": {
+      "pl": "Do projektu PageInsider™ dołączyłem w 2021 roku, gdy funkcjonalność znajdowała się jeszcze w fazie beta. Analizę landing page’y wykonywał model uczenia maszynowego, natomiast istniejący interfejs w React wymagał poprawy użyteczności i uporządkowania kodu.\n\nWraz z rozwojem narzędzia potrzebne było również rozszerzenie możliwości analizy, usprawnienie prezentacji wyników oraz integracja PageInsider™ z pozostałymi funkcjonalnościami optymalizacji landing page’y.",
+      "en": "I joined the PageInsider™ project in 2021 while the feature was still in beta. Page analysis was handled by a machine learning model, but the existing React interface needed usability improvements and the code needed to be brought into order.\n\nAs the tool evolved, it also needed broader analysis capabilities, improved result presentation and integration with other landing page optimisation features."
+    },
+    "task": {
+      "pl": "Odpowiadałem za rozwój i przebudowę frontendu PageInsider™, obejmującą poprawę UX/UI, reorganizację zarządzania stanem, implementację nowych funkcjonalności oraz rozwój testów automatycznych. Moim zadaniem było także zintegrowanie narzędzia z modułem Optimization i testami A/B, a następnie przeniesienie go do nowej aplikacji SPA.",
+      "en": "I was responsible for developing and rebuilding the PageInsider™ frontend, covering UX/UI improvements, state management reorganisation, new feature implementation and automated test development. I also had to integrate the tool with the Optimization module and A/B tests, then migrate it to the new SPA."
+    },
+    "action": {
+      "pl": "Rozpocząłem od usprawnienia interfejsu i treści komunikatów, a następnie przebudowałem moduł w React, przenosząc współdzielony stan do Context API. Stworzyłem od nowa panel boczny prezentujący Clarity Score, przewodnik i rekomendacje oraz górny pasek umożliwiający przełączanie między stroną główną a stroną podziękowania. Rozwinąłem również karuzelę podglądów, zarządzanie warstwami Smart Map oraz obsługę stanów analizy, takich jak generowanie wyników, błędy czy niekompletne zrzuty strony.\n\nZaimplementowałem interaktywne zaznaczanie obszarów zainteresowania (AOI), umożliwiające sprawdzanie przewidywanego poziomu uwagi dla konkretnych elementów landing page’a. Dodałem obsługę klawiatury, możliwość przejścia do edytora i porównywania wyników kolejnych analiz, samouczek dla nowych użytkowników oraz dostosowanie interfejsu do kont Whitelabel.\n\nW zakładce Optimization zbudowałem panel PageInsider™ zintegrowany z testami A/B oraz widok porównania z AI Variant™, uwzględniający przewidywany współczynnik konwersji. Rozwijałem również testy automatyczne w Jest, Enzyme i Testing Library.\n\nW 2023 roku zintegrowałem PageInsider™ z listą landing page’y i przeniosłem funkcjonalność do nowej aplikacji SPA w React i TypeScript. W 2024 roku, po decyzji o wycofaniu narzędzia, usunąłem je z aplikacji i powiązanego kodu.",
+      "en": "I started by improving the interface and message copy, then rebuilt the module in React, moving shared state to the Context API. I rewrote the side panel presenting the Clarity Score, guide and recommendations, and the top bar for switching between the main page and the thank-you page. I also developed the preview carousel, Smart Map layer management and analysis state handling — including result generation, errors and incomplete screenshots.\n\nI implemented interactive area of interest (AOI) selection, letting users check the predicted attention level for specific landing page elements. I added keyboard support, the ability to jump to the editor and compare results across analyses, a tour for new users and Whitelabel account support.\n\nOn the Optimization tab I built the PageInsider™ panel integrated with A/B tests and a comparison view with AI Variant™ including a predicted conversion rate. I also developed automated tests in Jest, Enzyme and Testing Library.\n\nIn 2023 I integrated PageInsider™ with the landing pages list and migrated the feature to the new React and TypeScript SPA. In 2024, after the decision to retire the tool, I removed it from the application and cleaned up the related code."
+    },
+    "result": {
+      "pl": "Powstał rozbudowany interfejs umożliwiający użytkownikom analizowanie przewidywanej uwagi odwiedzających jeszcze przed publikacją landing page’a. Dzięki Smart Map, Clarity Score i interaktywnemu zaznaczaniu obszarów zainteresowania użytkownicy mogli sprawdzać, które elementy strony przyciągają uwagę, wprowadzać poprawki w edytorze i porównywać wyniki kolejnych analiz.\n\nIntegracja z modułem Optimization połączyła analizę uwagi z pozostałymi narzędziami optymalizacji landing page’y. Funkcjonalność została następnie przeniesiona do nowej aplikacji SPA, a w 2024 roku wycofana z produktu decyzją firmy.",
+      "en": "The result was a comprehensive interface letting users analyse predicted visitor attention before publishing a landing page. With Smart Map, Clarity Score and interactive area selection, users could see which page elements drew attention, make changes in the editor and compare results across analyses.\n\nIntegration with the Optimization module brought attention analysis together with the other landing page optimisation tools. The feature was later migrated to the new SPA and retired from the product in 2024 by company decision."
+    }
+  },
+  "gallery": [
+    {
+      "src": "@assets/projects/pageinsider-smart-map.webp",
+      "alt": {
+        "pl": "Smart Map z mapą uwagi, Clarity Score i procentem uwagi dla przycisku",
+        "en": "Smart Map with an attention heatmap, Clarity Score and attention percentage for a button"
+      }
+    },
+    {
+      "src": "@assets/projects/pageinsider-guide.webp",
+      "alt": {
+        "pl": "Analiza z panelem przewodnika PageInsider™",
+        "en": "Analysis with the PageInsider™ guide panel"
+      }
+    },
+    {
+      "src": "@assets/projects/pageinsider-optimization-tab.webp",
+      "alt": {
+        "pl": "Panel PageInsider™ w zakładce Optimization",
+        "en": "PageInsider™ panel on the Optimization tab"
+      }
+    },
+    {
+      "src": "@assets/projects/pageinsider-attention.webp",
+      "alt": {
+        "pl": "Mapa uwagi na stronie z nagłówkiem i przyciskiem CTA",
+        "en": "Attention map on a page with a headline and CTA button"
+      }
+    },
+    {
+      "src": "@assets/projects/pageinsider-form.webp",
+      "alt": {
+        "pl": "Mapa uwagi na stronie z formularzem",
+        "en": "Attention map on a page with a form"
+      }
+    }
+  ]
+}

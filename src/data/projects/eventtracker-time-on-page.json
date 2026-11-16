@@ -1,0 +1,49 @@
+{
+  "name": {
+    "pl": "EventTracker: Czas na stronie",
+    "en": "EventTracker: Time on Page"
+  },
+  "types": ["commercial"],
+  "featured": true,
+  "company": "Landingi",
+  "start": "2025-10",
+  "end": "2026-08",
+  "stack": ["typescript", "vite", "page-visibility-api", "beacon-api", "localstorage", "vitest"],
+  "links": {
+    "live": {
+      "pl": "https://landingi.com/pl/produkt/eventtracker/",
+      "en": "https://landingi.com/product/eventtracker/"
+    }
+  },
+  "summary": {
+    "pl": "Rozwój mechanizmu pomiaru czasu spędzanego na landing page’ach w ramach EventTrackera — narzędzia do analityki behawioralnej w Landingi. Projekt obejmował implementację dwóch niezależnych liczników: czasu widoczności strony oraz faktycznej aktywności użytkownika.",
+    "en": "Development of a time-measurement mechanism for landing pages within EventTracker, Landingi’s behavioural analytics tool. The project involved implementing two independent counters: page visibility time and actual user activity time."
+  },
+  "star": {
+    "situation": {
+      "pl": "EventTracker pozwalał analizować zachowania odwiedzających landing page’e, ale brakowało informacji o czasie spędzanym na stronie. Sam pomiar od otwarcia do zamknięcia strony nie odzwierciedlał rzeczywistego zaangażowania, ponieważ użytkownicy mogli przełączać karty, pozostawiać stronę otwartą bez interakcji lub wracać do niej w tej samej sesji.",
+      "en": "EventTracker let users analyse visitor behaviour on landing pages, but there was no data on how long visitors actually spent on them. Measuring from page open to close alone did not reflect real engagement, because users could switch tabs, leave the page open without interacting, or return to it within the same session."
+    },
+    "task": {
+      "pl": "Moim zadaniem było stworzenie mechanizmu pomiaru czasu w skrypcie EventTrackera, który rozróżniałby widoczność strony od aktywności użytkownika, uwzględniał zachowanie przeglądarki i ograniczał liczbę zapytań do API. Odpowiadałem również za prezentację zebranych danych w dashboardzie aplikacji.",
+      "en": "My task was to build a time-measurement mechanism in the EventTracker script that distinguished page visibility from user activity, accounted for browser behaviour and kept API request volume low. I was also responsible for presenting the collected data in the application dashboard."
+    },
+    "action": {
+      "pl": "W skrypcie EventTrackera napisanym w TypeScript zaimplementowałem dwa niezależne liczniki: czas widoczności strony oraz czas aktywności użytkownika, wykrywany na podstawie interakcji, takich jak kliknięcia, przewijanie, ruch kursora, klawiatura i dotyk. Po 5 sekundach bezczynności zatrzymywałem licznik aktywności, a po ukryciu karty wstrzymywałem oba pomiary.\n\nWprowadziłem adaptacyjny interwał wysyłania danych, który wydłużał się wraz z czasem wizyty (od 1 do 60 sekund), ograniczając liczbę zapytań przy dłuższych sesjach. Przy ukryciu karty lub opuszczeniu strony wykorzystywałem navigator.sendBeacon, z mechanizmem zapasowym opartym na fetch. Dodałem zapisywanie wyników w localStorage, umożliwiające kontynuowanie pomiaru po odświeżeniu strony lub ponownym wejściu w ramach tej samej sesji.\n\nUwzględniłem również powroty z pamięci podręcznej przeglądarki (bfcache), zabezpieczenie przed podwójną wysyłką oraz przypadki brzegowe, takie jak wyłączenie pomiaru na stronach z podziękowaniem i zachowanie poprawnej relacji między czasem aktywnym a całkowitym.\n\nW aplikacji SPA zintegrowałem dane z API i dodałem do dashboardu panel prezentujący średni czas widoczności strony oraz aktywności użytkowników, również z podziałem na urządzenia.",
+      "en": "In the EventTracker script written in TypeScript I implemented two independent counters: page visibility time and user activity time, detected from interactions such as clicks, scrolling, cursor movement, keyboard and touch. After 5 seconds of inactivity I paused the activity counter, and when the tab was hidden I paused both counters.\n\nI introduced an adaptive data-sending interval that lengthened with visit duration (from 1 to 60 seconds), reducing request volume during longer sessions. When the tab was hidden or the page was left I used navigator.sendBeacon with a fetch fallback. I added localStorage persistence so measurement could continue after a page refresh or re-entry within the same session.\n\nI also handled back/forward cache (bfcache) returns, guarded against duplicate sends and covered edge cases such as disabling measurement on thank-you pages and keeping the active time from exceeding the total.\n\nIn the SPA I integrated the API data and added a dashboard panel showing average page visibility time and user activity time, also broken down by device."
+    },
+    "result": {
+      "pl": "Użytkownicy Landingi zyskali dostęp do statystyk pokazujących nie tylko czas widoczności landing page’a, ale również faktyczną aktywność odwiedzających, co pozwala lepiej interpretować ich zaangażowanie. Mechanizm uwzględnia przełączanie kart, bezczynność i powroty w ramach sesji, a lokalny zapis danych oraz ich wysyłanie przy opuszczaniu strony ograniczają ryzyko utraty wyników.\n\nAdaptacyjny interwał pozwala jednocześnie zmniejszyć liczbę zapytań do serwera podczas dłuższych wizyt.",
+      "en": "Landingi users gained access to statistics showing not only how long their landing pages were visible, but also the actual activity of visitors, giving a clearer picture of engagement. The mechanism accounts for tab switching, inactivity and within-session returns, while local data persistence and on-leave sending reduce the risk of losing results.\n\nThe adaptive interval also cuts server request volume during longer visits."
+    }
+  },
+  "gallery": [
+    {
+      "src": "@assets/projects/time-on-page.webp",
+      "alt": {
+        "pl": "Średni czas aktywny i całkowity na stronie w statystykach Overview",
+        "en": "Average active and absolute time on page in the Overview stats"
+      }
+    }
+  ]
+}

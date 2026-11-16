@@ -1,3 +1,4 @@
+import type { ImageMetadata } from 'astro';
 import { getCollection, type CollectionEntry } from 'astro:content';
 
 import type { Locale } from '@lib/i18n/languages';
@@ -5,6 +6,12 @@ import { localize } from '@lib/i18n/localize';
 
 type ProjectTypes = 'commercial' | 'private';
 type StoryParts = 'situation' | 'task' | 'action' | 'result';
+
+export interface ProjectImage {
+  src: ImageMetadata;
+  dark?: ImageMetadata;
+  alt: string;
+}
 
 export interface Project {
   id: string;
@@ -20,7 +27,17 @@ export interface Project {
   links: { live?: string; repo?: string };
   summary: string;
   star: Record<StoryParts, string>;
+  gallery: readonly ProjectImage[];
+  lighthouse: readonly ProjectImage[];
 }
+
+const localizeImage = (
+  image: CollectionEntry<'projects'>['data']['gallery'][number],
+  locale: Locale,
+): ProjectImage => ({
+  ...image,
+  alt: localize(image.alt, locale),
+});
 
 const toProject = ({ id, data }: CollectionEntry<'projects'>, locale: Locale): Project => ({
   ...data,
@@ -39,6 +56,8 @@ const toProject = ({ id, data }: CollectionEntry<'projects'>, locale: Locale): P
     action: localize(data.star.action, locale),
     result: localize(data.star.result, locale),
   },
+  gallery: data.gallery.map((image) => localizeImage(image, locale)),
+  lighthouse: (data.lighthouse ?? []).map((image) => localizeImage(image, locale)),
 });
 
 const compareDates = (first?: string, second?: string) => {

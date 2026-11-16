@@ -1,0 +1,99 @@
+{
+  "name": "NextShop",
+  "types": ["private"],
+  "archived": true,
+  "start": "2024-02",
+  "end": "2024-03",
+  "stack": [
+    "nextjs",
+    "react",
+    "typescript",
+    "tailwind",
+    "graphql",
+    "graphql-codegen",
+    "stripe",
+    "clerk",
+    "algolia",
+    "next-intl",
+    "mdx",
+    "zod",
+    "vercel"
+  ],
+  "links": {
+    "live": "https://nextjs14masters-course.vercel.app/",
+    "repo": "https://github.com/jaroslawkucharski/nextjs14masters"
+  },
+  "summary": {
+    "pl": "Sklep internetowy zbudowany w Next.js 14 w ramach kursu Next.js Masters. Aplikacja obejmuje katalog produktów z kategoriami i kolekcjami, wyszukiwarkę, rekomendacje produktów, koszyk, płatności Stripe, konta użytkowników, historię zamówień oraz wersje językowe PL i EN.",
+    "en": "An online store built in Next.js 14 as part of the Next.js Masters course. The app covers a product catalogue with categories and collections, search, product recommendations, a cart, Stripe payments, user accounts, order history and PL/EN language versions."
+  },
+  "star": {
+    "situation": {
+      "pl": "Kurs Next.js Masters zakładał zbudowanie kompletnego sklepu internetowego z wykorzystaniem App Routera w Next.js 14 oraz danych udostępnianych przez gotowe API GraphQL. Projekt obejmował zarówno część zakupową, jak i elementy typowe dla aplikacji produkcyjnej: uwierzytelnianie, płatności, zamówienia, internacjonalizację i zarządzanie pamięcią podręczną.",
+      "en": "The Next.js Masters course involved building a complete online store using the App Router in Next.js 14 and data from a ready-made GraphQL API. The project covered both the shopping experience and elements typical of a production app: authentication, payments, orders, internationalisation and cache management."
+    },
+    "task": {
+      "pl": "Moim zadaniem było zaprogramowanie sklepu od strony frontendu i serwera Next.js. Odpowiadałem za katalog produktów, wyszukiwarkę, koszyk, proces płatności, konta użytkowników, obsługę zamówień oraz strony treści.",
+      "en": "My task was to build the store from the frontend and Next.js server side. I was responsible for the product catalogue, search, cart, payment flow, user accounts, order handling and content pages."
+    },
+    "action": {
+      "pl": "Zbudowałem aplikację w Next.js 14 z App Routerem, TypeScript i Tailwind CSS. Produkty, kategorie, kolekcje, koszyk oraz zamówienia pobierałem przez GraphQL, korzystając z typów generowanych za pomocą GraphQL Codegen. Pamięć podręczną odświeżałem przy użyciu tagów po zmianach w koszyku oraz endpointu do rewalidacji stron produktów.\n\nKoszyk oparłem na Server Actions i ciasteczku przechowującym identyfikator koszyka. Dodałem optymistyczną zmianę ilości produktów z użyciem useOptimistic oraz podgląd koszyka w modalu otwieranym przez przechwyconą trasę. Przygotowałem listę produktów ze stronicowaniem i sortowaniem zapisywanym w parametrach URL, wyszukiwarkę z opóźnieniem zapytań oraz rekomendacje produktów z wykorzystaniem Algolii.\n\nDodałem również formularz opinii z walidacją w Zod, płatności Stripe z weryfikacją podpisu webhooka oraz logowanie i obsługę kont użytkowników za pomocą Clerk. Zalogowani użytkownicy mogą przeglądać historię swoich zamówień.\n\nUzupełniłem aplikację o wersje językowe PL i EN w next-intl, strony treści w MDX oraz generowane obrazy Open Graph dla produktów. Skonfigurowałem środowisko uruchomieniowe i wdrożyłem wersję demonstracyjną na Vercelu.",
+      "en": "I built the app in Next.js 14 with the App Router, TypeScript and Tailwind CSS. Products, categories, collections, cart and orders were fetched through GraphQL using types generated with GraphQL Codegen. I revalidated the cache with tags after cart changes and through an endpoint for revalidating product pages.\n\nThe cart is based on Server Actions and a cookie storing the cart ID. I added optimistic quantity updates using useOptimistic and a cart preview in a modal opened via an intercepted route. I built a product list with pagination and sorting saved in URL parameters, a debounced search and product recommendations using Algolia.\n\nI also added a review form with Zod validation, Stripe payments with webhook signature verification and sign-in with user account management via Clerk. Signed-in users can browse their order history.\n\nI completed the app with PL and EN language versions in next-intl, content pages in MDX and generated Open Graph images for products. I set up the runtime environment and deployed a demo on Vercel."
+    },
+    "result": {
+      "pl": "Powstał kompletny, działający sklep internetowy z katalogiem produktów, koszykiem, płatnościami, kontami użytkowników, zamówieniami, rekomendacjami i obsługą dwóch języków. Projekt pozwolił mi przećwiczyć w praktyce najważniejsze elementy Next.js App Routera, w tym Server Actions, rewalidację danych, routing, obsługę formularzy i integrację z zewnętrznymi usługami.\n\nKod jest dostępny publicznie na GitHubie, a aplikacja ma wersję demo wdrożoną na Vercelu.",
+      "en": "The result is a complete, working online store with a product catalogue, cart, payments, user accounts, orders, recommendations and two-language support. The project let me practise the key elements of the Next.js App Router in a real setting, including Server Actions, data revalidation, routing, form handling and integration with external services.\n\nThe code is publicly available on GitHub and the app has a live demo deployed on Vercel."
+    }
+  },
+  "gallery": [
+    {
+      "src": "@assets/projects/nextshop-home.webp",
+      "alt": {
+        "pl": "Strona główna NextShop z kolekcjami i produktami",
+        "en": "NextShop home page with collections and products"
+      }
+    },
+    {
+      "src": "@assets/projects/nextshop-products.webp",
+      "alt": {
+        "pl": "Lista wszystkich produktów z sortowaniem",
+        "en": "All products list with sorting"
+      }
+    },
+    {
+      "src": "@assets/projects/nextshop-product.webp",
+      "alt": {
+        "pl": "Strona produktu z przyciskiem dodania do koszyka",
+        "en": "Product page with an add-to-cart button"
+      }
+    },
+    {
+      "src": "@assets/projects/nextshop-search.webp",
+      "alt": {
+        "pl": "Wyniki wyszukiwania",
+        "en": "Search results"
+      }
+    },
+    {
+      "src": "@assets/projects/nextshop-mobile-home.webp",
+      "alt": {
+        "pl": "Strona główna na telefonie",
+        "en": "Home page on a phone"
+      }
+    },
+    {
+      "src": "@assets/projects/nextshop-mobile-products.webp",
+      "alt": {
+        "pl": "Lista produktów na telefonie",
+        "en": "Product list on a phone"
+      }
+    },
+    {
+      "src": "@assets/projects/nextshop-mobile-product.webp",
+      "alt": {
+        "pl": "Produkt na telefonie",
+        "en": "Product on a phone"
+      }
+    }
+  ]
+}

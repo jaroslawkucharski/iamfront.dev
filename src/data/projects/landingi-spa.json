@@ -1,0 +1,59 @@
+{
+  "name": "Landingi SPA",
+  "types": ["commercial"],
+  "featured": true,
+  "company": "Landingi",
+  "start": "2022-06",
+  "end": "2026-09",
+  "stack": [
+    "react",
+    "typescript",
+    "javascript",
+    "redux-toolkit",
+    "swr",
+    "axios",
+    "react-router",
+    "sass",
+    "zod",
+    "vitest",
+    "react-testing-library",
+    "php"
+  ],
+  "links": {
+    "live": {
+      "pl": "https://landingi.com/pl/",
+      "en": "https://landingi.com/"
+    }
+  },
+  "summary": {
+    "pl": "Rozwój nowej aplikacji Landingi w React, budowanej od podstaw w celu zastąpienia starszego systemu opartego na PHP i React 17 z Reduxem. Landingi to platforma SaaS do tworzenia i optymalizacji landing page’y, wykorzystywana przez tysiące klientów w ponad 80 krajach.",
+    "en": "Development of Landingi’s new React app, built from scratch to replace the legacy system based on PHP and React 17 with Redux. Landingi is a SaaS platform for building and optimizing landing pages, used by thousands of customers in over 80 countries."
+  },
+  "star": {
+    "situation": {
+      "pl": "Główna aplikacja Landingi przez lata rozwijała się w dwóch technologiach: PHP oraz React 17 z Reduxem. Utrzymywanie starszych rozwiązań utrudniało rozwój produktu, dlatego w 2021 roku rozpoczęto budowę nowej aplikacji SPA w React, która stopniowo zastępowała dotychczasowy system.",
+      "en": "Landingi’s main application had grown over the years across two technologies: PHP and React 17 with Redux. Maintaining the legacy system made product development harder, so in 2021 the team began building a new React SPA to gradually replace it."
+    },
+    "task": {
+      "pl": "Dołączyłem do projektu w 2022 roku. Odpowiadałem za przenoszenie kolejnych obszarów platformy do nowej aplikacji, odtwarzanie i rozwijanie ich funkcjonalności oraz dostosowywanie interfejsu i logiki do nowej architektury.",
+      "en": "I joined the project in 2022. I was responsible for migrating successive areas of the platform to the new app, rebuilding and extending their functionality, and adapting the UI and logic to the new architecture."
+    },
+    "action": {
+      "pl": "Rozwijałem kluczowe moduły platformy, w tym dashboard landing page’a, listę stron oraz zarządzanie testami A/B. Implementowałem m.in. filtrowanie i sortowanie, akcje masowe, zarządzanie grupami, przenoszenie stron między kontami, archiwizację, uprawnienia oraz konfigurację wariantów i podziału ruchu w testach A/B.\n\nZbudowałem od podstaw moduł zarządzania domenami, obejmujący dodawanie i konfigurację domen, wykrywanie dostawcy, weryfikację rekordów DNS, instrukcje konfiguracji oraz obsługę limitów, subkont i uprawnień.\n\nOdpowiadałem również za stworzenie nowej nawigacji aplikacji — sidebara i top bara — wraz z przełączaniem kont, obsługą uprawnień, Whitelabel, komunikatami systemowymi i integracjami z zewnętrznymi narzędziami.\n\nPrzenosiłem także do SPA istniejące moduły, takie jak PageInsider, EventTracker, modale upgrade’u i cennik. Równolegle modernizowałem kod, migrując kolejne fragmenty z JavaScriptu do TypeScriptu, zastępując Yup biblioteką Zod oraz rozwijając testy automatyczne w Vitest i Testing Library.",
+      "en": "I developed key platform modules, including the landing page dashboard, the pages list and A/B test management. I implemented filtering and sorting, bulk actions, group management, moving pages between accounts, archiving, permissions and variant configuration with traffic allocation for A/B tests.\n\nI built the domain management module from scratch, covering domain addition and configuration, provider detection, DNS record verification, configuration instructions and handling of limits, subaccounts and permissions.\n\nI also created the new application navigation — sidebar and top bar — with account switching, permission handling, Whitelabel support, system messages and integrations with external tools.\n\nI migrated existing modules to the SPA, including PageInsider, EventTracker, upgrade modals and the pricing page. In parallel I modernised the codebase by migrating JavaScript to TypeScript, replacing Yup with Zod and expanding automated tests in Vitest and Testing Library."
+    },
+    "result": {
+      "pl": "Kolejne kluczowe obszary platformy zostały przeniesione do nowej aplikacji SPA, stopniowo ograniczając zależność od starszego systemu. Powstały nowe, spójne moduły obsługujące zarządzanie landing page’ami, domenami, testami A/B i nawigacją. Modernizacja kodu oraz rozwój testów ułatwiły dalsze utrzymanie i rozbudowę aplikacji.",
+      "en": "All key platform areas were migrated to the new SPA, progressively reducing dependence on the legacy system. New, consistent modules now handle landing page management, domains, A/B testing and navigation. Code modernisation and expanded test coverage made the application easier to maintain and extend."
+    }
+  },
+  "gallery": [
+    {
+      "src": "@assets/projects/landingi-spa-landings.webp",
+      "alt": {
+        "pl": "Lista landing page’y z grupami, statystykami i oznaczeniami testów A/B i harmonogramu",
+        "en": "Landing pages list with groups, stats and A/B test and schedule labels"
+      }
+    }
+  ]
+}

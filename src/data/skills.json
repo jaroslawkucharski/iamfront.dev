@@ -69,8 +69,63 @@
     "category": "frontend"
   },
   {
+    "id": "beacon-api",
+    "name": "Beacon API",
+    "category": "frontend"
+  },
+  {
+    "id": "capacitor",
+    "name": "Capacitor",
+    "category": "frontend"
+  },
+  {
+    "id": "context-api",
+    "name": "Context API",
+    "category": "frontend"
+  },
+  {
+    "id": "floating-ui",
+    "name": "Floating UI",
+    "category": "frontend"
+  },
+  {
+    "id": "formik",
+    "name": "Formik",
+    "category": "frontend"
+  },
+  {
+    "id": "mdx",
+    "name": "MDX",
+    "category": "frontend"
+  },
+  {
+    "id": "motion",
+    "name": "Motion",
+    "category": "frontend"
+  },
+  {
+    "id": "nice-modal",
+    "name": "NiceModal",
+    "category": "frontend"
+  },
+  {
     "id": "pwa",
     "name": "PWA",
+    "category": "frontend"
+  },
+  {
+    "id": "page-visibility-api",
+    "name": "Page Visibility API",
+    "category": "frontend"
+  },
+  {
+    "id": "react-intl",
+    "name": "React Intl",
+    "category": "frontend"
+  },
+  {
+    "id": "react-joyride",
+    "name": "React Joyride",
     "category": "frontend"
   },
   {
@@ -84,6 +139,11 @@
     "category": "frontend"
   },
   {
+    "id": "yup",
+    "name": "Yup",
+    "category": "frontend"
+  },
+  {
     "id": "zod",
     "name": "Zod",
     "category": "frontend"
@@ -94,8 +154,28 @@
     "category": "frontend"
   },
   {
+    "id": "localstorage",
+    "name": "localStorage",
+    "category": "frontend"
+  },
+  {
+    "id": "next-intl",
+    "name": "next-intl",
+    "category": "frontend"
+  },
+  {
+    "id": "react-image-annotation",
+    "name": "react-image-annotation",
+    "category": "frontend"
+  },
+  {
     "id": "react-markdown",
     "name": "react-markdown",
+    "category": "frontend"
+  },
+  {
+    "id": "react-simple-maps",
+    "name": "react-simple-maps",
     "category": "frontend"
   },
   {
@@ -146,8 +226,28 @@
     "category": "api"
   },
   {
+    "id": "algolia",
+    "name": "Algolia",
+    "category": "api"
+  },
+  {
+    "id": "clerk",
+    "name": "Clerk",
+    "category": "api"
+  },
+  {
+    "id": "contentful",
+    "name": "Contentful",
+    "category": "api"
+  },
+  {
     "id": "strapi",
     "name": "Strapi",
+    "category": "api"
+  },
+  {
+    "id": "graphql-codegen",
+    "name": "GraphQL Codegen",
     "category": "api"
   },
   {
@@ -156,8 +256,18 @@
     "category": "api"
   },
   {
+    "id": "stripe",
+    "name": "Stripe",
+    "category": "api"
+  },
+  {
     "id": "php",
     "name": "PHP",
+    "category": "backend"
+  },
+  {
+    "id": "firebase",
+    "name": "Firebase",
     "category": "backend"
   },
   {
@@ -191,6 +301,16 @@
     "featured": true
   },
   {
+    "id": "cypress",
+    "name": "Cypress",
+    "category": "quality"
+  },
+  {
+    "id": "enzyme",
+    "name": "Enzyme",
+    "category": "quality"
+  },
+  {
     "id": "nodejs",
     "name": "Node.js",
     "category": "tools",
@@ -215,6 +335,16 @@
     "featured": true
   },
   {
+    "id": "eslint",
+    "name": "ESLint",
+    "category": "tools"
+  },
+  {
+    "id": "prettier",
+    "name": "Prettier",
+    "category": "tools"
+  },
+  {
     "id": "storybook",
     "name": "Storybook",
     "category": "tools",
@@ -235,6 +365,16 @@
   {
     "id": "webpack",
     "name": "Webpack",
+    "category": "tools"
+  },
+  {
+    "id": "netlify",
+    "name": "Netlify",
+    "category": "tools"
+  },
+  {
+    "id": "vercel",
+    "name": "Vercel",
     "category": "tools"
   },
   {

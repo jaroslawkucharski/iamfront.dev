@@ -1,4 +1,4 @@
-import { defineCollection, reference } from 'astro:content';
+import { defineCollection, reference, type SchemaContext } from 'astro:content';
 import { file, glob } from 'astro/loaders';
 import { z } from 'astro/zod';
 
@@ -50,22 +50,28 @@ const skills = defineCollection({
   }),
 });
 
+const projectImage = (image: SchemaContext['image']) =>
+  z.object({ src: image(), dark: image().optional(), alt: localized });
+
 const projects = defineCollection({
   loader: glob({ pattern: '*.json', base: './src/data/projects' }),
-  schema: z.object({
-    name: localized,
-    types: z.array(z.enum(['commercial', 'private'])),
-    featured: z.boolean().optional(),
-    archived: z.boolean().optional(),
-    planned: z.boolean().optional(),
-    company: localized.optional(),
-    start: isoDate.optional(),
-    end: isoDate.optional(),
-    stack: z.array(reference('skills')),
-    links: z.object({ live: localizedUrl.optional(), repo: localizedUrl.optional() }),
-    summary: localized,
-    star: z.object({ situation: localized, task: localized, action: localized, result: localized }),
-  }),
+  schema: ({ image }) =>
+    z.object({
+      name: localized,
+      types: z.array(z.enum(['commercial', 'private'])),
+      featured: z.boolean().optional(),
+      archived: z.boolean().optional(),
+      planned: z.boolean().optional(),
+      company: localized.optional(),
+      start: isoDate.optional(),
+      end: isoDate.optional(),
+      stack: z.array(reference('skills')),
+      links: z.object({ live: localizedUrl.optional(), repo: localizedUrl.optional() }),
+      summary: localized,
+      star: z.object({ situation: localized, task: localized, action: localized, result: localized }),
+      gallery: z.array(projectImage(image)),
+      lighthouse: z.array(projectImage(image)).optional(),
+    }),
 });
 
 const experience = defineCollection({
