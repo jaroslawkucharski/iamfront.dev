@@ -1,0 +1,68 @@
+{
+  "name": "AleRabat",
+  "logo": "alerabat",
+  "start": "2026-10",
+  "title": "Senior Frontend Developer",
+  "titleNote": {
+    "pl": "część etatu, kontrakt",
+    "en": "part-time, contract"
+  },
+  "sections": [
+    {
+      "title": {
+        "pl": "Rozwój platformy cashbackowej i panelu użytkownika",
+        "en": "Cashback platform and user account development"
+      },
+      "stack": [
+        "react",
+        "javascript",
+        "oauth",
+        "openid-connect",
+        "pkce",
+        "rest-api",
+        "webpack",
+        "html",
+        "css"
+      ],
+      "items": [
+        {
+          "pl": "**Rozwijam i utrzymuję istniejący frontend platformy AleRabat** oraz aplikację konta użytkownika opartą na React.",
+          "en": "**Develop and maintain the existing AleRabat frontend** and the React-based user account application."
+        },
+        {
+          "pl": "Implementuję **nowe funkcje i modyfikuję istniejące widoki** związane z kontem użytkownika, cashbackiem, historią zakupów, wypłatami i ofertami specjalnymi.",
+          "en": "Implement **new features and update existing views** for the user account, cashback, purchase history, payouts and special offers."
+        },
+        {
+          "pl": "Rozwijam **przepływy logowania, rejestracji, resetowania hasła i obsługi sesji użytkownika**.",
+          "en": "Develop **login, registration, password reset and session handling flows**."
+        },
+        {
+          "pl": "Integruję zmiany frontendowe z **istniejącymi backendowymi API oraz systemem OAuth 2.0 / OpenID Connect z wykorzystaniem PKCE**.",
+          "en": "Integrate frontend changes with **existing backend APIs and OAuth 2.0 / OpenID Connect using PKCE**."
+        },
+        {
+          "pl": "Rozbudowuję **formularze, walidację danych, obsługę stanów ładowania, błędów i pustych widoków**.",
+          "en": "Extend **forms, data validation, and loading, error and empty states**."
+        },
+        {
+          "pl": "Pracuję z **istniejącą architekturą komponentów, modułów i bundli frontendowych**, zachowując kompatybilność z pozostałymi częściami platformy.",
+          "en": "Work with the **existing component, module and frontend bundle architecture**, keeping compatibility with the rest of the platform."
+        },
+        {
+          "pl": "Wprowadzam poprawki wydajnościowe związane z **code splittingiem, lazy loadingiem i optymalizacją ładowania aplikacji**.",
+          "en": "Deliver performance improvements through **code splitting, lazy loading and load-time optimisation**."
+        },
+        {
+          "pl": "**Przygotowuję i wdrażam zmiany na środowisko produkcyjne.**",
+          "en": "**Prepare and deploy changes to production.**"
+        },
+        {
+          "pl": "Diagnozuję i rozwiązuję **błędy produkcyjne oraz problemy zgłaszane przez użytkowników i zespół**.",
+          "en": "Diagnose and fix **production bugs and issues reported by users and the team**."
+        }
+      ]
+    }
+  ],
+  "url": "https://alerabat.com"
+}
