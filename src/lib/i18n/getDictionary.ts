@@ -14,6 +14,7 @@ const dictionaries = { en, pl } satisfies Record<Locale, Shape<typeof en> & Shap
 
 export const getDictionary = (locale: Locale, values: Record<string, Value> = {}): Dictionary => {
   const dictionary: Dictionary = dictionaries[locale];
+
   const resolved = Object.fromEntries(
     Object.entries(values).map(([name, value]) => [
       name,
