@@ -40,7 +40,7 @@ const isActive = (href: string) => {
 };
 ---
 
-<nav id={id} aria-label={nav.label} class:list={['navigation', className]}>
+<nav id={id} aria-label={nav.label} class:list={['navigation', className]} data-keep-open>
   <ul class='navigation__list'>
     {items.map((item, index) => (
       <li style={`--i: ${index}`}>

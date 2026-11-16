@@ -9,7 +9,7 @@ document.addEventListener('astro:page-load', () => {
 
   root.dataset.ready = '';
 
-  initDisclosure({
+  const menu = initDisclosure({
     root,
     button,
     render: (open) => {
@@ -17,4 +17,10 @@ document.addEventListener('astro:page-load', () => {
       panel.hidden = !open;
     },
   });
+
+  if (root.dataset.openOnLoad === undefined) return;
+
+  delete root.dataset.openOnLoad;
+  menu.setOpen(true);
+  panel.querySelector<HTMLElement>('[data-language-switch]')?.focus();
 });

@@ -17,7 +17,7 @@ const { settings } = getDictionary(locale);
 const panelId = 'settings-panel';
 ---
 
-<div class:list={['settings', className]} data-settings>
+<div id='settings-menu' class:list={['settings', className]} data-settings data-keep-open>
   <Button
     variant='icon'
     label={settings.label}

@@ -29,8 +29,14 @@ const initHamburgerMenu = () => {
     });
 
     panel.addEventListener('click', (event) => {
-      if ((event.target as Element).closest('a')) menu.setOpen(false);
+      if ((event.target as Element).closest('a:not([data-language-switch])')) menu.setOpen(false);
     });
+
+    if (panel.dataset.openOnLoad === undefined) return;
+
+    delete panel.dataset.openOnLoad;
+    menu.setOpen(true);
+    panel.querySelector<HTMLElement>('[data-language-switch]')?.focus();
   });
 };
 
