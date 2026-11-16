@@ -1,0 +1,63 @@
+---
+import type { ComponentProps } from 'astro/types';
+
+import Badge from '@atoms/Badge/Badge.astro';
+import Flex from '@atoms/Flex/Flex.astro';
+import Link from '@atoms/Link/Link.astro';
+import VisuallyHidden from '@atoms/VisuallyHidden/VisuallyHidden.astro';
+
+export interface BadgeItem {
+  label: string;
+  href?: string;
+  title?: string;
+  hint?: string;
+  muted?: boolean;
+}
+
+type Sizes = 'md' | 'sm';
+
+interface Props {
+  label: string;
+  items: string | readonly (string | BadgeItem)[];
+  variant?: ComponentProps<typeof Badge>['variant'];
+  size?: Sizes;
+  underline?: boolean;
+  class?: string;
+}
+
+const { label, items, variant = 'pill', size = 'md', underline = false, class: className } = Astro.props;
+
+const list: BadgeItem[] = (
+  typeof items === 'string'
+    ? items
+        .replace(/\.\s*$/, '')
+        .split(',')
+        .map((item) => item.trim())
+        .filter(Boolean)
+    : items
+).map((item) => (typeof item === 'string' ? { label: item } : item));
+---
+
+<Flex as='ul' list direction='row' gap={variant === 'pill' ? '2xs' : 'none'} aria-label={label} class={className}>
+  {list.map((item) => (
+    <Badge variant={variant} size={size} tone={item.muted ? 'muted' : 'default'}>
+      {item.href ? (
+        <Link
+          href={item.href}
+          title={item.title}
+          size={variant === 'pill' ? 'sm' : 'md'}
+          weight='regular'
+          color='default'
+          tracking='normal'
+          inline={underline}
+        >
+          {item.label}
+
+          {item.hint && <VisuallyHidden>{item.hint}</VisuallyHidden>}
+        </Link>
+      ) : (
+        item.label
+      )}
+    </Badge>
+  ))}
+</Flex>
