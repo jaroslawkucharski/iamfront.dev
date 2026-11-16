@@ -1,6 +1,6 @@
 export const languages = {
-  en: { short: 'EN', switchLabel: 'Switch to English' },
-  pl: { short: 'PL', switchLabel: 'Przełącz na polski' },
+  en: { short: 'EN', switchLabel: 'Switch to English', ogLocale: 'en_US' },
+  pl: { short: 'PL', switchLabel: 'Przełącz na polski', ogLocale: 'pl_PL' },
 } as const;
 
 export type Locale = keyof typeof languages;
