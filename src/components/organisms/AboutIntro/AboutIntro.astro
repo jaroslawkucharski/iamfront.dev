@@ -1,0 +1,40 @@
+---
+import portrait from '@assets/me/portrait.webp';
+import { getExperienceValues } from '@helpers/getExperienceValues';
+import { getDictionary } from '@lib/i18n/getDictionary';
+import type { Locale } from '@lib/i18n/languages';
+
+import Flex from '@atoms/Flex/Flex.astro';
+import MediaBlock from '@atoms/MediaBlock/MediaBlock.astro';
+import Picture from '@atoms/Picture/Picture.astro';
+import RichText from '@molecules/RichText/RichText.astro';
+import Section from '@molecules/Section/Section.astro';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+
+const { about } = getDictionary(locale, getExperienceValues());
+---
+
+<Section id='about' title={about.intro.heading} level={1}>
+  <MediaBlock>
+    <Flex gap='sm'>
+      {about.intro.paragraphs.map((paragraph) => (
+        <RichText text={paragraph} />
+      ))}
+    </Flex>
+
+    <Picture
+      src={portrait}
+      alt={about.photoAlt}
+      shape='circle'
+      size={280}
+      sizeMobile={200}
+      loading='eager'
+      slot='media'
+    />
+  </MediaBlock>
+</Section>
