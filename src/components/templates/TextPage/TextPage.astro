@@ -1,0 +1,82 @@
+---
+import { person } from '@data/site';
+import type { Locale } from '@lib/i18n/languages';
+
+import Flex from '@atoms/Flex/Flex.astro';
+import Heading from '@atoms/Heading/Heading.astro';
+import Text from '@atoms/Text/Text.astro';
+import EmailLink from '@molecules/EmailLink/EmailLink.astro';
+import RichText from '@molecules/RichText/RichText.astro';
+import Section from '@molecules/Section/Section.astro';
+import BulletList from '@organisms/BulletList/BulletList.astro';
+import MainTemplate from '@templates/MainTemplate/MainTemplate.astro';
+
+export interface TextPageContent {
+  meta: { title: string };
+  title: string;
+  intro: string;
+  updated: { label: string; date: string };
+  sections: readonly { heading: string; paragraphs?: readonly string[]; items?: readonly string[] }[];
+}
+
+interface Props {
+  id: string;
+  locale: Locale;
+  content: TextPageContent;
+}
+
+const { id, locale, content } = Astro.props;
+
+const updated = new Intl.DateTimeFormat(locale, {
+  day: 'numeric',
+  month: 'long',
+  year: 'numeric',
+  timeZone: 'UTC',
+}).format(new Date(`${content.updated.date}T00:00:00Z`));
+---
+
+<MainTemplate locale={locale} title={content.meta.title} contactCta={false}>
+  <Section id={id} title={content.title} level={1} gap='lg'>
+    <Text size='lg' color='default' class='text-page__text'>
+      {content.intro}
+    </Text>
+
+    {content.sections.map((section) => (
+      <Flex gap='xs' class='text-page__text'>
+        <Heading level={2} variant='title'>
+          {section.heading}
+        </Heading>
+
+        {section.paragraphs?.map((paragraph) => {
+          const [before, after] = paragraph.split('{email}');
+
+          return after === undefined ? (
+            <RichText text={paragraph} />
+          ) : (
+            <Text>
+              <RichText as='span' text={before} />
+
+              <EmailLink email={person.email} locale={locale} size='md' weight='medium' inline />
+
+              <RichText as='span' text={after} />
+            </Text>
+          );
+        })}
+
+        {section.items && <BulletList items={section.items} />}
+      </Flex>
+    ))}
+
+    <Text size='sm' color='muted'>
+      {`${content.updated.label} `}
+
+      <time datetime={content.updated.date}>{updated}</time>
+    </Text>
+  </Section>
+</MainTemplate>
+
+<style>
+  .text-page__text {
+    max-width: var(--text-width);
+  }
+</style>
