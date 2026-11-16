@@ -7,7 +7,7 @@ type Shapes = 'default' | 'square' | 'circle';
 type Fits = 'cover' | 'contain';
 type Themes = 'light' | 'dark';
 
-interface Props extends Omit<HTMLAttributes<'img'>, 'src' | 'alt' | 'width' | 'height' | 'style'> {
+interface Props extends Omit<HTMLAttributes<'img'>, 'src' | 'alt' | 'width' | 'height' | 'style' | 'loading'> {
   src: ImageMetadata;
   dark?: ImageMetadata;
   alt: string;
@@ -17,6 +17,7 @@ interface Props extends Omit<HTMLAttributes<'img'>, 'src' | 'alt' | 'width' | 'h
   sizeMobile?: number;
   widths?: number[];
   sizes?: string;
+  priority?: boolean;
   style?: string;
 }
 
@@ -30,7 +31,7 @@ const {
   sizeMobile = size,
   widths,
   sizes,
-  loading = 'lazy',
+  priority = false,
   class: className,
   style,
   ...rest
@@ -59,7 +60,8 @@ const images: { image: ImageMetadata; theme?: Themes }[] = dark
   <Image
     src={image}
     alt={alt}
-    loading={loading}
+    loading={priority ? 'eager' : 'lazy'}
+    fetchpriority={priority ? 'high' : undefined}
     decoding='async'
     style={styles}
     class:list={[
