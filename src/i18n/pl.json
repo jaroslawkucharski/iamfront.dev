@@ -230,7 +230,9 @@
     "period": "Okres",
     "company": "Firma",
     "type": "Rodzaj",
-    "stack": "Technologie"
+    "stack": "Technologie",
+    "gallery": "Galeria",
+    "lighthouse": "Wyniki Lighthouse"
   },
   "statusPage": {
     "home": "Strona główna",

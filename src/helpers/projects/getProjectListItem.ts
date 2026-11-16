@@ -19,5 +19,6 @@ export const getProjectListItem = async (project: Project, locale: Locale): Prom
     labels: [...(project.archived ? [projects.archived] : []), ...(project.planned ? [projects.planned] : [])],
     skills: project.stack,
     tech: await Promise.all(project.stack.map((id) => getSkillName(id, locale))),
+    image: project.gallery[0],
   };
 };

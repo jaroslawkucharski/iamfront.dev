@@ -226,7 +226,9 @@
     "period": "Period",
     "company": "Company",
     "type": "Type",
-    "stack": "Technologies"
+    "stack": "Technologies",
+    "gallery": "Gallery",
+    "lighthouse": "Lighthouse scores"
   },
   "statusPage": {
     "home": "Home page",

@@ -4,7 +4,7 @@ import type { ImageMetadata } from 'astro';
 import Screenshot from '@molecules/Screenshot/Screenshot.astro';
 
 interface Props {
-  images: { src: ImageMetadata; dark?: ImageMetadata; alt: string }[];
+  images: readonly { src: ImageMetadata; dark?: ImageMetadata; alt: string }[];
   zoom: { group: string; label: string };
   class?: string;
 }
