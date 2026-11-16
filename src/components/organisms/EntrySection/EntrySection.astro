@@ -1,4 +1,6 @@
 ---
+import type { Locale } from '@lib/i18n/languages';
+
 import Flex from '@atoms/Flex/Flex.astro';
 import Icon from '@atoms/Icon/Icon.astro';
 import Link from '@atoms/Link/Link.astro';
@@ -15,15 +17,17 @@ export interface EntrySectionData {
 }
 
 interface Props {
+  id: string;
   section: EntrySectionData;
+  locale: Locale;
   stackLabel?: string;
   projectLinkLabel?: string;
 }
 
-const { section, stackLabel = '', projectLinkLabel = '' } = Astro.props;
+const { id, section, locale, stackLabel = '', projectLinkLabel = '' } = Astro.props;
 ---
 
-<Disclosure title={section.title} level={4} variant='plain'>
+<Disclosure id={id} title={section.title} locale={locale} level={4} variant='plain'>
   <Flex gap='sm' align='start'>
     {section.stack && <BadgeList label={stackLabel} items={section.stack} />}
 

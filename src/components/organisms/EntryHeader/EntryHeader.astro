@@ -1,10 +1,9 @@
 ---
-import type { ImageMetadata } from 'astro';
-
 import { getDictionary } from '@lib/i18n/getDictionary';
+import { interpolate } from '@lib/i18n/interpolate';
 import type { Locale } from '@lib/i18n/languages';
 
-import type { IconName } from '@atoms/Icon/Icon.astro';
+import type { IconName } from '@atoms/Icon/iconNames';
 import Link from '@atoms/Link/Link.astro';
 import Text from '@atoms/Text/Text.astro';
 import DateRange from '@molecules/DateRange/DateRange.astro';
@@ -16,10 +15,8 @@ type Levels = 2 | 3 | 4;
 interface Props {
   name: string;
   logo?: string;
-  image?: { src: ImageMetadata; alt: string };
   icon?: IconName;
   url?: string;
-  urlText?: string;
   level?: Levels;
   role?: string;
   roleNote?: string;
@@ -28,41 +25,33 @@ interface Props {
   locale: Locale;
 }
 
-const { name, logo, image, icon, url, urlText, role, roleNote, level = 3, start, end, locale } = Astro.props;
+const { name, logo, icon, url, role, roleNote, level = 3, start, end, locale } = Astro.props;
 
-const hasLogo = Boolean(logo || image || icon);
-const dictionary = getDictionary(locale);
+const hasLogo = Boolean(logo || icon);
 
-const linked = url && urlText && name.includes(urlText) ? urlText : name;
-const [before, after] =
-  linked === name ? ['', ''] : [name.slice(0, name.indexOf(linked)), name.slice(name.indexOf(linked) + linked.length)];
-const linkTitle = `${dictionary.externalLink.title.replace('{name}', linked)} ${dictionary.externalLink.newTab}`;
+const { externalLink } = getDictionary(locale);
+const newTab = ` ${externalLink.newTab}`;
+const linkTitle = `${interpolate(externalLink.title, { name })}${newTab}`;
 ---
 
 <div class:list={['entry-header', { 'entry-header--logo': hasLogo }]}>
-  <EntryLogo name={name} logo={logo} image={image} icon={icon} locale={locale} class='entry-header__logo' />
+  <EntryLogo name={name} logo={logo} icon={icon} locale={locale} class='entry-header__logo' />
 
   <Text as={`h${level}`} size='lg' weight='medium' color='default' tracking='label' class='entry-header__name'>
     {url ? (
-      <>
-        {before}
-
-        <Link
-          href={url}
-          external
-          newTabLabel={` ${dictionary.externalLink.newTab}`}
-          title={linkTitle}
-          size='lg'
-          weight='medium'
-          color='default'
-          tracking='label'
-          wrap
-        >
-          {linked}
-        </Link>
-
-        {after}
-      </>
+      <Link
+        href={url}
+        external
+        newTabLabel={newTab}
+        title={linkTitle}
+        size='lg'
+        weight='medium'
+        color='default'
+        tracking='label'
+        wrap
+      >
+        {name}
+      </Link>
     ) : (
       name
     )}
@@ -70,7 +59,7 @@ const linkTitle = `${dictionary.externalLink.title.replace('{name}', linked)} ${
 
   {role && (
     <Text size='sm' color='default' class='entry-header__role'>
-      <RichText as='span' size='sm' color='default' text={role} newTabLabel={` ${dictionary.externalLink.newTab}`} />
+      <RichText as='span' size='sm' color='default' text={role} newTabLabel={newTab} />
 
       {roleNote && <Text as='span' size='sm' color='muted'>{` (${roleNote})`}</Text>}
     </Text>

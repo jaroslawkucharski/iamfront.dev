@@ -1,6 +1,6 @@
 ---
 import { getDictionary } from '@lib/i18n/getDictionary';
-import { defaultLocale, type Locale } from '@lib/i18n/languages';
+import type { Locale } from '@lib/i18n/languages';
 
 import Icon from '@atoms/Icon/Icon.astro';
 import Text from '@atoms/Text/Text.astro';
@@ -9,17 +9,19 @@ type Levels = 2 | 3 | 4 | 5 | 6;
 type Variants = 'default' | 'plain';
 
 interface Props {
+  id: string;
   title: string;
+  locale: Locale;
   level?: Levels;
   open?: boolean;
   variant?: Variants;
   class?: string;
 }
 
-const { title, level = 4, open = false, variant = 'default', class: className } = Astro.props;
+const { id, title, locale, level = 4, open = false, variant = 'default', class: className } = Astro.props;
 
-const panelId = `disclosure-${Math.random().toString(36).slice(2, 10)}`;
-const disclosure = getDictionary((Astro.currentLocale as Locale | undefined) ?? defaultLocale).disclosure;
+const panelId = `${id}-panel`;
+const { disclosure } = getDictionary(locale);
 const expandTitle = `${disclosure.expand}: ${title}`;
 const collapseTitle = `${disclosure.collapse}: ${title}`;
 ---
@@ -62,6 +64,7 @@ const collapseTitle = `${disclosure.collapse}: ${title}`;
       display: block;
       content-visibility: visible;
     }
+
     .disclosure .disclosure__button .disclosure__icon {
       display: none;
     }
@@ -178,6 +181,7 @@ const collapseTitle = `${disclosure.collapse}: ${title}`;
       display: block;
       content-visibility: visible;
     }
+
     .disclosure__icon {
       display: none;
     }
