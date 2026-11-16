@@ -1,4 +1,6 @@
 ---
+import { interpolate } from '@lib/i18n/interpolate';
+
 import Input from '@atoms/Input/Input.astro';
 import Select from '@atoms/Select/Select.astro';
 import Text from '@atoms/Text/Text.astro';
@@ -42,12 +44,7 @@ const errorId = `${id}-error`;
 const counterId = `${id}-counter`;
 const describedBy = [errorId, counter && maxlength ? counterId : ''].filter(Boolean).join(' ');
 
-const messages = Object.fromEntries(
-  Object.entries(errors).map(([key, text]) => [
-    key,
-    text.replace('{min}', String(minlength ?? '')).replace('{max}', String(maxlength ?? '')),
-  ]),
-);
+const messages = interpolate(errors, { min: String(minlength ?? ''), max: String(maxlength ?? '') });
 ---
 
 <div class:list={['form-field', className]} data-form-field>
@@ -92,7 +89,7 @@ const messages = Object.fromEntries(
         data-counter={counter}
         data-max={maxlength}
       >
-        {counter.replace('{count}', '0').replace('{max}', String(maxlength))}
+        {interpolate(counter, { count: '0', max: String(maxlength) })}
       </Text>
     )}
   </div>

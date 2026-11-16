@@ -9,19 +9,20 @@ type Shape<T> = Omit<T, PluralKeys> & Record<PluralKeys, PluralForms>;
 export type Dictionary = Shape<typeof en>;
 
 type PluralKey = { [Key in keyof Dictionary]: Dictionary[Key] extends PluralForms ? Key : never }[keyof Dictionary];
-type Value = string | { plural: PluralKey; count: number };
+export type Value = string | { plural: PluralKey; count: number };
 
 const dictionaries = { en, pl } satisfies Record<Locale, Shape<typeof en> & Shape<typeof pl>>;
 
-export const getDictionary = (locale: Locale, values: Record<string, Value> = {}): Dictionary => {
+export const resolveValues = (locale: Locale, values: Record<string, Value>): Record<string, string> => {
   const dictionary: Dictionary = dictionaries[locale];
 
-  const resolved = Object.fromEntries(
+  return Object.fromEntries(
     Object.entries(values).map(([name, value]) => [
       name,
       typeof value === 'string' ? value : plural(dictionary[value.plural], value.count, locale),
     ]),
   );
-
-  return interpolate(dictionary, resolved);
 };
+
+export const getDictionary = (locale: Locale, values: Record<string, Value> = {}): Dictionary =>
+  interpolate(dictionaries[locale], resolveValues(locale, values));

@@ -1,4 +1,5 @@
-import { isNewTabClick } from '@helpers/isNewTabClick';
+import { isNewTabClick } from '@helpers/dom/isNewTabClick';
+import { interpolate } from '@lib/i18n/interpolate';
 
 document.addEventListener('astro:page-load', () => {
   const dialog = document.querySelector<HTMLDialogElement>('[data-lightbox-dialog]');
@@ -7,11 +8,14 @@ document.addEventListener('astro:page-load', () => {
 
   dialog.dataset.ready = '';
 
-  const image = dialog.querySelector<HTMLImageElement>('[data-lightbox-image]')!;
-  const caption = dialog.querySelector<HTMLElement>('[data-lightbox-caption]')!;
-  const counter = dialog.querySelector<HTMLElement>('[data-lightbox-counter]')!;
-  const previous = dialog.querySelector<HTMLButtonElement>('[data-lightbox-prev]')!;
-  const next = dialog.querySelector<HTMLButtonElement>('[data-lightbox-next]')!;
+  const image = dialog.querySelector<HTMLImageElement>('[data-lightbox-image]');
+  const caption = dialog.querySelector<HTMLElement>('[data-lightbox-caption]');
+  const counter = dialog.querySelector<HTMLElement>('[data-lightbox-counter]');
+  const previous = dialog.querySelector<HTMLButtonElement>('[data-lightbox-prev]');
+  const next = dialog.querySelector<HTMLButtonElement>('[data-lightbox-next]');
+
+  if (!image || !caption || !counter || !previous || !next) return;
+
   let items: HTMLAnchorElement[] = [];
   let index = 0;
 
@@ -24,9 +28,10 @@ document.addEventListener('astro:page-load', () => {
     image.src = (dark && item.dataset.lightboxDark) || item.href;
     image.alt = item.dataset.caption ?? '';
     caption.textContent = item.dataset.caption ?? '';
-    counter.textContent = (dialog.dataset.counter ?? '')
-      .replace('{current}', String(index + 1))
-      .replace('{total}', String(items.length));
+    counter.textContent = interpolate(dialog.dataset.counter ?? '', {
+      current: String(index + 1),
+      total: String(items.length),
+    });
     previous.hidden = next.hidden = items.length < 2;
   };
 
