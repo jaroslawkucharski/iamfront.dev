@@ -10,20 +10,6 @@
         "pl": "Główna platforma i architektura frontendu",
         "en": "Core platform and frontend architecture"
       },
-      "stack": [
-        "react",
-        "typescript",
-        "javascript",
-        "redux-toolkit",
-        "swr",
-        "axios",
-        "react-router",
-        "sass",
-        "zod",
-        "vitest",
-        "react-testing-library",
-        "php"
-      ],
       "items": [
         {
           "pl": "Zbudowałem znaczące części **nowej aplikacji SPA opartej na React od podstaw**, tworząc nowoczesny fundament frontendowy głównej platformy Landingi.",
@@ -45,25 +31,14 @@
           "pl": "Brałem udział w **podejmowaniu decyzji dotyczących architektury frontendu**, code review oraz standardów inżynierskich globalnej platformy SaaS wykorzystywanej przez tysiące klientów w ponad 80 krajach i obsługującej miliony wizyt miesięcznie.",
           "en": "Took part in **frontend architecture decisions**, code reviews and engineering standards for a global SaaS platform used by thousands of customers in more than 80 countries and handling millions of visits a month."
         }
-      ]
+      ],
+      "project": "landingi-spa"
     },
     {
       "title": {
         "pl": "EventTracker – Analityka behawioralna landing page’y",
         "en": "EventTracker – Landing page behavioural analytics"
       },
-      "stack": [
-        "react",
-        "typescript",
-        "swr",
-        "axios",
-        "recharts",
-        "react-router",
-        "i18next",
-        "sass",
-        "vitest",
-        "react-testing-library"
-      ],
       "items": [
         {
           "pl": "Zbudowałem **kluczowe komponenty frontendowe EventTrackera** – platformy analityki behawioralnej pozwalającej analizować interakcje użytkowników z landing page’ami, m.in. kliknięcia, głębokość scrollowania, czas na stronie i mikrokonwersje.",
@@ -85,25 +60,14 @@
           "pl": "Ściśle współpracowałem z zespołem backendowym przy **definiowaniu kontraktów API** i integracji złożonych przepływów danych analitycznych z aplikacją frontendową.",
           "en": "Worked closely with the backend team on **defining API contracts** and integrating complex analytics data flows with the frontend."
         }
-      ]
+      ],
+      "project": "eventtracker"
     },
     {
       "title": {
         "pl": "Solis – Agent AI do optymalizacji landing page’y",
         "en": "Solis – AI agent for landing page optimisation"
       },
-      "stack": [
-        "react",
-        "typescript",
-        "vercel-ai-sdk",
-        "mastra",
-        "react-markdown",
-        "swr",
-        "sass",
-        "mixpanel",
-        "vitest",
-        "react-testing-library"
-      ],
       "items": [
         {
           "pl": "Zbudowałem **kluczowe funkcjonalności frontendowe Solis** – asystenta analitycznego opartego na AI, który przekształca dane z EventTrackera w automatyczne analizy, alerty i rekomendacje.",
@@ -125,7 +89,8 @@
           "pl": "Poprawiałem **responsywność i niezawodność procesów opartych na AI** poprzez optymalizację zarządzania stanem oraz asynchronicznego przetwarzania danych.",
           "en": "Improved **the responsiveness and reliability of AI-based processes** by optimising state management and asynchronous data processing."
         }
-      ]
+      ],
+      "project": "solis"
     },
     {
       "title": {

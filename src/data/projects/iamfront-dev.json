@@ -1,0 +1,98 @@
+{
+  "name": "iamfront.dev",
+  "types": [
+    "private"
+  ],
+  "start": "2026-11",
+  "stack": [
+    "astro",
+    "typescript",
+    "css",
+    "zod",
+    "eslint",
+    "prettier",
+    "netlify",
+    "figma",
+    "wcag",
+    "seo",
+    "lighthouse"
+  ],
+  "links": {
+    "live": {
+      "pl": "https://iamfront.dev/pl/",
+      "en": "https://iamfront.dev/"
+    }
+  },
+  "summary": {
+    "pl": "Moje portfolio, zaprojektowane w Figmie i zbudowane od zera w Astro i TypeScripcie: dwujęzyczna, statyczna strona z jasnym i ciemnym motywem, zgodna z WCAG 2.1 AA.",
+    "en": "My portfolio, designed in Figma and built from scratch in Astro and TypeScript: a bilingual static site with light and dark themes, conformant with WCAG 2.1 AA."
+  },
+  "star": {
+    "situation": {
+      "pl": "Celem było stworzenie własnej strony portfolio – czytelnej, z prostym i przejrzystym interfejsem, pokazującej moje projekty, doświadczenie i umiejętności w jednym miejscu.",
+      "en": "The goal was to create my own portfolio website – clear, with a simple, uncluttered interface, presenting my projects, experience and skills in one place."
+    },
+    "task": {
+      "pl": "Celem była szybka, dostępna i łatwa w utrzymaniu strona w dwóch językach, z projektami opisanymi w układzie STAR, filtrowaniem po technologiach i treścią oddzieloną od kodu – tak, żeby w przyszłości przenieść ją do własnego backendu.",
+      "en": "The goal was a fast, accessible, easy-to-maintain site in two languages, with projects described in the STAR format, filtering by technology and content kept separate from the code – so it can later move to my own backend."
+    },
+    "action": {
+      "pl": "Zaprojektowałem stronę w Figmie, a potem zbudowałem ją w Astro i TypeScripcie zgodnie z atomic design: atomy, molekuły, organizmy i szablony. Wygląd opiera się na design tokens w CSS, z jasnym i ciemnym motywem oraz przełącznikiem animacji.\n\nTreść – projekty, doświadczenie, umiejętności, bio i strony informacyjne – jest w kolekcjach Astro z wersją polską i angielską obok siebie, sprawdzanych przy każdym buildzie schematami Zod. Tłumaczenia zawierają tylko teksty interfejsu. Umiejętności są jednym źródłem prawdy dla projektów, doświadczenia i filtrów.\n\nDostępność traktuję jako wymaganie: obsługa klawiaturą, poprawna semantyka i ARIA, kontrast w obu motywach, działanie bez JavaScriptu. Każdą zmianę sprawdzam w **axe DevTools** i **Lighthouse**. Do tego SEO (canonical, hreflang, JSON-LD, mapa strony), formularz na Netlify Forms z informacją RODO oraz adres e-mail chroniony przed botami. Jakość kodu pilnują TypeScript w trybie strict, ESLint i Prettier.",
+      "en": "I designed the site in Figma, then built it in Astro and TypeScript following atomic design: atoms, molecules, organisms and templates. The look is driven by CSS design tokens, with a light and a dark theme and an animation switch.\n\nContent – projects, experience, skills, bio and information pages – lives in Astro content collections with the Polish and English text side by side, validated with Zod schemas on every build. Translations hold only interface text. Skills are the single source of truth for projects, experience and filters.\n\nI treat accessibility as a requirement: keyboard support, correct semantics and ARIA, contrast in both themes, and a site that works without JavaScript. I check every change with **axe DevTools** and **Lighthouse**. On top of that: SEO (canonical, hreflang, JSON-LD, sitemap), a Netlify Forms contact form with a GDPR notice and an email address protected from bots. Strict TypeScript, ESLint and Prettier keep the code consistent."
+    },
+    "result": {
+      "pl": "Strona ma wynik 100 we wszystkich kategoriach Lighthouse na komputerze i telefonie, a axe DevTools nie zgłasza błędów. Nowy projekt, firmę czy umiejętność dodaję jednym plikiem JSON, bez zmian w komponentach.\n\nProjekt wciąż się rozwija – kolejne kroki to testy automatyczne, obrazek Open Graph i własny backend do zarządzania treścią.",
+      "en": "The site scores 100 in every Lighthouse category on desktop and mobile, and axe DevTools reports no issues. Adding a new project, company or skill takes a single JSON file, with no component changes.\n\nThe project is still evolving – next steps are automated tests, an Open Graph image and my own backend for managing content."
+    }
+  },
+  "gallery": [
+    {
+      "src": "@assets/projects/iamfront-home.webp",
+      "dark": "@assets/projects/iamfront-home-dark.webp",
+      "alt": {
+        "pl": "Strona główna iamfront.dev",
+        "en": "iamfront.dev home page"
+      }
+    },
+    {
+      "src": "@assets/projects/iamfront-about.webp",
+      "dark": "@assets/projects/iamfront-about-dark.webp",
+      "alt": {
+        "pl": "Strona „O mnie”",
+        "en": "“About me” page"
+      }
+    },
+    {
+      "src": "@assets/projects/iamfront-projects.webp",
+      "dark": "@assets/projects/iamfront-projects-dark.webp",
+      "alt": {
+        "pl": "Lista projektów z filtrem technologii",
+        "en": "Project list with the technology filter"
+      }
+    },
+    {
+      "src": "@assets/projects/iamfront-project.webp",
+      "dark": "@assets/projects/iamfront-project-dark.webp",
+      "alt": {
+        "pl": "Strona projektu",
+        "en": "Project page"
+      }
+    }
+  ],
+  "lighthouse": [
+    {
+      "src": "@assets/projects/iamfront-lighthouse-mobile.webp",
+      "alt": {
+        "pl": "Raport Lighthouse dla strony głównej na telefonie: 100 w kategoriach Performance, Accessibility, Best Practices i SEO",
+        "en": "Lighthouse report for the home page on mobile: 100 in Performance, Accessibility, Best Practices and SEO"
+      }
+    },
+    {
+      "src": "@assets/projects/iamfront-lighthouse-desktop.webp",
+      "alt": {
+        "pl": "Raport Lighthouse dla strony głównej na komputerze: 100 w kategoriach Performance, Accessibility, Best Practices i SEO",
+        "en": "Lighthouse report for the home page on desktop: 100 in Performance, Accessibility, Best Practices and SEO"
+      }
+    }
+  ]
+}

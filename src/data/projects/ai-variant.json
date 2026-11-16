@@ -1,0 +1,44 @@
+{
+  "name": "AI Variant™",
+  "types": ["commercial"],
+  "archived": true,
+  "company": "Landingi",
+  "start": "2022-03",
+  "end": "2025-06",
+  "stack": [
+    "react",
+    "typescript",
+    "context-api",
+    "react-intl",
+    "i18next",
+    "swr",
+    "nice-modal",
+    "sass",
+    "jest",
+    "react-testing-library"
+  ],
+  "links": {},
+  "summary": {
+    "pl": "Rozwój funkcjonalności AI Variant™ w Landingi, umożliwiającej automatyczne generowanie wariantów landing page’y na potrzeby testów A/B. Rozwiązanie wykorzystywało model uczenia maszynowego do proponowania zmian w tekstach i przyciskach CTA oraz przewidywania współczynnika konwersji.",
+    "en": "Development of the AI Variant™ feature in Landingi, enabling automatic generation of landing page variants for A/B testing. The solution used a machine learning model to propose changes to copy and CTA buttons and predict conversion rates."
+  },
+  "star": {
+    "situation": {
+      "pl": "W 2022 roku Landingi rozwijało moduł testów A/B, rozszerzając go o funkcjonalności wykorzystujące sztuczną inteligencję. Model uczenia maszynowego miał automatycznie proponować zmiany na landing page’ach i przewidywać ich skuteczność. Użytkownicy potrzebowali interfejsu, który pozwoliłby wygenerować nowy wariant, sprawdzić zaproponowane zmiany i wykorzystać go w istniejącym procesie testowania.",
+      "en": "In 2022 Landingi was extending its A/B testing module with AI-powered features. A machine learning model was to automatically suggest changes to landing pages and predict their effectiveness. Users needed an interface to generate a new variant, review the proposed changes and use it within the existing testing flow."
+    },
+    "task": {
+      "pl": "Odpowiadałem za samodzielne stworzenie frontendu AI Variant™ w zakładce Optimization, od integracji procesu generowania z interfejsem po prezentację wyników i porównywanie wariantów. Moim zadaniem było również zintegrowanie nowej funkcjonalności z istniejącym modułem testów A/B, uwzględniając stany generowania, ograniczenia dotyczące ponownego tworzenia wariantów oraz możliwość zarządzania wygenerowanymi stronami.",
+      "en": "I was solely responsible for building the AI Variant™ frontend on the Optimization tab, from integrating the generation process with the interface to presenting results and comparing variants. I also had to integrate the new feature with the existing A/B testing module, handling generation states, restrictions on regenerating variants and the ability to manage generated pages."
+    },
+    "action": {
+      "pl": "Zbudowałem w React interfejs AI Variant™ zintegrowany z tabelą wariantów testów A/B. Zaimplementowałem obsługę stanów generowania, informowanie użytkownika o postępie oraz blokadę ponownego generowania wariantu AI dla tej samej wersji landing page’a. Rozszerzyłem tabelę wariantów o miniatury i oznaczenia stron wygenerowanych przez AI oraz możliwość ustawienia ich jako wariantu głównego. Dodałem również prezentację przewidywanego współczynnika konwersji.\n\nStworzyłem interaktywny modal porównywania wariantu głównego z wygenerowanym przez AI — użytkownik mógł przeglądać obie wersje obok siebie lub osobno, a także włączać komentarze wskazujące zmiany zaproponowane przez model. Funkcjonalność objąłem testami automatycznymi w Jest i Testing Library.\n\nW 2024 roku przeniosłem AI Variant™ do nowej aplikacji SPA w React i TypeScript, dostosowując interfejs do nowej architektury i integrując funkcjonalność z przebudowanym procesem dodawania wariantów. W 2025 roku, po podjęciu decyzji o zakończeniu rozwoju AI Variant™, odpowiadałem również za usunięcie funkcjonalności z aplikacji i uporządkowanie powiązanego kodu.",
+      "en": "I built the AI Variant™ interface in React, integrated with the A/B test variants table. I implemented generation state handling, progress feedback and a lock preventing regeneration of an AI variant for the same landing page version. I extended the variants table with thumbnails and AI labels for generated pages and the ability to set them as the main variant. I also added a predicted conversion rate display.\n\nI built an interactive modal for comparing the main variant with the AI-generated one — users could view both versions side by side or separately and toggle comments highlighting the model's proposed changes. I covered the feature with automated tests in Jest and Testing Library.\n\nIn 2024 I migrated AI Variant™ to the new React and TypeScript SPA, adapting the interface to the new architecture and integrating the feature with the rebuilt variant-addition flow. In 2025, after the decision to discontinue AI Variant™, I was also responsible for removing the feature from the application and cleaning up related code."
+    },
+    "result": {
+      "pl": "Powstała funkcjonalność umożliwiająca użytkownikom automatyczne generowanie wariantów landing page’y, przeglądanie zmian zaproponowanych przez AI oraz porównywanie przewidywanej skuteczności z wariantem głównym. Integracja z modułem testów A/B pozwalała wykorzystać wygenerowane strony w istniejącym procesie optymalizacji konwersji, bez konieczności ręcznego przygotowywania alternatywnego wariantu.\n\nFunkcjonalność została następnie przeniesiona do nowej aplikacji SPA, a w 2025 roku wycofana z produktu decyzją firmy.",
+      "en": "The feature let users automatically generate landing page variants, review the AI-proposed changes and compare predicted performance against the main variant. Integration with the A/B testing module meant generated pages could be used directly in the existing conversion optimisation flow, without manually preparing an alternative variant.\n\nThe feature was later migrated to the new SPA and retired from the product in 2025 by company decision."
+    }
+  },
+  "gallery": []
+}

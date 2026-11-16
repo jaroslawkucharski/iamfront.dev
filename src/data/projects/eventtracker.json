@@ -1,0 +1,70 @@
+{
+  "name": "EventTracker: Dashboard",
+  "types": ["commercial"],
+  "company": "Landingi",
+  "start": "2023-11",
+  "end": "2026-09",
+  "stack": [
+    "react",
+    "typescript",
+    "swr",
+    "axios",
+    "recharts",
+    "react-router",
+    "i18next",
+    "sass",
+    "vitest",
+    "react-testing-library"
+  ],
+  "links": {
+    "live": {
+      "pl": "https://landingi.com/pl/produkt/eventtracker/",
+      "en": "https://landingi.com/product/eventtracker/"
+    }
+  },
+  "summary": {
+    "pl": "Rozwój interfejsu analitycznego EventTrackera, wbudowanego narzędzia Landingi do monitorowania zachowań użytkowników na landing page’ach. Projekt obejmował migrację EventTrackera do nowej aplikacji SPA oraz rozwój zakładek Overview i Events w dashboardzie landing page’a.",
+    "en": "Development of the EventTracker analytics interface, Landingi’s built-in tool for monitoring user behaviour on landing pages. The project covered migrating EventTracker to the new SPA and developing the Overview and Events tabs in the landing page dashboard."
+  },
+  "star": {
+    "situation": {
+      "pl": "EventTracker zbierał dane o zachowaniach odwiedzających opublikowane landing page’e, ale użytkownicy potrzebowali wygodnego sposobu ich analizowania bez korzystania z zewnętrznych narzędzi. Dashboard miał prezentować zarówno ogólne wyniki strony, takie jak wizyty, konwersje czy leady, jak i szczegółowe informacje o poszczególnych zdarzeniach.\n\nWraz z rozwojem nowej aplikacji SPA konieczne było również przeniesienie istniejących funkcjonalności i dalsza rozbudowa interfejsu analitycznego.",
+      "en": "EventTracker collected behavioural data from published landing pages, but users needed a convenient way to analyse it without relying on external tools. The dashboard had to present both high-level page results — visits, conversions and leads — and detailed information about individual events.\n\nAs the new SPA grew, the existing functionality also needed to be migrated and the analytics interface further developed."
+    },
+    "task": {
+      "pl": "Odpowiadałem za przeniesienie EventTrackera do nowej aplikacji SPA oraz rozwój jego interfejsu we współpracy z zespołem. Pracowałem przede wszystkim nad dwiema zakładkami dashboardu: Overview, prezentującą podsumowanie wyników landing page’a, oraz Events, umożliwiającą szczegółową analizę zdarzeń. Moim zadaniem była implementacja nowych widoków, integracja z API, obsługa filtrowania oraz prezentacja danych w tabelach i na wykresach.",
+      "en": "I was responsible for migrating EventTracker to the new SPA and developing its interface together with the team. I worked primarily on two dashboard tabs: Overview, presenting a summary of landing page results, and Events, enabling detailed event analysis. My task was to implement new views, integrate with the API, handle filtering and present data in tables and charts."
+    },
+    "action": {
+      "pl": "W zakładce Overview zbudowałem panel statystyk urządzeń oraz rozwijałem sekcje Top Events i Scroll Depth, prezentujące najczęstsze zdarzenia i głębokość przewijania strony. Dodałem również możliwość wyboru celu konwersji z dynamicznym doładowywaniem zdarzeń oraz panel średniego czasu spędzonego na stronie, uwzględniający widoczność i aktywność użytkowników z podziałem na urządzenia.\n\nW zakładce Events rozwijałem interaktywne wykresy zdarzeń i wizyt z wykorzystaniem Recharts oraz tabelę zdarzeń ze stronicowaniem po stronie serwera i rozwijanymi szczegółami. Implementowałem również funkcjonalność Combined Events, umożliwiającą łączenie zdarzeń, wraz z obsługą formularzy, modali i uprawnień użytkowników.\n\nZaimplementowałem zarządzanie filtrami i zakresem dat za pomocą parametrów URL, dzięki czemu wybrane ustawienia były współdzielone między zakładkami Overview i Events. Filtrowanie obejmowało m.in. urządzenia, kraje, języki, kampanie UTM, typy stron i warianty testów A/B.\n\nRozwijałem również integrację z Google Analytics 4, dodając panel konfiguracji przesyłania zdarzeń. Wdrożyłem eksport danych, interaktywne samouczki w react-joyride oraz testy automatyczne w Vitest i Testing Library.",
+      "en": "On the Overview tab I built the device statistics panel and developed the Top Events and Scroll Depth sections, showing the most frequent events and page scroll depth. I also added conversion goal selection with dynamic event loading and an average time-on-page panel covering both visibility and user activity, broken down by device.\n\nOn the Events tab I developed interactive event and visit charts using Recharts and an event table with server-side pagination and expandable row details. I also implemented Combined Events functionality for grouping events, with form handling, modals and user permission support.\n\nI implemented filter and date range management via URL parameters so the selected settings were shared between the Overview and Events tabs. Filtering covered devices, countries, languages, UTM campaigns, page types and A/B test variants.\n\nI also developed the Google Analytics 4 integration, adding an event forwarding configuration panel. I implemented data export, interactive tours with react-joyride and automated tests in Vitest and Testing Library."
+    },
+    "result": {
+      "pl": "Powstał rozbudowany interfejs analityczny w nowej aplikacji SPA, umożliwiający analizowanie wyników landing page’y i zachowań odwiedzających w jednym miejscu. Zakładka Overview zapewnia czytelne podsumowanie wizyt, konwersji, leadów, sprzedaży i zaangażowania użytkowników, a Events pozwala szczegółowo analizować, filtrować, łączyć i eksportować zdarzenia oraz integrować je z Google Analytics 4.\n\nWspólne filtrowanie i interaktywne wizualizacje ułatwiają porównywanie danych i analizowanie skuteczności landing page’y.",
+      "en": "The result is a comprehensive analytics interface in the new SPA that lets users analyse landing page results and visitor behaviour in one place. The Overview tab provides a clear summary of visits, conversions, leads, sales and user engagement, while Events allows detailed filtering, combining and exporting of events and integration with Google Analytics 4.\n\nShared filtering and interactive visualisations make it easier to compare data and evaluate landing page performance."
+    }
+  },
+  "gallery": [
+    {
+      "src": "@assets/projects/et-overview.webp",
+      "alt": {
+        "pl": "Zakładka Overview: wizyty, konwersje, czas na stronie, wykres wyników i insighty Solis",
+        "en": "Overview tab: visits, conversions, time on page, results chart and Solis insights"
+      }
+    },
+    {
+      "src": "@assets/projects/et-overview-panels.webp",
+      "alt": {
+        "pl": "Panele Overview: urządzenia, Top Events, kraje i głębokość przewijania",
+        "en": "Overview panels: devices, Top Events, countries and scroll depth"
+      }
+    },
+    {
+      "src": "@assets/projects/et-events-tab.webp",
+      "alt": {
+        "pl": "Zakładka Events: wykres zdarzeń i tabela ze stronicowaniem",
+        "en": "Events tab: events chart and paginated table"
+      }
+    }
+  ]
+}
