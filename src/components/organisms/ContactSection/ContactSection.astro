@@ -1,0 +1,30 @@
+---
+import { getDictionary } from '@lib/i18n/getDictionary';
+import type { Locale } from '@lib/i18n/languages';
+
+import Text from '@atoms/Text/Text.astro';
+import Section from '@molecules/Section/Section.astro';
+import BulletList from '@organisms/BulletList/BulletList.astro';
+import ContactForm from '@organisms/ContactForm/ContactForm.astro';
+import ContactLinks from '@organisms/ContactLinks/ContactLinks.astro';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+
+const { contact } = getDictionary(locale);
+---
+
+<Section id='contact' title={contact.heading} layout='split'>
+  <Text color='default' slot='aside'>
+    {contact.intro}
+  </Text>
+
+  <BulletList items={contact.points} variant='check' slot='aside' />
+
+  <ContactLinks locale={locale} slot='aside' />
+
+  <ContactForm locale={locale} />
+</Section>
