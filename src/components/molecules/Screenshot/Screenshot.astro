@@ -1,0 +1,95 @@
+---
+import type { ImageMetadata } from 'astro';
+import { getImage } from 'astro:assets';
+
+import Picture from '@atoms/Picture/Picture.astro';
+import VisuallyHidden from '@atoms/VisuallyHidden/VisuallyHidden.astro';
+
+type LoadingModes = 'eager' | 'lazy';
+type Zoom = { group: string; label: string };
+
+interface Props {
+  src: ImageMetadata;
+  dark?: ImageMetadata;
+  alt: string;
+  sizes: string;
+  loading?: LoadingModes;
+  ratio?: number;
+  zoom?: Zoom;
+  class?: string;
+}
+
+const { src, dark, alt, sizes, loading = 'lazy', ratio, zoom, class: className } = Astro.props;
+
+const toLarge = (image: ImageMetadata) => getImage({ src: image, width: Math.min(image.width, 1920), format: 'webp' });
+
+const large = zoom ? await toLarge(src) : undefined;
+const largeDark = zoom && dark ? await toLarge(dark) : undefined;
+
+const style = ratio ? `aspect-ratio: ${ratio}` : undefined;
+---
+
+{large && zoom ? (
+  <a
+    href={large.src}
+    class='screenshot-link'
+    data-lightbox={zoom.group}
+    data-lightbox-dark={largeDark?.src}
+    data-caption={alt}
+    title={zoom.label}
+  >
+    <Picture
+      src={src}
+      dark={dark}
+      alt={alt}
+      widths={[600, 1200]}
+      sizes={sizes}
+      loading={loading}
+      class:list={['screenshot', { 'screenshot--cropped': ratio }, className]}
+      style={style}
+    />
+
+    <VisuallyHidden>{` – ${zoom.label}`}</VisuallyHidden>
+  </a>
+) : (
+  <Picture
+    src={src}
+    dark={dark}
+    alt={alt}
+    widths={[600, 1200]}
+    sizes={sizes}
+    loading={loading}
+    class:list={['screenshot', { 'screenshot--cropped': ratio }, className]}
+    style={style}
+  />
+)}
+
+<style>
+  .screenshot {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: var(--radius-sm);
+    background: var(--color-surface);
+  }
+
+  .screenshot--cropped {
+    object-fit: cover;
+    object-position: top center;
+    border: var(--border-width) solid var(--color-border-subtle);
+  }
+
+  .screenshot-link {
+    display: block;
+    border-radius: var(--radius-sm);
+    cursor: var(--cursor-zoom-in);
+  }
+
+  .screenshot-link .screenshot {
+    transition: opacity var(--duration-fast) var(--ease-standard);
+  }
+
+  .screenshot-link:hover .screenshot {
+    opacity: var(--opacity-pressed);
+  }
+</style>
