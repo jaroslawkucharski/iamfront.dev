@@ -1,6 +1,7 @@
 ---
 import type { InferGetStaticPropsType } from 'astro';
 
+import { person } from '@data/site';
 import { getSkillGroups } from '@helpers/skills/getSkillGroups';
 import { getEducationEntries } from '@helpers/timeline/getEducationEntries';
 import { getExperienceEntries } from '@helpers/timeline/getExperienceEntries';
@@ -20,7 +21,7 @@ type Props = InferGetStaticPropsType<typeof getStaticPaths>;
 
 const { locale } = Astro.props;
 
-const { about } = getDictionary(locale);
+const { about } = getDictionary(locale, { name: person.name });
 ---
 
 <MainTemplate locale={locale} title={about.meta.title}>

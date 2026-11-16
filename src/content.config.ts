@@ -2,6 +2,8 @@ import { defineCollection, reference } from 'astro:content';
 import { file, glob } from 'astro/loaders';
 import { z } from 'astro/zod';
 
+import { iconNames } from '@atoms/Icon/iconNames';
+
 const localized = z.union([z.string(), z.object({ en: z.string(), pl: z.string() })]);
 const localizedUrl = z.union([z.url(), z.object({ en: z.url(), pl: z.url() })]);
 const withOrder = (text: string) =>
@@ -15,7 +17,7 @@ const timelineEntry = z.object({
   name: localized,
   shortName: localized.optional(),
   logo: z.string().optional(),
-  icon: z.string().optional(),
+  icon: z.enum(iconNames).optional(),
   url: z.url().optional(),
   start: isoDate,
   end: isoDate.optional(),
@@ -78,7 +80,42 @@ const education = defineCollection({
 
 const hobbies = defineCollection({
   loader: file('src/data/hobbies.json', ordered),
-  schema: z.object({ title: localized, description: localized, icon: z.string().optional(), order: z.number() }),
+  schema: z.object({ title: localized, description: localized, icon: z.enum(iconNames).optional(), order: z.number() }),
 });
 
-export const collections = { skillCategories, skills, projects, experience, education, hobbies };
+const profile = defineCollection({
+  loader: glob({ pattern: 'profile.json', base: './src/data' }),
+  schema: z.object({
+    highlights: z.array(localized),
+    bio: z.array(localized),
+    contact: z.object({ intro: localized, points: z.array(localized) }),
+  }),
+});
+
+const textPage = z.object({
+  title: z.string(),
+  intro: z.string(),
+  sections: z.array(
+    z.object({
+      heading: z.string(),
+      paragraphs: z.array(z.string()).optional(),
+      items: z.array(z.string()).optional(),
+    }),
+  ),
+});
+
+const textPages = defineCollection({
+  loader: glob({ pattern: '*.json', base: './src/data/textPages' }),
+  schema: z.object({ updated: z.iso.date(), en: textPage, pl: textPage }),
+});
+
+export const collections = {
+  skillCategories,
+  skills,
+  projects,
+  experience,
+  education,
+  hobbies,
+  profile,
+  textPages,
+};

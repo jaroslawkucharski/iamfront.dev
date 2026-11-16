@@ -1,4 +1,5 @@
 ---
+import { getDictionary } from '@lib/i18n/getDictionary';
 import type { Locale } from '@lib/i18n/languages';
 
 import Text from '@atoms/Text/Text.astro';
@@ -7,10 +8,9 @@ import TextSection, { type TextSectionData } from '@organisms/TextSection/TextSe
 import MainTemplate from '@templates/MainTemplate/MainTemplate.astro';
 
 export interface TextPageContent {
-  meta: { title: string };
   title: string;
   intro: string;
-  updated: { label: string; date: string };
+  updated: string;
   sections: readonly TextSectionData[];
 }
 
@@ -22,15 +22,17 @@ interface Props {
 
 const { id, locale, content } = Astro.props;
 
+const { textPage } = getDictionary(locale);
+
 const updated = new Intl.DateTimeFormat(locale, {
   day: 'numeric',
   month: 'long',
   year: 'numeric',
   timeZone: 'UTC',
-}).format(new Date(`${content.updated.date}T00:00:00Z`));
+}).format(new Date(`${content.updated}T00:00:00Z`));
 ---
 
-<MainTemplate locale={locale} title={content.meta.title} contactCta={false}>
+<MainTemplate locale={locale} title={content.title} contactCta={false}>
   <Section id={id} title={content.title} level={1} gap='lg'>
     <Text size='lg' color='default' class='text-page__text'>
       {content.intro}
@@ -41,9 +43,9 @@ const updated = new Intl.DateTimeFormat(locale, {
     ))}
 
     <Text size='sm' color='muted'>
-      {`${content.updated.label} `}
+      {`${textPage.updated} `}
 
-      <time datetime={content.updated.date}>{updated}</time>
+      <time datetime={content.updated}>{updated}</time>
     </Text>
   </Section>
 </MainTemplate>

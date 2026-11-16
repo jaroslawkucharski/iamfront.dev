@@ -1,6 +1,7 @@
 ---
 import portrait from '@assets/me/portrait.png';
-import { getExperienceValues } from '@helpers/getExperienceValues';
+import { person } from '@data/site';
+import { getProfile } from '@helpers/profile/getProfile';
 import { getDictionary } from '@lib/i18n/getDictionary';
 import type { Locale } from '@lib/i18n/languages';
 
@@ -16,13 +17,14 @@ interface Props {
 
 const { locale } = Astro.props;
 
-const { about } = getDictionary(locale, getExperienceValues());
+const { about } = getDictionary(locale, { name: person.name });
+const { bio } = await getProfile(locale);
 ---
 
 <Section id='about' title={about.intro.heading} level={1}>
   <MediaBlock>
     <Flex gap='sm'>
-      {about.intro.paragraphs.map((paragraph) => (
+      {bio.map((paragraph) => (
         <RichText text={paragraph} />
       ))}
     </Flex>

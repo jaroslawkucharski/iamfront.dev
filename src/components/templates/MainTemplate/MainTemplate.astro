@@ -1,4 +1,5 @@
 ---
+import { site } from '@data/site';
 import { getDictionary } from '@lib/i18n/getDictionary';
 import type { Locale } from '@lib/i18n/languages';
 
@@ -20,7 +21,7 @@ const { locale, title, contactCta = true } = Astro.props;
 const { skipLink } = getDictionary(locale);
 ---
 
-<BaseLayout locale={locale} title={title}>
+<BaseLayout locale={locale} title={`${title} | ${site.name}`}>
   <SkipLink title={skipLink}>{skipLink}</SkipLink>
 
   <div class='page container' id='top'>

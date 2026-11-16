@@ -1,4 +1,5 @@
 ---
+import { getProfile } from '@helpers/profile/getProfile';
 import { getDictionary } from '@lib/i18n/getDictionary';
 import type { Locale } from '@lib/i18n/languages';
 
@@ -15,14 +16,15 @@ interface Props {
 const { locale } = Astro.props;
 
 const { contact } = getDictionary(locale);
+const profile = await getProfile(locale);
 ---
 
 <Section id='contact' title={contact.heading} layout='split'>
   <Text color='default' slot='aside'>
-    {contact.intro}
+    {profile.contact.intro}
   </Text>
 
-  <BulletList items={contact.points} variant='check' slot='aside' />
+  <BulletList items={profile.contact.points} variant='check' slot='aside' />
 
   <ContactLinks locale={locale} slot='aside' />
 

@@ -38,9 +38,13 @@ const links = [
         {hint && <VisuallyHidden>{` – ${hint}`}</VisuallyHidden>}
       </Heading>
 
-      <Text color='default' class='status-page__text'>
-        {text.map((line, index) => (index > 0 ? [<br />, line] : line))}
-      </Text>
+      <div>
+        {text.map((line) => (
+          <Text color='default' class='status-page__text'>
+            {line}
+          </Text>
+        ))}
+      </div>
 
       <LinkList links={links} class='status-page__links' />
     </Flex>

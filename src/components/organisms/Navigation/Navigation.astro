@@ -1,5 +1,7 @@
 ---
-import { getCvLink } from '@helpers/getCvLink';
+import { getRelativeLocaleUrl } from 'astro:i18n';
+
+import { getCvLink } from '@helpers/files/getCvLink';
 import { getDictionary } from '@lib/i18n/getDictionary';
 import type { Locale } from '@lib/i18n/languages';
 import { stripLocale } from '@lib/i18n/stripLocale';
@@ -20,6 +22,12 @@ const { locale, id, class: className } = Astro.props;
 const { nav } = getDictionary(locale);
 const cv = getCvLink(locale);
 
+const items = [
+  { href: getRelativeLocaleUrl(locale, 'about/'), ...nav.items.about },
+  { href: getRelativeLocaleUrl(locale, 'projects/'), ...nav.items.projects },
+  { href: `${getRelativeLocaleUrl(locale)}#contact`, ...nav.items.contact },
+];
+
 const normalize = (path: string) => stripLocale(path).replace(/\/$/, '') || '/';
 const currentPath = normalize(Astro.url.pathname);
 
@@ -34,7 +42,7 @@ const isActive = (href: string) => {
 
 <nav id={id} aria-label={nav.label} class:list={['navigation', className]}>
   <ul class='navigation__list'>
-    {nav.items.map((item, index) => (
+    {items.map((item, index) => (
       <li style={`--i: ${index}`}>
         <Link href={item.href} title={item.title} active={isActive(item.href)} class='navigation__link'>
           {item.label}
@@ -44,7 +52,7 @@ const isActive = (href: string) => {
       </li>
     ))}
 
-    <li style={`--i: ${nav.items.length}`}>
+    <li style={`--i: ${items.length}`}>
       <Link href={cv.href} download={cv.fileName} title={cv.title} class='navigation__link'>
         <Icon name='download' size={16} class='navigation__cv-icon' />
 
@@ -55,12 +63,7 @@ const isActive = (href: string) => {
     </li>
   </ul>
 
-  <SettingsList
-    id={`${id}-settings`}
-    locale={locale}
-    class='navigation__settings'
-    style={`--i: ${nav.items.length + 1}`}
-  />
+  <SettingsList id={`${id}-settings`} locale={locale} class='navigation__settings' style={`--i: ${items.length + 1}`} />
 </nav>
 
 <style>
