@@ -4,6 +4,7 @@ import { defineConfig } from 'astro/config';
 
 export default defineConfig({
   site: 'https://iamfront.dev',
+  build: { inlineStylesheets: 'always' },
   i18n: {
     locales: ['en', 'pl'],
     defaultLocale: 'en',

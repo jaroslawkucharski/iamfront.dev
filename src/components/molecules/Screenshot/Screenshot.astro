@@ -5,7 +5,6 @@ import { getImage } from 'astro:assets';
 import Picture from '@atoms/Picture/Picture.astro';
 import VisuallyHidden from '@atoms/VisuallyHidden/VisuallyHidden.astro';
 
-type LoadingModes = 'eager' | 'lazy';
 type Zoom = { group: string; label: string };
 
 interface Props {
@@ -13,13 +12,13 @@ interface Props {
   dark?: ImageMetadata;
   alt: string;
   sizes: string;
-  loading?: LoadingModes;
+  priority?: boolean;
   ratio?: number;
   zoom?: Zoom;
   class?: string;
 }
 
-const { src, dark, alt, sizes, loading = 'lazy', ratio, zoom, class: className } = Astro.props;
+const { src, dark, alt, sizes, priority = false, ratio, zoom, class: className } = Astro.props;
 
 const toLarge = (image: ImageMetadata) => getImage({ src: image, width: Math.min(image.width, 1920), format: 'webp' });
 
@@ -44,7 +43,7 @@ const style = ratio ? `aspect-ratio: ${ratio}` : undefined;
       alt={alt}
       widths={[600, 1200]}
       sizes={sizes}
-      loading={loading}
+      priority={priority}
       class:list={['screenshot', { 'screenshot--cropped': ratio }, className]}
       style={style}
     />
@@ -58,7 +57,7 @@ const style = ratio ? `aspect-ratio: ${ratio}` : undefined;
     alt={alt}
     widths={[600, 1200]}
     sizes={sizes}
-    loading={loading}
+    priority={priority}
     class:list={['screenshot', { 'screenshot--cropped': ratio }, className]}
     style={style}
   />

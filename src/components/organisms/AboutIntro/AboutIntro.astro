@@ -29,14 +29,6 @@ const { bio } = await getProfile(locale);
       ))}
     </Flex>
 
-    <Picture
-      src={portrait}
-      alt={about.photoAlt}
-      shape='circle'
-      size={280}
-      sizeMobile={200}
-      loading='eager'
-      slot='media'
-    />
+    <Picture src={portrait} alt={about.photoAlt} shape='circle' size={280} sizeMobile={200} priority slot='media' />
   </MediaBlock>
 </Section>
