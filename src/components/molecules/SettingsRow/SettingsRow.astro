@@ -1,0 +1,30 @@
+---
+import Text from '@atoms/Text/Text.astro';
+
+interface Props {
+  label: string;
+  labelId?: string;
+  hiddenLabel?: boolean;
+}
+
+const { label, labelId, hiddenLabel = false } = Astro.props;
+---
+
+<div class='settings-row'>
+  <Text as='span' size='sm' color='default' id={labelId} aria-hidden={hiddenLabel ? 'true' : undefined}>
+    {label}
+  </Text>
+
+  <slot />
+</div>
+
+<style>
+  .settings-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-sm);
+    min-height: var(--tap-target);
+    white-space: nowrap;
+  }
+</style>

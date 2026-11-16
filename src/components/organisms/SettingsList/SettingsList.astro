@@ -2,9 +2,9 @@
 import { getDictionary } from '@lib/i18n/getDictionary';
 import type { Locale } from '@lib/i18n/languages';
 
-import Text from '@atoms/Text/Text.astro';
 import LanguageSwitcher from '@molecules/LanguageSwitcher/LanguageSwitcher.astro';
 import PreferenceToggle from '@molecules/PreferenceToggle/PreferenceToggle.astro';
+import SettingsRow from '@molecules/SettingsRow/SettingsRow.astro';
 
 interface Props {
   locale: Locale;
@@ -20,29 +20,17 @@ const languageLabelId = `${id}-language`;
 ---
 
 <div id={id} role='group' aria-label={settings.label} class:list={['settings-list', className]} {...rest}>
-  <div class='settings-list__row'>
-    <Text as='span' size='sm' color='default' id={languageLabelId}>
-      {settings.language}
-    </Text>
-
+  <SettingsRow label={settings.language} labelId={languageLabelId}>
     <LanguageSwitcher locale={locale} aria-describedby={languageLabelId} />
-  </div>
+  </SettingsRow>
 
-  <div class='settings-list__row'>
-    <Text as='span' size='sm' color='default' aria-hidden='true'>
-      {settings.themeVisible}
-    </Text>
-
+  <SettingsRow label={settings.themeVisible} hiddenLabel>
     <PreferenceToggle variant='theme' label={settings.theme} titleOn={theme.toDark} titleOff={theme.toLight} />
-  </div>
+  </SettingsRow>
 
-  <div class='settings-list__row'>
-    <Text as='span' size='sm' color='default' aria-hidden='true'>
-      {settings.motion}
-    </Text>
-
+  <SettingsRow label={settings.motion} hiddenLabel>
     <PreferenceToggle variant='motion' label={settings.motion} titleOn={motion.resume} titleOff={motion.stop} />
-  </div>
+  </SettingsRow>
 </div>
 
 <style>
@@ -53,14 +41,5 @@ const languageLabelId = `${id}-language`;
 
   .settings-list[hidden] {
     display: none;
-  }
-
-  .settings-list__row {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: var(--space-sm);
-    min-height: var(--tap-target);
-    white-space: nowrap;
   }
 </style>
