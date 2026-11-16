@@ -13,15 +13,17 @@ import Header from '@organisms/Header/Header.astro';
 interface Props {
   locale: Locale;
   title: string;
+  description: string;
+  noindex?: boolean;
   contactCta?: boolean;
 }
 
-const { locale, title, contactCta = true } = Astro.props;
+const { locale, title, description, noindex, contactCta = true } = Astro.props;
 
 const { skipLink } = getDictionary(locale);
 ---
 
-<BaseLayout locale={locale} title={`${title} | ${site.name}`}>
+<BaseLayout locale={locale} title={`${title} | ${site.name}`} description={description} noindex={noindex}>
   <SkipLink title={skipLink}>{skipLink}</SkipLink>
 
   <div class='page container' id='top'>

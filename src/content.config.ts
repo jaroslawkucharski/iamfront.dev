@@ -94,6 +94,7 @@ const profile = defineCollection({
 
 const textPage = z.object({
   title: z.string(),
+  description: z.string(),
   intro: z.string(),
   sections: z.array(
     z.object({

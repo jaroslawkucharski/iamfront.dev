@@ -24,7 +24,7 @@ const { locale } = Astro.props;
 const { about } = getDictionary(locale, { name: person.name });
 ---
 
-<MainTemplate locale={locale} title={about.meta.title}>
+<MainTemplate locale={locale} title={about.meta.title} description={about.meta.description}>
   <AboutIntro locale={locale} />
 
   <Section id='skills' title={about.skills.heading}>

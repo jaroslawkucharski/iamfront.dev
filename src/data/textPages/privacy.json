@@ -2,6 +2,7 @@
   "updated": "2026-11-16",
   "en": {
     "title": "Privacy",
+    "description": "How I process contact form data on iamfront.dev and what your rights are (GDPR).",
     "intro": "This site uses no cookies and no tracking tools. I only process personal data when you send a message through the contact form.",
     "sections": [
       {
@@ -45,6 +46,7 @@
   },
   "pl": {
     "title": "Prywatność",
+    "description": "Jak przetwarzam dane z formularza kontaktowego na iamfront.dev i jakie masz prawa (RODO).",
     "intro": "Ta strona nie używa ciasteczek ani narzędzi śledzących. Dane osobowe przetwarzam tylko wtedy, gdy wyślesz wiadomość przez formularz kontaktowy.",
     "sections": [
       {

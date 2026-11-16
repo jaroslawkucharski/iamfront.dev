@@ -169,7 +169,8 @@
   },
   "about": {
     "meta": {
-      "title": "O mnie – {name}"
+      "title": "O mnie – {name}",
+      "description": "Jarosław Kucharski – Senior Frontend Developer z Katowic. React, TypeScript, Next.js, architektura frontendu i wydajność aplikacji internetowych."
     },
     "intro": {
       "heading": "O mnie"
@@ -193,7 +194,8 @@
   },
   "projects": {
     "meta": {
-      "title": "Projekty"
+      "title": "Projekty",
+      "description": "Projekty komercyjne i prywatne Jarosława Kucharskiego – React, TypeScript, Next.js."
     },
     "heading": "Projekty",
     "listLabel": "Projekty",

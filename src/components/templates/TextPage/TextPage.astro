@@ -9,6 +9,7 @@ import MainTemplate from '@templates/MainTemplate/MainTemplate.astro';
 
 export interface TextPageContent {
   title: string;
+  description: string;
   intro: string;
   updated: string;
   sections: readonly TextSectionData[];
@@ -32,7 +33,7 @@ const updated = new Intl.DateTimeFormat(locale, {
 }).format(new Date(`${content.updated}T00:00:00Z`));
 ---
 
-<MainTemplate locale={locale} title={content.title} contactCta={false}>
+<MainTemplate locale={locale} title={content.title} description={content.description} contactCta={false}>
   <Section id={id} title={content.title} level={1} gap='lg'>
     <Text size='lg' color='default' class='text-page__text'>
       {content.intro}
