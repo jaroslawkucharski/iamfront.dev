@@ -1,14 +1,9 @@
 ---
-import { person } from '@data/site';
 import type { Locale } from '@lib/i18n/languages';
 
-import Flex from '@atoms/Flex/Flex.astro';
-import Heading from '@atoms/Heading/Heading.astro';
 import Text from '@atoms/Text/Text.astro';
-import EmailLink from '@molecules/EmailLink/EmailLink.astro';
-import RichText from '@molecules/RichText/RichText.astro';
 import Section from '@molecules/Section/Section.astro';
-import BulletList from '@organisms/BulletList/BulletList.astro';
+import TextSection, { type TextSectionData } from '@organisms/TextSection/TextSection.astro';
 import MainTemplate from '@templates/MainTemplate/MainTemplate.astro';
 
 export interface TextPageContent {
@@ -16,7 +11,7 @@ export interface TextPageContent {
   title: string;
   intro: string;
   updated: { label: string; date: string };
-  sections: readonly { heading: string; paragraphs?: readonly string[]; items?: readonly string[] }[];
+  sections: readonly TextSectionData[];
 }
 
 interface Props {
@@ -42,29 +37,7 @@ const updated = new Intl.DateTimeFormat(locale, {
     </Text>
 
     {content.sections.map((section) => (
-      <Flex gap='xs' class='text-page__text'>
-        <Heading level={2} variant='title'>
-          {section.heading}
-        </Heading>
-
-        {section.paragraphs?.map((paragraph) => {
-          const [before, after] = paragraph.split('{email}');
-
-          return after === undefined ? (
-            <RichText text={paragraph} />
-          ) : (
-            <Text>
-              <RichText as='span' text={before} />
-
-              <EmailLink email={person.email} locale={locale} size='md' weight='medium' inline />
-
-              <RichText as='span' text={after} />
-            </Text>
-          );
-        })}
-
-        {section.items && <BulletList items={section.items} />}
-      </Flex>
+      <TextSection section={section} locale={locale} />
     ))}
 
     <Text size='sm' color='muted'>
