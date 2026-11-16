@@ -1,15 +1,16 @@
 <script is:inline>
-  (function () {
-    function applyPreferences(root) {
-      root.dataset.js = 'true';
-
-      let theme = null;
-      let motion = null;
-
+  (() => {
+    const read = (key) => {
       try {
-        theme = localStorage.getItem('theme');
-        motion = localStorage.getItem('motion');
-      } catch {}
+        return localStorage.getItem(key);
+      } catch {
+        return null;
+      }
+    };
+
+    const applyPreferences = (root) => {
+      const theme = read('theme');
+      let motion = read('motion');
 
       if (theme === 'light' || theme === 'dark') root.dataset.theme = theme;
 
@@ -18,11 +19,11 @@
       }
 
       root.dataset.motion = motion;
-    }
+    };
 
     applyPreferences(document.documentElement);
 
-    document.addEventListener('astro:before-swap', function (event) {
+    document.addEventListener('astro:before-swap', (event) => {
       applyPreferences(event.newDocument.documentElement);
     });
   })();

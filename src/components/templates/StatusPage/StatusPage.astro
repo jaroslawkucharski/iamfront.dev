@@ -1,0 +1,20 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import type { Locale } from '@/lib/i18n/languages';
+
+interface Props {
+  locale: Locale;
+  title: string;
+  heading: string;
+  text: readonly string[];
+}
+
+const { locale, title, heading, text } = Astro.props;
+---
+
+<BaseLayout locale={locale} title={title}>
+  <h1>{heading}</h1>
+  {text.map((line) => (
+    <p>{line}</p>
+  ))}
+</BaseLayout>

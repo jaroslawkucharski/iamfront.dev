@@ -1,0 +1,17 @@
+{
+  "meta": {
+    "title": "Jarosław Kucharski – Senior Frontend Developer | iamfront.dev",
+    "description": "Senior Frontend Developer z {experience} {years} doświadczenia komercyjnego w tworzeniu aplikacji internetowych z wykorzystaniem React, TypeScript i Next.js."
+  },
+  "experienceYears": {
+    "one": "roku",
+    "few": "lat",
+    "many": "lat",
+    "other": "lat"
+  },
+  "notFound": {
+    "code": "404",
+    "title": "Nie znaleziono strony | iamfront.dev",
+    "text": ["Ups, zabłądziłeś.", "Tej strony nie ma, ale reszta jest na miejscu :)"]
+  }
+}
