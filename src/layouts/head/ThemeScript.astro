@@ -1,15 +1,18 @@
 <script is:inline>
   (function () {
+    function read(key) {
+      try {
+        return localStorage.getItem(key);
+      } catch {
+        return null;
+      }
+    }
+
     function applyPreferences(root) {
       root.dataset.js = 'true';
 
-      let theme = null;
-      let motion = null;
-
-      try {
-        theme = localStorage.getItem('theme');
-        motion = localStorage.getItem('motion');
-      } catch {}
+      const theme = read('theme');
+      let motion = read('motion');
 
       if (theme === 'light' || theme === 'dark') root.dataset.theme = theme;
 
