@@ -1,0 +1,16 @@
+---
+import type { InferGetStaticPropsType } from 'astro';
+
+import { getDictionary } from '@lib/i18n/getDictionary';
+import { getLocalePaths } from '@lib/i18n/getLocalePaths';
+
+import TextPage from '@templates/TextPage/TextPage.astro';
+
+export const getStaticPaths = getLocalePaths;
+
+type Props = InferGetStaticPropsType<typeof getStaticPaths>;
+
+const { locale } = Astro.props;
+---
+
+<TextPage id='privacy' locale={locale} content={getDictionary(locale).privacy} />
