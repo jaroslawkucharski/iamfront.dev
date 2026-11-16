@@ -11,6 +11,7 @@ export const getStaticPaths = getLocalePaths;
 type Props = InferGetStaticPropsType<typeof getStaticPaths>;
 
 const { locale } = Astro.props;
+
 const experience = getExperience();
 const dictionary = getDictionary(locale, {
   experience,
@@ -20,5 +21,6 @@ const dictionary = getDictionary(locale, {
 
 <BaseLayout locale={locale} title={dictionary.meta.title}>
   <h1>{dictionary.meta.title}</h1>
+
   <p>{dictionary.meta.description}</p>
 </BaseLayout>
