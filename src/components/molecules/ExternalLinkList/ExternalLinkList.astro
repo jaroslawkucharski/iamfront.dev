@@ -1,0 +1,30 @@
+---
+import Flex from '@atoms/Flex/Flex.astro';
+import Icon from '@atoms/Icon/Icon.astro';
+import Link from '@atoms/Link/Link.astro';
+
+interface ExternalLink {
+  href: string;
+  label: string;
+}
+
+interface Props {
+  label: string;
+  links: readonly ExternalLink[];
+  newTabLabel: string;
+}
+
+const { label, links, newTabLabel } = Astro.props;
+---
+
+<Flex as='ul' list gap='xs' aria-label={label}>
+  {links.map((link) => (
+    <li>
+      <Link href={link.href} external keepReferrer newTabLabel={newTabLabel} title={`${link.label}${newTabLabel}`}>
+        {link.label}
+
+        <Icon name='external' size={16} />
+      </Link>
+    </li>
+  ))}
+</Flex>
