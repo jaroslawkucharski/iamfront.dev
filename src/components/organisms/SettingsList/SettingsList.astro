@@ -1,0 +1,66 @@
+---
+import { getDictionary } from '@lib/i18n/getDictionary';
+import type { Locale } from '@lib/i18n/languages';
+
+import Text from '@atoms/Text/Text.astro';
+import LanguageSwitcher from '@molecules/LanguageSwitcher/LanguageSwitcher.astro';
+import PreferenceToggle from '@molecules/PreferenceToggle/PreferenceToggle.astro';
+
+interface Props {
+  locale: Locale;
+  id: string;
+  class?: string;
+  [key: string]: unknown;
+}
+
+const { locale, id, class: className, ...rest } = Astro.props;
+
+const { settings, theme, motion } = getDictionary(locale);
+const languageLabelId = `${id}-language`;
+---
+
+<div id={id} role='group' aria-label={settings.label} class:list={['settings-list', className]} {...rest}>
+  <div class='settings-list__row'>
+    <Text as='span' size='sm' color='default' id={languageLabelId}>
+      {settings.language}
+    </Text>
+
+    <LanguageSwitcher locale={locale} aria-describedby={languageLabelId} />
+  </div>
+
+  <div class='settings-list__row'>
+    <Text as='span' size='sm' color='default' aria-hidden='true'>
+      {settings.themeVisible}
+    </Text>
+
+    <PreferenceToggle variant='theme' label={settings.theme} titleOn={theme.toDark} titleOff={theme.toLight} />
+  </div>
+
+  <div class='settings-list__row'>
+    <Text as='span' size='sm' color='default' aria-hidden='true'>
+      {settings.motion}
+    </Text>
+
+    <PreferenceToggle variant='motion' label={settings.motion} titleOn={motion.resume} titleOff={motion.stop} />
+  </div>
+</div>
+
+<style>
+  .settings-list {
+    display: grid;
+    gap: var(--space-xs);
+  }
+
+  .settings-list[hidden] {
+    display: none;
+  }
+
+  .settings-list__row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-sm);
+    min-height: var(--tap-target);
+    white-space: nowrap;
+  }
+</style>
