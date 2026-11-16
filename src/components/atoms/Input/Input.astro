@@ -1,18 +1,23 @@
 ---
+type Variants = 'default' | 'search';
+
 interface Props {
+  variant?: Variants;
   multiline?: boolean;
   rows?: number;
   class?: string;
   [key: string]: unknown;
 }
 
-const { multiline = false, rows = 6, class: className, ...rest } = Astro.props;
+const { variant = 'default', multiline = false, rows = 6, class: className, ...rest } = Astro.props;
+
+const classes = ['input', `input--${variant}`, className];
 ---
 
 {multiline ? (
-  <textarea class:list={['input', 'input--multiline', className]} rows={rows} {...rest} />
+  <textarea class:list={[classes, 'input--multiline']} rows={rows} {...rest} />
 ) : (
-  <input class:list={['input', className]} {...rest} />
+  <input class:list={classes} {...rest} />
 )}
 
 <style>
@@ -42,5 +47,26 @@ const { multiline = false, rows = 6, class: className, ...rest } = Astro.props;
   .input[aria-invalid='true'] {
     border-color: var(--color-error);
     border-width: var(--border-width-strong);
+  }
+
+  /* Search */
+  .input--search {
+    min-height: var(--control-sm);
+    padding: 0 var(--space-sm) 0 calc(var(--space-xs) + var(--icon-sm) + var(--space-xs));
+    border-color: var(--color-border-subtle);
+    border-radius: var(--radius-full);
+    font-size: var(--fs-sm);
+    line-height: normal;
+    letter-spacing: var(--ls-label);
+  }
+
+  .input--search::placeholder {
+    color: var(--color-text-muted);
+    opacity: 1;
+  }
+
+  .input--search:hover,
+  .input--search:focus {
+    border-color: var(--color-border);
   }
 </style>
