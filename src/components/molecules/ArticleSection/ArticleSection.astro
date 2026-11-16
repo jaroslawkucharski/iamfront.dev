@@ -1,0 +1,27 @@
+---
+import Flex from '@atoms/Flex/Flex.astro';
+import Heading from '@atoms/Heading/Heading.astro';
+
+interface Props {
+  id: string;
+  title: string;
+}
+
+const { id, title } = Astro.props;
+
+const headingId = `${id}-title`;
+---
+
+<Flex as='section' gap='sm' id={id} aria-labelledby={headingId} class='article-section'>
+  <Heading level={2} variant='title' id={headingId}>
+    {title}
+  </Heading>
+
+  <slot />
+</Flex>
+
+<style>
+  :global(.article-section) {
+    scroll-margin-top: var(--space-md);
+  }
+</style>
