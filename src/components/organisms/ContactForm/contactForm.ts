@@ -89,17 +89,16 @@ document.addEventListener('astro:page-load', () => {
       setStatus(form.dataset.sending ?? '', 'sending');
 
       try {
-        const entries = [...new FormData(form)].map(([name, value]) => [name, String(value)]);
-        const body = new URLSearchParams(entries).toString();
-        const response = await fetch('/', {
+        const response = await fetch(form.action, {
           method: 'POST',
-          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-          body,
+          headers: { Accept: 'application/json' },
+          body: new FormData(form),
         });
+        const result: { success?: boolean } = await response.json();
 
-        if (!response.ok) throw new Error(String(response.status));
+        if (!response.ok || !result.success) throw new Error(String(response.status));
 
-        await navigate(form.action);
+        await navigate(form.dataset.success ?? '/');
       } catch {
         setStatus(form.dataset.failure ?? '', 'error');
       } finally {
