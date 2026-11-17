@@ -10,9 +10,9 @@
     "^astro(:.*)?$",
     "<THIRD_PARTY_MODULES>",
     "",
-    "^@(assets|config|data|i18n|lib|helpers|typings|styles)/(.*)$",
+    "^@(assets|config|data|i18n|lib|helpers|typings|styles|tests)/(.*)$",
     "",
-    "^@(layouts|templates|organisms|molecules|atoms)/(.*)$",
+    "^@(pages|layouts|templates|organisms|molecules|atoms)/(.*)$",
     "",
     "^[./]"
   ],

@@ -39,7 +39,9 @@
     "format:check": "prettier --check .",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
-    "typecheck": "astro check"
+    "typecheck": "astro check",
+    "test": "vitest run",
+    "test:coverage": "vitest run --coverage"
   },
   "dependencies": {
     "@astrojs/sitemap": "3.7.5",
@@ -50,7 +52,9 @@
   "devDependencies": {
     "@astrojs/check": "0.9.12",
     "@eslint/js": "10.0.1",
+    "@happy-dom/global-registrator": "21.0.4",
     "@ianvs/prettier-plugin-sort-imports": "4.7.1",
+    "@vitest/coverage-v8": "5.1.0",
     "eslint": "10.15.0",
     "eslint-config-prettier": "10.1.8",
     "eslint-plugin-astro": "3.2.1",
@@ -59,6 +63,7 @@
     "prettier": "3.10.1",
     "prettier-plugin-astro": "1.1.2",
     "typescript": "6.0.3",
-    "typescript-eslint": "8.72.2"
+    "typescript-eslint": "8.72.2",
+    "vitest": "5.1.0"
   }
 }
