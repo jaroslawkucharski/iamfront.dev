@@ -13,7 +13,6 @@ TECH<strong>STACK</strong>
 ![](https://img.shields.io/badge/CSS-663399.svg?style=for-the-badge&logo=CSS&logoColor=white)
 ![](https://img.shields.io/badge/Netlify-00C7B7.svg?style=for-the-badge&logo=Netlify&logoColor=white)
 ![](https://img.shields.io/badge/Vitest-6E9F18.svg?style=for-the-badge&logo=Vitest&logoColor=white)
-![](https://img.shields.io/badge/Playwright-2EAD33.svg?style=for-the-badge&logo=Playwright&logoColor=white)
 ![](https://img.shields.io/badge/ESLint-4B32C3.svg?style=for-the-badge&logo=ESLint&logoColor=white)
 ![](https://img.shields.io/badge/Prettier-F7B93E.svg?style=for-the-badge&logo=Prettier&logoColor=black)
 ![](https://img.shields.io/badge/pnpm-F69220.svg?style=for-the-badge&logo=pnpm&logoColor=white)
@@ -30,6 +29,7 @@ UP<strong>DATES</strong>
 
 | Released    | Version     | What changed                                                                                                                                                                                                                                      |
 | ----------- | ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 2026-11     | `1.3.0`     | Added Vitest unit tests for i18n, helpers, data and browser scripts on rendered components                                                                                                                                                        |
 | 2026-11     | `1.2.0`     | - Added Open Graph image <br>- Added contact form email subject <br>- Fixed search field border contrast (WCAG 1.4.11) <br>- Fixed logo and favicon gradient direction                                                                            |
 | 2026-11     | `1.1.0`     | - Refactored data into per-locale files passed to components as props <br>- Added HTML in translations and Markdown privacy and accessibility pages <br>- Simplified helpers and removed unused props <br>- Fixed menu flashes on language switch |
 | **2026-11** | **`1.0.0`** | **🚀 Released to production**                                                                                                                                                                                                                     |
