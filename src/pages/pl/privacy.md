@@ -29,7 +29,7 @@ Przekazanie danych do USA odbywa się na podstawie EU-U.S. Data Privacy Framewor
 
 Przez czas korespondencji, a potem nie dłużej niż 12 miesięcy. Jeśli nawiążemy współpracę – przez czas jej trwania, a potem do upływu terminu przedawnienia roszczeń.
 
-Web3Forms przechowuje kopię wiadomości z formularza na swoich serwerach do 3 lat, zgodnie ze swoją umową powierzenia przetwarzania danych, chyba że zostanie usunięta wcześniej. Jeśli poprosisz o usunięcie danych, poproszę o to również Web3Forms.
+Web3Forms przechowuje kopię wiadomości z formularza na swoich serwerach przez 30 dni, a potem trwale ją usuwa. Jeśli poprosisz o usunięcie danych, poproszę o to również Web3Forms.
 
 ## Twoje prawa
 
