@@ -1,43 +1,41 @@
-# Astro Starter Kit: Minimal
+<div align="center">
 
-```sh
-pnpm create astro@latest -- --template minimal
-```
+[![Netlify Status](https://api.netlify.com/api/v1/badges/9b15ebc8-2d3e-4dc2-a2cb-ba1102043902/deploy-status)](https://app.netlify.com/projects/iamfrontdev/deploys)
+[![CI](https://github.com/jaroslawkucharski/iamfront.dev/actions/workflows/ci.yml/badge.svg)](https://github.com/jaroslawkucharski/iamfront.dev/actions/workflows/ci.yml)
+[![codecov](https://codecov.io/gh/jaroslawkucharski/iamfront.dev/graph/badge.svg)](https://codecov.io/gh/jaroslawkucharski/iamfront.dev)
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+<img src="./public/og.png" alt="iamfront.dev – Jarosław Kucharski, Senior Frontend Developer" />
 
-## 🚀 Project Structure
+TECH<strong>STACK</strong>
 
-Inside of your Astro project, you'll see the following folders and files:
+![](https://img.shields.io/badge/Astro-BC52EE.svg?style=for-the-badge&logo=Astro&logoColor=white)
+![](https://img.shields.io/badge/TypeScript-3178C6.svg?style=for-the-badge&logo=TypeScript&logoColor=white)
+![](https://img.shields.io/badge/CSS-663399.svg?style=for-the-badge&logo=CSS&logoColor=white)
+![](https://img.shields.io/badge/Netlify-00C7B7.svg?style=for-the-badge&logo=Netlify&logoColor=white)
+![](https://img.shields.io/badge/Vitest-6E9F18.svg?style=for-the-badge&logo=Vitest&logoColor=white)
+![](https://img.shields.io/badge/Playwright-2EAD33.svg?style=for-the-badge&logo=Playwright&logoColor=white)
+![](https://img.shields.io/badge/ESLint-4B32C3.svg?style=for-the-badge&logo=ESLint&logoColor=white)
+![](https://img.shields.io/badge/Prettier-F7B93E.svg?style=for-the-badge&logo=Prettier&logoColor=black)
+![](https://img.shields.io/badge/pnpm-F69220.svg?style=for-the-badge&logo=pnpm&logoColor=white)
 
-```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
-```
+##
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+WEB<strong>SITE</strong>
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+<a href="https://iamfront.dev">`https://iamfront.dev`</a>
 
-Any static assets, like images, can be placed in the `public/` directory.
+##
 
-## 🧞 Commands
+UP<strong>DATES</strong>
 
-All commands are run from the root of the project, from a terminal:
+| Released    | Version     | What changed                                                                                                                                                                                                                                      |
+| ----------- | ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 2026-11     | `1.2.0`     | - Added Open Graph image <br>- Added contact form email subject <br>- Fixed search field border contrast (WCAG 1.4.11) <br>- Fixed logo and favicon gradient direction                                                                            |
+| 2026-11     | `1.1.0`     | - Refactored data into per-locale files passed to components as props <br>- Added HTML in translations and Markdown privacy and accessibility pages <br>- Simplified helpers and removed unused props <br>- Fixed menu flashes on language switch |
+| **2026-11** | **`1.0.0`** | **🚀 Released to production**                                                                                                                                                                                                                     |
+| 2026-11     | `0.4.0`     | - Added experience, education, hobbies and projects with galleries <br>- Added skill filter, featured projects and companies <br>- Added dark theme logos <br>- Improved performance: inlined styles, priority LCP images                         |
+| 2026-11     | `0.3.0`     | - Added pages: home, about, projects, project details, privacy, accessibility, 404 and thank you page <br>- Added SEO: canonical, hreflang, Open Graph, JSON-LD Person schema, sitemap <br>- Added Netlify contact form                           |
+| 2026-11     | `0.2.0`     | - Added EN/PL translations with a language switch <br>- Added atomic design components: atoms, molecules, organisms <br>- Added light and dark theme, reduced motion and custom cursor                                                            |
+| **2026-11** | **`0.1.0`** | **Created project: Astro, TypeScript, ESLint, Prettier, design tokens and global styles**                                                                                                                                                         |
 
-| Command                | Action                                           |
-| :--------------------- | :----------------------------------------------- |
-| `pnpm install`         | Installs dependencies                            |
-| `pnpm dev`             | Starts local dev server at `localhost:4321`      |
-| `pnpm build`           | Build your production site to `./dist/`          |
-| `pnpm preview`         | Preview your build locally, before deploying     |
-| `pnpm astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `pnpm astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+</div>
