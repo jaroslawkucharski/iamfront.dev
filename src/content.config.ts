@@ -51,6 +51,18 @@ const themedImage = z
   .object({ fields: z.object({ image: asset, imageDark: asset.optional(), alt: z.string().default('') }) })
   .transform(({ fields }) => ({ src: fields.image, dark: fields.imageDark, alt: fields.alt }));
 
+const file = z
+  .object({
+    fields: z.object({
+      file: z.object({ url: z.string(), fileName: z.string(), details: z.object({ size: z.number() }) }),
+    }),
+  })
+  .transform(({ fields: { file } }) => ({
+    url: `https:${file.url}`,
+    fileName: file.fileName,
+    size: file.details.size,
+  }));
+
 const projects = defineCollection({
   loader: contentfulLoader('project'),
   schema: z
@@ -158,6 +170,7 @@ const profile = defineCollection({
       bio: richText,
       contactIntro: z.string(),
       contactPoints: richText,
+      cv: file.optional(),
     })
     .transform(({ bio, contactIntro, contactPoints, ...profile }) => {
       const render = createRichTextRenderer(profile.locale);
