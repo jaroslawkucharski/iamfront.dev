@@ -56,8 +56,7 @@
     "homeLabel": "iamfront.dev – home page",
     "cv": {
       "label": "CV",
-      "title": "Download CV",
-      "file": ""
+      "title": "Download CV"
     },
     "menu": {
       "label": "Menu",

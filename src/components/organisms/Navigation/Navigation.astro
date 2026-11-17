@@ -20,7 +20,7 @@ interface Props {
 const { locale, id, class: className } = Astro.props;
 
 const { nav } = getDictionary(locale);
-const cv = getCvLink(locale);
+const cv = await getCvLink(locale);
 
 const items = [
   { href: getRelativeLocaleUrl(locale, 'about/'), ...nav.items.about },
@@ -52,15 +52,17 @@ const isActive = (href: string) => {
       </li>
     ))}
 
-    <li style={`--i: ${items.length}`}>
-      <Link href={cv.href} download={cv.fileName} title={cv.title} class='navigation__link'>
-        <Icon name='download' size={16} class='navigation__cv-icon' />
+    {cv && (
+      <li style={`--i: ${items.length}`}>
+        <Link href={cv.href} download={cv.fileName} title={cv.title} class='navigation__link'>
+          <Icon name='download' size={16} class='navigation__cv-icon' />
 
-        {cv.label}
+          {cv.label}
 
-        <VisuallyHidden>{cv.hint}</VisuallyHidden>
-      </Link>
-    </li>
+          <VisuallyHidden>{cv.hint}</VisuallyHidden>
+        </Link>
+      </li>
+    )}
   </ul>
 
   <SettingsList id={`${id}-settings`} locale={locale} class='navigation__settings' style={`--i: ${items.length + 1}`} />
