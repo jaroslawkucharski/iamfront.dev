@@ -1,15 +1,14 @@
 ---
 import type { InferGetStaticPropsType } from 'astro';
 
-import { getProjectListItem } from '@helpers/projects/getProjectListItem';
-import { getProjects } from '@helpers/projects/getProjects';
-import { getSkillFilterOptions } from '@helpers/skills/getSkillFilterOptions';
+import { projects as enProjects } from '@data/en/projects';
+import { projects as plProjects } from '@data/pl/projects';
 import { getDictionary } from '@lib/i18n/getDictionary';
 import { getLocalePaths } from '@lib/i18n/getLocalePaths';
 
 import Section from '@molecules/Section/Section.astro';
 import FilterGroup from '@organisms/FilterGroup/FilterGroup.astro';
-import MediaList from '@organisms/MediaList/MediaList.astro';
+import ProjectList from '@organisms/ProjectList/ProjectList.astro';
 import MainTemplate from '@templates/MainTemplate/MainTemplate.astro';
 
 export const getStaticPaths = getLocalePaths;
@@ -18,9 +17,18 @@ type Props = InferGetStaticPropsType<typeof getStaticPaths>;
 
 const { locale } = Astro.props;
 
+const projects = { en: enProjects, pl: plProjects }[locale];
+
 const { projects: dictionary, projectCount } = getDictionary(locale);
-const projects = await getProjects(locale);
-const items = await Promise.all(projects.map((project) => getProjectListItem(project, locale)));
+
+const skillCounts = Map.groupBy(
+  projects.flatMap((project) => project.stack),
+  (skill) => skill,
+);
+
+const skillOptions = [...skillCounts]
+  .map(([skill, items]) => ({ value: skill, label: skill, count: items.length }))
+  .sort((first, second) => second.count - first.count || first.label.localeCompare(second.label, locale));
 
 const chips = {
   label: dictionary.skillFilterLabel,
@@ -31,7 +39,7 @@ const chips = {
   searchLabel: dictionary.skillSearchLabel,
   searchPlaceholder: dictionary.skillSearchPlaceholder,
   noMatchText: dictionary.skillSearchEmpty,
-  options: await getSkillFilterOptions(projects, locale),
+  options: skillOptions,
 };
 ---
 
@@ -46,9 +54,9 @@ const chips = {
       emptyText={dictionary.empty}
     />
 
-    <MediaList
+    <ProjectList
       id='project-list'
-      items={items}
+      projects={projects}
       locale={locale}
       label={dictionary.listLabel}
       labelsLabel={dictionary.labelsLabel}

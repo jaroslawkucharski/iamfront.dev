@@ -1,18 +1,12 @@
 ---
 import type { ComponentProps } from 'astro/types';
 
+import type { BadgeItem } from '@typings/badge';
+
 import Badge from '@atoms/Badge/Badge.astro';
 import Flex from '@atoms/Flex/Flex.astro';
 import Link from '@atoms/Link/Link.astro';
 import VisuallyHidden from '@atoms/VisuallyHidden/VisuallyHidden.astro';
-
-export interface BadgeItem {
-  label: string;
-  href?: string;
-  title?: string;
-  hint?: string;
-  muted?: boolean;
-}
 
 type Sizes = 'md' | 'sm';
 

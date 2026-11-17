@@ -1,8 +1,9 @@
 ---
-import { person, site } from '@data/site';
-import { getAlternates } from '@helpers/seo/getAlternates';
-import { getPersonSchema } from '@helpers/seo/getPersonSchema';
-import { languages, type Locale } from '@lib/i18n/languages';
+import { getAbsoluteLocaleUrl } from 'astro:i18n';
+
+import { person, site } from '@config/site';
+import { defaultLocale, languages, locales, type Locale } from '@lib/i18n/languages';
+import { stripLocale } from '@lib/i18n/stripLocale';
 
 interface Props {
   locale: Locale;
@@ -15,8 +16,26 @@ const { locale, title, description, noindex = false } = Astro.props;
 
 const siteUrl = Astro.site ?? new URL(`https://${site.name}`);
 const canonical = new URL(Astro.url.pathname, siteUrl).href;
-const alternates = getAlternates(Astro.url.pathname);
-const schema = JSON.stringify(getPersonSchema(siteUrl));
+const path = stripLocale(Astro.url.pathname).replace(/^\//, '');
+
+const alternates = [
+  ...locales.map((lang) => ({ lang, href: getAbsoluteLocaleUrl(lang, path) })),
+  { lang: 'x-default', href: getAbsoluteLocaleUrl(defaultLocale, path) },
+];
+
+const schema = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: person.name,
+  jobTitle: person.jobTitle,
+  url: siteUrl.href,
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: person.city,
+    addressCountry: person.country,
+  },
+  sameAs: [person.github, person.linkedin],
+});
 ---
 
 <meta name='description' content={description} />

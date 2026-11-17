@@ -1,8 +1,8 @@
 ---
-import type { Project } from '@helpers/projects/getProjects';
-import { getSkillBadges } from '@helpers/skills/getSkillBadges';
 import { getDictionary } from '@lib/i18n/getDictionary';
 import type { Locale } from '@lib/i18n/languages';
+import type { BadgeItem } from '@typings/badge';
+import type { Project } from '@typings/content';
 
 import DescriptionList from '@atoms/DescriptionList/DescriptionList.astro';
 import Text from '@atoms/Text/Text.astro';
@@ -14,19 +14,18 @@ import ExternalLinkList from '@molecules/ExternalLinkList/ExternalLinkList.astro
 
 interface Props {
   project: Project;
+  stack: BadgeItem[];
   locale: Locale;
 }
 
-const { project, locale } = Astro.props;
+const { project, stack, locale } = Astro.props;
 
 const { projects, externalLink } = getDictionary(locale);
 const newTab = ` ${externalLink.newTab}`;
-const stack = await getSkillBadges(project.stack, locale);
 
 const typeText = [
   ...project.types.map((type) => projects.types[type]),
   ...(project.archived ? [projects.archived] : []),
-  ...(project.planned ? [projects.planned] : []),
 ].join(', ');
 
 const links = [

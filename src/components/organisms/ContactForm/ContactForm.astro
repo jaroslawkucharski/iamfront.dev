@@ -7,7 +7,6 @@ import type { Locale } from '@lib/i18n/languages';
 import Flex from '@atoms/Flex/Flex.astro';
 import Text from '@atoms/Text/Text.astro';
 import Button from '@molecules/Button/Button.astro';
-import RichText from '@molecules/RichText/RichText.astro';
 import FormField from '@organisms/FormField/FormField.astro';
 
 interface Props {
@@ -106,7 +105,9 @@ const topics = [
       }}
     />
 
-    <RichText text={contact.privacyNote} size='sm' color='muted' />
+    <Text size='sm'>
+      <Fragment set:html={contact.privacyNote} />
+    </Text>
 
     <div class='contact-form__actions'>
       <Button type='submit' size='lg' block icon='arrow-right' data-submit>

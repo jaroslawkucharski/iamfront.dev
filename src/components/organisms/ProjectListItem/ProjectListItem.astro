@@ -1,0 +1,243 @@
+---
+import { getRelativeLocaleUrl } from 'astro:i18n';
+
+import { getDictionary } from '@lib/i18n/getDictionary';
+import type { Locale } from '@lib/i18n/languages';
+import type { Project } from '@typings/content';
+
+import Flex from '@atoms/Flex/Flex.astro';
+import Icon from '@atoms/Icon/Icon.astro';
+import Initials from '@atoms/Initials/Initials.astro';
+import Link from '@atoms/Link/Link.astro';
+import Picture from '@atoms/Picture/Picture.astro';
+import Text from '@atoms/Text/Text.astro';
+import BadgeList from '@molecules/BadgeList/BadgeList.astro';
+import DateRange from '@molecules/DateRange/DateRange.astro';
+
+type Levels = 2 | 3 | 4;
+
+interface Props {
+  project: Project;
+  locale: Locale;
+  labelsLabel?: string;
+  techLabel?: string;
+  level?: Levels;
+}
+
+const { project, locale, labelsLabel = '', techLabel = '', level = 3 } = Astro.props;
+
+const { projects } = getDictionary(locale);
+const href = getRelativeLocaleUrl(locale, `projects/${project.id}/`);
+const labels = project.archived ? [projects.archived] : [];
+const [image] = project.gallery;
+---
+
+<li
+  class:list={['media-list-item', { 'media-list-item--archived': project.archived }]}
+  data-skills={project.stack.join(',')}
+>
+  {image ? (
+    <Picture
+      src={image.src}
+      dark={image.dark}
+      alt={image.alt}
+      widths={[200, 400, 800]}
+      sizes='(max-width: 768px) 110px, 200px'
+      class='media-list-item__thumb'
+      decoding='async'
+    />
+  ) : (
+    <Initials text={project.name} class='media-list-item__thumb media-list-item__thumb--empty' />
+  )}
+
+  <Flex gap='2xs' class='media-list-item__main'>
+    <Text as={`h${level}`} size='md' weight='medium' color='default' tracking='label'>
+      {href ? (
+        <Link
+          href={href}
+          title={project.name}
+          size='md'
+          weight='medium'
+          color='default'
+          tracking='label'
+          wrap
+          class='media-list-item__link'
+        >
+          {project.name}
+
+          <Icon name='arrow-right' size={16} class='media-list-item__arrow' />
+        </Link>
+      ) : (
+        project.name
+      )}
+    </Text>
+
+    <Text size='sm' color='muted' class='media-list-item__description'>
+      {project.summary}
+    </Text>
+
+    {project.stack.length > 0 && (
+      <BadgeList
+        label={techLabel}
+        items={[
+          ...project.stack.slice(0, 4).map((name) => ({ label: name, muted: true })),
+          ...(project.stack.length > 4 ? [{ label: `+${project.stack.length - 4}`, muted: true }] : []),
+        ]}
+        variant='text'
+        size='sm'
+        class='media-list-item__tech'
+      />
+    )}
+  </Flex>
+
+  {(project.start || labels.length > 0) && (
+    <Flex gap='2xs' align='end' class='media-list-item__aside'>
+      {project.start && <DateRange start={project.start} end={project.end} locale={locale} />}
+
+      {labels.length > 0 && <BadgeList label={labelsLabel} items={labels} />}
+    </Flex>
+  )}
+</li>
+
+<style>
+  .media-list-item {
+    position: relative;
+    display: grid;
+    grid-template-columns: var(--thumb-width) minmax(0, 1fr) auto;
+    grid-template-rows: 1fr auto auto auto 1fr;
+    align-items: baseline;
+    gap: var(--space-2xs) var(--space-lg);
+    padding: var(--space-lg) var(--space-xs);
+    border-top: var(--border-width) solid var(--color-border-subtle);
+  }
+
+  .media-list-item:last-child {
+    border-bottom: var(--border-width) solid var(--color-border-subtle);
+  }
+
+  .media-list-item[hidden] {
+    display: none;
+  }
+
+  .media-list-item :global(.media-list-item__description) {
+    display: -webkit-box;
+    max-width: 60ch;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    overflow: hidden;
+  }
+
+  .media-list-item :global(.media-list-item__main),
+  .media-list-item :global(.media-list-item__aside) {
+    display: contents;
+  }
+
+  .media-list-item :global(.media-list-item__main > :first-child) {
+    grid-column: 2;
+    grid-row: 2;
+  }
+
+  .media-list-item :global(.media-list-item__description) {
+    grid-column: 2;
+    grid-row: 3;
+  }
+
+  .media-list-item :global(.media-list-item__tech) {
+    grid-column: 2;
+    grid-row: 4;
+    margin-top: var(--space-2xs);
+  }
+
+  .media-list-item :global(.media-list-item__aside > :first-child) {
+    grid-column: 3;
+    grid-row: 2;
+    justify-self: end;
+  }
+
+  .media-list-item :global(.media-list-item__aside > :nth-child(2)) {
+    grid-column: 3;
+    grid-row: 3;
+    justify-self: end;
+    align-self: start;
+  }
+
+  .media-list-item :global(.media-list-item__thumb) {
+    grid-column: 1;
+    grid-row: 1 / -1;
+    align-self: center;
+    display: block;
+    width: var(--thumb-width);
+    height: auto;
+    aspect-ratio: 16 / 10;
+    object-fit: cover;
+    object-position: top center;
+    border: var(--border-width) solid var(--color-border-subtle);
+    border-radius: var(--radius-sm);
+    background: var(--color-surface);
+    transition: opacity var(--duration-fast) var(--ease-standard);
+  }
+
+  .media-list-item--archived :global(img.media-list-item__thumb) {
+    filter: grayscale(1);
+    opacity: 0.6;
+    transition:
+      filter var(--duration-fast) var(--ease-standard),
+      opacity var(--duration-fast) var(--ease-standard);
+  }
+
+  .media-list-item--archived :global(.media-list-item__link) {
+    color: var(--color-text-muted);
+  }
+
+  .media-list-item--archived:is(:hover, :focus-within) :global(img.media-list-item__thumb) {
+    filter: none;
+    opacity: 1;
+  }
+
+  .media-list-item--archived:is(:hover, :focus-within) :global(.media-list-item__link) {
+    color: var(--color-text);
+  }
+
+  .media-list-item :global(.media-list-item__thumb--empty) {
+    display: grid;
+  }
+
+  .media-list-item:has(:global(.media-list-item__link)):hover :global(.media-list-item__thumb) {
+    opacity: var(--opacity-pressed);
+  }
+
+  .media-list-item :global(.media-list-item__link)::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+  }
+
+  @media (max-width: 768px) {
+    .media-list-item {
+      grid-template-columns: calc(var(--thumb-width) * 0.55) minmax(0, 1fr);
+      grid-template-rows: auto;
+      align-content: start;
+      column-gap: var(--space-sm);
+      padding-block: var(--space-sm);
+    }
+
+    .media-list-item :global(.media-list-item__thumb) {
+      grid-row: 1 / span 5;
+      align-self: start;
+      width: 100%;
+    }
+
+    .media-list-item :global(.media-list-item__main > :first-child),
+    .media-list-item :global(.media-list-item__description),
+    .media-list-item :global(.media-list-item__tech) {
+      grid-row: auto;
+    }
+
+    .media-list-item :global(.media-list-item__aside > :is(:first-child, :nth-child(2))) {
+      grid-column: 2;
+      grid-row: auto;
+      justify-self: start;
+    }
+  }
+</style>

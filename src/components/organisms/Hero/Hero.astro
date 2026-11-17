@@ -2,28 +2,40 @@
 import { getRelativeLocaleUrl } from 'astro:i18n';
 
 import heroPhoto from '@assets/me/hero.png';
-import { person } from '@data/site';
-import { getProfile } from '@helpers/profile/getProfile';
+import { person } from '@config/site';
 import { getDictionary } from '@lib/i18n/getDictionary';
+import { interpolate } from '@lib/i18n/interpolate';
 import type { Locale } from '@lib/i18n/languages';
+import type { TimelineEntry } from '@typings/content';
 
 import Flex from '@atoms/Flex/Flex.astro';
 import Heading from '@atoms/Heading/Heading.astro';
 import MediaBlock from '@atoms/MediaBlock/MediaBlock.astro';
 import Picture from '@atoms/Picture/Picture.astro';
-import BadgeList, { type BadgeItem } from '@molecules/BadgeList/BadgeList.astro';
+import BadgeList from '@molecules/BadgeList/BadgeList.astro';
 import LinkList from '@molecules/LinkList/LinkList.astro';
 import LabeledBadgeList from '@organisms/LabeledBadgeList/LabeledBadgeList.astro';
 
 interface Props {
+  highlights: string[];
+  companies: TimelineEntry[];
   locale: Locale;
-  companies: readonly BadgeItem[];
 }
 
-const { locale, companies } = Astro.props;
+const { highlights, companies, locale } = Astro.props;
 
 const { hero } = getDictionary(locale);
-const { highlights } = await getProfile(locale);
+
+const companyBadges = companies.map((company) => {
+  const name = company.shortName ?? company.name;
+
+  return {
+    label: name,
+    href: `${getRelativeLocaleUrl(locale, 'about/')}#${company.id}`,
+    title: interpolate(hero.companyTitle, { name }),
+    muted: true,
+  };
+});
 
 const links = [
   { href: getRelativeLocaleUrl(locale, 'projects/'), ...hero.links.projects },
@@ -43,7 +55,7 @@ const links = [
       <Flex gap='2xs' align='start'>
         <BadgeList label={hero.highlightsLabel} items={highlights} variant='text' />
 
-        <LabeledBadgeList label={hero.companiesLabel} items={companies} underline />
+        <LabeledBadgeList label={hero.companiesLabel} items={companyBadges} underline />
       </Flex>
 
       <LinkList links={links} />

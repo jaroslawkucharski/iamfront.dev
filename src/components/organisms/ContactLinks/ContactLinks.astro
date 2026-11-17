@@ -1,5 +1,5 @@
 ---
-import { person } from '@data/site';
+import { person } from '@config/site';
 import { getDictionary } from '@lib/i18n/getDictionary';
 import type { Locale } from '@lib/i18n/languages';
 
@@ -10,11 +10,10 @@ import EmailLink from '@molecules/EmailLink/EmailLink.astro';
 
 interface Props {
   locale: Locale;
-  labelledBy?: string;
   class?: string;
 }
 
-const { locale, labelledBy, class: className } = Astro.props;
+const { locale, class: className } = Astro.props;
 
 const dictionary = getDictionary(locale);
 const contactLinks = dictionary.contactLinks;
@@ -26,7 +25,7 @@ const profiles = [
 ];
 ---
 
-<address class:list={['contact-links', className]} aria-labelledby={labelledBy}>
+<address class:list={['contact-links', className]}>
   <Flex as='ul' list gap='2xs'>
     <li>
       <EmailLink email={person.email} locale={locale} title={contactLinks.email}>

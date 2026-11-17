@@ -2,8 +2,11 @@
 import type { InferGetStaticPropsType } from 'astro';
 import { getRelativeLocaleUrl } from 'astro:i18n';
 
-import { getProjectPaths } from '@helpers/projects/getProjectPaths';
+import { projects as enProjects } from '@data/en/projects';
+import { projects as plProjects } from '@data/pl/projects';
+import { getSkillBadges } from '@helpers/skills/getSkillBadges';
 import { getDictionary } from '@lib/i18n/getDictionary';
+import { defaultLocale, locales } from '@lib/i18n/languages';
 
 import Text from '@atoms/Text/Text.astro';
 import ArrowLink from '@molecules/ArrowLink/ArrowLink.astro';
@@ -17,11 +20,19 @@ import ProjectAside from '@organisms/ProjectAside/ProjectAside.astro';
 import ProjectStory from '@organisms/ProjectStory/ProjectStory.astro';
 import MainTemplate from '@templates/MainTemplate/MainTemplate.astro';
 
-export const getStaticPaths = getProjectPaths;
+export const getStaticPaths = () =>
+  locales.flatMap((locale) => {
+    const projects = { en: enProjects, pl: plProjects }[locale];
+
+    return projects.map((project) => ({
+      params: { locale: locale === defaultLocale ? undefined : locale, slug: project.id },
+      props: { locale, project, stack: getSkillBadges(project.stack, projects, locale) },
+    }));
+  });
 
 type Props = InferGetStaticPropsType<typeof getStaticPaths>;
 
-const { locale, project } = Astro.props;
+const { locale, project, stack } = Astro.props;
 
 const { projects, lightbox } = getDictionary(locale);
 
@@ -50,13 +61,13 @@ const zoom = { group: 'project', label: lightbox.open };
         </ArticleSection>
       )}
 
-      {project.lighthouse.length > 0 && (
+      {project.lighthouse && (
         <ArticleSection id='lighthouse' title={projects.lighthouse}>
           <Gallery images={project.lighthouse} zoom={zoom} />
         </ArticleSection>
       )}
 
-      <ProjectAside project={project} locale={locale} slot='aside' />
+      <ProjectAside project={project} stack={stack} locale={locale} slot='aside' />
     </ArticleLayout>
   </Section>
 

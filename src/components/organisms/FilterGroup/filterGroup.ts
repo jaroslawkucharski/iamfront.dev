@@ -107,7 +107,7 @@ document.addEventListener('astro:page-load', () => {
       let shown = 0;
 
       list.querySelectorAll<HTMLElement>('[data-skills]').forEach((item) => {
-        const itemSkills = (item.dataset.skills ?? '').split(' ');
+        const itemSkills = (item.dataset.skills ?? '').split(',');
         const match = !skills.length || skills.some((skill) => itemSkills.includes(skill));
 
         item.hidden = !match;

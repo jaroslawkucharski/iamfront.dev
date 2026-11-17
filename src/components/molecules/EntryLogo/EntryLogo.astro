@@ -1,8 +1,8 @@
 ---
-import { getLogo } from '@helpers/timeline/getLogo';
 import { getDictionary } from '@lib/i18n/getDictionary';
 import { interpolate } from '@lib/i18n/interpolate';
 import type { Locale } from '@lib/i18n/languages';
+import type { ImageData } from '@typings/content';
 
 import Icon from '@atoms/Icon/Icon.astro';
 import type { IconName } from '@atoms/Icon/iconNames';
@@ -10,7 +10,7 @@ import Picture from '@atoms/Picture/Picture.astro';
 
 interface Props {
   name: string;
-  logo?: string;
+  logo?: ImageData;
   icon?: IconName;
   locale: Locale;
   class?: string;
@@ -18,14 +18,13 @@ interface Props {
 
 const { name, logo, icon, locale, class: className } = Astro.props;
 
-const signet = getLogo(logo);
 const logoAlt = interpolate(getDictionary(locale).logoAlt, { name });
 ---
 
-{signet && (
+{logo && (
   <Picture
-    src={signet.src}
-    dark={signet.dark}
+    src={logo.src}
+    dark={logo.dark}
     alt={logoAlt}
     size={64}
     sizeMobile={48}
@@ -35,7 +34,7 @@ const logoAlt = interpolate(getDictionary(locale).logoAlt, { name });
   />
 )}
 
-{!signet && icon && (
+{!logo && icon && (
   <span class:list={['entry-logo', 'entry-logo--icon', className]} aria-hidden='true'>
     <Icon name={icon} size={28} />
   </span>

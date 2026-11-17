@@ -2,22 +2,19 @@
 import { getDictionary } from '@lib/i18n/getDictionary';
 import { interpolate } from '@lib/i18n/interpolate';
 import type { Locale } from '@lib/i18n/languages';
+import type { ImageData } from '@typings/content';
 
 import type { IconName } from '@atoms/Icon/iconNames';
 import Link from '@atoms/Link/Link.astro';
 import Text from '@atoms/Text/Text.astro';
 import DateRange from '@molecules/DateRange/DateRange.astro';
 import EntryLogo from '@molecules/EntryLogo/EntryLogo.astro';
-import RichText from '@molecules/RichText/RichText.astro';
-
-type Levels = 2 | 3 | 4;
 
 interface Props {
   name: string;
-  logo?: string;
+  logo?: ImageData;
   icon?: IconName;
   url?: string;
-  level?: Levels;
   role?: string;
   roleNote?: string;
   start?: string;
@@ -25,7 +22,7 @@ interface Props {
   locale: Locale;
 }
 
-const { name, logo, icon, url, role, roleNote, level = 3, start, end, locale } = Astro.props;
+const { name, logo, icon, url, role, roleNote, start, end, locale } = Astro.props;
 
 const hasLogo = Boolean(logo || icon);
 
@@ -37,7 +34,7 @@ const linkTitle = `${interpolate(externalLink.title, { name })}${newTab}`;
 <div class:list={['entry-header', { 'entry-header--logo': hasLogo }]}>
   <EntryLogo name={name} logo={logo} icon={icon} locale={locale} class='entry-header__logo' />
 
-  <Text as={`h${level}`} size='lg' weight='medium' color='default' tracking='label' class='entry-header__name'>
+  <Text as='h3' size='lg' weight='medium' color='default' tracking='label' class='entry-header__name'>
     {url ? (
       <Link
         href={url}
@@ -59,7 +56,7 @@ const linkTitle = `${interpolate(externalLink.title, { name })}${newTab}`;
 
   {role && (
     <Text size='sm' color='default' class='entry-header__role'>
-      <RichText as='span' size='sm' color='default' text={role} newTabLabel={newTab} />
+      <Fragment set:html={role} />
 
       {roleNote && <Text as='span' size='sm' color='muted'>{` (${roleNote})`}</Text>}
     </Text>

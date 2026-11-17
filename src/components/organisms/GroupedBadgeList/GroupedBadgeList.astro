@@ -1,28 +1,26 @@
 ---
-import type { ComponentProps } from 'astro/types';
+import type { BadgeItem } from '@typings/badge';
 
 import DescriptionList from '@atoms/DescriptionList/DescriptionList.astro';
-import BadgeList, { type BadgeItem } from '@molecules/BadgeList/BadgeList.astro';
+import BadgeList from '@molecules/BadgeList/BadgeList.astro';
 import DescriptionItem from '@molecules/DescriptionItem/DescriptionItem.astro';
 
-export interface BadgeGroup {
+interface BadgeGroup {
   label: string;
   items: string | readonly (string | BadgeItem)[];
 }
 
 interface Props {
   groups: readonly BadgeGroup[];
-  variant?: ComponentProps<typeof BadgeList>['variant'];
-  class?: string;
 }
 
-const { groups, variant = 'text', class: className } = Astro.props;
+const { groups } = Astro.props;
 ---
 
-<DescriptionList class={className}>
+<DescriptionList>
   {groups.map((group) => (
     <DescriptionItem term={group.label}>
-      <BadgeList label={group.label} items={group.items} variant={variant} />
+      <BadgeList label={group.label} items={group.items} variant='text' />
     </DescriptionItem>
   ))}
 </DescriptionList>

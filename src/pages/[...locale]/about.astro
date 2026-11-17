@@ -1,13 +1,26 @@
 ---
 import type { InferGetStaticPropsType } from 'astro';
+import { getRelativeLocaleUrl } from 'astro:i18n';
 
-import { person } from '@data/site';
-import { getSkillGroups } from '@helpers/skills/getSkillGroups';
-import { getEducationEntries } from '@helpers/timeline/getEducationEntries';
-import { getExperienceEntries } from '@helpers/timeline/getExperienceEntries';
-import { getHobbyEntries } from '@helpers/timeline/getHobbyEntries';
+import { person } from '@config/site';
+import { education as enEducation } from '@data/en/education';
+import { experience as enExperience } from '@data/en/experience';
+import { hobbies as enHobbies } from '@data/en/hobbies';
+import { profile as enProfile } from '@data/en/profile';
+import { projects as enProjects } from '@data/en/projects';
+import { skillCategories as enSkillCategories } from '@data/en/skills';
+import { education as plEducation } from '@data/pl/education';
+import { experience as plExperience } from '@data/pl/experience';
+import { hobbies as plHobbies } from '@data/pl/hobbies';
+import { profile as plProfile } from '@data/pl/profile';
+import { projects as plProjects } from '@data/pl/projects';
+import { skillCategories as plSkillCategories } from '@data/pl/skills';
+import { getExperienceText } from '@helpers/experience/getExperienceText';
+import { getSkillBadges } from '@helpers/skills/getSkillBadges';
 import { getDictionary } from '@lib/i18n/getDictionary';
 import { getLocalePaths } from '@lib/i18n/getLocalePaths';
+import { interpolate } from '@lib/i18n/interpolate';
+import type { TimelineEntry } from '@typings/content';
 
 import Section from '@molecules/Section/Section.astro';
 import AboutIntro from '@organisms/AboutIntro/AboutIntro.astro';
@@ -21,19 +34,46 @@ type Props = InferGetStaticPropsType<typeof getStaticPaths>;
 
 const { locale } = Astro.props;
 
+const education = { en: enEducation, pl: plEducation }[locale];
+const experience = { en: enExperience, pl: plExperience }[locale];
+const hobbies = { en: enHobbies, pl: plHobbies }[locale];
+const profile = { en: enProfile, pl: plProfile }[locale];
+const projects = { en: enProjects, pl: plProjects }[locale];
+const skillCategories = { en: enSkillCategories, pl: plSkillCategories }[locale];
+
 const { about } = getDictionary(locale, { name: person.name });
+
+const skillGroups = skillCategories.map((category) => ({
+  label: category.label,
+  items: getSkillBadges(category.skills, projects, locale),
+}));
+
+const toTimeline = (entries: TimelineEntry[]) =>
+  entries.map((entry) => ({
+    ...entry,
+    sections: entry.sections?.map(({ stack, project: projectId, ...section }) => {
+      const project = projects.find((item) => item.id === projectId);
+      const skills = stack ?? project?.stack;
+
+      return {
+        ...section,
+        stack: skills && getSkillBadges(skills, projects, locale),
+        projectHref: project && getRelativeLocaleUrl(locale, `projects/${project.id}/`),
+      };
+    }),
+  }));
 ---
 
 <MainTemplate locale={locale} title={about.meta.title} description={about.meta.description}>
-  <AboutIntro locale={locale} />
+  <AboutIntro bio={interpolate(profile.bio, { experience: getExperienceText(locale) })} locale={locale} />
 
   <Section id='skills' title={about.skills.heading}>
-    <GroupedBadgeList groups={await getSkillGroups(locale)} />
+    <GroupedBadgeList groups={skillGroups} />
   </Section>
 
   <Section id='experience' title={about.experience.heading}>
     <Timeline
-      entries={await getExperienceEntries(locale)}
+      entries={toTimeline(experience)}
       locale={locale}
       stackLabel={about.experience.stackLabel}
       projectLinkLabel={about.experience.projectLinkLabel}
@@ -41,10 +81,10 @@ const { about } = getDictionary(locale, { name: person.name });
   </Section>
 
   <Section id='education' title={about.education.heading}>
-    <Timeline entries={await getEducationEntries(locale)} locale={locale} stackLabel={about.education.detailsLabel} />
+    <Timeline entries={toTimeline(education)} locale={locale} stackLabel={about.education.detailsLabel} />
   </Section>
 
   <Section id='hobbies' title={about.hobbies.heading}>
-    <Timeline entries={await getHobbyEntries(locale)} locale={locale} ordered={false} />
+    <Timeline entries={toTimeline(hobbies)} locale={locale} ordered={false} />
   </Section>
 </MainTemplate>

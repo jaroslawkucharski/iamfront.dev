@@ -121,8 +121,8 @@ const isActive = (href: string) => {
       counter-increment: nav;
     }
 
-    .navigation[data-menu='open'] .navigation__list > li,
-    .navigation[data-menu='open'] :global(.navigation__settings) {
+    .navigation[data-menu='open']:not([data-open-on-load]) .navigation__list > li,
+    .navigation[data-menu='open']:not([data-open-on-load]) :global(.navigation__settings) {
       animation: reveal var(--duration-medium) var(--ease-standard) both;
       animation-delay: calc(var(--i, 0) * 50ms);
     }

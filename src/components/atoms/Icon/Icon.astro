@@ -62,14 +62,11 @@ const custom = {
 interface Props {
   name: IconName;
   size?: number;
-  label?: string;
   class?: string;
   [key: string]: unknown;
 }
 
-const { name, size = 20, label, class: className, ...rest } = Astro.props;
-
-const a11y = label ? ({ role: 'img', 'aria-label': label } as const) : ({ 'aria-hidden': 'true' } as const);
+const { name, size = 20, class: className, ...rest } = Astro.props;
 
 const isLucide = (iconName: IconName): iconName is LucideIconName => iconName in lucide;
 
@@ -78,7 +75,14 @@ const customPaths = isLucide(name) ? [] : custom[name];
 ---
 
 {LucideIcon ? (
-  <LucideIcon size={size} class:list={['icon', className]} data-icon={name} focusable='false' {...a11y} {...rest} />
+  <LucideIcon
+    size={size}
+    class:list={['icon', className]}
+    data-icon={name}
+    focusable='false'
+    aria-hidden='true'
+    {...rest}
+  />
 ) : (
   <svg
     class:list={['icon', className]}
@@ -92,7 +96,7 @@ const customPaths = isLucide(name) ? [] : custom[name];
     stroke-linecap='round'
     stroke-linejoin='round'
     focusable='false'
-    {...a11y}
+    aria-hidden='true'
     {...rest}
   >
     {customPaths.map((path) => (

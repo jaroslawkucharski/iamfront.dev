@@ -3,7 +3,7 @@ import { getRelativeLocaleUrl } from 'astro:i18n';
 
 import { getDictionary } from '@lib/i18n/getDictionary';
 import type { Locale } from '@lib/i18n/languages';
-import type { Colors, Sizes, Trackings, Weights } from '@typings/typography';
+import type { Sizes, Weights } from '@typings/typography';
 
 import Link from '@atoms/Link/Link.astro';
 
@@ -13,29 +13,17 @@ interface Props {
   title?: string;
   size?: Sizes;
   weight?: Weights;
-  color?: Colors;
-  tracking?: Trackings;
   inline?: boolean;
   class?: string;
 }
 
-const {
-  email,
-  locale,
-  title,
-  size,
-  weight = 'regular',
-  color = 'default',
-  tracking = 'normal',
-  inline = false,
-  class: className,
-} = Astro.props;
+const { email, locale, title, size, weight = 'regular', inline = false, class: className } = Astro.props;
 
 const contactLinks = getDictionary(locale).contactLinks;
 
 const reverse = (text: string) => [...text].reverse().join('');
 const [user = '', domain = ''] = email.split('@');
-const look = { size, weight, color, tracking, inline };
+const look = { size, weight, color: 'default', tracking: 'normal', inline } as const;
 ---
 
 <span

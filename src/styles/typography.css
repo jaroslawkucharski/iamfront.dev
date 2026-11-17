@@ -59,3 +59,22 @@
 .text--uppercase {
   text-transform: uppercase;
 }
+
+/* Inline content */
+.text strong {
+  font-weight: var(--fw-medium);
+}
+
+.text a:not(.link) {
+  color: var(--color-text);
+  font-weight: var(--fw-medium);
+  background-image: linear-gradient(currentColor, currentColor);
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  background-size: 100% var(--border-width);
+  transition: opacity var(--duration-fast) var(--ease-standard);
+}
+
+.text a:not(.link):active {
+  opacity: var(--opacity-pressed);
+}

@@ -3,18 +3,17 @@ type Option = { value: string; label: string };
 
 interface Props {
   options: readonly Option[];
-  value?: string;
   class?: string;
   [key: string]: unknown;
 }
 
-const { options, value = '', class: className, ...rest } = Astro.props;
+const { options, class: className, ...rest } = Astro.props;
 ---
 
 <span class:list={['select', className]}>
   <select class='select__control' {...rest}>
     {options.map((option) => (
-      <option value={option.value} selected={option.value === value} disabled={option.value === '' ? true : undefined}>
+      <option value={option.value} selected={option.value === ''} disabled={option.value === '' ? true : undefined}>
         {option.label}
       </option>
     ))}
