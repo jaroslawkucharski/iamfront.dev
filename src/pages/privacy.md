@@ -4,7 +4,7 @@ id: privacy
 title: 'Privacy'
 description: 'How I process contact form data on iamfront.dev and what your rights are (GDPR).'
 intro: 'This site uses no cookies and no tracking tools. I only process personal data when you send a message through the contact form.'
-updated: '2026-11-16'
+updated: '2026-11-17'
 ---
 
 ## Data controller
@@ -19,9 +19,9 @@ The legal basis is my legitimate interest in replying to your message (Art. 6(1)
 
 ## Who receives the data
 
-The form and the hosting are provided by Netlify, Inc. (USA). Form messages and emails sent to my iamfront.dev address are delivered to my Gmail inbox, provided by Google LLC (USA).
+The site is hosted by Cloudflare, Inc. (USA). Form messages are sent through the Web3Forms service, and emails sent to my iamfront.dev address are forwarded by Cloudflare. Both end up in my Gmail inbox, provided by Google LLC (USA).
 
-Data is transferred to the USA under Netlify’s data processing agreement, based on the European Commission’s standard contractual clauses, and – for Google – under the EU-U.S. Data Privacy Framework, in which Google LLC participates. I don’t sell or share the data with anyone else.
+Data is transferred to the USA under the EU-U.S. Data Privacy Framework, in which Cloudflare, Inc. and Google LLC participate, and under the terms of the Web3Forms service. I don’t sell or share the data with anyone else.
 
 ## How long I keep it
 
@@ -35,4 +35,4 @@ You have the right to access, correct and delete your data, to restrict or objec
 
 This site uses no cookies. Your chosen theme and animation setting are saved only in your browser (localStorage) and never sent anywhere.
 
-Like any host, Netlify’s servers keep technical logs (e.g. IP addresses) needed to run and secure the site.
+Like any host, Cloudflare’s servers keep technical logs (e.g. IP addresses) needed to run and secure the site.
