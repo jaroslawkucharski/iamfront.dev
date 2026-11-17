@@ -18,7 +18,7 @@ export const getCvLink = (locale: Locale) => {
 
   return {
     href: cv.file,
-    fileName: cv.file.split('/').pop() ?? 'cv.pdf',
+    fileName: cv.file.split('/').pop(),
     label: cv.label,
     title: `${cv.title} (${info})`,
     hint: ` – ${cv.title} (${info})`,
