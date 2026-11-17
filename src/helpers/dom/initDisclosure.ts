@@ -3,9 +3,16 @@ interface DisclosureOptions {
   button: HTMLButtonElement;
   render: (open: boolean) => void;
   closeOnOutsideClick?: boolean;
+  open?: boolean;
 }
 
-export const initDisclosure = ({ root, button, render, closeOnOutsideClick = true }: DisclosureOptions) => {
+export const initDisclosure = ({
+  root,
+  button,
+  render,
+  closeOnOutsideClick = true,
+  open = false,
+}: DisclosureOptions) => {
   let isOpen = false;
 
   const setOpen = (next: boolean) => {
@@ -29,7 +36,9 @@ export const initDisclosure = ({ root, button, render, closeOnOutsideClick = tru
   });
 
   root.addEventListener('focusout', (event) => {
-    if (!root.contains(event.relatedTarget as Node | null)) setOpen(false);
+    const target = event.relatedTarget as Node | null;
+
+    if (target && !root.contains(target)) setOpen(false);
   });
 
   if (closeOnOutsideClick) {
@@ -42,7 +51,7 @@ export const initDisclosure = ({ root, button, render, closeOnOutsideClick = tru
     document.addEventListener('click', onDocumentClick);
   }
 
-  setOpen(false);
+  setOpen(open);
 
   return { setOpen, isOpen: () => isOpen };
 };

@@ -8,7 +8,23 @@ const getCommonAncestor = (first: Element, second: Element) => {
   return ancestor;
 };
 
-const initHamburgerMenu = () => {
+document.addEventListener('astro:before-swap', (event) => {
+  const keepOpen: unknown = event.info?.keepOpen;
+
+  if (typeof keepOpen !== 'string') return;
+
+  const button = event.newDocument.querySelector(`[data-hamburger-menu][aria-controls='${keepOpen}']`);
+  const panel = event.newDocument.getElementById(keepOpen);
+
+  if (!button || !panel) return;
+
+  button.setAttribute('aria-expanded', 'true');
+  panel.dataset.menu = 'open';
+  panel.dataset.openOnLoad = '';
+  panel.style.setProperty('--menu-top', document.getElementById(keepOpen)?.style.getPropertyValue('--menu-top') ?? '');
+});
+
+document.addEventListener('astro:page-load', () => {
   document.querySelectorAll<HTMLButtonElement>('[data-hamburger-menu]:not([data-ready])').forEach((button) => {
     const panel = document.getElementById(button.getAttribute('aria-controls') ?? '');
     const root = panel && getCommonAncestor(button, panel);
@@ -21,10 +37,13 @@ const initHamburgerMenu = () => {
       root,
       button,
       closeOnOutsideClick: false,
+      open: panel.dataset.openOnLoad !== undefined,
       render: (open) => {
         if (open) panel.style.setProperty('--menu-top', `${root.getBoundingClientRect().bottom}px`);
 
         panel.dataset.menu = open ? 'open' : 'closed';
+
+        if (!open) delete panel.dataset.openOnLoad;
       },
     });
 
@@ -32,12 +51,6 @@ const initHamburgerMenu = () => {
       if ((event.target as Element).closest('a:not([data-language-switch])')) menu.setOpen(false);
     });
 
-    if (panel.dataset.openOnLoad === undefined) return;
-
-    delete panel.dataset.openOnLoad;
-    menu.setOpen(true);
-    panel.querySelector<HTMLElement>('[data-language-switch]')?.focus();
+    if (menu.isOpen()) panel.querySelector<HTMLElement>('[data-language-switch]')?.focus();
   });
-};
-
-document.addEventListener('astro:page-load', initHamburgerMenu);
+});

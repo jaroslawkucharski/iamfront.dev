@@ -69,7 +69,7 @@ const panelId = 'settings-panel';
     box-shadow: var(--shadow-popover);
   }
 
-  .settings[data-open='true'] :global(.settings__panel) {
+  .settings[data-open='true']:not([data-open-on-load]) :global(.settings__panel) {
     animation: reveal var(--duration-fast) var(--ease-standard);
   }
 </style>

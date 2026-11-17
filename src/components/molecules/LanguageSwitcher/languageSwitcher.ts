@@ -22,7 +22,9 @@ document.addEventListener('astro:page-load', () => {
         if (isDone) return;
 
         isDone = true;
-        navigate(link.href, { info: { keepOpen: link.closest<HTMLElement>('[data-keep-open]')?.id } });
+        navigate(link.href, {
+          info: { languageSwitch: true, keepOpen: link.closest<HTMLElement>('[data-keep-open]')?.id },
+        });
       };
 
       if (!knob || !duration) return go();
@@ -34,7 +36,15 @@ document.addEventListener('astro:page-load', () => {
 });
 
 document.addEventListener('astro:before-swap', (event) => {
-  const keepOpen: unknown = event.info?.keepOpen;
+  if (!event.info?.languageSwitch) return;
 
-  if (typeof keepOpen === 'string') event.newDocument.getElementById(keepOpen)?.setAttribute('data-open-on-load', '');
+  event.viewTransition.ready.catch(() => undefined);
+  event.viewTransition.skipTransition();
+  event.newDocument.documentElement.dataset.swapping = '';
+});
+
+document.addEventListener('astro:page-load', () => {
+  if (document.documentElement.dataset.swapping === undefined) return;
+
+  requestAnimationFrame(() => requestAnimationFrame(() => delete document.documentElement.dataset.swapping));
 });
