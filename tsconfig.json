@@ -12,6 +12,7 @@
       "@helpers/*": ["./src/helpers/*"],
       "@lib/*": ["./src/lib/*"],
       "@i18n/*": ["./src/i18n/*"],
+      "@config/*": ["./src/config/*"],
       "@data/*": ["./src/data/*"],
       "@styles/*": ["./src/styles/*"],
       "@assets/*": ["./src/assets/*"],

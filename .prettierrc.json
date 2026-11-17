@@ -10,7 +10,7 @@
     "^astro(:.*)?$",
     "<THIRD_PARTY_MODULES>",
     "",
-    "^@(assets|data|i18n|lib|helpers|typings|styles)/(.*)$",
+    "^@(assets|config|data|i18n|lib|helpers|typings|styles)/(.*)$",
     "",
     "^@(layouts|templates|organisms|molecules|atoms)/(.*)$",
     "",
