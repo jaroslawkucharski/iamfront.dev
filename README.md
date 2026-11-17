@@ -1,6 +1,5 @@
 <div align="center">
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/9b15ebc8-2d3e-4dc2-a2cb-ba1102043902/deploy-status)](https://app.netlify.com/projects/iamfrontdev/deploys)
 [![CI](https://github.com/jaroslawkucharski/iamfront.dev/actions/workflows/ci.yml/badge.svg)](https://github.com/jaroslawkucharski/iamfront.dev/actions/workflows/ci.yml)
 [![codecov](https://codecov.io/gh/jaroslawkucharski/iamfront.dev/graph/badge.svg)](https://codecov.io/gh/jaroslawkucharski/iamfront.dev)
 
@@ -32,7 +31,7 @@ UP<strong>DATES</strong>
 | ----------- | ----------- | ------------------------------------------------------------------- |
 | 2026-11     | `1.2.0`     | Moved hosting to Cloudflare Pages and the contact form to Web3Forms |
 | 2026-11     | `1.1.0`     | Rebuilt content as per-locale data files passed to components       |
-| **2026-11** | **`1.0.0`** | **🚀 Released to production**                                        |
+| **2026-11** | **`1.0.0`** | **🚀 Released to production**                                       |
 | **2026-11** | **`0.1.0`** | **Created project: Astro and TypeScript**                           |
 
 </div>
