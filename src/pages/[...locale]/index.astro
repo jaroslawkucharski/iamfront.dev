@@ -1,13 +1,17 @@
 ---
 import type { InferGetStaticPropsType } from 'astro';
 
-import { person } from '@data/site';
-import { getExperienceValues } from '@helpers/experience/getExperienceValues';
-import { getProjectListItem } from '@helpers/projects/getProjectListItem';
-import { getProjects } from '@helpers/projects/getProjects';
-import { getCompanyBadges } from '@helpers/timeline/getCompanyBadges';
+import { person } from '@config/site';
+import { experience as enExperience } from '@data/en/experience';
+import { profile as enProfile } from '@data/en/profile';
+import { projects as enProjects } from '@data/en/projects';
+import { experience as plExperience } from '@data/pl/experience';
+import { profile as plProfile } from '@data/pl/profile';
+import { projects as plProjects } from '@data/pl/projects';
+import { getExperienceText } from '@helpers/experience/getExperienceText';
 import { getDictionary } from '@lib/i18n/getDictionary';
 import { getLocalePaths } from '@lib/i18n/getLocalePaths';
+import { interpolate } from '@lib/i18n/interpolate';
 
 import ContactSection from '@organisms/ContactSection/ContactSection.astro';
 import FeaturedProjects from '@organisms/FeaturedProjects/FeaturedProjects.astro';
@@ -20,17 +24,27 @@ type Props = InferGetStaticPropsType<typeof getStaticPaths>;
 
 const { locale } = Astro.props;
 
-const { meta } = getDictionary(locale, { name: person.name, role: person.jobTitle, ...getExperienceValues() });
-const projects = await getProjects(locale);
-const featured = await Promise.all(
-  projects.filter((project) => project.featured).map((project) => getProjectListItem(project, locale)),
-);
+const experience = { en: enExperience, pl: plExperience }[locale];
+const profile = { en: enProfile, pl: plProfile }[locale];
+const projects = { en: enProjects, pl: plProjects }[locale];
+
+const experienceText = getExperienceText(locale);
+
+const { meta } = getDictionary(locale, {
+  name: person.name,
+  role: person.jobTitle,
+  experience: experienceText,
+});
 ---
 
 <MainTemplate locale={locale} title={meta.title} description={meta.description} contactCta={false}>
-  <Hero locale={locale} companies={await getCompanyBadges(locale)} />
+  <Hero
+    highlights={interpolate(profile.highlights, { experience: experienceText })}
+    companies={experience.filter((company) => company.featured)}
+    locale={locale}
+  />
 
-  <FeaturedProjects locale={locale} items={featured} total={projects.length} />
+  <FeaturedProjects projects={projects.filter((project) => project.featured)} total={projects.length} locale={locale} />
 
-  <ContactSection locale={locale} />
+  <ContactSection intro={profile.contact.intro} points={profile.contact.points} locale={locale} />
 </MainTemplate>

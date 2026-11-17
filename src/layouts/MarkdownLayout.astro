@@ -1,0 +1,91 @@
+---
+import { getDictionary } from '@lib/i18n/getDictionary';
+import type { Locale } from '@lib/i18n/languages';
+
+import Text from '@atoms/Text/Text.astro';
+import Section from '@molecules/Section/Section.astro';
+import MainTemplate from '@templates/MainTemplate/MainTemplate.astro';
+
+interface Props {
+  frontmatter: {
+    id: string;
+    title: string;
+    description: string;
+    intro: string;
+    updated: string;
+  };
+}
+
+const { frontmatter } = Astro.props;
+
+const locale = Astro.currentLocale as Locale;
+
+const { textPage } = getDictionary(locale);
+
+const updated = new Intl.DateTimeFormat(locale, {
+  day: 'numeric',
+  month: 'long',
+  year: 'numeric',
+  timeZone: 'UTC',
+}).format(new Date(`${frontmatter.updated}T00:00:00Z`));
+---
+
+<MainTemplate locale={locale} title={frontmatter.title} description={frontmatter.description} contactCta={false}>
+  <Section id={frontmatter.id} title={frontmatter.title} level={1} gap='lg'>
+    <Text size='lg' color='default' class='markdown'>
+      {frontmatter.intro}
+    </Text>
+
+    <Text as='div' class='markdown'>
+      <slot />
+    </Text>
+
+    <Text size='sm'>
+      {`${textPage.updated} `}
+
+      <time datetime={frontmatter.updated}>{updated}</time>
+    </Text>
+  </Section>
+</MainTemplate>
+
+<style>
+  :global(.markdown) {
+    max-width: var(--text-width);
+  }
+
+  :global(.markdown > *) {
+    margin: 0;
+  }
+
+  :global(.markdown > * + *) {
+    margin-block-start: var(--space-xs);
+  }
+
+  :global(.markdown > * + h2) {
+    margin-block-start: var(--space-lg);
+  }
+
+  :global(.markdown h2) {
+    color: var(--color-text);
+    font-size: var(--fs-xl);
+    font-weight: var(--fw-medium);
+    line-height: var(--lh-heading);
+    letter-spacing: var(--ls-heading);
+    text-wrap: balance;
+  }
+
+  :global(.markdown ul) {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2xs);
+    padding-inline-start: var(--list-indent);
+  }
+
+  :global(.markdown li) {
+    line-height: var(--lh-normal);
+  }
+
+  :global(.markdown li::marker) {
+    color: var(--color-text-muted);
+  }
+</style>
