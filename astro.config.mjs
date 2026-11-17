@@ -8,7 +8,6 @@ export default defineConfig({
   image: { domains: ['images.ctfassets.net'] },
   env: {
     schema: {
-      CONTENTFUL_SPACE_ID: envField.string({ context: 'server', access: 'secret' }),
       CONTENTFUL_DELIVERY_TOKEN: envField.string({ context: 'server', access: 'secret' }),
     },
   },
