@@ -16,6 +16,7 @@ const { locale, title, description, noindex = false } = Astro.props;
 
 const siteUrl = Astro.site ?? new URL(`https://${site.name}`);
 const canonical = new URL(Astro.url.pathname, siteUrl).href;
+const ogImage = new URL('/og.png', siteUrl).href;
 const path = stripLocale(Astro.url.pathname).replace(/^\//, '');
 
 const alternates = [
@@ -58,6 +59,10 @@ const schema = JSON.stringify({
 <meta property='og:description' content={description} />
 <meta property='og:url' content={canonical} />
 <meta property='og:locale' content={languages[locale].ogLocale} />
-<meta name='twitter:card' content='summary' />
+<meta property='og:image' content={ogImage} />
+<meta property='og:image:width' content='1200' />
+<meta property='og:image:height' content='630' />
+<meta property='og:image:alt' content={`${person.name} – ${person.jobTitle}`} />
+<meta name='twitter:card' content='summary_large_image' />
 
 <script type='application/ld+json' set:html={schema} />
