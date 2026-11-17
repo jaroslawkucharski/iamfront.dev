@@ -3,18 +3,7 @@ import type { InferGetStaticPropsType } from 'astro';
 import { getRelativeLocaleUrl } from 'astro:i18n';
 
 import { person } from '@config/site';
-import { education as enEducation } from '@data/en/education';
-import { experience as enExperience } from '@data/en/experience';
-import { hobbies as enHobbies } from '@data/en/hobbies';
-import { profile as enProfile } from '@data/en/profile';
-import { projects as enProjects } from '@data/en/projects';
-import { skillCategories as enSkillCategories } from '@data/en/skills';
-import { education as plEducation } from '@data/pl/education';
-import { experience as plExperience } from '@data/pl/experience';
-import { hobbies as plHobbies } from '@data/pl/hobbies';
-import { profile as plProfile } from '@data/pl/profile';
-import { projects as plProjects } from '@data/pl/projects';
-import { skillCategories as plSkillCategories } from '@data/pl/skills';
+import { getLocalizedCollection } from '@helpers/content/getLocalizedCollection';
 import { getExperienceText } from '@helpers/experience/getExperienceText';
 import { getSkillBadges } from '@helpers/skills/getSkillBadges';
 import { getDictionary } from '@lib/i18n/getDictionary';
@@ -34,12 +23,13 @@ type Props = InferGetStaticPropsType<typeof getStaticPaths>;
 
 const { locale } = Astro.props;
 
-const education = { en: enEducation, pl: plEducation }[locale];
-const experience = { en: enExperience, pl: plExperience }[locale];
-const hobbies = { en: enHobbies, pl: plHobbies }[locale];
-const profile = { en: enProfile, pl: plProfile }[locale];
-const projects = { en: enProjects, pl: plProjects }[locale];
-const skillCategories = { en: enSkillCategories, pl: plSkillCategories }[locale];
+const timeline = await getLocalizedCollection('timeline', locale);
+const education = timeline.filter(({ kind }) => kind === 'education');
+const experience = timeline.filter(({ kind }) => kind === 'experience');
+const hobbies = timeline.filter(({ kind }) => kind === 'hobby');
+const [profile] = await getLocalizedCollection('profile', locale);
+const projects = await getLocalizedCollection('projects', locale);
+const skillCategories = await getLocalizedCollection('skillCategories', locale);
 
 const { about } = getDictionary(locale, { name: person.name });
 

@@ -1,10 +1,16 @@
 // @ts-check
 import sitemap from '@astrojs/sitemap';
-import { defineConfig } from 'astro/config';
+import { defineConfig, envField } from 'astro/config';
 
 export default defineConfig({
   site: 'https://iamfront.dev',
   build: { inlineStylesheets: 'always' },
+  image: { domains: ['images.ctfassets.net'] },
+  env: {
+    schema: {
+      CONTENTFUL_DELIVERY_TOKEN: envField.string({ context: 'server', access: 'secret' }),
+    },
+  },
   i18n: {
     locales: ['en', 'pl'],
     defaultLocale: 'en',

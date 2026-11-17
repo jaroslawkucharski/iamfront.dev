@@ -1,6 +1,7 @@
 export const site = {
   name: 'iamfront.dev',
   contactFormKey: '3c204e57-44ed-416c-b1d0-4587a7906de4',
+  contentfulSpaceId: '8pa5iigmevzt',
 } as const;
 
 export const person = {

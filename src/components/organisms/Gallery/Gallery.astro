@@ -1,10 +1,10 @@
 ---
-import type { ImageMetadata } from 'astro';
+import type { ProjectImage } from '@typings/content';
 
 import Screenshot from '@molecules/Screenshot/Screenshot.astro';
 
 interface Props {
-  images: readonly { src: ImageMetadata; dark?: ImageMetadata; alt: string }[];
+  images: readonly ProjectImage[];
   zoom: { group: string; label: string };
   class?: string;
 }

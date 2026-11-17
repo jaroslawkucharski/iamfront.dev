@@ -5,12 +5,20 @@ import type { IconName } from '@atoms/Icon/iconNames';
 type ProjectTypes = 'commercial' | 'private';
 type StoryParts = 'situation' | 'task' | 'action' | 'result';
 
-export interface ImageData {
-  src: ImageMetadata;
-  dark?: ImageMetadata;
+export interface RemoteImage {
+  src: string;
+  width: number;
+  height: number;
 }
 
-interface ProjectImage extends ImageData {
+export type ImageSource = ImageMetadata | RemoteImage;
+
+export interface ImageData {
+  src: ImageSource;
+  dark?: ImageSource;
+}
+
+export interface ProjectImage extends ImageData {
   alt: string;
 }
 

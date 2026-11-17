@@ -1,15 +1,17 @@
 ---
-import type { ImageMetadata } from 'astro';
 import { Image } from 'astro:assets';
 import type { HTMLAttributes } from 'astro/types';
+
+import { getImageProps } from '@helpers/images/getImageProps';
+import type { ImageSource } from '@typings/content';
 
 type Shapes = 'default' | 'square' | 'circle';
 type Fits = 'cover' | 'contain';
 type Themes = 'light' | 'dark';
 
 interface Props extends Omit<HTMLAttributes<'img'>, 'src' | 'alt' | 'width' | 'height' | 'style' | 'loading'> {
-  src: ImageMetadata;
-  dark?: ImageMetadata;
+  src: ImageSource;
+  dark?: ImageSource;
   alt: string;
   shape?: Shapes;
   fit?: Fits;
@@ -48,7 +50,7 @@ const dimensions = size
 const sizeStyle = size ? `--picture-size: ${size}px; --picture-size-mobile: ${sizeMobile}px` : undefined;
 const styles = [sizeStyle, style].filter(Boolean).join('; ') || undefined;
 
-const images: { image: ImageMetadata; theme?: Themes }[] = dark
+const images: { image: ImageSource; theme?: Themes }[] = dark
   ? [
       { image: src, theme: 'light' },
       { image: dark, theme: 'dark' },
@@ -58,7 +60,7 @@ const images: { image: ImageMetadata; theme?: Themes }[] = dark
 
 {images.map(({ image, theme }) => (
   <Image
-    src={image}
+    {...getImageProps(image)}
     alt={alt}
     loading={priority ? 'eager' : 'lazy'}
     fetchpriority={priority ? 'high' : undefined}

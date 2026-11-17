@@ -2,12 +2,7 @@
 import type { InferGetStaticPropsType } from 'astro';
 
 import { person } from '@config/site';
-import { experience as enExperience } from '@data/en/experience';
-import { profile as enProfile } from '@data/en/profile';
-import { projects as enProjects } from '@data/en/projects';
-import { experience as plExperience } from '@data/pl/experience';
-import { profile as plProfile } from '@data/pl/profile';
-import { projects as plProjects } from '@data/pl/projects';
+import { getLocalizedCollection } from '@helpers/content/getLocalizedCollection';
 import { getExperienceText } from '@helpers/experience/getExperienceText';
 import { getDictionary } from '@lib/i18n/getDictionary';
 import { getLocalePaths } from '@lib/i18n/getLocalePaths';
@@ -24,9 +19,10 @@ type Props = InferGetStaticPropsType<typeof getStaticPaths>;
 
 const { locale } = Astro.props;
 
-const experience = { en: enExperience, pl: plExperience }[locale];
-const profile = { en: enProfile, pl: plProfile }[locale];
-const projects = { en: enProjects, pl: plProjects }[locale];
+const timeline = await getLocalizedCollection('timeline', locale);
+const experience = timeline.filter(({ kind }) => kind === 'experience');
+const [profile] = await getLocalizedCollection('profile', locale);
+const projects = await getLocalizedCollection('projects', locale);
 
 const experienceText = getExperienceText(locale);
 
