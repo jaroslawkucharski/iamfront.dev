@@ -9,3 +9,4 @@ pnpm-debug.log*
 .env.*
 .DS_Store
 .idea/
+!.env.example
