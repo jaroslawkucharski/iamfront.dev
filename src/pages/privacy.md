@@ -29,7 +29,7 @@ Data is transferred to the USA under the EU-U.S. Data Privacy Framework, in whic
 
 For as long as we’re in touch, and then no longer than 12 months. If we start working together – for as long as we work together, and then until any claims become time-barred.
 
-Web3Forms keeps a copy of form messages on its servers for up to 3 years, in line with its data processing agreement, unless it is deleted earlier. If you ask me to delete your data, I’ll also ask Web3Forms to delete it.
+Web3Forms keeps a copy of form messages on its servers for 30 days and then permanently deletes it. If you ask me to delete your data, I’ll also ask Web3Forms to delete it.
 
 ## Your rights
 
