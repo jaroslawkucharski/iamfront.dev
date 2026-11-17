@@ -1,10 +1,10 @@
 ---
-import type { Project } from '@helpers/projects/getProjects';
 import { getDictionary } from '@lib/i18n/getDictionary';
 import type { Locale } from '@lib/i18n/languages';
+import type { Project } from '@typings/content';
 
+import Text from '@atoms/Text/Text.astro';
 import ArticleSection from '@molecules/ArticleSection/ArticleSection.astro';
-import RichText from '@molecules/RichText/RichText.astro';
 
 interface Props {
   project: Project;
@@ -13,20 +13,29 @@ interface Props {
 
 const { project, locale } = Astro.props;
 
-const { projects, externalLink } = getDictionary(locale);
-const newTab = ` ${externalLink.newTab}`;
+const { projects } = getDictionary(locale);
 
 const parts = (['situation', 'task', 'action', 'result'] as const).map((part) => ({
   id: `story-${part}`,
   title: projects.star[part],
-  paragraphs: project.star[part].split(/\n{2,}/),
+  text: project.star[part],
 }));
 ---
 
 {parts.map((part) => (
   <ArticleSection id={part.id} title={part.title}>
-    {part.paragraphs.map((paragraph) => (
-      <RichText text={paragraph} newTabLabel={newTab} />
-    ))}
+    <Text as='div' class='project-story__text'>
+      <Fragment set:html={part.text} />
+    </Text>
   </ArticleSection>
 ))}
+
+<style>
+  :global(.project-story__text p) {
+    margin: 0;
+  }
+
+  :global(.project-story__text p + p) {
+    margin-block-start: var(--space-sm);
+  }
+</style>

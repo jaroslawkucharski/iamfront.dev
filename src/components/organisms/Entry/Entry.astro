@@ -1,23 +1,12 @@
 ---
 import type { Locale } from '@lib/i18n/languages';
+import type { TimelineEntry } from '@typings/content';
 
 import Flex from '@atoms/Flex/Flex.astro';
-import type { IconName } from '@atoms/Icon/iconNames';
 import EntryHeader from '@organisms/EntryHeader/EntryHeader.astro';
 import EntrySection, { type EntrySectionData } from '@organisms/EntrySection/EntrySection.astro';
 
-export interface EntryData {
-  id: string;
-  name: string;
-  logo?: string;
-  icon?: IconName;
-  url?: string;
-  start?: string;
-  end?: string;
-  title: string;
-  titleNote?: string;
-  sections?: readonly EntrySectionData[];
-}
+export type EntryData = Omit<TimelineEntry, 'sections'> & { sections?: EntrySectionData[] };
 
 interface Props {
   entry: EntryData;

@@ -5,20 +5,14 @@ import type { Locale } from '@lib/i18n/languages';
 import Icon from '@atoms/Icon/Icon.astro';
 import Text from '@atoms/Text/Text.astro';
 
-type Levels = 2 | 3 | 4 | 5 | 6;
-type Variants = 'default' | 'plain';
-
 interface Props {
   id: string;
   title: string;
   locale: Locale;
-  level?: Levels;
-  open?: boolean;
-  variant?: Variants;
   class?: string;
 }
 
-const { id, title, locale, level = 4, open = false, variant = 'default', class: className } = Astro.props;
+const { id, title, locale, class: className } = Astro.props;
 
 const panelId = `${id}-panel`;
 const { disclosure } = getDictionary(locale);
@@ -26,14 +20,14 @@ const expandTitle = `${disclosure.expand}: ${title}`;
 const collapseTitle = `${disclosure.collapse}: ${title}`;
 ---
 
-<div class:list={['disclosure', `disclosure--${variant}`, className]} data-disclosure>
-  <Text as={`h${level}`} size='md' weight='medium' color='default' tracking='label' class='disclosure__heading'>
+<div class:list={['disclosure', className]} data-disclosure>
+  <Text as='h4' size='md' weight='medium' color='default' tracking='label' class='disclosure__heading'>
     <button
       type='button'
       class='disclosure__button'
-      aria-expanded={open ? 'true' : 'false'}
+      aria-expanded='false'
       aria-controls={panelId}
-      title={open ? collapseTitle : expandTitle}
+      title={expandTitle}
       data-title-expand={expandTitle}
       data-title-collapse={collapseTitle}
     >
@@ -42,7 +36,7 @@ const collapseTitle = `${disclosure.collapse}: ${title}`;
       <span
         class='disclosure__icon'
         aria-hidden='true'
-        title={open ? disclosure.collapse : disclosure.expand}
+        title={disclosure.expand}
         data-title-expand={disclosure.expand}
         data-title-collapse={disclosure.collapse}
       >
@@ -51,7 +45,7 @@ const collapseTitle = `${disclosure.collapse}: ${title}`;
     </button>
   </Text>
 
-  <div id={panelId} class='disclosure__panel' hidden={open ? undefined : 'until-found'}>
+  <div id={panelId} class='disclosure__panel' hidden='until-found'>
     <div class='disclosure__content'>
       <slot />
     </div>
@@ -76,14 +70,6 @@ const collapseTitle = `${disclosure.collapse}: ${title}`;
 </script>
 
 <style>
-  .disclosure--default {
-    border-top: var(--border-width) solid var(--color-border-subtle);
-  }
-
-  .disclosure--default:last-of-type {
-    border-bottom: var(--border-width) solid var(--color-border-subtle);
-  }
-
   .disclosure :global(.disclosure__heading) {
     margin: 0;
   }
@@ -91,12 +77,11 @@ const collapseTitle = `${disclosure.collapse}: ${title}`;
   .disclosure__button {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    gap: var(--space-sm);
+    gap: var(--space-xs);
     width: 100%;
     min-height: var(--tap-target);
     margin: 0;
-    padding: var(--space-sm) var(--space-xs);
+    padding: var(--space-2xs) 0;
     border: 0;
     border-radius: var(--radius-sm);
     background: transparent;
@@ -105,11 +90,11 @@ const collapseTitle = `${disclosure.collapse}: ${title}`;
     letter-spacing: inherit;
     text-align: start;
     cursor: var(--cursor-pointer);
-    transition: background-color var(--duration-fast) var(--ease-standard);
   }
 
   .disclosure__button:hover {
-    background: var(--color-surface);
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
   }
 
   .disclosure__button:focus-visible {
@@ -120,59 +105,24 @@ const collapseTitle = `${disclosure.collapse}: ${title}`;
     display: inline-grid;
     place-items: center;
     flex-shrink: 0;
-    width: var(--control-sm);
-    height: var(--control-sm);
-    border: var(--border-width) solid var(--color-border);
-    border-radius: var(--radius-full);
-    color: var(--color-text);
+    order: -1;
+    color: var(--color-text-muted);
     transition:
       rotate var(--duration-fast) var(--ease-standard),
-      background-color var(--duration-fast) var(--ease-standard),
       color var(--duration-fast) var(--ease-standard);
   }
 
   .disclosure__button:hover .disclosure__icon,
   .disclosure__button[aria-expanded='true'] .disclosure__icon {
-    background: var(--color-text);
-    color: var(--color-bg);
+    color: var(--color-text);
   }
 
   .disclosure__button[aria-expanded='true'] .disclosure__icon {
     rotate: 45deg;
   }
 
-  .disclosure--plain .disclosure__button {
-    justify-content: flex-start;
-    gap: var(--space-xs);
-    padding: var(--space-2xs) 0;
-  }
-
-  .disclosure--plain .disclosure__button:hover {
-    background: transparent;
-    text-decoration: underline;
-    text-underline-offset: 0.2em;
-  }
-
-  .disclosure--plain .disclosure__icon {
-    order: -1;
-    width: auto;
-    height: auto;
-    border: 0;
-    color: var(--color-text-muted);
-  }
-
-  .disclosure--plain .disclosure__button:hover .disclosure__icon,
-  .disclosure--plain .disclosure__button[aria-expanded='true'] .disclosure__icon {
-    background: transparent;
-    color: var(--color-text);
-  }
-
-  .disclosure--plain .disclosure__content {
-    padding: var(--space-xs) 0 var(--space-sm) calc(var(--icon-sm) + var(--space-xs));
-  }
-
   .disclosure__content {
-    padding: var(--space-sm) var(--space-xs) var(--space-md);
+    padding: var(--space-xs) 0 var(--space-sm) calc(var(--icon-sm) + var(--space-xs));
     animation: reveal var(--duration-medium) var(--ease-standard);
   }
 

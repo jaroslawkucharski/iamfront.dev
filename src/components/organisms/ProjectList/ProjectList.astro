@@ -1,0 +1,35 @@
+---
+import type { Locale } from '@lib/i18n/languages';
+import type { Project } from '@typings/content';
+
+import ProjectListItem from '@organisms/ProjectListItem/ProjectListItem.astro';
+
+type Levels = 2 | 3 | 4;
+
+interface Props {
+  projects: readonly Project[];
+  locale: Locale;
+  label: string;
+  labelsLabel?: string;
+  techLabel?: string;
+  level?: Levels;
+  id?: string;
+  class?: string;
+}
+
+const { projects, locale, label, labelsLabel = '', techLabel = '', level = 3, id, class: className } = Astro.props;
+---
+
+<ul id={id} class:list={['media-list', className]} aria-label={label}>
+  {projects.map((project) => (
+    <ProjectListItem project={project} locale={locale} labelsLabel={labelsLabel} techLabel={techLabel} level={level} />
+  ))}
+</ul>
+
+<style>
+  .media-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+</style>

@@ -1,13 +1,12 @@
 ---
 interface Props {
-  href?: string;
   title?: string;
 }
 
-const { href = '#main', title } = Astro.props;
+const { title } = Astro.props;
 ---
 
-<a class='skip-link' href={href} title={title}>
+<a class='skip-link' href='#main' title={title}>
   <slot />
 </a>
 

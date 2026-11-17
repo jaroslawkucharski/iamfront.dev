@@ -1,5 +1,5 @@
 ---
-import RichText from '@molecules/RichText/RichText.astro';
+import Text from '@atoms/Text/Text.astro';
 
 type Variants = 'disc' | 'check';
 
@@ -14,7 +14,9 @@ const { items, variant = 'disc', class: className } = Astro.props;
 
 <ul class:list={['bullet-list', `bullet-list--${variant}`, className]}>
   {items.map((item) => (
-    <RichText as='li' text={item} class='bullet-list__item' />
+    <Text as='li' class='bullet-list__item'>
+      <Fragment set:html={item} />
+    </Text>
   ))}
 </ul>
 

@@ -5,7 +5,7 @@ import Flex from '@atoms/Flex/Flex.astro';
 import Entry, { type EntryData } from '@organisms/Entry/Entry.astro';
 
 interface Props {
-  entries: readonly EntryData[];
+  entries: EntryData[];
   locale: Locale;
   ordered?: boolean;
   stackLabel?: string;

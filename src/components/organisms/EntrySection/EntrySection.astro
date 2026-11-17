@@ -1,18 +1,19 @@
 ---
 import type { Locale } from '@lib/i18n/languages';
+import type { BadgeItem } from '@typings/badge';
 
 import Flex from '@atoms/Flex/Flex.astro';
 import Icon from '@atoms/Icon/Icon.astro';
 import Link from '@atoms/Link/Link.astro';
 import VisuallyHidden from '@atoms/VisuallyHidden/VisuallyHidden.astro';
-import BadgeList, { type BadgeItem } from '@molecules/BadgeList/BadgeList.astro';
+import BadgeList from '@molecules/BadgeList/BadgeList.astro';
 import Disclosure from '@molecules/Disclosure/Disclosure.astro';
 import BulletList from '@organisms/BulletList/BulletList.astro';
 
 export interface EntrySectionData {
   title: string;
-  stack?: readonly BadgeItem[];
-  items: readonly string[];
+  items: string[];
+  stack?: BadgeItem[];
   projectHref?: string;
 }
 
@@ -27,7 +28,7 @@ interface Props {
 const { id, section, locale, stackLabel = '', projectLinkLabel = '' } = Astro.props;
 ---
 
-<Disclosure id={id} title={section.title} locale={locale} level={4} variant='plain'>
+<Disclosure id={id} title={section.title} locale={locale}>
   <Flex gap='sm' align='start'>
     {section.stack && <BadgeList label={stackLabel} items={section.stack} />}
 

@@ -1,5 +1,4 @@
 ---
-import { getProfile } from '@helpers/profile/getProfile';
 import { getDictionary } from '@lib/i18n/getDictionary';
 import type { Locale } from '@lib/i18n/languages';
 
@@ -10,21 +9,22 @@ import ContactForm from '@organisms/ContactForm/ContactForm.astro';
 import ContactLinks from '@organisms/ContactLinks/ContactLinks.astro';
 
 interface Props {
+  intro: string;
+  points: string[];
   locale: Locale;
 }
 
-const { locale } = Astro.props;
+const { intro, points, locale } = Astro.props;
 
 const { contact } = getDictionary(locale);
-const profile = await getProfile(locale);
 ---
 
 <Section id='contact' title={contact.heading} layout='split'>
   <Text color='default' slot='aside'>
-    {profile.contact.intro}
+    {intro}
   </Text>
 
-  <BulletList items={profile.contact.points} variant='check' slot='aside' />
+  <BulletList items={points} variant='check' slot='aside' />
 
   <ContactLinks locale={locale} slot='aside' />
 
