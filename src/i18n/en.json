@@ -1,7 +1,7 @@
 {
   "meta": {
     "title": "{name} – {role}",
-    "description": "Senior Frontend Developer with {experience} {years} of commercial experience building web applications with React, TypeScript and Next.js."
+    "description": "Senior Frontend Developer with {experience} of commercial experience building web applications with React, TypeScript and Next.js."
   },
   "experienceYears": {
     "one": "year",
@@ -126,7 +126,7 @@
     "failure": "The message could not be sent. Please try again in a moment.",
     "errorsSummary": "Please fix the errors in the form: {count}.",
     "counter": "{count}/{max} characters",
-    "privacyNote": "I only use the data from this form to reply to your message. See the [privacy notice](/privacy/) for details.",
+    "privacyNote": "I only use the data from this form to reply to your message. See the <a href=\"/privacy/\">privacy notice</a> for details.",
     "thanks": {
       "title": "Message sent",
       "heading": "Thanks!",
@@ -199,7 +199,6 @@
       "private": "personal"
     },
     "archived": "archived",
-    "planned": "planned",
     "labelsLabel": "Project type",
     "live": "See it live",
     "repo": "Source code",
