@@ -53,7 +53,6 @@ const classes = ['input', `input--${variant}`, className];
   .input--search {
     min-height: var(--control-sm);
     padding: 0 var(--space-sm) 0 calc(var(--space-xs) + var(--icon-sm) + var(--space-xs));
-    border-color: var(--color-border-subtle);
     border-radius: var(--radius-full);
     font-size: var(--fs-sm);
     line-height: normal;
@@ -63,10 +62,5 @@ const classes = ['input', `input--${variant}`, className];
   .input--search::placeholder {
     color: var(--color-text-muted);
     opacity: 1;
-  }
-
-  .input--search:hover,
-  .input--search:focus {
-    border-color: var(--color-border);
   }
 </style>
