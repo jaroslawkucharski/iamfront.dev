@@ -1,6 +1,8 @@
 ---
-import type { ImageMetadata } from 'astro';
 import { getImage } from 'astro:assets';
+
+import { getImageProps } from '@helpers/images/getImageProps';
+import type { ImageSource } from '@typings/content';
 
 import Picture from '@atoms/Picture/Picture.astro';
 import VisuallyHidden from '@atoms/VisuallyHidden/VisuallyHidden.astro';
@@ -8,8 +10,8 @@ import VisuallyHidden from '@atoms/VisuallyHidden/VisuallyHidden.astro';
 type Zoom = { group: string; label: string };
 
 interface Props {
-  src: ImageMetadata;
-  dark?: ImageMetadata;
+  src: ImageSource;
+  dark?: ImageSource;
   alt: string;
   sizes: string;
   priority?: boolean;
@@ -20,7 +22,16 @@ interface Props {
 
 const { src, dark, alt, sizes, priority = false, ratio, zoom, class: className } = Astro.props;
 
-const toLarge = (image: ImageMetadata) => getImage({ src: image, width: Math.min(image.width, 1920), format: 'webp' });
+const toLarge = (image: ImageSource) => {
+  const width = Math.min(image.width, 1920);
+
+  return getImage({
+    ...getImageProps(image),
+    width,
+    height: Math.round((image.height * width) / image.width),
+    format: 'webp',
+  });
+};
 
 const large = zoom ? await toLarge(src) : undefined;
 const largeDark = zoom && dark ? await toLarge(dark) : undefined;
