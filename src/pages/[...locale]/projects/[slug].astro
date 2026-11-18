@@ -55,7 +55,9 @@ const zoom = { group: 'project', label: lightbox.open };
     </Text>
 
     <ArticleLayout asideLabel={projects.details}>
-      {lead && <Screenshot {...lead} sizes='(max-width: 1024px) 100vw, 860px' ratio={16 / 10} priority />}
+      {lead && (
+        <Screenshot {...lead} sizes='(max-width: 1024px) 100vw, 860px' ratio={16 / 10} priority zoom={zoom} />
+      )}
 
       <ProjectStory project={project} locale={locale} />
 

@@ -40,8 +40,10 @@ document.addEventListener('astro:page-load', () => {
       if (isNewTabClick(event)) return;
 
       event.preventDefault();
-      items = [...document.querySelectorAll<HTMLAnchorElement>(`a[data-lightbox="${link.dataset.lightbox}"]`)];
-      show(items.indexOf(link));
+      const group = [...document.querySelectorAll<HTMLAnchorElement>(`a[data-lightbox="${link.dataset.lightbox}"]`)];
+
+      items = group.filter((item, position) => group.findIndex(({ href }) => href === item.href) === position);
+      show(items.findIndex(({ href }) => href === link.href));
       dialog.showModal();
     });
   });
