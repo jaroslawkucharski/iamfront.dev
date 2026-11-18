@@ -42,7 +42,6 @@ const { projects, lightbox } = getDictionary(locale);
 
 const [lead] = project.gallery;
 const zoom = { group: 'project', label: lightbox.open };
-const leadZoom = { ...zoom, group: 'lead' };
 ---
 
 <MainTemplate locale={locale} title={project.name} description={project.summary}>
@@ -56,9 +55,7 @@ const leadZoom = { ...zoom, group: 'lead' };
     </Text>
 
     <ArticleLayout asideLabel={projects.details}>
-      {lead && (
-        <Screenshot {...lead} sizes='(max-width: 1024px) 100vw, 860px' ratio={16 / 10} priority zoom={leadZoom} />
-      )}
+      {lead && <Screenshot {...lead} sizes='(max-width: 1024px) 100vw, 860px' ratio={16 / 10} priority />}
 
       <ProjectStory project={project} locale={locale} />
 
