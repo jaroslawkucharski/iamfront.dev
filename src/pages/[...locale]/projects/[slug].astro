@@ -40,8 +40,9 @@ const { locale, project, stack } = Astro.props;
 
 const { projects, lightbox } = getDictionary(locale);
 
-const [lead, ...gallery] = project.gallery;
+const [lead] = project.gallery;
 const zoom = { group: 'project', label: lightbox.open };
+const leadZoom = { ...zoom, group: 'lead' };
 ---
 
 <MainTemplate locale={locale} title={project.name} description={project.summary}>
@@ -55,13 +56,15 @@ const zoom = { group: 'project', label: lightbox.open };
     </Text>
 
     <ArticleLayout asideLabel={projects.details}>
-      {lead && <Screenshot {...lead} sizes='(max-width: 1024px) 100vw, 860px' priority zoom={zoom} />}
+      {lead && (
+        <Screenshot {...lead} sizes='(max-width: 1024px) 100vw, 860px' ratio={16 / 10} priority zoom={leadZoom} />
+      )}
 
       <ProjectStory project={project} locale={locale} />
 
-      {gallery.length > 0 && (
+      {project.gallery.length > 0 && (
         <ArticleSection id='gallery' title={projects.gallery}>
-          <Gallery images={gallery} zoom={zoom} />
+          <Gallery images={project.gallery} zoom={zoom} />
         </ArticleSection>
       )}
 
