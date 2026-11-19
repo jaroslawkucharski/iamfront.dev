@@ -67,7 +67,7 @@ const projects = defineCollection({
   loader: contentfulLoader('project'),
   schema: z
     .object({
-      ...meta,
+      locale: meta.locale,
       slug: z.string(),
       name: z.string(),
       types: z.array(z.enum(['commercial', 'private'])),
