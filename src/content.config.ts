@@ -63,6 +63,13 @@ const file = z
     size: file.details.size,
   }));
 
+const socialImage = z
+  .object({ fields: z.object({ description: z.string().default(''), file: z.object({ url: z.string() }) }) })
+  .transform(({ fields }) => ({
+    src: `https:${fields.file.url}?w=1200&h=630&fit=fill&fm=jpg`,
+    alt: fields.description,
+  }));
+
 const projects = defineCollection({
   loader: contentfulLoader('project'),
   schema: z
@@ -172,6 +179,7 @@ const profile = defineCollection({
       contactPoints: richText,
       heroPhoto: themedImage,
       portrait: themedImage,
+      ogImage: socialImage,
       cv: file.optional(),
     })
     .transform(({ bio, contactIntro, contactPoints, ...profile }) => {
