@@ -11,5 +11,5 @@ export const getLocalizedCollection = async <Collection extends CollectionKey>(
   return entries
     .map(({ data }) => data)
     .filter((data) => data.locale === locale)
-    .sort((first, second) => first.order - second.order);
+    .sort((first, second) => ('order' in first ? first.order : 0) - ('order' in second ? second.order : 0));
 };

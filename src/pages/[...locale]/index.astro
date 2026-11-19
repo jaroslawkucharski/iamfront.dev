@@ -3,6 +3,7 @@ import type { InferGetStaticPropsType } from 'astro';
 
 import { person } from '@config/site';
 import { getLocalizedCollection } from '@helpers/content/getLocalizedCollection';
+import { sortProjects } from '@helpers/projects/sortProjects';
 import { getExperienceText } from '@helpers/experience/getExperienceText';
 import { getDictionary } from '@lib/i18n/getDictionary';
 import { getLocalePaths } from '@lib/i18n/getLocalePaths';
@@ -22,7 +23,7 @@ const { locale } = Astro.props;
 const timeline = await getLocalizedCollection('timeline', locale);
 const experience = timeline.filter(({ kind }) => kind === 'experience');
 const [profile] = await getLocalizedCollection('profile', locale);
-const projects = await getLocalizedCollection('projects', locale);
+const projects = sortProjects(await getLocalizedCollection('projects', locale));
 
 const experienceText = getExperienceText(locale);
 

@@ -2,6 +2,7 @@
 import type { InferGetStaticPropsType } from 'astro';
 
 import { getLocalizedCollection } from '@helpers/content/getLocalizedCollection';
+import { sortProjects } from '@helpers/projects/sortProjects';
 import { getDictionary } from '@lib/i18n/getDictionary';
 import { getLocalePaths } from '@lib/i18n/getLocalePaths';
 
@@ -16,7 +17,7 @@ type Props = InferGetStaticPropsType<typeof getStaticPaths>;
 
 const { locale } = Astro.props;
 
-const projects = await getLocalizedCollection('projects', locale);
+const projects = sortProjects(await getLocalizedCollection('projects', locale));
 
 const { projects: dictionary, projectCount } = getDictionary(locale);
 

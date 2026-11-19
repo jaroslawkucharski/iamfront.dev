@@ -4,6 +4,7 @@ import { getRelativeLocaleUrl } from 'astro:i18n';
 
 import { person } from '@config/site';
 import { getLocalizedCollection } from '@helpers/content/getLocalizedCollection';
+import { sortProjects } from '@helpers/projects/sortProjects';
 import { getExperienceText } from '@helpers/experience/getExperienceText';
 import { getSkillBadges } from '@helpers/skills/getSkillBadges';
 import { getDictionary } from '@lib/i18n/getDictionary';
@@ -28,7 +29,7 @@ const education = timeline.filter(({ kind }) => kind === 'education');
 const experience = timeline.filter(({ kind }) => kind === 'experience');
 const hobbies = timeline.filter(({ kind }) => kind === 'hobby');
 const [profile] = await getLocalizedCollection('profile', locale);
-const projects = await getLocalizedCollection('projects', locale);
+const projects = sortProjects(await getLocalizedCollection('projects', locale));
 const skillCategories = await getLocalizedCollection('skillCategories', locale);
 
 const { about } = getDictionary(locale, { name: person.name });
