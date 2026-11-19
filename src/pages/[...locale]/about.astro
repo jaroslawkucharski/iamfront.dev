@@ -56,7 +56,11 @@ const toTimeline = (entries: TimelineEntry[]) =>
 ---
 
 <MainTemplate locale={locale} title={about.meta.title} description={about.meta.description}>
-  <AboutIntro bio={interpolate(profile.bio, { experience: getExperienceText(locale) })} locale={locale} />
+  <AboutIntro
+    bio={interpolate(profile.bio, { experience: getExperienceText(locale) })}
+    photo={profile.portrait}
+    locale={locale}
+  />
 
   <Section id='skills' title={about.skills.heading}>
     <GroupedBadgeList groups={skillGroups} />

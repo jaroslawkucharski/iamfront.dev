@@ -3,8 +3,8 @@ import type { InferGetStaticPropsType } from 'astro';
 
 import { person } from '@config/site';
 import { getLocalizedCollection } from '@helpers/content/getLocalizedCollection';
-import { sortProjects } from '@helpers/projects/sortProjects';
 import { getExperienceText } from '@helpers/experience/getExperienceText';
+import { sortProjects } from '@helpers/projects/sortProjects';
 import { getDictionary } from '@lib/i18n/getDictionary';
 import { getLocalePaths } from '@lib/i18n/getLocalePaths';
 import { interpolate } from '@lib/i18n/interpolate';
@@ -38,6 +38,7 @@ const { meta } = getDictionary(locale, {
   <Hero
     highlights={interpolate(profile.highlights, { experience: experienceText })}
     companies={experience.filter((company) => company.featured)}
+    photo={profile.heroPhoto}
     locale={locale}
   />
 
