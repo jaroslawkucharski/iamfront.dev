@@ -170,6 +170,8 @@ const profile = defineCollection({
       bio: richText,
       contactIntro: z.string(),
       contactPoints: richText,
+      heroPhoto: themedImage,
+      portrait: themedImage,
       cv: file.optional(),
     })
     .transform(({ bio, contactIntro, contactPoints, ...profile }) => {

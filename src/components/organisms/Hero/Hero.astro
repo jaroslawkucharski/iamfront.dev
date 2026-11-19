@@ -1,12 +1,11 @@
 ---
 import { getRelativeLocaleUrl } from 'astro:i18n';
 
-import heroPhoto from '@assets/me/hero.png';
 import { person } from '@config/site';
 import { getDictionary } from '@lib/i18n/getDictionary';
 import { interpolate } from '@lib/i18n/interpolate';
 import type { Locale } from '@lib/i18n/languages';
-import type { TimelineEntry } from '@typings/content';
+import type { ProjectImage, TimelineEntry } from '@typings/content';
 
 import Flex from '@atoms/Flex/Flex.astro';
 import Heading from '@atoms/Heading/Heading.astro';
@@ -19,10 +18,11 @@ import LabeledBadgeList from '@organisms/LabeledBadgeList/LabeledBadgeList.astro
 interface Props {
   highlights: string[];
   companies: TimelineEntry[];
+  photo: ProjectImage;
   locale: Locale;
 }
 
-const { highlights, companies, locale } = Astro.props;
+const { highlights, companies, photo, locale } = Astro.props;
 
 const { hero } = getDictionary(locale);
 
@@ -61,7 +61,7 @@ const links = [
       <LinkList links={links} />
     </Flex>
 
-    <Picture src={heroPhoto} alt={`${person.name} – ${person.jobTitle}`} size={600} priority slot='media' />
+    <Picture src={photo.src} dark={photo.dark} alt={photo.alt} size={600} priority slot='media' />
   </MediaBlock>
 </section>
 
